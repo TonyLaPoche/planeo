@@ -113,7 +113,8 @@ export default function SettingsPage() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+              className="btn-primary"
+              aria-label="Enregistrer les paramètres"
             >
               <Save className="h-4 w-4" />
               <span>{isSaving ? 'Sauvegarde...' : 'Sauvegarder'}</span>
@@ -269,7 +270,7 @@ export default function SettingsPage() {
             </div>
             <div className="p-6">
               <div className="max-w-xs">
-                <label htmlFor="breakDuration" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="breakDuration" className="form-label">
                   Durée de pause par défaut (minutes)
                 </label>
                 <input
@@ -279,8 +280,10 @@ export default function SettingsPage() {
                   onChange={(e) => updateSettings({ defaultBreakDuration: parseInt(e.target.value) || 0 })}
                   min="0"
                   max="480"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
+                  aria-describedby="break-default-help"
                 />
+                <p id="break-default-help" className="sr-only">Durée de pause par défaut en minutes pour les nouveaux créneaux</p>
               </div>
             </div>
           </div>
@@ -294,13 +297,14 @@ export default function SettingsPage() {
               <div className="flex flex-wrap gap-4">
                 <button
                   onClick={handleExportData}
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                  className="btn-primary"
+                  aria-label="Télécharger toutes les données au format JSON"
                 >
                   <Download className="h-4 w-4" />
                   <span>Exporter les données</span>
                 </button>
 
-                <label className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2 cursor-pointer">
+                <label className="btn-primary cursor-pointer">
                   <Upload className="h-4 w-4" />
                   <span>Importer des données</span>
                   <input
@@ -308,12 +312,14 @@ export default function SettingsPage() {
                     accept=".json"
                     onChange={handleImportData}
                     className="hidden"
+                    aria-label="Sélectionner un fichier JSON à importer"
                   />
                 </label>
 
                 <button
                   onClick={handleClearData}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                  className="btn-danger"
+                  aria-label="Supprimer définitivement toutes les données"
                 >
                   <Trash2 className="h-4 w-4" />
                   <span>Supprimer tout</span>

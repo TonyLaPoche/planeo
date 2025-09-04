@@ -103,14 +103,17 @@ export default function ReportsPage() {
                   id="month"
                   value={selectedMonth}
                   onChange={(e) => setSelectedMonth(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input max-w-xs"
+                  aria-describedby="month-help"
                 />
+                <p id="month-help" className="sr-only">Sélectionnez le mois pour lequel générer les rapports</p>
               </div>
               <div className="flex space-x-3">
                 <button
                   onClick={() => handleExportPDF('simple')}
                   disabled={isExporting || monthlyReports.length === 0}
-                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                  className="btn-primary"
+                  aria-label="Générer et télécharger un rapport PDF simple"
                 >
                   <Download className="h-4 w-4" />
                   <span>Rapport simple</span>
@@ -118,7 +121,8 @@ export default function ReportsPage() {
                 <button
                   onClick={() => handleExportPDF('detailed')}
                   disabled={isExporting || monthlyReports.length === 0}
-                  className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+                  className="btn-primary"
+                  aria-label="Générer et télécharger un rapport PDF détaillé"
                 >
                   <Download className="h-4 w-4" />
                   <span>Rapport détaillé</span>
@@ -271,7 +275,8 @@ export default function ReportsPage() {
               <div className="mt-6">
                 <Link
                   href="/planning"
-                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                  className="btn-primary"
+                  aria-label="Accéder à la page de gestion du planning"
                 >
                   <Calendar className="h-4 w-4 mr-2" />
                   Aller au planning

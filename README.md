@@ -10,16 +10,20 @@ Application PWA de gestion de planning horaires pour boutiques et commerces. Mob
 - ✅ **Export PDF** : Rapports détaillés ou simples en PDF
 - ✅ **PWA** : Installation sur mobile, mode hors ligne
 - ✅ **Stockage local** : Toutes les données sauvegardées localement
-- ✅ **Responsive** : Optimisé pour mobile et desktop
+- ✅ **Mobile-First** : Interface optimisée pour mobile avant desktop
+- ✅ **Accessibilité** : Contraste élevé, navigation clavier, labels ARIA
+- ✅ **Performance** : Chargement rapide, animations fluides
 
 ## 🛠️ Technologies
 
-- **Next.js 15** avec App Router
+- **Next.js 15** avec App Router et Turbopack
 - **TypeScript** pour la sécurité des types
-- **Tailwind CSS** pour le styling
-- **jsPDF** pour l'export PDF
-- **Lucide React** pour les icônes
-- **PWA** avec next-pwa
+- **Tailwind CSS** pour le styling responsive
+- **jsPDF + html2canvas** pour l'export PDF
+- **Lucide React** pour les icônes accessibles
+- **PWA** avec next-pwa et service worker
+- **CSS personnalisé** pour l'accessibilité et performance
+- **localStorage** pour la persistance des données
 
 ## 📱 Installation
 
@@ -92,6 +96,27 @@ L'app est configurée pour fonctionner hors ligne avec :
 - Manifest pour installation mobile
 - Thème et icônes personnalisés
 
+## ♿ Accessibilité
+
+L'application respecte les standards d'accessibilité WCAG 2.1 :
+- **Contraste élevé** : Ratio minimum 4.5:1 pour tous les éléments texte
+- **Navigation clavier** : Tous les éléments interactifs accessibles au clavier
+- **Labels ARIA** : Descriptions complètes pour les lecteurs d'écran
+- **Focus visible** : Indicateurs de focus clairs et visibles
+- **Tailles tactiles** : Boutons minimum 44x44px sur mobile
+- **Texte redimensionnable** : Support du zoom jusqu'à 200%
+- **Prévention du zoom** : Font-size minimum 16px sur mobile
+
+## 📱 Design Mobile-First
+
+L'interface est conçue mobile-first avec :
+- **Navigation adaptative** : Menu hamburger sur mobile, navigation fixe sur desktop
+- **Grille responsive** : Layouts qui s'adaptent à tous les écrans
+- **Typographie fluide** : Tailles de texte adaptées aux appareils
+- **Espace tactile** : Boutons et liens optimisés pour le toucher
+- **Performance** : Animations CSS légères, pas de JavaScript lourd
+- **Économie de données** : Images optimisées, cache intelligent
+
 ## 📊 Export de données
 
 Dans **Paramètres** > **Gestion des données** :
@@ -121,6 +146,10 @@ npm run build
 - [ ] Modèles de planning récurrents
 - [ ] Statistiques avancées
 - [ ] Version premium avec pubs
+- [ ] Mode sombre/clair complet
+- [ ] Multi-langues (i18n)
+- [ ] Partage de planning par QR code
+- [ ] Intégration calendrier Google/Outlook
 
 ## 📝 Licence
 

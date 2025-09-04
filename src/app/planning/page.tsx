@@ -151,144 +151,159 @@ export default function PlanningPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      {/* Header Mobile-First */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-4">
+          {/* Top Row */}
+          <div className="flex items-center justify-between py-3 sm:py-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <Link
                 href="/"
-                className="flex items-center text-gray-600 hover:text-gray-900"
+                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2"
               >
-                <ArrowLeft className="h-5 w-5 mr-2" />
-                Retour
+                <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Planning</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">Planning</h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => navigateMonth('prev')}
-                  className="p-1 text-gray-400 hover:text-gray-600"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <span className="text-lg font-semibold text-gray-900">
-                  {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', {
-                    month: 'long',
-                    year: 'numeric'
-                  })}
-                </span>
-                <button
-                  onClick={() => navigateMonth('next')}
-                  className="p-1 text-gray-400 hover:text-gray-600"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </div>
-              <button
-                onClick={() => openModal()}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
-              >
-                <Plus className="h-4 w-4" />
-                <span>Ajouter un créneau</span>
-              </button>
-            </div>
+            <button
+              onClick={() => openModal()}
+              className="btn-primary text-sm sm:text-base"
+              aria-label="Ajouter un nouveau créneau horaire"
+            >
+              <Plus className="h-4 w-4" />
+              <span className="hidden sm:inline">Ajouter</span>
+            </button>
+          </div>
+
+          {/* Month Navigation */}
+          <div className="flex items-center justify-center pb-3 sm:pb-4">
+            <button
+              onClick={() => navigateMonth('prev')}
+              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+              aria-label="Mois précédent"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <span className="mx-4 text-base sm:text-lg font-semibold text-gray-900 text-center">
+              {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', {
+                month: 'long',
+                year: 'numeric'
+              })}
+            </span>
+            <button
+              onClick={() => navigateMonth('next')}
+              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+              aria-label="Mois suivant"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          {/* Calendar Grid */}
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            {/* Days of week header */}
-            <div className="grid grid-cols-7 bg-gray-50 border-b">
-              {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day) => (
-                <div key={day} className="px-4 py-3 text-center text-sm font-medium text-gray-500 border-r last:border-r-0">
-                  {day}
-                </div>
-              ))}
-            </div>
-
-            {/* Calendar days */}
-            <div className="grid grid-cols-7">
-              {calendarDays.map((dateStr, index) => (
-                <div
-                  key={index}
-                  className={`min-h-[120px] border-r border-b last:border-r-0 p-2 ${
-                    dateStr ? 'hover:bg-gray-50 cursor-pointer' : ''
-                  }`}
-                  onClick={() => dateStr && openModal(dateStr)}
-                >
-                  {dateStr && (
-                    <>
-                      <div className="text-sm font-medium text-gray-900 mb-1">
-                        {new Date(dateStr).getDate()}
-                      </div>
-                      <div className="space-y-1">
-                        {getShiftsForDate(dateStr).map((shift) => {
-                          const user = getUserById(shift.userId);
-                          return (
-                            <div
-                              key={shift.id}
-                              className="text-xs p-1 rounded flex items-center justify-between"
-                              style={{ backgroundColor: user?.color + '20', borderLeft: `3px solid ${user?.color}` }}
-                            >
-                              <div className="flex-1 min-w-0">
-                                <div className="font-medium truncate" style={{ color: user?.color }}>
-                                  {user?.name}
-                                </div>
-                                <div className="text-gray-600">
-                                  {shift.startTime}-{shift.endTime}
-                                </div>
-                              </div>
-                              <div className="flex space-x-1 ml-1">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleEdit(shift);
-                                  }}
-                                  className="p-0.5 text-gray-400 hover:text-blue-600"
-                                >
-                                  <Edit className="h-3 w-3" />
-                                </button>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDelete(shift.id);
-                                  }}
-                                  className="p-0.5 text-gray-400 hover:text-red-600"
-                                >
-                                  <Trash2 className="h-3 w-3" />
-                                </button>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
-            </div>
+      <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+        {/* Calendar Grid - Mobile Optimized */}
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          {/* Days of week header - Mobile responsive */}
+          <div className="grid grid-cols-7 bg-gray-50 border-b">
+            {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day, index) => (
+              <div key={day} className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs sm:text-sm font-medium text-gray-500 border-r last:border-r-0">
+                <span className="hidden sm:inline">{day}</span>
+                <span className="sm:hidden">{day.charAt(0)}</span>
+              </div>
+            ))}
           </div>
 
-          {/* Legend */}
-          <div className="mt-6 bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Légende</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Calendar days - Mobile optimized */}
+          <div className="grid grid-cols-7">
+            {calendarDays.map((dateStr, index) => (
+              <div
+                key={index}
+                className={`min-h-[80px] sm:min-h-[120px] border-r border-b last:border-r-0 p-1 sm:p-2 ${
+                  dateStr ? 'hover:bg-gray-50 cursor-pointer active:bg-gray-100' : ''
+                }`}
+                onClick={() => dateStr && openModal(dateStr)}
+              >
+                {dateStr && (
+                  <>
+                    <div className="text-xs sm:text-sm font-medium text-gray-900 mb-1 text-center sm:text-left">
+                      {new Date(dateStr).getDate()}
+                    </div>
+                    <div className="space-y-0.5 sm:space-y-1">
+                      {getShiftsForDate(dateStr).slice(0, 2).map((shift) => {
+                        const user = getUserById(shift.userId);
+                        return (
+                          <div
+                            key={shift.id}
+                            className="text-xs p-1 rounded flex items-center justify-between"
+                            style={{
+                              backgroundColor: user?.color + '20',
+                              borderLeft: `2px solid ${user?.color}`
+                            }}
+                          >
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium truncate text-xs" style={{ color: user?.color }}>
+                                {user?.name}
+                              </div>
+                              <div className="text-gray-600 text-xs hidden sm:block">
+                                {shift.startTime}-{shift.endTime}
+                              </div>
+                            </div>
+                            <div className="flex space-x-0.5 ml-1">
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEdit(shift);
+                                }}
+                                className="p-0.5 text-gray-400 hover:text-blue-600 touch-manipulation"
+                                aria-label="Modifier"
+                              >
+                                <Edit className="h-3 w-3" />
+                              </button>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDelete(shift.id);
+                                }}
+                                className="p-0.5 text-gray-400 hover:text-red-600 touch-manipulation"
+                                aria-label="Supprimer"
+                              >
+                                <Trash2 className="h-3 w-3" />
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      {getShiftsForDate(dateStr).length > 2 && (
+                        <div className="text-xs text-gray-500 text-center">
+                          +{getShiftsForDate(dateStr).length - 2} autres
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+          {/* Legend - Mobile Optimized */}
+          <div className="mt-4 sm:mt-6 bg-white rounded-lg shadow p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Employés</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {users.map((user) => (
-                <div key={user.id} className="flex items-center space-x-3">
+                <div key={user.id} className="flex items-center space-x-2 sm:space-x-3">
                   <div
-                    className="w-4 h-4 rounded"
+                    className="w-3 h-3 sm:w-4 sm:h-4 rounded flex-shrink-0"
                     style={{ backgroundColor: user.color }}
                   />
-                  <span className="text-sm text-gray-700">{user.name}</span>
-                  <span className="text-xs text-gray-500">
-                    ({shifts.filter(s => s.userId === user.id).length} créneaux)
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-xs sm:text-sm text-gray-700 truncate block">{user.name}</span>
+                    <span className="text-xs text-gray-500">
+                      {shifts.filter(s => s.userId === user.id).length} créneau{shifts.filter(s => s.userId === user.id).length > 1 ? 'x' : ''}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -306,17 +321,18 @@ export default function PlanningPage() {
               </h3>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
               <div>
-                <label htmlFor="userId" className="block text-sm font-medium text-gray-700 mb-1">
-                  Employé *
+                <label htmlFor="userId" className="form-label">
+                  Employé <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="userId"
                   value={formData.userId}
                   onChange={(e) => setFormData({ ...formData, userId: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
                   required
+                  aria-describedby="user-help"
                 >
                   <option value="">Sélectionner un employé</option>
                   {users.map((user) => (
@@ -325,53 +341,60 @@ export default function PlanningPage() {
                     </option>
                   ))}
                 </select>
+                <p id="user-help" className="sr-only">Sélectionnez l'employé pour qui créer le créneau horaire</p>
               </div>
 
               <div>
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                  Date *
+                <label htmlFor="date" className="form-label">
+                  Date <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
                   id="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
                   required
+                  aria-describedby="date-help"
                 />
+                <p id="date-help" className="sr-only">Sélectionnez la date du créneau horaire</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="startTime" className="block text-sm font-medium text-gray-700 mb-1">
-                    Heure de début *
+                  <label htmlFor="startTime" className="form-label">
+                    Heure de début <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
                     id="startTime"
                     value={formData.startTime}
                     onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="form-input"
                     required
+                    aria-describedby="start-help"
                   />
+                  <p id="start-help" className="sr-only">Heure de début du créneau de travail</p>
                 </div>
                 <div>
-                  <label htmlFor="endTime" className="block text-sm font-medium text-gray-700 mb-1">
-                    Heure de fin *
+                  <label htmlFor="endTime" className="form-label">
+                    Heure de fin <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
                     id="endTime"
                     value={formData.endTime}
                     onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="form-input"
                     required
+                    aria-describedby="end-help"
                   />
+                  <p id="end-help" className="sr-only">Heure de fin du créneau de travail</p>
                 </div>
               </div>
 
               <div>
-                <label htmlFor="breakDuration" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="breakDuration" className="form-label">
                   Pause (minutes)
                 </label>
                 <input
@@ -379,14 +402,16 @@ export default function PlanningPage() {
                   id="breakDuration"
                   value={formData.breakDuration}
                   onChange={(e) => setFormData({ ...formData, breakDuration: parseInt(e.target.value) || 0 })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
                   min="0"
                   max="480"
+                  aria-describedby="break-help"
                 />
+                <p id="break-help" className="sr-only">Durée de la pause en minutes (sera déduite du temps total)</p>
               </div>
 
               <div>
-                <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="notes" className="form-label">
                   Notes
                 </label>
                 <textarea
@@ -394,16 +419,18 @@ export default function PlanningPage() {
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
                   placeholder="Notes optionnelles..."
+                  aria-describedby="notes-help"
                 />
+                <p id="notes-help" className="sr-only">Informations supplémentaires sur ce créneau horaire</p>
               </div>
 
               {formData.startTime && formData.endTime && (
-                <div className="bg-blue-50 p-3 rounded-md">
-                  <div className="flex items-center space-x-2 text-sm text-blue-700">
-                    <Clock className="h-4 w-4" />
-                    <span>
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-center space-x-2 text-sm text-blue-800">
+                    <Clock className="h-5 w-5 flex-shrink-0" />
+                    <span className="font-medium">
                       Durée estimée: {formatDuration(
                         calculateShiftDuration({
                           id: '',
@@ -420,17 +447,19 @@ export default function PlanningPage() {
                 </div>
               )}
 
-              <div className="flex justify-end space-x-3 pt-4">
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-4 border-t border-gray-200">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md"
+                  className="btn-secondary w-full sm:w-auto"
+                  aria-label="Annuler et fermer le formulaire"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                  className="btn-primary w-full sm:w-auto"
+                  aria-label={editingShift ? 'Enregistrer les modifications du créneau' : 'Ajouter le nouveau créneau'}
                 >
                   {editingShift ? 'Modifier' : 'Ajouter'}
                 </button>

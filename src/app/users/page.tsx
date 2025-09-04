@@ -90,103 +90,106 @@ export default function UsersPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      {/* Header Mobile-First */}
+      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-between py-3 sm:py-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <Link
                 href="/"
-                className="flex items-center text-gray-600 hover:text-gray-900"
+                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2"
               >
-                <ArrowLeft className="h-5 w-5 mr-2" />
-                Retour
+                <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Gestion des utilisateurs</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">Utilisateurs</h1>
             </div>
             <button
               onClick={openModal}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center space-x-2"
+              className="btn-primary text-sm sm:text-base"
+              aria-label="Ajouter un nouvel employé"
             >
               <Plus className="h-4 w-4" />
-              <span>Ajouter un utilisateur</span>
+              <span className="hidden sm:inline">Ajouter</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          {/* Users Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {users.map((user) => (
-              <div key={user.id} className="bg-white rounded-lg shadow-sm border p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
-                      style={{ backgroundColor: user.color }}
-                    >
-                      {user.name.charAt(0).toUpperCase()}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{user.name}</h3>
-                      <p className="text-sm text-gray-600 capitalize">{user.role}</p>
-                    </div>
+      <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+        {/* Users Grid - Mobile Optimized */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {users.map((user) => (
+            <div key={user.id} className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+              <div className="flex items-start justify-between mb-3 sm:mb-4">
+                <div className="flex items-center space-x-3 min-w-0 flex-1">
+                  <div
+                    className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-white font-semibold text-sm sm:text-base flex-shrink-0"
+                    style={{ backgroundColor: user.color }}
+                  >
+                    {user.name.charAt(0).toUpperCase()}
                   </div>
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={() => handleEdit(user)}
-                      className="p-1 text-gray-400 hover:text-blue-600"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(user.id)}
-                      className="p-1 text-gray-400 hover:text-red-600"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">{user.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 capitalize">{user.role}</p>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  {user.email && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Mail className="h-4 w-4" />
-                      <span>{user.email}</span>
-                    </div>
-                  )}
-                  {user.phone && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
-                      <Phone className="h-4 w-4" />
-                      <span>{user.phone}</span>
-                    </div>
-                  )}
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <User className="h-4 w-4" />
-                    <span>{getUserShiftsCount(user.id)} créneaux</span>
-                  </div>
+                <div className="flex space-x-1 ml-2">
+                  <button
+                    onClick={() => handleEdit(user)}
+                    className="p-1.5 sm:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                    aria-label="Modifier"
+                  >
+                    <Edit className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(user.id)}
+                    className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                    aria-label="Supprimer"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="space-y-2">
+                {user.email && (
+                  <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600">
+                    <Mail className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                    <span className="truncate">{user.email}</span>
+                  </div>
+                )}
+                {user.phone && (
+                  <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600">
+                    <Phone className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                    <span className="truncate">{user.phone}</span>
+                  </div>
+                )}
+                <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-600">
+                  <User className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                  <span>{getUserShiftsCount(user.id)} créneau{getUserShiftsCount(user.id) > 1 ? 'x' : ''}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
           {users.length === 0 && (
-            <div className="text-center py-12">
-              <User className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">Aucun utilisateur</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Commencez par ajouter votre premier utilisateur.
+            <div className="text-center py-8 sm:py-12">
+              <User className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400" />
+              <h3 className="mt-2 text-sm sm:text-base font-medium text-gray-900">Aucun utilisateur</h3>
+              <p className="mt-1 text-xs sm:text-sm text-gray-500 px-4">
+                Commencez par ajouter votre premier employé.
               </p>
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-6">
                 <button
                   onClick={openModal}
-                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                  className="btn-primary text-sm"
+                  aria-label="Commencer par ajouter votre premier employé"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Ajouter un utilisateur
+                  <span className="hidden sm:inline">Ajouter un utilisateur</span>
+                  <span className="sm:hidden">Ajouter</span>
                 </button>
               </div>
             </div>
@@ -194,33 +197,45 @@ export default function UsersPage() {
         </div>
       </main>
 
-      {/* Modal */}
+      {/* Modal Mobile-First */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
-            <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {editingUser ? 'Modifier l\'utilisateur' : 'Ajouter un utilisateur'}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end sm:items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-t-lg sm:rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden">
+            {/* Header */}
+            <div className="px-4 py-3 sm:px-6 sm:py-4 border-b flex items-center justify-between">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">
+                {editingUser ? 'Modifier' : 'Ajouter'} un employé
               </h3>
+              <button
+                onClick={closeModal}
+                className="p-1 text-gray-400 hover:text-gray-600 sm:hidden"
+              >
+                ✕
+              </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto max-h-[calc(90vh-120px)]">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Nom *
+                <label htmlFor="name" className="form-label">
+                  Nom <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
+                  placeholder="Nom de l'employé"
                   required
+                  autoFocus
+                  aria-describedby="name-help"
                 />
+                <p id="name-help" className="sr-only">Champ obligatoire pour identifier l'employé</p>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
@@ -228,12 +243,15 @@ export default function UsersPage() {
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
+                  placeholder="email@exemple.com"
+                  aria-describedby="email-help"
                 />
+                <p id="email-help" className="sr-only">Adresse email de l'employé (optionnel)</p>
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="phone" className="form-label">
                   Téléphone
                 </label>
                 <input
@@ -241,36 +259,44 @@ export default function UsersPage() {
                   id="phone"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
+                  placeholder="06 12 34 56 78"
+                  aria-describedby="phone-help"
                 />
+                <p id="phone-help" className="sr-only">Numéro de téléphone de l'employé (optionnel)</p>
               </div>
 
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="role" className="form-label">
                   Rôle
                 </label>
                 <select
                   id="role"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value as 'employee' | 'manager' })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="form-input"
+                  aria-describedby="role-help"
                 >
                   <option value="employee">Employé</option>
                   <option value="manager">Manager</option>
                 </select>
+                <p id="role-help" className="sr-only">Sélectionnez le rôle de l'employé dans l'entreprise</p>
               </div>
 
-              <div className="flex justify-end space-x-3 pt-4">
+              {/* Actions */}
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 pt-4 border-t border-gray-200">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md"
+                  className="btn-secondary w-full sm:w-auto"
+                  aria-label="Annuler et fermer le formulaire"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                  className="btn-primary w-full sm:w-auto"
+                  aria-label={editingUser ? 'Enregistrer les modifications' : 'Ajouter le nouvel employé'}
                 >
                   {editingUser ? 'Modifier' : 'Ajouter'}
                 </button>

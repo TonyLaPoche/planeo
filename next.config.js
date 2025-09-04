@@ -8,7 +8,7 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
   // Configuration Next.js
-  experimental: {
-    appDir: true,
+  images: {
+    unoptimized: true,
   },
 })
