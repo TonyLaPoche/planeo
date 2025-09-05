@@ -70,23 +70,42 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 - Choisissez "Rapport simple" ou "Rapport détaillé"
 - Le PDF se télécharge automatiquement
 
-## 🎯 Architecture
+## 🎯 Architecture Clean
+
+L'application suit une **architecture modulaire** avec séparation des responsabilités :
 
 ```
 src/
-├── app/                    # Pages Next.js
+├── app/                    # Pages Next.js (Routes)
 │   ├── page.tsx           # Page d'accueil
 │   ├── users/             # Gestion utilisateurs
-│   ├── planning/          # Planning visuel
+│   ├── planning/          # Planning principal
 │   ├── reports/           # Rapports et exports
 │   └── settings/          # Paramètres
+├── components/            # Composants réutilisables
+│   ├── calendar/          # Composants du calendrier
+│   │   ├── CalendarGrid.tsx
+│   │   ├── TeamLegend.tsx
+│   │   └── PlanningInstructions.tsx
+│   └── icons.tsx          # Icônes personnalisées
+├── hooks/                 # Hooks personnalisés
+│   └── usePlanning.ts     # Logique du planning
 ├── types/                 # Types TypeScript
-├── utils/                 # Utilitaires
-│   ├── storage.ts         # Gestion localStorage
-│   ├── time.ts           # Calculs horaires
-│   └── pdfExport.ts      # Export PDF
-└── components/           # Composants réutilisables
+│   └── index.ts           # Définition des interfaces
+└── utils/                 # Utilitaires métier
+    ├── storage.ts         # Gestion localStorage
+    ├── time.ts            # Calculs horaires
+    └── pdfExport.ts       # Export PDF
 ```
+
+📖 **[Documentation complète de l'architecture](ARCHITECTURE.md)**
+
+### **Principe SOLID appliqué :**
+- **S** : Single responsibility (une tâche par composant)
+- **O** : Open/closed (extensible sans modification)
+- **L** : Liskov substitution (interfaces cohérentes)
+- **I** : Interface segregation (interfaces minimales)
+- **D** : Dependency inversion (dépendances abstraites)
 
 ## 🔧 Configuration PWA
 

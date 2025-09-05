@@ -1,16 +1,33 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Plus, Edit, Trash2, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
-import { userStorage, shiftStorage, planningStorage } from '@/utils/storage';
-import { User, Shift, Planning } from '@/types';
-import { formatDate, formatDuration, calculateShiftDuration } from '@/utils/time';
+import { ArrowLeft, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { shiftStorage } from '@/utils/storage';
+import { Shift } from '@/types';
+import { usePlanning } from '@/hooks/usePlanning';
+import { ResponsiveCalendar } from '@/components/ResponsiveCalendar';
+import { TeamLegend } from '@/components/calendar/TeamLegend';
+import { PlanningInstructions } from '@/components/calendar/PlanningInstructions';
+import { ShiftDetailsModal } from '@/components/ShiftDetailsModal';
+import { formatDuration, calculateShiftDuration } from '@/utils/time';
+import { Footer } from '@/components/Footer';
 
 export default function PlanningPage() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [shifts, setShifts] = useState<Shift[]>([]);
-  const [currentMonth, setCurrentMonth] = useState<string>('');
+  const {
+    users,
+    shifts,
+    currentMonth,
+    calendarDays,
+    shiftModal,
+    loadData,
+    getShiftsForDate,
+    getUserById,
+    navigateMonth,
+    generateAutoShifts,
+    closeShiftModal,
+  } = usePlanning();
+
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingShift, setEditingShift] = useState<Shift | null>(null);
@@ -21,19 +38,6 @@ export default function PlanningPage() {
     breakDuration: 60,
     notes: '',
   });
-
-  useEffect(() => {
-    loadData();
-    const now = new Date();
-    const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-    setCurrentMonth(monthStr);
-    setSelectedDate(now.toISOString().split('T')[0]);
-  }, []);
-
-  const loadData = () => {
-    setUsers(userStorage.getAll());
-    setShifts(shiftStorage.getAll());
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,63 +98,9 @@ export default function PlanningPage() {
     setEditingShift(null);
   };
 
-  const getShiftsForDate = (date: string) => {
-    return shifts.filter(shift => shift.date === date);
-  };
-
-  const getUserById = (userId: string) => {
-    return users.find(user => user.id === userId);
-  };
-
-  const navigateMonth = (direction: 'prev' | 'next') => {
-    const [year, month] = currentMonth.split('-').map(Number);
-    let newMonth = month;
-    let newYear = year;
-
-    if (direction === 'prev') {
-      newMonth = month - 1;
-      if (newMonth < 1) {
-        newMonth = 12;
-        newYear = year - 1;
-      }
-    } else {
-      newMonth = month + 1;
-      if (newMonth > 12) {
-        newMonth = 1;
-        newYear = year + 1;
-      }
-    }
-
-    setCurrentMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`);
-  };
-
-  const generateCalendarDays = () => {
-    const [year, month] = currentMonth.split('-').map(Number);
-    const firstDay = new Date(year, month - 1, 1);
-    const lastDay = new Date(year, month, 0);
-    const daysInMonth = lastDay.getDate();
-    const startingDayOfWeek = firstDay.getDay(); // 0 = dimanche
-
-    const days = [];
-
-    // Jours vides du début
-    for (let i = 0; i < startingDayOfWeek; i++) {
-      days.push(null);
-    }
-
-    // Jours du mois
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      days.push(dateStr);
-    }
-
-    return days;
-  };
-
-  const calendarDays = generateCalendarDays();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -163,16 +113,28 @@ export default function PlanningPage() {
               >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">Planning</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
+                Planning {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+              </h1>
             </div>
-            <button
-              onClick={() => openModal()}
-              className="btn-primary text-sm sm:text-base"
-              aria-label="Ajouter un nouveau créneau horaire"
-            >
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">Ajouter</span>
-            </button>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => generateAutoShifts()}
+                className="btn-secondary text-sm sm:text-base"
+                aria-label="Générer automatiquement les créneaux du mois"
+              >
+                <Plus className="h-4 w-4" />
+                <span className="hidden sm:inline">Auto-générer</span>
+              </button>
+              <button
+                onClick={() => openModal()}
+                className="btn-primary text-sm sm:text-base"
+                aria-label="Ajouter un nouveau créneau horaire"
+              >
+                <Plus className="h-4 w-4" />
+                <span className="hidden sm:inline">Ajouter</span>
+              </button>
+            </div>
           </div>
 
           {/* Month Navigation */}
@@ -203,118 +165,27 @@ export default function PlanningPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
-        {/* Calendar Grid - Mobile Optimized */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          {/* Days of week header - Mobile responsive */}
-          <div className="grid grid-cols-7 bg-gray-50 border-b">
-            {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day, index) => (
-              <div key={day} className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs sm:text-sm font-medium text-gray-500 border-r last:border-r-0">
-                <span className="hidden sm:inline">{day}</span>
-                <span className="sm:hidden">{day.charAt(0)}</span>
-              </div>
-            ))}
-          </div>
+        <PlanningInstructions />
+        <TeamLegend users={users} shifts={shifts} />
+        <ResponsiveCalendar
+          calendarDays={calendarDays}
+          getShiftsForDate={getShiftsForDate}
+          getUserById={getUserById}
+          onDateClick={openModal}
+          onEditShift={handleEdit}
+          onDeleteShift={handleDelete}
+        />
 
-          {/* Calendar days - Mobile optimized */}
-          <div className="grid grid-cols-7">
-            {calendarDays.map((dateStr, index) => (
-              <div
-                key={index}
-                className={`min-h-[80px] sm:min-h-[120px] border-r border-b last:border-r-0 p-1 sm:p-2 ${
-                  dateStr ? 'hover:bg-gray-50 cursor-pointer active:bg-gray-100' : ''
-                }`}
-                onClick={() => dateStr && openModal(dateStr)}
-              >
-                {dateStr && (
-                  <>
-                    <div className="text-xs sm:text-sm font-medium text-gray-900 mb-1 text-center sm:text-left">
-                      {new Date(dateStr).getDate()}
-                    </div>
-                    <div className="space-y-0.5 sm:space-y-1">
-                      {getShiftsForDate(dateStr).slice(0, 2).map((shift) => {
-                        const user = getUserById(shift.userId);
-                        return (
-                          <div
-                            key={shift.id}
-                            className="text-xs p-1 rounded flex items-center justify-between"
-                            style={{
-                              backgroundColor: user?.color + '20',
-                              borderLeft: `2px solid ${user?.color}`
-                            }}
-                          >
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium truncate text-xs" style={{ color: user?.color }}>
-                                {user?.name}
-                              </div>
-                              <div className="text-gray-600 text-xs hidden sm:block">
-                                {shift.startTime}-{shift.endTime}
-                              </div>
-                            </div>
-                            <div className="flex space-x-0.5 ml-1">
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleEdit(shift);
-                                }}
-                                className="p-0.5 text-gray-400 hover:text-blue-600 touch-manipulation"
-                                aria-label="Modifier"
-                              >
-                                <Edit className="h-3 w-3" />
-                              </button>
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  handleDelete(shift.id);
-                                }}
-                                className="p-0.5 text-gray-400 hover:text-red-600 touch-manipulation"
-                                aria-label="Supprimer"
-                              >
-                                <Trash2 className="h-3 w-3" />
-                              </button>
-                            </div>
-                          </div>
-                        );
-                      })}
-                      {getShiftsForDate(dateStr).length > 2 && (
-                        <div className="text-xs text-gray-500 text-center">
-                          +{getShiftsForDate(dateStr).length - 2} autres
-                        </div>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-          {/* Legend - Mobile Optimized */}
-          <div className="mt-4 sm:mt-6 bg-white rounded-lg shadow p-4 sm:p-6">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Employés</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-              {users.map((user) => (
-                <div key={user.id} className="flex items-center space-x-2 sm:space-x-3">
-                  <div
-                    className="w-3 h-3 sm:w-4 sm:h-4 rounded flex-shrink-0"
-                    style={{ backgroundColor: user.color }}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <span className="text-xs sm:text-sm text-gray-700 truncate block">{user.name}</span>
-                    <span className="text-xs text-gray-500">
-                      {shifts.filter(s => s.userId === user.id).length} créneau{shifts.filter(s => s.userId === user.id).length > 1 ? 'x' : ''}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </main>
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+        <div className="fixed inset-0 flex items-center justify-center p-4 z-50" style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)' // Safari support
+        }} onClick={closeModal}>
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b">
               <h3 className="text-lg font-semibold text-gray-900">
                 {editingShift ? 'Modifier le créneau' : 'Ajouter un créneau'}
@@ -341,7 +212,7 @@ export default function PlanningPage() {
                     </option>
                   ))}
                 </select>
-                <p id="user-help" className="sr-only">Sélectionnez l'employé pour qui créer le créneau horaire</p>
+                <p id="user-help" className="sr-only">Sélectionnez l&apos;employé pour qui créer le créneau horaire</p>
               </div>
 
               <div>
@@ -429,7 +300,7 @@ export default function PlanningPage() {
               {formData.startTime && formData.endTime && (
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <div className="flex items-center space-x-2 text-sm text-blue-800">
-                    <Clock className="h-5 w-5 flex-shrink-0" />
+                    <span className="text-lg">⏱️</span>
                     <span className="font-medium">
                       Durée estimée: {formatDuration(
                         calculateShiftDuration({
@@ -468,6 +339,17 @@ export default function PlanningPage() {
           </div>
         </div>
       )}
+
+      {/* Shift Details Modal */}
+      <ShiftDetailsModal
+        isOpen={shiftModal.isOpen}
+        shift={shiftModal.shift}
+        user={shiftModal.shift ? getUserById(shiftModal.shift.userId) || null : null}
+        onClose={closeShiftModal}
+      />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

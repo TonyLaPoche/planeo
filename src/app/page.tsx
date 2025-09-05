@@ -3,30 +3,35 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Calendar, Users, FileText, Settings, BarChart3, Menu, X } from 'lucide-react';
-import { userStorage, shiftStorage, settingsStorage } from '@/utils/storage';
-import { User, AppSettings } from '@/types';
+import { userStorage, shiftStorage } from '@/utils/storage';
+import { User } from '@/types';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [settings, setSettings] = useState<AppSettings | null>(null);
-  const [currentMonth, setCurrentMonth] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setUsers] = useState<User[]>([]);
+  const [totalShifts, setTotalShifts] = useState(0);
+  const [activeUsers, setActiveUsers] = useState(0);
 
   useEffect(() => {
-    // Charger les données
-    setUsers(userStorage.getAll());
-    setSettings(settingsStorage.get());
+    // Charger les données côté client seulement
+    const loadedUsers = userStorage.getAll();
+    const loadedShifts = shiftStorage.getAll();
+    const loadedActiveUsers = loadedUsers.filter(user => user.role === 'employee').length;
 
-    // Définir le mois actuel
-    const now = new Date();
-    setCurrentMonth(`${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`);
+    setUsers(loadedUsers);
+    setTotalShifts(loadedShifts.length);
+    setActiveUsers(loadedActiveUsers);
+    setIsLoaded(true);
   }, []);
 
-  const totalShifts = shiftStorage.getAll().length;
-  const activeUsers = users.filter(user => user.role === 'employee').length;
+  // Définir le mois actuel
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,6 +71,13 @@ export default function Home() {
               >
                 <Settings className="h-4 w-4" />
                 <span className="hidden lg:inline">Paramètres</span>
+              </Link>
+              <Link
+                href="/advanced"
+                className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+              >
+                <Settings className="h-4 w-4" />
+                <span className="hidden lg:inline">Avancé</span>
               </Link>
             </nav>
 
@@ -114,6 +126,14 @@ export default function Home() {
                   <Settings className="h-5 w-5" />
                   <span>Paramètres</span>
                 </Link>
+                <Link
+                  href="/advanced"
+                  className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Settings className="h-5 w-5" />
+                  <span>Gestion avancée</span>
+                </Link>
               </div>
             </div>
           )}
@@ -121,7 +141,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 flex-grow">
         {/* Welcome Section */}
         <div className="mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
@@ -139,7 +159,7 @@ export default function Home() {
               <Users className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 flex-shrink-0" />
               <div className="ml-3 sm:ml-4 min-w-0 flex-1">
                 <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">Employés actifs</p>
-                <p className="text-lg sm:text-2xl font-bold text-gray-900">{activeUsers}</p>
+                <p className="text-lg sm:text-2xl font-bold text-gray-900">{isLoaded ? activeUsers : '...'}</p>
               </div>
             </div>
           </div>
@@ -149,7 +169,7 @@ export default function Home() {
               <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 flex-shrink-0" />
               <div className="ml-3 sm:ml-4 min-w-0 flex-1">
                 <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">Créneaux ce mois</p>
-                <p className="text-lg sm:text-2xl font-bold text-gray-900">{totalShifts}</p>
+                <p className="text-lg sm:text-2xl font-bold text-gray-900">{isLoaded ? totalShifts : '...'}</p>
               </div>
             </div>
           </div>
@@ -174,45 +194,48 @@ export default function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <Link
             href="/users"
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="bg-white hover:bg-blue-50 active:bg-blue-100 text-blue-800 border-2 border-blue-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 shadow-lg"
             aria-label="Accéder à la gestion des utilisateurs"
           >
-            <Users className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4" />
+            <Users className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-blue-600" />
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Utilisateurs</h3>
             <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Gérer les employés</p>
           </Link>
 
           <Link
             href="/planning"
-            className="bg-green-600 hover:bg-green-700 text-white rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-300"
+            className="bg-white hover:bg-emerald-50 active:bg-emerald-100 text-emerald-800 border-2 border-emerald-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-opacity-50 shadow-lg"
             aria-label="Accéder à la gestion du planning"
           >
-            <Calendar className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4" />
+            <Calendar className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-emerald-600" />
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Planning</h3>
             <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Créer les horaires</p>
           </Link>
 
           <Link
             href="/reports"
-            className="bg-purple-600 hover:bg-purple-700 text-white rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-300"
+            className="bg-white hover:bg-orange-50 active:bg-orange-100 text-orange-800 border-2 border-orange-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-500 focus:ring-opacity-50 shadow-lg"
             aria-label="Accéder aux rapports et exports"
           >
-            <BarChart3 className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4" />
+            <BarChart3 className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-orange-600" />
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Rapports</h3>
             <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Exports PDF</p>
           </Link>
 
           <Link
-            href="/settings"
-            className="bg-gray-600 hover:bg-gray-700 text-white rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            aria-label="Accéder aux paramètres de l'application"
+            href="/advanced"
+            className="bg-white hover:bg-purple-50 active:bg-purple-100 text-purple-800 border-2 border-purple-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50 shadow-lg"
+            aria-label="Accéder à la gestion avancée"
           >
-            <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Paramètres</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Configuration</p>
+            <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-purple-600" />
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Gestion avancée</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Congés & Templates</p>
           </Link>
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

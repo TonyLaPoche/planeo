@@ -96,7 +96,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
           currentY = margin;
         }
 
-        const weekStart = new Date(week.weekStart);
+        // const weekStart = new Date(week.weekStart); // Not used
         const weekLabel = `S${weekIndex + 1}`;
 
         // Semaine
@@ -166,19 +166,15 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
     currentY += 10; // Espace entre utilisateurs
   }
 
-  // Pied de page
-  const totalPages = doc.getNumberOfPages();
-  for (let i = 1; i <= totalPages; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'normal');
-    doc.text(
-      `Généré le ${new Date().toLocaleDateString('fr-FR')} - Page ${i}/${totalPages}`,
-      pageWidth / 2,
-      pageHeight - 10,
-      { align: 'center' }
-    );
-  }
+  // Pied de page - Page unique pour ce rapport simple
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planning Local`,
+    pageWidth / 2,
+    pageHeight - 10,
+    { align: 'center' }
+  );
 
   // Télécharger le PDF
   const filename = `planning-${month}.pdf`;
@@ -232,10 +228,238 @@ export const generatePDFFromHTML = async (
 };
 
 /**
+ * Génère un PDF optimisé du planning avec tableau hebdomadaire et détails
+ */
+export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void> => {
+  const { month, users, shifts } = data;
+  const doc = new jsPDF('landscape', 'mm', 'a4');
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 8;
+
+  // === PAGE 1 : TABLEAU HEBDOMADAIRE EN PAYSAGE ===
+  doc.setPage(0);
+
+  // Titre principal
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  const title = `Planning - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+    month: 'long',
+    year: 'numeric'
+  })}`;
+  doc.text(title, pageWidth / 2, margin + 8, { align: 'center' });
+
+  // Préparer les données du tableau hebdomadaire
+  const monthStart = new Date(month + '-01');
+
+  // Créer un tableau compact pour tout le mois
+  let currentY = margin + 18;
+
+  // Obtenir tous les jours du mois
+  const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0);
+  const daysInMonth = monthEnd.getDate();
+
+  // Collecter toutes les données des employés actifs
+  const activeUsers = users.filter(user => user.isActive);
+
+  // Créer un tableau détaillé : Jour | Employé1 | Employé2 | Employé3 | etc.
+  const tableData: string[][] = [];
+
+  // En-tête du tableau avec noms complets
+  const headerRow = ['Jour'];
+  activeUsers.forEach(user => {
+    headerRow.push(user.name); // Nom complet
+  });
+  tableData.push(headerRow);
+
+  // Remplir les données pour chaque jour
+  for (let day = 1; day <= daysInMonth; day++) {
+    const currentDate = new Date(monthStart.getFullYear(), monthStart.getMonth(), day);
+    const dayName = currentDate.toLocaleDateString('fr-FR', { weekday: 'short' });
+    const dayLabel = `${dayName} ${day}`;
+
+    const row = [dayLabel];
+
+    // Pour chaque employé actif
+    activeUsers.forEach(user => {
+      const userShifts = shifts.filter(shift => {
+        const shiftDate = new Date(shift.date);
+        return shiftDate.getDate() === day &&
+               shiftDate.getMonth() === monthStart.getMonth() &&
+               shift.userId === user.id;
+      });
+
+      if (userShifts.length === 0) {
+        row.push('-');
+      } else {
+        // Afficher les horaires détaillés (ouverture-fermeture)
+        const timeSlots = userShifts.map(shift => `${shift.startTime}-${shift.endTime}`);
+        row.push(timeSlots.join(' '));
+      }
+    });
+
+    tableData.push(row);
+  }
+
+  // Calculer les largeurs de colonnes (optimisées pour réduire les écarts)
+  const dayColWidth = 18; // Largeur réduite pour la colonne des jours
+  const remainingWidth = pageWidth - (margin * 2) - dayColWidth;
+  const employeeColWidth = remainingWidth / activeUsers.length;
+
+  // Afficher le tableau avec police plus petite
+  doc.setFontSize(5); // Police encore plus petite
+  doc.setFont('helvetica', 'bold');
+
+  tableData.forEach((row, rowIndex) => {
+    if (currentY > pageHeight - 20) {
+      // Si on dépasse, ajouter une nouvelle page
+      doc.addPage();
+      currentY = margin + 18;
+
+      // Redessiner l'en-tête sur la nouvelle page
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(title, pageWidth / 2, margin + 8, { align: 'center' });
+      currentY = margin + 25;
+    }
+
+    const isHeader = rowIndex === 0;
+    const fillColor = isHeader ? [240, 240, 240] : [255, 255, 255];
+
+    // Fond de ligne (compact)
+    doc.setFillColor(fillColor[0], fillColor[1], fillColor[2]);
+    doc.rect(margin, currentY - 1, pageWidth - (margin * 2), 4, 'F');
+
+    row.forEach((cell, colIndex) => {
+      let x, maxWidth;
+      if (colIndex === 0) {
+        // Colonne des jours
+        x = margin + 1;
+        maxWidth = dayColWidth - 2;
+      } else {
+        // Colonnes des employés (réduire les écarts)
+        x = margin + dayColWidth + ((colIndex - 1) * employeeColWidth) + 1;
+        maxWidth = employeeColWidth - 2;
+      }
+
+      // Ajuster la police selon le contenu
+      if (isHeader) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(5);
+      } else {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(4.5); // Police très petite pour les horaires
+      }
+
+      // Tronquer si trop long
+      let displayText = cell;
+      if (doc.getTextWidth(displayText) > maxWidth) {
+        while (doc.getTextWidth(displayText + '...') > maxWidth && displayText.length > 3) {
+          displayText = displayText.slice(0, -1);
+        }
+        if (displayText.length < cell.length) {
+          displayText += '...';
+        }
+      }
+
+      doc.text(displayText, x, currentY + 1);
+    });
+
+    currentY += 4; // Espace compact
+  });
+
+  // === PAGE 2 : DÉTAILS DES TOTAUX HORAIRES ===
+  doc.addPage();
+
+  // Titre de la page 2
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Totaux Horaires - Détails par Employé', pageWidth / 2, margin + 8, { align: 'center' });
+
+  currentY = margin + 25;
+
+  // Statistiques détaillées pour chaque employé
+  activeUsers.forEach((user) => {
+    const userShifts = shifts.filter(shift => shift.userId === user.id);
+    const monthlyReport = generateMonthlyReport(shifts, month, user.id);
+
+    if (userShifts.length === 0) return;
+
+    // Vérifier l'espace
+    if (currentY > pageHeight - 40) {
+      doc.addPage();
+      currentY = margin + 10;
+    }
+
+    // Nom de l'employé avec fond
+    doc.setFillColor(240, 240, 240);
+    doc.rect(margin, currentY - 3, pageWidth - (margin * 2), 8, 'F');
+
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.text(user.name, margin + 5, currentY + 2);
+    currentY += 12;
+
+    // Statistiques principales
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Total heures: ${monthlyReport.totalHours.toFixed(1)}h`, margin + 5, currentY);
+    doc.text(`Jours travaillés: ${monthlyReport.totalDays}`, margin + 80, currentY);
+    doc.text(`Moyenne/jour: ${monthlyReport.averageHoursPerDay.toFixed(1)}h`, margin + 150, currentY);
+    currentY += 8;
+
+    // Ventilation par semaine si disponible
+    if (monthlyReport.weeklyBreakdown && monthlyReport.weeklyBreakdown.length > 0) {
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Répartition par semaine:', margin + 5, currentY);
+      currentY += 6;
+
+      doc.setFont('helvetica', 'normal');
+      monthlyReport.weeklyBreakdown.forEach((week, weekIndex) => {
+        if (currentY > pageHeight - 15) {
+          doc.addPage();
+          currentY = margin + 10;
+        }
+
+        const weekDays = week.dailyHours.filter(day => day.totalHours > 0).length;
+        doc.text(`Semaine ${weekIndex + 1}: ${week.totalHours.toFixed(1)}h (${weekDays} jours)`, margin + 10, currentY);
+        currentY += 5;
+      });
+    }
+
+    // Espace entre employés
+    currentY += 8;
+  });
+
+  // Pied de page sur toutes les pages
+  const totalPages = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    doc.setFontSize(6);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text(
+      `Page ${i}/${totalPages} - Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planning Local`,
+      pageWidth / 2,
+      pageHeight - 5,
+      { align: 'center' }
+    );
+    doc.setTextColor(0, 0, 0);
+  }
+
+  // Télécharger le PDF
+  const filename = `planning-optimise-${month}.pdf`;
+  doc.save(filename);
+};
+
+/**
  * Génère un rapport PDF simple avec les totaux
  */
 export const generateSimpleReportPDF = (data: PDFData): void => {
-  const { month, users, shifts, options } = data;
+  const { month, users, shifts } = data;
+  // options is destructured but not used in this function
   const doc = new jsPDF('portrait', 'mm', 'a4');
 
   const pageWidth = doc.internal.pageSize.getWidth();

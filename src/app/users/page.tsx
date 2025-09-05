@@ -6,6 +6,7 @@ import { ArrowLeft, Plus, Edit, Trash2, User, Mail, Phone } from 'lucide-react';
 import { userStorage, shiftStorage } from '@/utils/storage';
 import { User as UserType } from '@/types';
 import { generateUserColor } from '@/utils/time';
+import { Footer } from '@/components/Footer';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<UserType[]>([]);
@@ -15,7 +16,9 @@ export default function UsersPage() {
     name: '',
     email: '',
     phone: '',
-    role: 'employee' as 'employee' | 'manager'
+    role: 'employee' as 'employee' | 'manager',
+    weeklyHoursQuota: 35,
+    contractType: 'full-time' as UserType['contractType']
   });
 
   useEffect(() => {
@@ -38,6 +41,9 @@ export default function UsersPage() {
       phone: formData.phone.trim() || undefined,
       role: formData.role,
       color: editingUser?.color || generateUserColor(),
+      weeklyHoursQuota: formData.weeklyHoursQuota,
+      contractType: formData.contractType,
+      isActive: editingUser?.isActive ?? true,
       createdAt: editingUser?.createdAt || new Date(),
       updatedAt: new Date(),
     };
@@ -54,6 +60,8 @@ export default function UsersPage() {
       email: user.email || '',
       phone: user.phone || '',
       role: user.role,
+      weeklyHoursQuota: user.weeklyHoursQuota || 35,
+      contractType: user.contractType || 'full-time',
     });
     setIsModalOpen(true);
   };
@@ -75,6 +83,8 @@ export default function UsersPage() {
       email: '',
       phone: '',
       role: 'employee',
+      weeklyHoursQuota: 35,
+      contractType: 'full-time',
     });
     setIsModalOpen(true);
   };
@@ -89,7 +99,7 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,8 +118,8 @@ export default function UsersPage() {
               className="btn-primary text-sm sm:text-base"
               aria-label="Ajouter un nouvel employé"
             >
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">Ajouter</span>
+              <Plus className="h-4 w-4 mr-2" />
+              <span>Ajouter un employé</span>
             </button>
           </div>
         </div>
@@ -117,7 +127,8 @@ export default function UsersPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
-        {/* Users Grid - Mobile Optimized */}
+        <div className="px-4 py-6 sm:px-0">
+          {/* Users Grid - Mobile Optimized */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {users.map((user) => (
             <div key={user.id} className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
@@ -199,8 +210,12 @@ export default function UsersPage() {
 
       {/* Modal Mobile-First */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end sm:items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-t-lg sm:rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden">
+        <div className="fixed inset-0 flex items-end sm:items-center justify-center p-4 z-50" style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)' // Safari support
+        }} onClick={() => setIsModalOpen(false)}>
+          <div className="bg-white rounded-t-lg sm:rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
             <div className="px-4 py-3 sm:px-6 sm:py-4 border-b flex items-center justify-between">
               <h3 className="text-base sm:text-lg font-semibold text-gray-900">
@@ -231,7 +246,7 @@ export default function UsersPage() {
                   autoFocus
                   aria-describedby="name-help"
                 />
-                <p id="name-help" className="sr-only">Champ obligatoire pour identifier l'employé</p>
+                <p id="name-help" className="sr-only">Champ obligatoire pour identifier l&apos;employé</p>
               </div>
 
               <div>
@@ -247,7 +262,7 @@ export default function UsersPage() {
                   placeholder="email@exemple.com"
                   aria-describedby="email-help"
                 />
-                <p id="email-help" className="sr-only">Adresse email de l'employé (optionnel)</p>
+                <p id="email-help" className="sr-only">Adresse email de l&apos;employé (optionnel)</p>
               </div>
 
               <div>
@@ -263,7 +278,7 @@ export default function UsersPage() {
                   placeholder="06 12 34 56 78"
                   aria-describedby="phone-help"
                 />
-                <p id="phone-help" className="sr-only">Numéro de téléphone de l'employé (optionnel)</p>
+                <p id="phone-help" className="sr-only">Numéro de téléphone de l&apos;employé (optionnel)</p>
               </div>
 
               <div>
@@ -280,7 +295,45 @@ export default function UsersPage() {
                   <option value="employee">Employé</option>
                   <option value="manager">Manager</option>
                 </select>
-                <p id="role-help" className="sr-only">Sélectionnez le rôle de l'employé dans l'entreprise</p>
+                <p id="role-help" className="sr-only">Sélectionnez le rôle de l&apos;employé dans l&apos;entreprise</p>
+              </div>
+
+              <div>
+                <label htmlFor="contractType" className="form-label">
+                  Type de contrat <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="contractType"
+                  value={formData.contractType}
+                  onChange={(e) => setFormData({ ...formData, contractType: e.target.value as UserType['contractType'] })}
+                  className="form-input"
+                  required
+                  aria-describedby="contract-help"
+                >
+                  <option value="full-time">Temps plein</option>
+                  <option value="part-time">Temps partiel</option>
+                  <option value="freelance">Freelance</option>
+                </select>
+                <p id="contract-help" className="sr-only">Sélectionnez le type de contrat de l&apos;employé</p>
+              </div>
+
+              <div>
+                <label htmlFor="weeklyHours" className="form-label">
+                  Quota hebdomadaire (heures) <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="weeklyHours"
+                  value={formData.weeklyHoursQuota}
+                  onChange={(e) => setFormData({ ...formData, weeklyHoursQuota: parseFloat(e.target.value) || 35 })}
+                  className="form-input"
+                  min="1"
+                  max="168"
+                  step="0.5"
+                  required
+                  aria-describedby="hours-help"
+                />
+                <p id="hours-help" className="sr-only">Nombre d&apos;heures travaillées par semaine (ex: 35 pour un temps plein)</p>
               </div>
 
               {/* Actions */}
@@ -305,6 +358,9 @@ export default function UsersPage() {
           </div>
         </div>
       )}
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

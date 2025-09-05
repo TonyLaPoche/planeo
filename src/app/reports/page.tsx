@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { ArrowLeft, Download, Calendar, Users, Clock, FileText, BarChart3 } from 'lucide-react';
 import { userStorage, shiftStorage } from '@/utils/storage';
 import { User, Shift, PDFExportOptions } from '@/types';
-import { generateMonthlyReport, formatDuration, formatDate } from '@/utils/time';
-import { generatePlanningPDF, generateSimpleReportPDF } from '@/utils/pdfExport';
+import { generateMonthlyReport } from '@/utils/time';
+// formatDuration and formatDate are available but not used in this component
+import { generateSimpleReportPDF, generateOptimizedPlanningPDF } from '@/utils/pdfExport';
+import { Footer } from '@/components/Footer';
 
 export default function ReportsPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -52,13 +54,13 @@ export default function ReportsPage() {
       };
 
       if (type === 'detailed') {
-        await generatePlanningPDF(data);
+        await generateOptimizedPlanningPDF(data);
       } else {
         generateSimpleReportPDF(data);
       }
     } catch (error) {
-      console.error('Erreur lors de l\'export PDF:', error);
-      alert('Une erreur est survenue lors de l\'export du PDF.');
+      console.error('Erreur lors de l&apos;export PDF:', error);
+      alert('Une erreur est survenue lors de l&apos;export du PDF.');
     } finally {
       setIsExporting(false);
     }
@@ -69,7 +71,7 @@ export default function ReportsPage() {
   const totalDays = monthlyReports.reduce((total, item) => total + item.report.totalDays, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -270,7 +272,7 @@ export default function ReportsPage() {
               <FileText className="mx-auto h-12 w-12 text-gray-400" />
               <h3 className="mt-2 text-sm font-medium text-gray-900">Aucun créneau trouvé</h3>
               <p className="mt-1 text-sm text-gray-500">
-                Il n'y a pas de créneaux planifiés pour ce mois.
+                Il n&apos;y a pas de créneaux planifiés pour ce mois.
               </p>
               <div className="mt-6">
                 <Link
@@ -287,7 +289,7 @@ export default function ReportsPage() {
 
           {/* Export Options Info */}
           <div className="bg-blue-50 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-blue-900 mb-4">Options d'export</h3>
+            <h3 className="text-lg font-semibold text-blue-900 mb-4">Options d&apos;export</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-medium text-blue-900 mb-2">Rapport simple</h4>
@@ -301,16 +303,19 @@ export default function ReportsPage() {
               <div>
                 <h4 className="font-medium text-blue-900 mb-2">Rapport détaillé</h4>
                 <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Détail de tous les créneaux</li>
-                  <li>• Ventilation hebdomadaire</li>
-                  <li>• Notes et commentaires</li>
-                  <li>• Format A4 portrait</li>
+                  <li>• Page 1: Tableau avec horaires détaillés (ouverture-fermeture)</li>
+                  <li>• Page 2: Statistiques complètes par employé</li>
+                  <li>• Noms d&apos;employés complets</li>
+                  <li>• Format paysage optimisé</li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

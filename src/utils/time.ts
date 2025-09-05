@@ -1,6 +1,7 @@
-import { Shift, DailyHours, WeeklyHours, MonthlyReport } from '@/types';
+import { User, Shift, DailyHours, WeeklyHours, MonthlyReport } from '@/types';
 import { format, parseISO, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, differenceInMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { calculateQuotaProgress } from './planningUtils';
 
 /**
  * Calcule la durée d'un shift en heures
@@ -86,7 +87,7 @@ export const generateMonthlyReport = (
   let currentWeek = startOfWeek(monthStart, { weekStartsOn: 1 });
 
   while (currentWeek <= monthEnd) {
-    const weekEnd = endOfWeek(currentWeek, { weekStartsOn: 1 });
+    // const weekEnd = endOfWeek(currentWeek, { weekStartsOn: 1 }); // Not used
     const weekStartStr = format(currentWeek, 'yyyy-MM-dd');
 
     weeks.push(calculateWeeklyHours(monthShifts, weekStartStr, userId));
@@ -98,13 +99,33 @@ export const generateMonthlyReport = (
   const totalHours = weeks.reduce((total, week) => total + week.totalHours, 0);
   const totalDays = monthShifts.length;
 
-  return {
+  // Créer le rapport de base
+  const baseReport = {
     month,
     userId,
     totalHours: Math.round(totalHours * 100) / 100,
     totalDays,
     averageHoursPerDay: totalDays > 0 ? Math.round((totalHours / totalDays) * 100) / 100 : 0,
     weeklyBreakdown: weeks,
+  };
+
+  // Pour l'instant, retourner sans quotaProgress car on n'a pas accès à l'utilisateur
+  // Cette propriété sera ajoutée par la fonction appelante
+  return baseReport as MonthlyReport;
+};
+
+/**
+ * Ajoute les informations de quota à un rapport mensuel
+ */
+export const addQuotaToMonthlyReport = (
+  report: Omit<MonthlyReport, 'quotaProgress'>,
+  user: User
+): MonthlyReport => {
+  const quotaProgress = calculateQuotaProgress(user, report.totalHours, report.month);
+
+  return {
+    ...report,
+    quotaProgress,
   };
 };
 

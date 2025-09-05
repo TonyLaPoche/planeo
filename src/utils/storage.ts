@@ -1,4 +1,4 @@
-import { User, Shift, Planning, AppSettings } from '@/types';
+import { User, Shift, Planning, AppSettings, Vacation, ShiftTemplate } from '@/types';
 
 const STORAGE_KEYS = {
   USERS: 'planning_users',
@@ -6,6 +6,8 @@ const STORAGE_KEYS = {
   PLANNINGS: 'planning_plannings',
   SETTINGS: 'planning_settings',
   CURRENT_PLANNING: 'planning_current',
+  VACATIONS: 'planning_vacations',
+  SHIFT_TEMPLATES: 'planning_shift_templates',
 } as const;
 
 // Utilitaires génériques pour localStorage
@@ -171,6 +173,9 @@ export const settingsStorage = {
       language: 'fr',
       workingDays: [1, 2, 3, 4, 5, 6], // Lundi à Samedi
       defaultBreakDuration: 60, // 1 heure
+      defaultWeeklyHours: 35,
+      autoGenerateShifts: false,
+      defaultShiftDuration: 8,
       businessHours: {
         start: '09:00',
         end: '18:00',
@@ -210,10 +215,62 @@ export const dataExport = {
     };
   },
 
-  import: (data: any) => {
+  // Gestion des congés
+  getVacations: (): Vacation[] => {
+    return storage.get<Vacation[]>(STORAGE_KEYS.VACATIONS) || [];
+  },
+
+  addVacation: (vacation: Vacation): void => {
+    const vacations = dataExport.getVacations();
+    vacations.push(vacation);
+    storage.set(STORAGE_KEYS.VACATIONS, vacations);
+  },
+
+  updateVacation: (id: string, updates: Partial<Vacation>): void => {
+    const vacations = dataExport.getVacations();
+    const index = vacations.findIndex(v => v.id === id);
+    if (index !== -1) {
+      vacations[index] = { ...vacations[index], ...updates };
+      storage.set(STORAGE_KEYS.VACATIONS, vacations);
+    }
+  },
+
+  deleteVacation: (id: string): void => {
+    const vacations = dataExport.getVacations();
+    const filtered = vacations.filter(v => v.id !== id);
+    storage.set(STORAGE_KEYS.VACATIONS, filtered);
+  },
+
+  // Gestion des templates de créneaux
+  getShiftTemplates: (): ShiftTemplate[] => {
+    return storage.get<ShiftTemplate[]>(STORAGE_KEYS.SHIFT_TEMPLATES) || [];
+  },
+
+  saveShiftTemplate: (template: ShiftTemplate): void => {
+    const templates = dataExport.getShiftTemplates();
+    const existingIndex = templates.findIndex(t => t.userId === template.userId && t.dayOfWeek === template.dayOfWeek);
+
+    if (existingIndex !== -1) {
+      templates[existingIndex] = template;
+    } else {
+      templates.push(template);
+    }
+
+    storage.set(STORAGE_KEYS.SHIFT_TEMPLATES, templates);
+  },
+
+  deleteShiftTemplate: (userId: string, dayOfWeek: number): void => {
+    const templates = dataExport.getShiftTemplates();
+    const filtered = templates.filter(t => !(t.userId === userId && t.dayOfWeek === dayOfWeek));
+    storage.set(STORAGE_KEYS.SHIFT_TEMPLATES, filtered);
+  },
+
+  import: (data: Record<string, unknown>) => {
     if (data.users) storage.set(STORAGE_KEYS.USERS, data.users);
     if (data.shifts) storage.set(STORAGE_KEYS.SHIFTS, data.shifts);
     if (data.plannings) storage.set(STORAGE_KEYS.PLANNINGS, data.plannings);
     if (data.settings) storage.set(STORAGE_KEYS.SETTINGS, data.settings);
+    if (data.vacations) storage.set(STORAGE_KEYS.VACATIONS, data.vacations);
+    if (data.shiftTemplates) storage.set(STORAGE_KEYS.SHIFT_TEMPLATES, data.shiftTemplates);
   },
 };
