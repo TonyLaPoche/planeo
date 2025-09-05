@@ -34,7 +34,7 @@ Application PWA de gestion de planning horaires pour boutiques et commerces. Mob
 ### Installation locale
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/planeo.git
+git clone https://github.com/tonylapoche/planeo.git
 cd planeo
 
 # Installer les dépendances
@@ -172,7 +172,25 @@ npm run build
 
 ## 📝 Licence
 
-MIT - Libre d'utilisation pour projets personnels et commerciaux.
+**Licence Propriétaire - Planéo**
+
+Cette application est la propriété exclusive d'Antoine Terrade. Tous droits réservés.
+
+### ✅ Utilisations autorisées :
+- Usage personnel uniquement
+- Utilisation professionnelle pour la gestion de votre propre planning
+- Modification du code pour usage personnel
+
+### ❌ Interdictions :
+- Utilisation commerciale (vente, location, distribution)
+- Redistribution du code source ou de l'application
+- Utilisation dans un cadre professionnel pour des tiers
+- Création de produits dérivés
+- Partage public du code source
+
+### 📞 Contact :
+Pour toute question concernant la licence ou utilisation commerciale, contactez :
+**Antoine Terrade** - [antoine.terrada@gmail.com](mailto:antoine.terrada@gmail.com)
 
 ## 🤝 Contribution
 
