@@ -1,4 +1,4 @@
-# Planning Local 🗓️
+# Planéo 🗓️
 
 Application PWA de gestion de planning horaires pour boutiques et commerces. Mobile-first, avec export PDF et stockage local.
 
@@ -34,8 +34,8 @@ Application PWA de gestion de planning horaires pour boutiques et commerces. Mob
 ### Installation locale
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-username/planning-local.git
-cd planning-local
+git clone https://github.com/votre-username/planeo.git
+cd planeo
 
 # Installer les dépendances
 npm install

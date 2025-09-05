@@ -27,7 +27,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
   // Titre
   doc.setFontSize(20);
   doc.setFont('helvetica', 'bold');
-  const title = `Planning - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric'
   })}`;
@@ -58,13 +58,13 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
     }
 
     // Nom de l'utilisateur
-    doc.setFontSize(14);
+    doc.setFontSize(24);
     doc.setFont('helvetica', 'bold');
     doc.text(user.name, margin, currentY);
     currentY += 8;
 
     // Statistiques générales
-    doc.setFontSize(10);
+    doc.setFontSize(20);
     doc.setFont('helvetica', 'normal');
     doc.text(`Total d'heures: ${report.totalHours}h`, margin, currentY);
     doc.text(`Nombre de jours: ${report.totalDays}`, margin + 60, currentY);
@@ -74,7 +74,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
     // Tableau des créneaux hebdomadaires
     if (options.includeNotes && report.weeklyBreakdown.length > 0) {
       // En-tête du tableau
-      doc.setFontSize(9);
+      doc.setFontSize(16);
       doc.setFont('helvetica', 'bold');
       const headers = ['Semaine', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche', 'Total'];
       const colWidth = contentWidth / headers.length;
@@ -91,7 +91,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
       // Données hebdomadaires
       doc.setFont('helvetica', 'normal');
       report.weeklyBreakdown.forEach((week, weekIndex) => {
-        if (currentY > pageHeight - 20) {
+        if (currentY > pageHeight - 35) {
           doc.addPage();
           currentY = margin;
         }
@@ -129,7 +129,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
         .sort((a, b) => a.date.localeCompare(b.date));
 
       if (userShifts.length > 0) {
-        doc.setFontSize(10);
+        doc.setFontSize(16);
         doc.setFont('helvetica', 'bold');
         doc.text('Détail des créneaux:', margin, currentY);
         currentY += 6;
@@ -149,7 +149,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
           doc.text(`${dateStr}: ${timeStr} (${durationStr})`, margin, currentY);
 
           if (shift.notes) {
-            doc.setFontSize(8);
+            doc.setFontSize(16);
             doc.setTextColor(100, 100, 100);
             doc.text(`Note: ${shift.notes}`, margin + 80, currentY);
             doc.setTextColor(0, 0, 0);
@@ -170,7 +170,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
   doc.text(
-    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planning Local`,
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
     pageWidth / 2,
     pageHeight - 10,
     { align: 'center' }
@@ -232,7 +232,7 @@ export const generatePDFFromHTML = async (
  */
 export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void> => {
   const { month, users, shifts } = data;
-  const doc = new jsPDF('landscape', 'mm', 'a4');
+  const doc = new jsPDF('portrait', 'mm', 'a4');
 
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -241,20 +241,20 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
   // === PAGE 1 : TABLEAU HEBDOMADAIRE EN PAYSAGE ===
   doc.setPage(0);
 
-  // Titre principal
-  doc.setFontSize(14);
+  // Titre principal (marge réduite)
+  doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  const title = `Planning - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric'
   })}`;
-  doc.text(title, pageWidth / 2, margin + 8, { align: 'center' });
+  doc.text(title, pageWidth / 2, margin + 2, { align: 'center' });
 
   // Préparer les données du tableau hebdomadaire
   const monthStart = new Date(month + '-01');
 
   // Créer un tableau compact pour tout le mois
-  let currentY = margin + 18;
+  let currentY = margin + 12;
 
   // Obtenir tous les jours du mois
   const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0);
@@ -276,7 +276,7 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
   // Remplir les données pour chaque jour
   for (let day = 1; day <= daysInMonth; day++) {
     const currentDate = new Date(monthStart.getFullYear(), monthStart.getMonth(), day);
-    const dayName = currentDate.toLocaleDateString('fr-FR', { weekday: 'short' });
+    const dayName = currentDate.toLocaleDateString('fr-FR', { weekday: 'long' });
     const dayLabel = `${dayName} ${day}`;
 
     const row = [dayLabel];
@@ -302,54 +302,81 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
     tableData.push(row);
   }
 
-  // Calculer les largeurs de colonnes (optimisées pour réduire les écarts)
-  const dayColWidth = 18; // Largeur réduite pour la colonne des jours
+  // Calculer les largeurs de colonnes (optimisées pour portrait)
+  const dayColWidth = 55; // Largeur pour jours complets en portrait
   const remainingWidth = pageWidth - (margin * 2) - dayColWidth;
-  const employeeColWidth = remainingWidth / activeUsers.length;
+  const employeeColWidth = Math.max(remainingWidth / activeUsers.length, 25); // Largeur adaptée au portrait
 
-  // Afficher le tableau avec police plus petite
-  doc.setFontSize(5); // Police encore plus petite
+  // Calculer la largeur totale du tableau
+  const tableWidth = dayColWidth + (activeUsers.length * employeeColWidth);
+
+  // Afficher le tableau avec police encore plus agrandie
+  doc.setFontSize(10); // Police agrandie pour les en-têtes
   doc.setFont('helvetica', 'bold');
 
   tableData.forEach((row, rowIndex) => {
-    if (currentY > pageHeight - 20) {
+    if (currentY > pageHeight - 35) {
       // Si on dépasse, ajouter une nouvelle page
       doc.addPage();
-      currentY = margin + 18;
+      currentY = margin + 12;
 
-      // Redessiner l'en-tête sur la nouvelle page
+      // Redessiner l'en-tête sur la nouvelle page (marge réduite)
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
-      doc.text(title, pageWidth / 2, margin + 8, { align: 'center' });
-      currentY = margin + 25;
+      doc.text(title, pageWidth / 2, margin + 5, { align: 'center' });
+      currentY = margin + 12;
     }
 
     const isHeader = rowIndex === 0;
-    const fillColor = isHeader ? [240, 240, 240] : [255, 255, 255];
+    const isAlternateRow = rowIndex > 0 && rowIndex % 2 === 1; // Une ligne sur deux pour les données
 
-    // Fond de ligne (compact)
-    doc.setFillColor(fillColor[0], fillColor[1], fillColor[2]);
-    doc.rect(margin, currentY - 1, pageWidth - (margin * 2), 4, 'F');
+    let fillColor: number[];
+    let backgroundWidth: number;
+
+    if (isHeader) {
+      // En-tête : fond gris sur toute la largeur du tableau
+      fillColor = [240, 240, 240];
+      backgroundWidth = tableWidth;
+    } else if (isAlternateRow) {
+      // Ligne alternée : fond gris très clair
+      fillColor = [245, 245, 245];
+      backgroundWidth = tableWidth;
+    } else {
+      // Ligne normale : pas de fond
+      fillColor = [255, 255, 255];
+      backgroundWidth = 0; // Pas de fond
+    }
+
+    // Fond de ligne (ajusté pour polices encore plus grandes)
+    if (backgroundWidth > 0) {
+      doc.setFillColor(fillColor[0], fillColor[1], fillColor[2]);
+      doc.rect(margin, currentY - 1, backgroundWidth, 8, 'F');
+
+      // Ajouter une bordure de 1px autour de chaque ligne
+      doc.setDrawColor(0, 0, 0); // Noir
+      doc.setLineWidth(0.5); // 1px = 0.5pt en jsPDF
+      doc.rect(margin, currentY - 1, backgroundWidth, 8);
+    }
 
     row.forEach((cell, colIndex) => {
       let x, maxWidth;
       if (colIndex === 0) {
-        // Colonne des jours
-        x = margin + 1;
-        maxWidth = dayColWidth - 2;
+        // Colonne des jours (ajustée pour jours complets) avec padding 4px
+        x = margin + 4; // 4px de padding
+        maxWidth = dayColWidth - 8; // Soustraire 8px pour le padding gauche + droite
       } else {
-        // Colonnes des employés (réduire les écarts)
-        x = margin + dayColWidth + ((colIndex - 1) * employeeColWidth) + 1;
-        maxWidth = employeeColWidth - 2;
+        // Colonnes des employés (écarts ultra-minimisés) avec padding 4px
+        x = margin + dayColWidth + ((colIndex - 1) * employeeColWidth) + 4; // 4px de padding
+        maxWidth = employeeColWidth - 8; // Soustraire 8px pour le padding gauche + droite
       }
 
-      // Ajuster la police selon le contenu
+      // Ajuster la police selon le contenu (tailles encore plus agrandies)
       if (isHeader) {
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5);
+        doc.setFontSize(10); // Police agrandie pour les en-têtes
       } else {
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(4.5); // Police très petite pour les horaires
+        doc.setFontSize(9); // Police agrandie pour les données (jours + horaires)
       }
 
       // Tronquer si trop long
@@ -363,21 +390,29 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
         }
       }
 
-      doc.text(displayText, x, currentY + 1);
+      doc.text(displayText, x, currentY + 4); // Centré dans cellules plus hautes
     });
 
-    currentY += 4; // Espace compact
+    currentY += 8; // Espace ajusté pour polices encore plus grandes
   });
+
+  // Ajouter une bordure de 2px autour du tableau complet
+  const tableStartY = margin + 11; // Position Y ultra-précise
+  const tableHeight = (tableData.length * 8) + 0; // Hauteur exacte sans ajustement supplémentaire
+
+  doc.setDrawColor(0, 0, 0); // Noir
+  doc.setLineWidth(1); // 2px = 1pt en jsPDF
+  doc.rect(margin, tableStartY, tableWidth, tableHeight);
 
   // === PAGE 2 : DÉTAILS DES TOTAUX HORAIRES ===
   doc.addPage();
 
-  // Titre de la page 2
+  // Titre de la page 2 (marge réduite)
   doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
-  doc.text('Totaux Horaires - Détails par Employé', pageWidth / 2, margin + 8, { align: 'center' });
+  doc.text('Totaux Horaires - Détails par Employé', pageWidth / 2, margin + 5, { align: 'center' });
 
-  currentY = margin + 25;
+  currentY = margin + 15;
 
   // Statistiques détaillées pour chaque employé
   activeUsers.forEach((user) => {
@@ -443,14 +478,208 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
     doc.text(
       `Page ${i}/${totalPages} - Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planning Local`,
       pageWidth / 2,
-      pageHeight - 5,
+      pageHeight - 3,
       { align: 'center' }
     );
     doc.setTextColor(0, 0, 0);
   }
 
   // Télécharger le PDF
-  const filename = `planning-optimise-${month}.pdf`;
+  const filename = `planeo-optimise-${month}.pdf`;
+  doc.save(filename);
+};
+
+/**
+ * Génère un PDF du planning uniquement (sans page des totaux)
+ */
+export const generatePlanningOnlyPDF = async (data: PDFData): Promise<void> => {
+  const { month, users, shifts } = data;
+  const doc = new jsPDF('portrait', 'mm', 'a4');
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 8;
+
+  // === PAGE UNIQUE : TABLEAU DU PLANNING ===
+  doc.setPage(0);
+
+  // Titre principal
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+    month: 'long',
+    year: 'numeric'
+  })}`;
+  doc.text(title, pageWidth / 2, margin + 2, { align: 'center' });
+
+  // Préparer les données du tableau hebdomadaire
+  const monthStart = new Date(month + '-01');
+
+  // Créer un tableau compact pour tout le mois
+  let currentY = margin + 12;
+
+  // Obtenir tous les jours du mois
+  const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0);
+  const daysInMonth = monthEnd.getDate();
+
+  // Collecter toutes les données des employés actifs
+  const activeUsers = users.filter(user => user.isActive);
+
+  // Créer un tableau détaillé : Jour | Employé1 | Employé2 | Employé3 | etc.
+  const tableData: string[][] = [];
+
+  // En-tête du tableau avec noms complets
+  const headerRow = ['Jour'];
+  activeUsers.forEach(user => {
+    headerRow.push(user.name); // Nom complet
+  });
+  tableData.push(headerRow);
+
+  // Remplir les données pour chaque jour
+  for (let day = 1; day <= daysInMonth; day++) {
+    const currentDate = new Date(monthStart.getFullYear(), monthStart.getMonth(), day);
+    const dayName = currentDate.toLocaleDateString('fr-FR', { weekday: 'long' });
+    const dayLabel = `${dayName} ${day}`;
+
+    const row = [dayLabel];
+
+    // Pour chaque employé actif
+    activeUsers.forEach(user => {
+      const userShifts = shifts.filter(shift => {
+        const shiftDate = new Date(shift.date);
+        return shiftDate.getDate() === day &&
+               shiftDate.getMonth() === monthStart.getMonth() &&
+               shift.userId === user.id;
+      });
+
+      if (userShifts.length === 0) {
+        row.push('-');
+      } else {
+        // Afficher les horaires détaillés (ouverture-fermeture)
+        const timeSlots = userShifts.map(shift => `${shift.startTime}-${shift.endTime}`);
+        row.push(timeSlots.join(' '));
+      }
+    });
+
+    tableData.push(row);
+  }
+
+  // Calculer les largeurs de colonnes (ultra-compact pour minimiser les écarts)
+  const dayColWidth = 55; // Largeur pour jours complets en portrait
+  const remainingWidth = pageWidth - (margin * 2) - dayColWidth;
+  const employeeColWidth = Math.max(remainingWidth / activeUsers.length, 25); // Largeur adaptée au portrait
+
+  // Calculer la largeur totale du tableau
+  const tableWidth = dayColWidth + (activeUsers.length * employeeColWidth);
+
+  // Afficher le tableau avec police agrandie
+  doc.setFontSize(10); // Police agrandie pour les en-têtes
+  doc.setFont('helvetica', 'bold');
+
+  tableData.forEach((row, rowIndex) => {
+    if (currentY > pageHeight - 30) {
+      // Si on dépasse, ajouter une nouvelle page
+      doc.addPage();
+      currentY = margin + 12;
+
+      // Redessiner l'en-tête sur la nouvelle page
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(title, pageWidth / 2, margin + 5, { align: 'center' });
+      currentY = margin + 25;
+    }
+
+    const isHeader = rowIndex === 0;
+    const isAlternateRow = rowIndex > 0 && rowIndex % 2 === 1; // Une ligne sur deux pour les données
+
+    let fillColor: number[];
+    let backgroundWidth: number;
+
+    if (isHeader) {
+      // En-tête : fond gris sur toute la largeur du tableau
+      fillColor = [240, 240, 240];
+      backgroundWidth = tableWidth;
+    } else if (isAlternateRow) {
+      // Ligne alternée : fond gris très clair
+      fillColor = [245, 245, 245];
+      backgroundWidth = tableWidth;
+    } else {
+      // Ligne normale : pas de fond
+      fillColor = [255, 255, 255];
+      backgroundWidth = 0; // Pas de fond
+    }
+
+    // Fond de ligne (ajusté pour polices encore plus grandes)
+    if (backgroundWidth > 0) {
+      doc.setFillColor(fillColor[0], fillColor[1], fillColor[2]);
+      doc.rect(margin, currentY - 1, backgroundWidth, 8, 'F');
+
+      // Ajouter une bordure de 1px autour de chaque ligne
+      doc.setDrawColor(0, 0, 0); // Noir
+      doc.setLineWidth(0.5); // 1px = 0.5pt en jsPDF
+      doc.rect(margin, currentY - 1, backgroundWidth, 8);
+    }
+
+    row.forEach((cell, colIndex) => {
+      let x, maxWidth;
+      if (colIndex === 0) {
+        // Colonne des jours (ajustée pour jours complets)
+        x = margin + 4; // 4px de padding
+        maxWidth = dayColWidth - 8; // Soustraire 8px pour le padding gauche + droite
+      } else {
+        // Colonnes des employés (écarts ultra-minimisés) avec padding 4px
+        x = margin + dayColWidth + ((colIndex - 1) * employeeColWidth) + 4; // 4px de padding
+        maxWidth = employeeColWidth - 8; // Soustraire 8px pour le padding gauche + droite
+      }
+
+      // Ajuster la police selon le contenu (tailles encore plus agrandies)
+      if (isHeader) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10); // Police agrandie pour les en-têtes
+      } else {
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9); // Police agrandie pour les données (jours + horaires)
+      }
+
+      // Tronquer si trop long
+      let displayText = cell;
+      if (doc.getTextWidth(displayText) > maxWidth) {
+        while (doc.getTextWidth(displayText + '...') > maxWidth && displayText.length > 3) {
+          displayText = displayText.slice(0, -1);
+        }
+        if (displayText.length < cell.length) {
+          displayText += '...';
+        }
+      }
+
+      doc.text(displayText, x, currentY + 4); // Centré dans cellules plus hautes
+    });
+
+    currentY += 8; // Espace ajusté pour polices encore plus grandes
+  });
+
+  // Ajouter une bordure de 2px autour du tableau complet
+  const tableStartY = margin + 11; // Position Y ultra-précise
+  const tableHeight = (tableData.length * 8) + 0; // Hauteur exacte sans ajustement supplémentaire
+
+  doc.setDrawColor(0, 0, 0); // Noir
+  doc.setLineWidth(1); // 2px = 1pt en jsPDF
+  doc.rect(margin, tableStartY, tableWidth, tableHeight);
+
+  // Pied de page compact
+  doc.setFontSize(6);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text(
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
+    pageWidth - margin,
+    pageHeight - 3,
+    { align: 'right' }
+  );
+  doc.setTextColor(0, 0, 0);
+
+  // Télécharger le PDF
+  const filename = `planeo-simple-${month}.pdf`;
   doc.save(filename);
 };
 
@@ -530,13 +759,13 @@ export const generateSimpleReportPDF = (data: PDFData): void => {
   doc.setFont('helvetica', 'bold');
   doc.text(`Total général: ${totalHours.toFixed(1)} heures`, margin, currentY);
 
-  // Pied de page
+  // Pied de page (marge réduite)
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
   doc.text(
-    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planning Local`,
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
     pageWidth / 2,
-    doc.internal.pageSize.getHeight() - 10,
+    doc.internal.pageSize.getHeight() - 6,
     { align: 'center' }
   );
 

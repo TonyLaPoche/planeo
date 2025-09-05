@@ -39,7 +39,7 @@ export default function Home() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
-              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Planning Local</h1>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Planéo</h1>
             </Link>
 
             {/* Desktop Navigation */}
@@ -145,7 +145,7 @@ export default function Home() {
         {/* Welcome Section */}
         <div className="mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-            Bienvenue sur Planning Local
+            Bienvenue sur Planéo
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600">
             Gérez facilement les horaires de votre équipe et exportez vos plannings en PDF.

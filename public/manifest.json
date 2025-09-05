@@ -1,6 +1,6 @@
 {
-  "name": "Planning Local - Gestion des Horaires",
-  "short_name": "Planning Local",
+  "name": "Planéo - Gestion des Horaires",
+  "short_name": "Planéo",
   "description": "Application de gestion de planning horaires pour boutiques et commerces",
   "start_url": "/",
   "display": "standalone",

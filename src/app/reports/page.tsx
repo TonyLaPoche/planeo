@@ -7,7 +7,7 @@ import { userStorage, shiftStorage } from '@/utils/storage';
 import { User, Shift, PDFExportOptions } from '@/types';
 import { generateMonthlyReport } from '@/utils/time';
 // formatDuration and formatDate are available but not used in this component
-import { generateSimpleReportPDF, generateOptimizedPlanningPDF } from '@/utils/pdfExport';
+import { generateSimpleReportPDF, generateOptimizedPlanningPDF, generatePlanningOnlyPDF } from '@/utils/pdfExport';
 import { Footer } from '@/components/Footer';
 
 export default function ReportsPage() {
@@ -34,16 +34,16 @@ export default function ReportsPage() {
     })).filter(item => item.report.totalHours > 0);
   };
 
-  const handleExportPDF = async (type: 'detailed' | 'simple') => {
+  const handleExportPlanningOnly = async () => {
     if (!selectedMonth || isExporting) return;
 
     setIsExporting(true);
     try {
       const options: PDFExportOptions = {
-        includeNotes: type === 'detailed',
-        includeTotals: true,
+        includeNotes: true,
+        includeTotals: false, // Pas de page des totaux
         format: 'A4',
-        orientation: type === 'detailed' ? 'portrait' : 'portrait',
+        orientation: 'portrait',
       };
 
       const data = {
@@ -53,11 +53,35 @@ export default function ReportsPage() {
         options,
       };
 
-      if (type === 'detailed') {
-        await generateOptimizedPlanningPDF(data);
-      } else {
-        generateSimpleReportPDF(data);
-      }
+      await generatePlanningOnlyPDF(data);
+    } catch (error) {
+      console.error('Erreur lors de l&apos;export PDF:', error);
+      alert('Une erreur est survenue lors de l&apos;export du PDF.');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const handleExportPlanningWithTotals = async () => {
+    if (!selectedMonth || isExporting) return;
+
+    setIsExporting(true);
+    try {
+      const options: PDFExportOptions = {
+        includeNotes: true,
+        includeTotals: true, // Inclure la page des totaux
+        format: 'A4',
+        orientation: 'portrait',
+      };
+
+      const data = {
+        month: selectedMonth,
+        users,
+        shifts,
+        options,
+      };
+
+      await generateOptimizedPlanningPDF(data);
     } catch (error) {
       console.error('Erreur lors de l&apos;export PDF:', error);
       alert('Une erreur est survenue lors de l&apos;export du PDF.');
@@ -110,24 +134,24 @@ export default function ReportsPage() {
                 />
                 <p id="month-help" className="sr-only">Sélectionnez le mois pour lequel générer les rapports</p>
               </div>
-              <div className="flex space-x-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <button
-                  onClick={() => handleExportPDF('simple')}
+                  onClick={handleExportPlanningOnly}
                   disabled={isExporting || monthlyReports.length === 0}
-                  className="btn-primary"
-                  aria-label="Générer et télécharger un rapport PDF simple"
+                  className="btn-primary flex items-center justify-center gap-2"
+                  aria-label="Générer et télécharger le planning uniquement"
                 >
-                  <Download className="h-4 w-4" />
-                  <span>Rapport simple</span>
+                  <Download className="h-4 w-4 flex-shrink-0" />
+                  <span className="flex-1 text-center">Planning seul</span>
                 </button>
                 <button
-                  onClick={() => handleExportPDF('detailed')}
+                  onClick={handleExportPlanningWithTotals}
                   disabled={isExporting || monthlyReports.length === 0}
-                  className="btn-primary"
-                  aria-label="Générer et télécharger un rapport PDF détaillé"
+                  className="btn-secondary flex items-center justify-center gap-2"
+                  aria-label="Générer et télécharger le planning avec les totaux employés"
                 >
-                  <Download className="h-4 w-4" />
-                  <span>Rapport détaillé</span>
+                  <Download className="h-4 w-4 flex-shrink-0" />
+                  <span className="flex-1 text-center">Planning + Totaux</span>
                 </button>
               </div>
             </div>
@@ -292,21 +316,21 @@ export default function ReportsPage() {
             <h3 className="text-lg font-semibold text-blue-900 mb-4">Options d&apos;export</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-medium text-blue-900 mb-2">Rapport simple</h4>
+                <h4 className="font-medium text-blue-900 mb-2">Planning seul</h4>
                 <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Tableau récapitulatif des heures</li>
-                  <li>• Totaux par employé</li>
-                  <li>• Format A4 portrait</li>
-                  <li>• Idéal pour archivage</li>
+                  <li>• Tableau calendrier du mois complet</li>
+                  <li>• Horaires détaillés par jour et employé</li>
+                  <li>• Format portrait optimisé</li>
+                  <li>• Parfait pour visualisation rapide</li>
                 </ul>
               </div>
               <div>
-                <h4 className="font-medium text-blue-900 mb-2">Rapport détaillé</h4>
+                <h4 className="font-medium text-blue-900 mb-2">Planning + Totaux</h4>
                 <ul className="text-sm text-blue-800 space-y-1">
-                  <li>• Page 1: Tableau avec horaires détaillés (ouverture-fermeture)</li>
-                  <li>• Page 2: Statistiques complètes par employé</li>
-                  <li>• Noms d&apos;employés complets</li>
-                  <li>• Format paysage optimisé</li>
+                  <li>• Page 1: Tableau calendrier complet du mois</li>
+                  <li>• Page 2: Statistiques détaillées par employé</li>
+                  <li>• Format portrait optimisé</li>
+                  <li>• Complet pour archivage et reporting</li>
                 </ul>
               </div>
             </div>

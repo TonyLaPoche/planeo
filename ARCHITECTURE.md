@@ -1,4 +1,4 @@
-# 🏗️ Architecture Clean du Planning Local
+# 🏗️ Architecture Clean de Planéo
 
 ## Vue d'ensemble
 
@@ -210,4 +210,4 @@ class ApiDataProvider implements DataProvider { ... }
 - Service de notifications
 - Service de génération de rapports
 
-Cette architecture clean assure une base solide pour l'évolution et la maintenance du projet Planning Local. 🎯
+Cette architecture clean assure une base solide pour l'évolution et la maintenance du projet Planéo. 🎯
