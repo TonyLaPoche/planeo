@@ -7,7 +7,7 @@ import { userStorage, shiftStorage } from '@/utils/storage';
 import { User, Shift, PDFExportOptions } from '@/types';
 import { generateMonthlyReport } from '@/utils/time';
 // formatDuration and formatDate are available but not used in this component
-import { generateSimpleReportPDF, generateOptimizedPlanningPDF, generatePlanningOnlyPDF } from '@/utils/pdfExport';
+import { generateOptimizedPlanningPDF, generatePlanningOnlyPDF } from '@/utils/pdfExport';
 import { Footer } from '@/components/Footer';
 
 export default function ReportsPage() {

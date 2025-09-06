@@ -16,7 +16,7 @@ export default function AboutPage() {
               href="/"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
-              ← Retour à l'accueil
+              ← Retour à l&apos;accueil
             </Link>
           </div>
         </div>
@@ -48,13 +48,13 @@ export default function AboutPage() {
                 <h3 className="text-lg font-medium text-gray-900 mb-2">💾 Stockage local uniquement</h3>
                 <p className="text-gray-600 mb-4">
                   Toutes vos données (utilisateurs, plannings, paramètres) sont stockées
-                  directement sur votre appareil. Aucun serveur externe n'est utilisé.
+                  directement sur votre appareil. Aucun serveur externe n&apos;est utilisé.
                 </p>
 
-                <h3 className="text-lg font-medium text-gray-900 mb-2">🔒 Pas d'authentification</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">🔒 Pas d&apos;authentification</h3>
                 <p className="text-gray-600">
-                  Pas besoin de créer un compte ou de se connecter. L'application fonctionne
-                  immédiatement après l'installation.
+                  Pas besoin de créer un compte ou de se connecter. L&apos;application fonctionne
+                  immédiatement après l&apos;installation.
                 </p>
               </div>
 
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 <Lock className="h-8 w-8 text-green-600 mx-auto mb-2" />
                 <h3 className="font-medium text-gray-900 mb-2">Confidentialité totale</h3>
                 <p className="text-sm text-gray-600">
-                  Vos données restent sur votre appareil. Aucun risque de fuite ou d'accès non autorisé.
+                  Vos données restent sur votre appareil. Aucun risque de fuite ou d&apos;accès non autorisé.
                 </p>
               </div>
 
@@ -119,7 +119,7 @@ export default function AboutPage() {
               <div className="bg-green-50 p-4 rounded-lg">
                 <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD</h3>
                 <p className="text-green-800">
-                  Planéo est 100% conforme au RGPD car aucune donnée personnelle n'est collectée,
+                  Planéo est 100% conforme au RGPD car aucune donnée personnelle n&apos;est collectée,
                   stockée ou transmise à des serveurs externes.
                 </p>
               </div>
@@ -130,17 +130,17 @@ export default function AboutPage() {
                   <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Noms des employés</li>
                     <li>• Horaires de travail</li>
-                    <li>• Paramètres de l'application</li>
+                    <li>• Paramètres de l&apos;application</li>
                   </ul>
                 </div>
 
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Aucune donnée collectée :</h4>
                   <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Pas d'adresse IP</li>
-                    <li>• Pas d'identifiant unique</li>
+                    <li>• Pas d&apos;adresse IP</li>
+                    <li>• Pas d&apos;identifiant unique</li>
                     <li>• Pas de cookies de suivi</li>
-                    <li>• Pas d'analyse d'usage</li>
+                    <li>• Pas d&apos;analyse d&apos;usage</li>
                   </ul>
                 </div>
               </div>
@@ -151,7 +151,7 @@ export default function AboutPage() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center mb-4">
               <FileText className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Conditions Générales d'Utilisation</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">Conditions Générales d&apos;Utilisation</h2>
             </div>
 
             <div className="space-y-4">
@@ -164,9 +164,9 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <h3 className="font-medium text-gray-900 mb-2">2. Licence d'utilisation</h3>
+                <h3 className="font-medium text-gray-900 mb-2">2. Licence d&apos;utilisation</h3>
                 <p className="text-gray-600">
-                  Cette application est sous licence propriétaire. L'utilisation personnelle est autorisée,
+                  Cette application est sous licence propriétaire. L&apos;utilisation personnelle est autorisée,
                   mais toute utilisation commerciale est strictement interdite sans accord préalable.
                 </p>
               </div>
@@ -174,7 +174,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">3. Responsabilités</h3>
                 <p className="text-gray-600">
-                  L'utilisateur est seul responsable des données qu'il saisit dans l'application.
+                  L&apos;utilisateur est seul responsable des données qu&apos;il saisit dans l&apos;application.
                   Nous recommandons de sauvegarder régulièrement vos données importantes.
                 </p>
               </div>
@@ -229,7 +229,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">Support</h3>
                 <p className="text-gray-600 mb-2">
-                  Pour toute question concernant l'application, les fonctionnalités,
+                  Pour toute question concernant l&apos;application, les fonctionnalités,
                   ou pour signaler un problème :
                 </p>
                 <p className="text-sm text-gray-500">
