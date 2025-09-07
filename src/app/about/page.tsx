@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Calendar, Shield, Database, Lock, Users, FileText, Mail, Github, ExternalLink } from 'lucide-react';
+import { Calendar, Shield, Database, Lock, Users, FileText, Mail, Github, ExternalLink, Download } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -105,6 +105,107 @@ export default function AboutPage() {
                   Pas de comptes à créer, pas de mots de passe à gérer. Juste installer et utiliser.
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Installation PWA */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex items-center mb-4">
+              <Download className="h-6 w-6 text-green-600 mr-2" />
+              <h2 className="text-2xl font-semibold text-gray-900">Installation de l'application</h2>
+            </div>
+
+            <div className="mb-4">
+              <p className="text-gray-600">
+                Planéo peut être installé sur votre appareil comme une application native.
+                L'installation permet d'accéder à l'app hors ligne et offre une expérience utilisateur optimale.
+              </p>
+            </div>
+
+            {/* Instructions par plateforme */}
+            <div className="grid md:grid-cols-2 gap-6">
+
+              {/* Android/Chrome */}
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-green-600 font-bold text-sm">A</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">Android / Chrome</h3>
+                </div>
+
+                <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                  <li>Ouvrez Planéo dans Chrome</li>
+                  <li>Appuyez sur les trois points ⋮ en haut à droite</li>
+                  <li>Sélectionnez "Ajouter à l'écran d'accueil"</li>
+                  <li>Confirmez l'installation</li>
+                </ol>
+
+                <div className="bg-green-50 p-3 rounded-lg">
+                  <p className="text-green-800 text-sm">
+                    💡 <strong>Conseil :</strong> L'app apparaîtra sur votre écran d'accueil comme une application native.
+                  </p>
+                </div>
+              </div>
+
+              {/* iOS/Safari */}
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-blue-600 font-bold text-sm">i</span>
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900">iOS / Safari</h3>
+                </div>
+
+                <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                  <li>Ouvrez Planéo dans Safari</li>
+                  <li>Appuyez sur l'icône de partage ↗️</li>
+                  <li>Faites défiler et sélectionnez "Sur l'écran d'accueil"</li>
+                  <li>Appuyez sur "Ajouter"</li>
+                </ol>
+
+                <div className="bg-blue-50 p-3 rounded-lg">
+                  <p className="text-blue-800 text-sm">
+                    💡 <strong>Remarque :</strong> Safari peut demander confirmation pour l'installation PWA.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-purple-600 font-bold text-sm">💻</span>
+                </div>
+                <h3 className="text-lg font-medium text-gray-900">Ordinateur (Chrome/Edge)</h3>
+              </div>
+
+              <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm mb-4">
+                <li>Ouvrez Planéo dans votre navigateur</li>
+                <li>Cliquez sur l'icône d'installation dans la barre d'adresse</li>
+                <li>Ou cliquez sur les trois points ⋮ → "Installer Planéo"</li>
+                <li>L'app s'ajoutera à votre bureau comme un raccourci</li>
+              </ol>
+
+              <div className="bg-purple-50 p-3 rounded-lg">
+                <p className="text-purple-800 text-sm">
+                  🎯 <strong>Avantages :</strong> Fonctionne hors ligne, s'ouvre comme une vraie application,
+                  apparaît dans la barre des tâches.
+                </p>
+              </div>
+            </div>
+
+            {/* Fonctionnalités hors ligne */}
+            <div className="mt-6 bg-gray-50 p-4 rounded-lg">
+              <h4 className="font-medium text-gray-900 mb-2">🚀 Après l'installation :</h4>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• ✅ Accès rapide depuis l'écran d'accueil</li>
+                <li>• ✅ Fonctionnement hors ligne complet</li>
+                <li>• ✅ Synchronisation automatique des données</li>
+                <li>• ✅ Interface optimisée pour l'appareil</li>
+                <li>• ✅ Notifications push (si activées)</li>
+              </ul>
             </div>
           </div>
 
