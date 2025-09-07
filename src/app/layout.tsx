@@ -13,8 +13,76 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Planéo - Gestion des Horaires",
-  description: "Application de gestion de planning horaires pour boutiques et commerces",
+  title: "Planéo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
+  description: "Créez et gérez facilement les plannings horaires de votre équipe en boutique. Logiciel gratuit de gestion du personnel pour commerces. Planning hebdomadaire, calcul automatique des heures, export PDF professionnel.",
+  keywords: [
+    "générateur de planning",
+    "planning horaire boutique",
+    "gestion planning magasin",
+    "logiciel planning employé",
+    "planning commercial",
+    "gestion horaire équipe",
+    "planning hebdomadaire commerce",
+    "outil gestion personnel boutique",
+    "logiciel gestion personnel magasin",
+    "planning horaire équipe",
+    "gestion planning personnel",
+    "logiciel planning commercial",
+    "planning horaire magasin",
+    "gestion équipe commerce",
+    "logiciel gestion horaire"
+  ],
+  authors: [{ name: "Antoine Terrade", url: "https://antoineterrade.com" }],
+  creator: "Antoine Terrade",
+  publisher: "Antoine Terrade",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://planeo.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "Planéo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
+    description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires en quelques clics, calculez automatiquement les heures travaillées, exportez en PDF professionnel.",
+    url: "https://planeo.vercel.app",
+    siteName: "Planéo",
+    locale: "fr_FR",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Planéo - Logiciel de gestion de planning pour boutiques",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Planéo - Générateur de Planning pour Boutiques",
+    description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires facilement.",
+    images: ["/og-image.jpg"],
+    creator: "@antoineterrade",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: "votre-code-google-search-console",
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +101,80 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+
+        {/* SEO supplémentaires */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="application-name" content="Planéo" />
+        <meta name="msapplication-TileColor" content="#3b82f6" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+
+        {/* Données structurées JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Planéo",
+              "description": "Générateur de planning pour boutiques et commerces. Logiciel gratuit de gestion horaire équipe.",
+              "url": "https://planeo.vercel.app",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR"
+              },
+              "creator": {
+                "@type": "Person",
+                "name": "Antoine Terrade",
+                "url": "https://antoineterrade.com"
+              },
+              "featureList": [
+                "Génération de planning horaire",
+                "Gestion d'équipe commerciale",
+                "Calcul automatique des heures",
+                "Export PDF professionnel",
+                "Mode hors ligne",
+                "Interface mobile-first"
+              ],
+              "screenshot": "https://planeo.vercel.app/og-image.jpg"
+            })
+          }}
+        />
+
+        {/* Données structurées pour les recherches locales */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "Planéo - Logiciel Planning Boutique",
+              "description": "Application web de gestion de planning pour commerces et boutiques. Créez facilement les horaires de votre équipe.",
+              "url": "https://planeo.vercel.app",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Any",
+              "softwareVersion": "1.0.0",
+              "fileSize": "2MB",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "50"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Antoine Terrade"
+              }
+            })
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

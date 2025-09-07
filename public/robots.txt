@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Pages principales à indexer en priorité
+Allow: /about
+Allow: /planning
+Allow: /reports
+Allow: /users
+
+# Interdire l'indexation des paramètres temporaires
+Disallow: /settings
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://planeo.vercel.app/sitemap.xml
+
+# Crawl delay pour être poli avec le serveur
+Crawl-delay: 1

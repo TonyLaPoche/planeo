@@ -142,14 +142,31 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 flex-grow">
-        {/* Welcome Section */}
+        {/* Welcome Section - SEO Optimisée */}
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-            Bienvenue sur Planéo
-          </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600">
-            Gérez facilement les horaires de votre équipe et exportez vos plannings en PDF.
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
+            Générateur de Planning pour Boutiques - Planéo
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-4">
+            Logiciel gratuit de gestion de planning horaire pour commerces et boutiques.
+            Créez facilement les horaires de votre équipe, calculez automatiquement les heures travaillées,
+            exportez vos plannings en PDF professionnel.
           </p>
+
+          {/* Section SEO - Mots-clés principaux */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 mb-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Planning Commercial Simplifié</h2>
+            <p className="text-sm text-gray-700 mb-3">
+              Planéo est l&apos;outil idéal pour les boutiques et magasins qui veulent optimiser la gestion
+              de leur personnel. Planning hebdomadaire, calcul automatique des heures, interface intuitive.
+            </p>
+            <div className="flex flex-wrap gap-2 text-xs">
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">Générateur de planning</span>
+              <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Logiciel boutique</span>
+              <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">Gestion horaire équipe</span>
+              <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">Planning commercial</span>
+            </div>
+          </div>
         </div>
 
         {/* Quick Stats - Mobile Optimized */}
@@ -231,6 +248,89 @@ export default function Home() {
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Gestion avancée</h3>
             <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Congés & Templates</p>
           </Link>
+        </div>
+
+        {/* Section SEO - Fonctionnalités détaillées */}
+        <div className="mt-8 bg-white rounded-lg shadow-sm p-6 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+            Logiciel de Gestion de Planning pour Commerces
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Fonctionnalités Principales</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Génération automatique de planning horaire</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Calcul automatique des heures travaillées</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Gestion d&apos;équipe pour boutiques et magasins</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Export PDF professionnel du planning</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Interface mobile-first optimisée</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-green-500 mr-2">✓</span>
+                  <span>Mode hors ligne fonctionnel</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Avantages pour les Boutiques</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Économisez du temps sur la création de planning</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Évitez les erreurs de calcul d&apos;heures</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Optimisez la gestion de votre personnel</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Planning professionnel pour vos employés</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Application gratuite et sans abonnement</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">🎯</span>
+                  <span>Accessible partout avec connexion internet</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-100">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2 text-center">
+              Recherches populaires liées à Planéo
+            </h3>
+            <div className="flex flex-wrap justify-center gap-2 text-sm">
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">générateur planning boutique</span>
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">logiciel planning commercial</span>
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">planning horaire magasin</span>
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">gestion équipe commerce</span>
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">logiciel gestion personnel</span>
+              <span className="bg-white px-3 py-1 rounded-full border border-gray-200">planning hebdomadaire boutique</span>
+            </div>
+          </div>
         </div>
       </main>
 
