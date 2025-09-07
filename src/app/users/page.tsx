@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+
+// Force dynamic rendering to avoid SSR issues
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { ArrowLeft, Plus, Edit, Trash2, User, Mail, Phone } from 'lucide-react';
 import { userStorage, shiftStorage } from '@/utils/storage';
