@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Calendar, Shield, Database, Lock, Users, FileText, Mail, Github, ExternalLink, Download } from 'lucide-react';
+import { Calendar, Shield, Database, Lock, Users, FileText, Mail, Github, ExternalLink, Download, Coffee } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -285,6 +285,69 @@ export default function AboutPage() {
                 <p className="text-gray-600">
                   Le support est fourni sur base du meilleur effort. Pour toute question technique,
                   contactez le développeur via les coordonnées ci-dessous.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Soutien et Dons */}
+          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg shadow-sm p-6 border border-amber-200">
+            <div className="flex items-center mb-4">
+              <Coffee className="h-6 w-6 text-amber-600 mr-2" />
+              <h2 className="text-2xl font-semibold text-gray-900">Soutenir le développement</h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white p-4 rounded-lg border border-amber-100">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">☕ Planéo est 100% gratuit</h3>
+                <p className="text-gray-700 mb-3">
+                  Cette application est développée avec passion et proposée gratuitement à tous les commerçants
+                  et boutiques qui en ont besoin. Votre soutien permet de maintenir et améliorer continuellement l&apos;outil.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="https://buymeacoffee.com/terradeanty"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center space-x-2 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                  >
+                    <Coffee className="h-5 w-5" />
+                    <span>M&apos;offrir un café</span>
+                  </a>
+
+                  <div className="text-sm text-gray-600">
+                    <p className="mb-1"><strong>Montant suggéré :</strong> 3-5€</p>
+                    <p>Chaque don, même petit, fait une différence ! 🙏</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-amber-100 p-4 rounded-lg">
+                  <h4 className="font-medium text-amber-900 mb-2">🎯 Votre soutien permet :</h4>
+                  <ul className="text-sm text-amber-800 space-y-1">
+                    <li>• Nouvelles fonctionnalités</li>
+                    <li>• Améliorations de l&apos;interface</li>
+                    <li>• Support technique continu</li>
+                    <li>• Maintenance et sécurité</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-100 p-4 rounded-lg">
+                  <h4 className="font-medium text-green-900 mb-2">💚 Avantages pour vous :</h4>
+                  <ul className="text-sm text-green-800 space-y-1">
+                    <li>• Accès à toutes les fonctionnalités</li>
+                    <li>• Mises à jour gratuites</li>
+                    <li>• Support prioritaire</li>
+                    <li>• Fonctionnalités avancées</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="text-sm text-gray-600">
+                  Merci pour votre soutien ! Chaque contribution aide à améliorer Planéo pour tous les commerçants. 🌟
                 </p>
               </div>
             </div>
