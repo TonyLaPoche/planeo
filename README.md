@@ -190,7 +190,7 @@ Cette application est la propriété exclusive d'Antoine Terrade. Tous droits r�
 
 ### 📞 Contact :
 Pour toute question concernant la licence ou utilisation commerciale, contactez :
-**Antoine Terrade** - [antoine.terrada@gmail.com](mailto:antoine.terrada@gmail.com)
+**Antoine Terrade** - [contact@antoineterrade.com](mailto:contact@antoineterrade.com)
 
 ## 🤝 Contribution
 

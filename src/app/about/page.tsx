@@ -206,11 +206,11 @@ export default function AboutPage() {
 
                 <div className="space-y-2">
                   <a
-                    href="mailto:antoine.terrada@gmail.com"
+                    href="mailto:contact@antoineterrade.com"
                     className="flex items-center text-blue-600 hover:text-blue-800"
                   >
                     <Mail className="h-4 w-4 mr-2" />
-                    antoine.terrada@gmail.com
+                    contact@antoineterrade.com
                   </a>
 
                   <a
@@ -243,8 +243,8 @@ export default function AboutPage() {
           <div className="text-center text-gray-500 text-sm">
             <p>© 2025 Antoine Terrade. Tous droits réservés.</p>
             <p className="mt-1">
-              <Link href="https://antoine.terrada@gmail.com" className="text-blue-600 hover:text-blue-800">
-                antoine.terrada@gmail.com
+              <Link href="mailto:contact@antoineterrade.com" className="text-blue-600 hover:text-blue-800">
+                contact@antoineterrade.com
               </Link>
             </p>
           </div>
