@@ -39,7 +39,7 @@ export default function Home() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
-              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Planéo</h1>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Planneo</h1>
             </Link>
 
             {/* Desktop Navigation */}
@@ -145,7 +145,7 @@ export default function Home() {
         {/* Welcome Section - SEO Optimisée */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-            Générateur de Planning pour Boutiques - Planéo
+            Générateur de Planning pour Boutiques - Planneo
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-4">
             Logiciel gratuit de gestion de planning horaire pour commerces et boutiques.
@@ -157,7 +157,7 @@ export default function Home() {
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 mb-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-2">Planning Commercial Simplifié</h2>
             <p className="text-sm text-gray-700 mb-3">
-              Planéo est l&apos;outil idéal pour les boutiques et magasins qui veulent optimiser la gestion
+              Planneo est l&apos;outil idéal pour les boutiques et magasins qui veulent optimiser la gestion
               de leur personnel. Planning hebdomadaire, calcul automatique des heures, interface intuitive.
             </p>
             <div className="flex flex-wrap gap-2 text-xs">
@@ -320,7 +320,7 @@ export default function Home() {
 
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-3 text-center">
-              🔍 Mots-clés populaires pour trouver Planéo
+              🔍 Mots-clés populaires pour trouver Planneo
             </h3>
             <p className="text-sm text-gray-600 mb-4 text-center">
               Ces termes sont fréquemment recherchés par les boutiques et commerces

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Planéo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
+  title: "Planneo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
   description: "Créez et gérez facilement les plannings horaires de votre équipe en boutique. Logiciel gratuit de gestion du personnel pour commerces. Planning hebdomadaire, calcul automatique des heures, export PDF professionnel.",
   keywords: [
     "générateur de planning",
@@ -45,10 +45,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Planéo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
+    title: "Planneo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
     description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires en quelques clics, calculez automatiquement les heures travaillées, exportez en PDF professionnel.",
     url: "https://planeo.vercel.app",
-    siteName: "Planéo",
+    siteName: "Planneo",
     locale: "fr_FR",
     type: "website",
     images: [
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Planéo - Logiciel de gestion de planning pour boutiques",
+        alt: "Planneo - Logiciel de gestion de planning pour boutiques",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Planéo - Générateur de Planning pour Boutiques",
+    title: "Planneo - Générateur de Planning pour Boutiques",
     description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires facilement.",
     images: ["/og-image.jpg"],
     creator: "@antoineterrade",
@@ -97,14 +97,14 @@ export default function RootLayout({
         <meta name="theme-color" content="#3b82f6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Planéo" />
+        <meta name="apple-mobile-web-app-title" content="Planneo" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
 
         {/* SEO supplémentaires */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="application-name" content="Planéo" />
+        <meta name="application-name" content="Planneo" />
         <meta name="msapplication-TileColor" content="#3b82f6" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
@@ -115,7 +115,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Planéo",
+              "name": "Planneo",
               "description": "Générateur de planning pour boutiques et commerces. Logiciel gratuit de gestion horaire équipe.",
               "url": "https://planeo.vercel.app",
               "applicationCategory": "BusinessApplication",
@@ -150,7 +150,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "Planéo - Logiciel Planning Boutique",
+              "name": "Planneo - Logiciel Planning Boutique",
               "description": "Application web de gestion de planning pour commerces et boutiques. Créez facilement les horaires de votre équipe.",
               "url": "https://planeo.vercel.app",
               "applicationCategory": "BusinessApplication",

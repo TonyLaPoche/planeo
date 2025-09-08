@@ -1,4 +1,4 @@
-# Planéo 🗓️
+# Planneo 🗓️
 
 Application PWA de gestion de planning horaires pour boutiques et commerces. Mobile-first, avec export PDF et stockage local.
 
@@ -172,7 +172,7 @@ npm run build
 
 ## 📝 Licence
 
-**Licence Propriétaire - Planéo**
+**Licence Propriétaire - Planneo**
 
 Cette application est la propriété exclusive d'Antoine Terrade. Tous droits réservés.
 

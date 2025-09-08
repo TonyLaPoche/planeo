@@ -27,7 +27,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
   // Titre
   doc.setFontSize(20);
   doc.setFont('helvetica', 'bold');
-  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+  const title = `Planneo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric'
   })}`;
@@ -170,7 +170,7 @@ export const generatePlanningPDF = async (data: PDFData): Promise<void> => {
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
   doc.text(
-    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planneo`,
     pageWidth / 2,
     pageHeight - 10,
     { align: 'center' }
@@ -244,7 +244,7 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
   // Titre principal (marge réduite)
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+  const title = `Planneo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric'
   })}`;
@@ -485,7 +485,7 @@ export const generateOptimizedPlanningPDF = async (data: PDFData): Promise<void>
   }
 
   // Télécharger le PDF
-  const filename = `planeo-optimise-${month}.pdf`;
+  const filename = `planneo-optimise-${month}.pdf`;
   doc.save(filename);
 };
 
@@ -506,7 +506,7 @@ export const generatePlanningOnlyPDF = async (data: PDFData): Promise<void> => {
   // Titre principal
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  const title = `Planéo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
+  const title = `Planneo - ${new Date(month + '-01').toLocaleDateString('fr-FR', {
     month: 'long',
     year: 'numeric'
   })}`;
@@ -671,7 +671,7 @@ export const generatePlanningOnlyPDF = async (data: PDFData): Promise<void> => {
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(100, 100, 100);
   doc.text(
-    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planneo`,
     pageWidth - margin,
     pageHeight - 3,
     { align: 'right' }
@@ -679,7 +679,7 @@ export const generatePlanningOnlyPDF = async (data: PDFData): Promise<void> => {
   doc.setTextColor(0, 0, 0);
 
   // Télécharger le PDF
-  const filename = `planeo-simple-${month}.pdf`;
+  const filename = `planneo-simple-${month}.pdf`;
   doc.save(filename);
 };
 
@@ -763,7 +763,7 @@ export const generateSimpleReportPDF = (data: PDFData): void => {
   doc.setFontSize(8);
   doc.setFont('helvetica', 'normal');
   doc.text(
-    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planéo`,
+    `Généré le ${new Date().toLocaleDateString('fr-FR')} avec Planneo`,
     pageWidth / 2,
     doc.internal.pageSize.getHeight() - 6,
     { align: 'center' }

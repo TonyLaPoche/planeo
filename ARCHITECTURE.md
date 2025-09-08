@@ -1,4 +1,4 @@
-# 🏗️ Architecture Clean de Planéo
+# 🏗️ Architecture Clean de Planneo
 
 ## Vue d'ensemble
 
@@ -210,4 +210,4 @@ class ApiDataProvider implements DataProvider { ... }
 - Service de notifications
 - Service de génération de rapports
 
-Cette architecture clean assure une base solide pour l'évolution et la maintenance du projet Planéo. 🎯
+Cette architecture clean assure une base solide pour l'évolution et la maintenance du projet Planneo. 🎯

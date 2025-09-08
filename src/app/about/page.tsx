@@ -10,7 +10,7 @@ export default function AboutPage() {
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="flex items-center space-x-2">
               <Calendar className="h-8 w-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Planéo</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Planneo</h1>
             </Link>
             <Link
               href="/"
@@ -29,7 +29,7 @@ export default function AboutPage() {
           {/* Hero Section */}
           <div className="text-center bg-white rounded-lg shadow-sm p-8">
             <Calendar className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">À propos de Planéo</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">À propos de Planneo</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Application de gestion de planning horaires pensée pour les boutiques et commerces.
               Simple, efficace et respectueuse de votre vie privée.
@@ -117,7 +117,7 @@ export default function AboutPage() {
 
             <div className="mb-4">
               <p className="text-gray-600">
-                Planéo peut être installé sur votre appareil comme une application native.
+                Planneo peut être installé sur votre appareil comme une application native.
                 L&apos;installation permet d&apos;accéder à l&apos;app hors ligne et offre une expérience utilisateur optimale.
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function AboutPage() {
                 </div>
 
                 <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
-                  <li>Ouvrez Planéo dans Chrome</li>
+                  <li>Ouvrez Planneo dans Chrome</li>
                   <li>Appuyez sur les trois points ⋮ en haut à droite</li>
                   <li>Sélectionnez &quot;Ajouter à l&apos;écran d&apos;accueil&quot;</li>
                   <li>Confirmez l&apos;installation</li>
@@ -158,7 +158,7 @@ export default function AboutPage() {
                 </div>
 
                 <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
-                  <li>Ouvrez Planéo dans Safari</li>
+                  <li>Ouvrez Planneo dans Safari</li>
                   <li>Appuyez sur l&apos;icône de partage ↗️</li>
                   <li>Faites défiler et sélectionnez &quot;Sur l&apos;écran d&apos;accueil&quot;</li>
                   <li>Appuyez sur &quot;Ajouter&quot;</li>
@@ -182,9 +182,9 @@ export default function AboutPage() {
               </div>
 
               <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm mb-4">
-                <li>Ouvrez Planéo dans votre navigateur</li>
+                <li>Ouvrez Planneo dans votre navigateur</li>
                 <li>Cliquez sur l&apos;icône d&apos;installation dans la barre d&apos;adresse</li>
-                <li>Ou cliquez sur les trois points ⋮ → &quot;Installer Planéo&quot;</li>
+                <li>Ou cliquez sur les trois points ⋮ → &quot;Installer Planneo&quot;</li>
                 <li>L&apos;app s&apos;ajoutera à votre bureau comme un raccourci</li>
               </ol>
 
@@ -220,7 +220,7 @@ export default function AboutPage() {
               <div className="bg-green-50 p-4 rounded-lg">
                 <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD</h3>
                 <p className="text-green-800">
-                  Planéo est 100% conforme au RGPD car aucune donnée personnelle n&apos;est collectée,
+                  Planneo est 100% conforme au RGPD car aucune donnée personnelle n&apos;est collectée,
                   stockée ou transmise à des serveurs externes.
                 </p>
               </div>
@@ -259,7 +259,7 @@ export default function AboutPage() {
               <div>
                 <h3 className="font-medium text-gray-900 mb-2">1. Objet</h3>
                 <p className="text-gray-600">
-                  Planéo est une application de gestion de planning horaires destinée à un usage personnel
+                  Planneo est une application de gestion de planning horaires destinée à un usage personnel
                   et professionnel individuel.
                 </p>
               </div>
@@ -299,7 +299,7 @@ export default function AboutPage() {
 
             <div className="space-y-4">
               <div className="bg-white p-4 rounded-lg border border-amber-100">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">☕ Planéo est 100% gratuit</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">☕ Planneo est 100% gratuit</h3>
                 <p className="text-gray-700 mb-3">
                   Cette application est développée avec passion et proposée gratuitement à tous les commerçants
                   et boutiques qui en ont besoin. Votre soutien permet de maintenir et améliorer continuellement l&apos;outil.
@@ -347,7 +347,7 @@ export default function AboutPage() {
 
               <div className="text-center">
                 <p className="text-sm text-gray-600">
-                  Merci pour votre soutien ! Chaque contribution aide à améliorer Planéo pour tous les commerçants. 🌟
+                  Merci pour votre soutien ! Chaque contribution aide à améliorer Planneo pour tous les commerçants. 🌟
                 </p>
               </div>
             </div>
@@ -365,7 +365,7 @@ export default function AboutPage() {
                 <h3 className="font-medium text-gray-900 mb-2">Développeur</h3>
                 <p className="text-gray-600 mb-2">
                   Antoine Terrade<br/>
-                  Créateur de Planéo
+                  Créateur de Planneo
                 </p>
 
                 <div className="space-y-2">

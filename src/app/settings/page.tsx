@@ -36,7 +36,7 @@ export default function SettingsPage() {
       const dataStr = JSON.stringify(data, null, 2);
       const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 
-      const exportFileDefaultName = `planeo-backup-${new Date().toISOString().split('T')[0]}.json`;
+      const exportFileDefaultName = `planneo-backup-${new Date().toISOString().split('T')[0]}.json`;
 
       const linkElement = document.createElement('a');
       linkElement.setAttribute('href', dataUri);
@@ -406,7 +406,7 @@ export default function SettingsPage() {
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Planéo</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">Planneo</h4>
                   <p className="text-sm text-gray-700 mb-4">
                     Application de gestion de planning horaires pour boutiques et commerces.
                   </p>

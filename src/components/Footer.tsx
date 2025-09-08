@@ -11,7 +11,7 @@ export function Footer() {
           <Link
             href="/about"
             className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors duration-200"
-            aria-label="À propos de Planéo"
+            aria-label="À propos de Planneo"
           >
             À propos
           </Link>
