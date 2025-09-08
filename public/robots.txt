@@ -12,7 +12,7 @@ Disallow: /settings
 Disallow: /*?*
 
 # Sitemap
-Sitemap: https://planeo.vercel.app/sitemap.xml
+Sitemap: https://planneo.ch/sitemap.xml
 
 # Crawl delay pour être poli avec le serveur
 Crawl-delay: 1

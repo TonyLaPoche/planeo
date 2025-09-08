@@ -40,14 +40,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://planeo.vercel.app'),
+  metadataBase: new URL('https://planneo.ch'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Planneo - Générateur de Planning pour Boutiques | Gestion Horaire Équipe",
     description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires en quelques clics, calculez automatiquement les heures travaillées, exportez en PDF professionnel.",
-    url: "https://planeo.vercel.app",
+    url: "https://planneo.ch",
     siteName: "Planneo",
     locale: "fr_FR",
     type: "website",
@@ -117,7 +117,7 @@ export default function RootLayout({
               "@type": "WebApplication",
               "name": "Planneo",
               "description": "Générateur de planning pour boutiques et commerces. Logiciel gratuit de gestion horaire équipe.",
-              "url": "https://planeo.vercel.app",
+              "url": "https://planneo.ch",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Web Browser",
               "offers": {
@@ -138,7 +138,7 @@ export default function RootLayout({
                 "Mode hors ligne",
                 "Interface mobile-first"
               ],
-              "screenshot": "https://planeo.vercel.app/og-image.jpg"
+              "screenshot": "https://planneo.ch/og-image.jpg"
             })
           }}
         />
@@ -152,7 +152,7 @@ export default function RootLayout({
               "@type": "SoftwareApplication",
               "name": "Planneo - Logiciel Planning Boutique",
               "description": "Application web de gestion de planning pour commerces et boutiques. Créez facilement les horaires de votre équipe.",
-              "url": "https://planeo.vercel.app",
+              "url": "https://planneo.ch",
               "applicationCategory": "BusinessApplication",
               "operatingSystem": "Any",
               "softwareVersion": "1.0.0",
