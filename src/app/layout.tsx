@@ -108,6 +108,9 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#3b82f6" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
 
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="RKvGizoqUsd9r30m2lIF-DJu6FMJWTOaZKjjQuef6i0" />
+
         {/* Données structurées JSON-LD */}
         <script
           type="application/ld+json"
