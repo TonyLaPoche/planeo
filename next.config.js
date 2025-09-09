@@ -1,26 +1,6 @@
 /** @type {import('next').NextConfig} */
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-  register: true,
-  skipWaiting: true,
-  buildExcludes: [/manifest\.json$/],
-  runtimeCaching: [
-    {
-      urlPattern: /^https?.*/,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'offlineCache',
-        expiration: {
-          maxEntries: 200,
-        },
-      },
-    },
-  ],
-})
-
-module.exports = withPWA({
-  // Configuration Next.js
+const nextConfig = {
+  // Configuration Next.js de base
   images: {
     unoptimized: true,
   },
@@ -86,4 +66,38 @@ module.exports = withPWA({
       },
     ]
   },
-})
+}
+
+// Configuration PWA conditionnelle
+if (process.env.NODE_ENV === 'production') {
+  const withPWA = require('next-pwa')({
+    dest: 'public',
+    register: false, // Désactiver l'enregistrement automatique
+    skipWaiting: true,
+    buildExcludes: [
+      /manifest\.json$/,
+      /app-build-manifest\.json$/,
+      /_buildManifest\.js$/,
+      /_ssgManifest\.js$/,
+      /.*\.map$/
+    ],
+    additionalManifestEntries: [],
+    runtimeCaching: [
+      {
+        urlPattern: /^https?.*/,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'offlineCache',
+          expiration: {
+            maxEntries: 200,
+          },
+        },
+      },
+    ],
+  })
+
+  module.exports = withPWA(nextConfig)
+} else {
+  // En développement, pas de PWA
+  module.exports = nextConfig
+}
