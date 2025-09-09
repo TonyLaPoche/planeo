@@ -220,9 +220,23 @@ export default function AboutPage() {
               <div className="bg-green-50 p-4 rounded-lg">
                 <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD</h3>
                 <p className="text-green-800">
-                  Planneo est 100% conforme au RGPD car aucune donnée personnelle n&apos;est collectée,
-                  stockée ou transmise à des serveurs externes.
+                  Planneo est 100% conforme au RGPD pour les données personnelles saisies par l&apos;utilisateur.
+                  Cependant, nous utilisons Vercel Analytics pour améliorer l&apos;expérience utilisateur.
                 </p>
+              </div>
+
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-900 mb-2">📊 Analyse d&apos;usage (Vercel Analytics)</h3>
+                <p className="text-blue-800 text-sm">
+                  Nous utilisons Vercel Analytics pour collecter des données anonymes sur l&apos;utilisation de l&apos;application.
+                  Ces données nous aident à améliorer les fonctionnalités et l&apos;expérience utilisateur.
+                </p>
+                <ul className="text-sm text-blue-700 mt-2 space-y-1">
+                  <li>• Pages visitées et durée des sessions</li>
+                  <li>• Provenance du trafic (référents)</li>
+                  <li>• Données techniques anonymes (navigateur, appareil)</li>
+                  <li>• <strong>Aucune donnée personnelle identifiable n&apos;est collectée</strong></li>
+                </ul>
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
@@ -236,14 +250,22 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Aucune donnée collectée :</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">Données Analytics (anonymes) :</h4>
                   <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Pas d&apos;adresse IP</li>
-                    <li>• Pas d&apos;identifiant unique</li>
-                    <li>• Pas de cookies de suivi</li>
-                    <li>• Pas d&apos;analyse d&apos;usage</li>
+                    <li>• Pages consultées</li>
+                    <li>• Temps passé sur le site</li>
+                    <li>• Source de trafic</li>
+                    <li>• Type d&apos;appareil/navigateur</li>
                   </ul>
                 </div>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-medium text-gray-900 mb-2">🔒 Vos droits RGPD</h4>
+                <p className="text-sm text-gray-700">
+                  Vous pouvez à tout moment refuser les cookies d&apos;analyse via le bandeau de consentement
+                  en bas de page, ou configurer votre navigateur pour bloquer les cookies de suivi.
+                </p>
               </div>
             </div>
           </div>
