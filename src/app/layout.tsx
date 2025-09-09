@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Planneo - Logiciel de gestion de planning pour boutiques",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Planneo - Générateur de Planning pour Boutiques",
     description: "Logiciel gratuit de gestion de planning pour boutiques et commerces. Créez vos plannings horaires facilement.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
     creator: "@antoineterrade",
   },
   robots: {
