@@ -7,7 +7,7 @@ import Link from 'next/link';
 // Hook pour gérer l'état des préférences cookies
 export const useCookiePreferences = () => {
   const [preferences, setPreferences] = useState<CookiePreferences>({
-    analytics: false,
+    analytics: true, // Par défaut activé pour une meilleure UX
     functional: true,
     marketing: false,
   });
@@ -15,7 +15,8 @@ export const useCookiePreferences = () => {
   useEffect(() => {
     const saved = localStorage.getItem('cookie-preferences');
     if (saved) {
-      setPreferences(JSON.parse(saved));
+      const parsed = JSON.parse(saved);
+      setPreferences(parsed);
     }
   }, []);
 
@@ -49,11 +50,11 @@ export default function CookieBanner() {
       const parsed = JSON.parse(savedPreferences);
       setPreferences(parsed);
 
-      // Si analytics est accepté, on peut initialiser Vercel Analytics
-      if (parsed.analytics) {
-        initializeAnalytics();
-      }
+    // Si analytics est accepté, on peut initialiser Vercel Analytics
+    if (parsed.analytics) {
+      initializeAnalytics();
     }
+  }
   }, []);
 
   const savePreferences = (prefs: CookiePreferences) => {
