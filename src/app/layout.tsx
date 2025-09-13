@@ -114,6 +114,9 @@ export default function RootLayout({
 
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="RKvGizoqUsd9r30m2lIF-DJu6FMJWTOaZKjjQuef6i0" />
+        
+        {/* Google AdSense */}
+        <meta name="google-adsense-account" content="ca-pub-5521069542439268" />
 
         {/* Données structurées JSON-LD */}
         <script
