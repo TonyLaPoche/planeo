@@ -35,7 +35,7 @@ export default function ServiceWorkerRegister() {
             }
           });
 
-        } catch (error) {
+        } catch {
           // Erreur silencieuse en production
         }
       };

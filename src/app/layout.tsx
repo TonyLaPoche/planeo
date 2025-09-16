@@ -5,6 +5,7 @@ import CookieBanner from "@/components/CookieBanner";
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import AdSenseWrapper from "@/components/AdSenseWrapper";
+import { DesktopSidebar } from "@/components/AdPlacement";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -194,6 +195,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <DesktopSidebar />
         <CookieBanner />
         <AnalyticsWrapper />
         <AdSenseWrapper />

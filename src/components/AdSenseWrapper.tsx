@@ -5,63 +5,67 @@ import { useCookiePreferences } from './CookieBanner';
 
 declare global {
   interface Window {
-    adsbygoogle?: any[];
-    googletag?: any;
+    adsbygoogle?: unknown[];
+    googletag?: {
+      cmd: unknown[];
+      pubads: () => {
+        setRequestNonPersonalizedAds: (value: number) => void;
+      };
+    };
   }
 }
 
 export default function AdSenseWrapper() {
   const preferences = useCookiePreferences();
-  const [shouldLoadAds, setShouldLoadAds] = useState(false);
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
   useEffect(() => {
+    const loadAdSenseScript = () => {
+      if (isScriptLoaded) return;
+
+      // Charger le script AdSense
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521069542439268';
+      script.crossOrigin = 'anonymous';
+      
+      script.onload = () => {
+        setIsScriptLoaded(true);
+        // Initialiser adsbygoogle
+        window.adsbygoogle = window.adsbygoogle || [];
+        
+        // Configurer le consentement selon les préférences
+        if (preferences.marketing) {
+          // Publicités personnalisées autorisées
+          console.log('AdSense: Publicités personnalisées activées');
+        } else {
+          // Publicités non personnalisées uniquement
+          console.log('AdSense: Publicités non personnalisées uniquement');
+        }
+      };
+
+      script.onerror = () => {
+        console.error('Erreur lors du chargement du script AdSense');
+      };
+
+      document.head.appendChild(script);
+    };
+
     // Vérifier les préférences au chargement et à chaque changement
     if (preferences.marketing) {
-      setShouldLoadAds(true);
       loadAdSenseScript();
     } else {
-      setShouldLoadAds(false);
       // Optionnel : désactiver les publicités si déjà chargées
-      if (window.googletag) {
+      if (window.googletag && window.googletag.pubads) {
         window.googletag.cmd = window.googletag.cmd || [];
         window.googletag.cmd.push(() => {
-          window.googletag.pubads().setRequestNonPersonalizedAds(1);
+          if (window.googletag?.pubads) {
+            window.googletag.pubads().setRequestNonPersonalizedAds(1);
+          }
         });
       }
     }
-  }, [preferences.marketing]);
-
-  const loadAdSenseScript = () => {
-    if (isScriptLoaded) return;
-
-    // Charger le script AdSense
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521069542439268';
-    script.crossOrigin = 'anonymous';
-    
-    script.onload = () => {
-      setIsScriptLoaded(true);
-      // Initialiser adsbygoogle
-      window.adsbygoogle = window.adsbygoogle || [];
-      
-      // Configurer le consentement selon les préférences
-      if (preferences.marketing) {
-        // Publicités personnalisées autorisées
-        console.log('AdSense: Publicités personnalisées activées');
-      } else {
-        // Publicités non personnalisées uniquement
-        console.log('AdSense: Publicités non personnalisées uniquement');
-      }
-    };
-
-    script.onerror = () => {
-      console.error('Erreur lors du chargement du script AdSense');
-    };
-
-    document.head.appendChild(script);
-  };
+  }, [preferences.marketing, isScriptLoaded]);
 
   // Ne rien rendre - ce composant gère uniquement le chargement des scripts
   return null;

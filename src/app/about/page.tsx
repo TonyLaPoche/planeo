@@ -218,25 +218,33 @@ export default function AboutPage() {
 
             <div className="space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
-                <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD</h3>
+                <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD totale</h3>
                 <p className="text-green-800">
-                  Planneo est 100% conforme au RGPD pour les données personnelles saisies par l&apos;utilisateur.
-                  Cependant, nous utilisons Vercel Analytics pour améliorer l&apos;expérience utilisateur.
+                  Planneo est entièrement conforme au RGPD. Vos données de planning restent exclusivement 
+                  sur votre appareil. Nous utilisons des services tiers uniquement avec votre consentement 
+                  explicite via notre système de gestion des cookies.
                 </p>
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-medium text-blue-900 mb-2">📊 Analyse d&apos;usage (Vercel Analytics)</h3>
-                <p className="text-blue-800 text-sm">
-                  Nous utilisons Vercel Analytics pour collecter des données anonymes sur l&apos;utilisation de l&apos;application.
-                  Ces données nous aident à améliorer les fonctionnalités et l&apos;expérience utilisateur.
+                <h3 className="font-medium text-blue-900 mb-2">📊 Services avec consentement</h3>
+                <p className="text-blue-800 text-sm mb-2">
+                  Les services suivants ne sont activés qu&apos;avec votre consentement explicite :
                 </p>
-                <ul className="text-sm text-blue-700 mt-2 space-y-1">
-                  <li>• Pages visitées et durée des sessions</li>
-                  <li>• Provenance du trafic (référents)</li>
-                  <li>• Données techniques anonymes (navigateur, appareil)</li>
-                  <li>• <strong>Aucune donnée personnelle identifiable n&apos;est collectée</strong></li>
+                <ul className="text-sm text-blue-700 space-y-1">
+                  <li>• <strong>Vercel Analytics :</strong> Statistiques anonymes d&apos;utilisation</li>
+                  <li>• <strong>Google AdSense :</strong> Publicités contextuelles (financement du projet)</li>
+                  <li>• <strong>Vous contrôlez tout :</strong> Acceptation/refus granulaire via notre banner</li>
                 </ul>
+              </div>
+
+              <div className="bg-orange-50 p-4 rounded-lg">
+                <h3 className="font-medium text-orange-900 mb-2">🎯 Publicités et financement</h3>
+                <p className="text-orange-800 text-sm">
+                  Pour maintenir Planneo gratuit, nous affichons des publicités Google AdSense. 
+                  Ces publicités respectent vos choix de consentement et permettent de financer 
+                  le développement et la maintenance de l&apos;application.
+                </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
@@ -246,14 +254,15 @@ export default function AboutPage() {
                     <li>• Noms des employés</li>
                     <li>• Horaires de travail</li>
                     <li>• Paramètres de l&apos;application</li>
+                    <li>• Préférences de consentement</li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Données Analytics (anonymes) :</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">Données Analytics (si acceptées) :</h4>
                   <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Pages consultées</li>
-                    <li>• Temps passé sur le site</li>
+                    <li>• Pages consultées (anonymes)</li>
+                    <li>• Temps de session (anonyme)</li>
                     <li>• Source de trafic</li>
                     <li>• Type d&apos;appareil/navigateur</li>
                   </ul>
@@ -262,10 +271,115 @@ export default function AboutPage() {
 
               <div className="bg-gray-50 p-4 rounded-lg">
                 <h4 className="font-medium text-gray-900 mb-2">🔒 Vos droits RGPD</h4>
-                <p className="text-sm text-gray-700">
-                  Vous pouvez à tout moment refuser les cookies d&apos;analyse via le bandeau de consentement
-                  en bas de page, ou configurer votre navigateur pour bloquer les cookies de suivi.
+                <p className="text-sm text-gray-700 mb-2">
+                  Vous disposez d&apos;un contrôle total sur vos données :
                 </p>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• <strong>Consentement révocable :</strong> Modifiez vos préférences à tout moment</li>
+                  <li>• <strong>Données locales :</strong> Supprimables via les paramètres du navigateur</li>
+                  <li>• <strong>Transparence totale :</strong> Aucune donnée cachée ou collecte secrète</li>
+                  <li>• <strong>Contact direct :</strong> contact@antoineterrade.com pour toute question</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Modèle économique et services */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex items-center mb-4">
+              <FileText className="h-6 w-6 text-purple-600 mr-2" />
+              <h2 className="text-2xl font-semibold text-gray-900">Modèle économique et services</h2>
+            </div>
+
+            <div className="space-y-6">
+              {/* Version gratuite */}
+              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
+                <h3 className="font-medium text-gray-900 mb-3 flex items-center">
+                  <span className="text-green-600 mr-2">🆓</span>
+                  Version gratuite actuelle
+                </h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-medium text-green-900 mb-2">✅ Avantages :</h4>
+                    <ul className="text-sm text-green-800 space-y-1">
+                      <li>• Toutes les fonctionnalités disponibles</li>
+                      <li>• Stockage local sécurisé</li>
+                      <li>• Pas de limite d&apos;utilisation</li>
+                      <li>• Mises à jour gratuites</li>
+                      <li>• Support communautaire</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-orange-900 mb-2">⚠️ Contraintes :</h4>
+                    <ul className="text-sm text-orange-800 space-y-1">
+                      <li>• Publicités Google AdSense</li>
+                      <li>• Pas de synchronisation entre appareils</li>
+                      <li>• Pas de sauvegarde cloud</li>
+                      <li>• Support standard</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Version entreprise */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200">
+                <h3 className="font-medium text-gray-900 mb-3 flex items-center">
+                  <span className="text-blue-600 mr-2">🏢</span>
+                  Version entreprise sur devis
+                </h3>
+                
+                <div className="bg-white p-4 rounded-lg mb-4">
+                  <p className="text-gray-700 mb-3">
+                    Pour les entreprises ayant des besoins spécifiques, nous proposons une 
+                    <strong> application dédiée personnalisée</strong> sans publicité avec des fonctionnalités avancées.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-medium text-blue-900 mb-2">🎯 Fonctionnalités premium :</h4>
+                    <ul className="text-sm text-blue-800 space-y-1">
+                      <li>• <strong>Zéro publicité</strong></li>
+                      <li>• Synchronisation multi-appareils</li>
+                      <li>• Sauvegarde cloud sécurisée</li>
+                      <li>• Gestion multi-magasins</li>
+                      <li>• Rapports avancés personnalisés</li>
+                      <li>• Intégrations tierces (paie, RH)</li>
+                      <li>• Support prioritaire dédié</li>
+                      <li>• Formation et accompagnement</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-purple-900 mb-2">💰 Tarification estimative :</h4>
+                    <div className="text-sm text-purple-800 space-y-2">
+                      <div className="bg-purple-100 p-3 rounded-lg">
+                        <p><strong>Développement initial :</strong></p>
+                        <p>2 500€ - 5 000€ HT</p>
+                        <p className="text-xs">(selon personnalisations)</p>
+                      </div>
+                      <div className="bg-purple-100 p-3 rounded-lg">
+                        <p><strong>Maintenance annuelle :</strong></p>
+                        <p>500€ - 1 000€ HT/an</p>
+                        <p className="text-xs">(mises à jour + support)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">📞 Intéressé par une version entreprise ?</h4>
+                  <p className="text-sm text-gray-700 mb-3">
+                    Contactez-nous pour discuter de vos besoins spécifiques et obtenir un devis personnalisé.
+                  </p>
+                    <a
+                      href="mailto:contact@antoineterrade.com?subject=Devis Planneo Entreprise&body=Bonjour,%0A%0AJe suis intéressé(e) par une version entreprise de Planneo.%0A%0AMon entreprise :%0ANombre d'employés :%0ABesoins spécifiques :%0A%0AMerci pour votre retour."
+                      className="inline-flex items-center bg-blue-600 hover:bg-blue-700 !text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                      style={{ color: '#ffffff' }}
+                    >
+                    <Mail className="h-4 w-4 mr-2" />
+                    <span className="text-white">Demander un devis</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

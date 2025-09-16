@@ -46,6 +46,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Styles pour les publicités */
+.ad-sidebar {
+  @apply hidden lg:block;
+}
+
+/* Éviter que la sidebar interfère avec le contenu sur les très grands écrans */
+@media (min-width: 1600px) {
+  .main-content {
+    margin-right: 280px;
+  }
+}
+
 /* Accessibilité et contraste amélioré */
 input, textarea, select {
   font-size: 16px !important; /* Empêche le zoom sur iOS */
