@@ -51,19 +51,38 @@ body {
   @apply hidden lg:block;
 }
 
-/* Éviter que les sidebars interfèrent avec le contenu sur les très grands écrans */
-@media (min-width: 1600px) {
-  .main-content {
-    margin-left: 280px;
-    margin-right: 280px;
+/* Éviter que les sidebars interfèrent avec le contenu principal */
+@media (min-width: 1024px) {
+  /* Conteneur principal avec marges pour les sidebars */
+  .max-w-7xl {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 300px;
+    padding-right: 300px;
   }
-}
-
-/* Assurer que le contenu principal reste centré avec les sidebars */
-@media (min-width: 1400px) and (max-width: 1599px) {
-  .main-content {
-    margin-left: 100px;
-    margin-right: 100px;
+  
+  /* Ajustement pour écrans moyens */
+  @media (max-width: 1600px) {
+    .max-w-7xl {
+      padding-left: 280px;
+      padding-right: 280px;
+    }
+  }
+  
+  /* Ajustement pour petits écrans desktop */
+  @media (max-width: 1400px) {
+    .max-w-7xl {
+      padding-left: 260px;
+      padding-right: 260px;
+    }
+  }
+  
+  /* Ajustement minimal pour éviter le chevauchement */
+  @media (max-width: 1200px) {
+    .max-w-7xl {
+      padding-left: 240px;
+      padding-right: 240px;
+    }
   }
 }
 
