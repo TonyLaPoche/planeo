@@ -51,10 +51,19 @@ body {
   @apply hidden lg:block;
 }
 
-/* Éviter que la sidebar interfère avec le contenu sur les très grands écrans */
+/* Éviter que les sidebars interfèrent avec le contenu sur les très grands écrans */
 @media (min-width: 1600px) {
   .main-content {
+    margin-left: 280px;
     margin-right: 280px;
+  }
+}
+
+/* Assurer que le contenu principal reste centré avec les sidebars */
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .main-content {
+    margin-left: 100px;
+    margin-right: 100px;
   }
 }
 

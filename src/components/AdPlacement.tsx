@@ -27,7 +27,7 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
   const getAdFormat = () => {
     switch (position) {
       case 'sidebar':
-        return 'vertical'; // Format vertical pour sidebar
+        return 'rectangle'; // Format rectangle pour sidebar
       case 'footer':
       case 'header':
         return 'horizontal'; // Format horizontal pour header/footer
@@ -46,8 +46,9 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
           slot={slot}
           format={getAdFormat()}
           style={{
-            minHeight: position === 'sidebar' ? '250px' : '90px',
-            width: '100%'
+            minHeight: position === 'sidebar' ? (slot === '2754648392' ? '300px' : '250px') : '90px',
+            width: position === 'sidebar' ? (slot === '2754648392' ? '250px' : '300px') : '100%',
+            maxWidth: position === 'footer' ? '728px' : 'none'
           }}
         />
       </div>
@@ -55,26 +56,39 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
   );
 }
 
-// Composant pour sidebar fixe (visible sur toutes les pages desktop)
-export function DesktopSidebar() {
+// Composant pour sidebar gauche fixe
+export function LeftSidebar() {
+  return (
+    <aside className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 w-64 z-30">
+      <AdPlacement 
+        position="sidebar" 
+        slot="2754648392" 
+        className="shadow-lg"
+      />
+    </aside>
+  );
+}
+
+// Composant pour sidebar droite fixe
+export function RightSidebar() {
   return (
     <aside className="hidden lg:block fixed right-4 top-1/2 transform -translate-y-1/2 w-64 z-30">
-      <div className="space-y-6">
-        {/* Publicité principale sidebar */}
-        <AdPlacement 
-          position="sidebar" 
-          slot="SLOT_SIDEBAR_1" 
-          className="shadow-lg"
-        />
-        
-        {/* Deuxième publicité sidebar (optionnelle) */}
-        <AdPlacement 
-          position="sidebar" 
-          slot="SLOT_SIDEBAR_2" 
-          className="shadow-lg"
-        />
-      </div>
+      <AdPlacement 
+        position="sidebar" 
+        slot="9545124314" 
+        className="shadow-lg"
+      />
     </aside>
+  );
+}
+
+// Composant combiné pour les deux sidebars
+export function DesktopSidebar() {
+  return (
+    <>
+      <LeftSidebar />
+      <RightSidebar />
+    </>
   );
 }
 
@@ -85,7 +99,7 @@ export function PreFooterAd() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AdPlacement 
           position="footer" 
-          slot="SLOT_FOOTER_1"
+          slot="7631624456"
           className="shadow-sm"
         />
       </div>
