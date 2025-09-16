@@ -4,6 +4,7 @@ import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import AdSenseWrapper from "@/components/AdSenseWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -117,6 +118,9 @@ export default function RootLayout({
         
         {/* Google AdSense */}
         <meta name="google-adsense-account" content="ca-pub-5521069542439268" />
+        
+        {/* Google Funding Choices CMP - À remplacer par le code généré */}
+        {/* Placez ici le code CMP une fois récupéré depuis AdSense */}
 
         {/* Données structurées JSON-LD */}
         <script
@@ -192,6 +196,7 @@ export default function RootLayout({
         {children}
         <CookieBanner />
         <AnalyticsWrapper />
+        <AdSenseWrapper />
         <ServiceWorkerRegister />
       </body>
     </html>

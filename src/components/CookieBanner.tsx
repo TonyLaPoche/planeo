@@ -197,15 +197,15 @@ export default function CookieBanner() {
                     </div>
                   </div>
 
-                  {/* Cookie marketing */}
+                  {/* Cookie marketing / AdSense */}
                   <div className="bg-gray-50 p-3 rounded-lg mb-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <Shield className="h-4 w-4 text-green-600 mr-2" />
                         <div>
-                          <h4 className="font-medium text-gray-900">Cookies marketing</h4>
+                          <h4 className="font-medium text-gray-900">Cookies publicitaires</h4>
                           <p className="text-xs text-gray-600">
-                            Pour des publicités personnalisées (non utilisé actuellement)
+                            Pour afficher des publicités adaptées via Google AdSense
                           </p>
                         </div>
                       </div>
