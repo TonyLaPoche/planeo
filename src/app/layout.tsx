@@ -5,6 +5,7 @@ import CookieBanner from "@/components/CookieBanner";
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import AdSenseWrapper from "@/components/AdSenseWrapper";
+import GoogleConsentWrapper from "@/components/GoogleConsentWrapper";
 import { DesktopSidebar } from "@/components/AdPlacement";
 
 const geistSans = Geist({
@@ -120,8 +121,12 @@ export default function RootLayout({
         {/* Google AdSense */}
         <meta name="google-adsense-account" content="ca-pub-5521069542439268" />
         
-        {/* Google Funding Choices CMP - À remplacer par le code généré */}
-        {/* Placez ici le code CMP une fois récupéré depuis AdSense */}
+        {/* Google Funding Choices CMP - Système de consentement officiel */}
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521069542439268"
+          crossOrigin="anonymous"
+        />
 
         {/* Données structurées JSON-LD */}
         <script
@@ -196,7 +201,8 @@ export default function RootLayout({
       >
         {children}
         <DesktopSidebar />
-        <CookieBanner />
+        <GoogleConsentWrapper />
+        {/* <CookieBanner /> */}
         <AnalyticsWrapper />
         <AdSenseWrapper />
         <ServiceWorkerRegister />
