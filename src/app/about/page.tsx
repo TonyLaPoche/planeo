@@ -371,11 +371,11 @@ export default function AboutPage() {
                   <p className="text-sm text-gray-700 mb-3">
                     Contactez-nous pour discuter de vos besoins spécifiques et obtenir un devis personnalisé.
                   </p>
-                    <a
-                      href="mailto:contact@antoineterrade.com?subject=Devis Planneo Entreprise&body=Bonjour,%0A%0AJe suis intéressé(e) par une version entreprise de Planneo.%0A%0AMon entreprise :%0ANombre d'employés :%0ABesoins spécifiques :%0A%0AMerci pour votre retour."
-                      className="inline-flex items-center bg-blue-600 hover:bg-blue-700 !text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                      style={{ color: '#ffffff' }}
-                    >
+                  <a
+                    href="mailto:contact@antoineterrade.com?subject=Devis Planneo Entreprise&body=Bonjour,%0A%0AJe suis intéressé(e) par une version entreprise de Planneo.%0A%0AMon entreprise :%0ANombre d'employés :%0ABesoins spécifiques :%0A%0AMerci pour votre retour."
+                    className="inline-flex items-center bg-blue-600 hover:bg-blue-700 !text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    style={{ color: '#ffffff' }}
+                  >
                     <Mail className="h-4 w-4 mr-2" />
                     <span className="text-white">Demander un devis</span>
                   </a>
