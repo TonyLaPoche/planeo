@@ -51,6 +51,27 @@ body {
   @apply hidden lg:block;
 }
 
+/* Assurer la visibilité et taille des publicités AdSense */
+.adsbygoogle {
+  min-width: 300px !important;
+  min-height: 250px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Conteneurs de publicité sidebar */
+aside[style*="width: 256px"] {
+  width: 256px !important;
+  min-width: 256px !important;
+}
+
+/* Conteneurs de publicité footer */
+section .adsbygoogle {
+  max-width: 728px !important;
+  min-height: 90px !important;
+}
+
 /* Éviter que les sidebars interfèrent avec le contenu principal */
 @media (min-width: 1024px) {
   /* Conteneur principal avec marges pour les sidebars */

@@ -127,73 +127,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
 
-        {/* Données structurées JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "Planneo",
-              "description": "Générateur de planning pour boutiques et commerces. Logiciel gratuit de gestion horaire équipe.",
-              "url": "https://planneo.ch",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web Browser",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR"
-              },
-              "creator": {
-                "@type": "Person",
-                "name": "Antoine Terrade",
-                "url": "https://antoineterrade.com"
-              },
-              "featureList": [
-                "Génération de planning horaire",
-                "Gestion d'équipe commerciale",
-                "Calcul automatique des heures",
-                "Export PDF professionnel",
-                "Mode hors ligne",
-                "Interface mobile-first"
-              ],
-              "screenshot": "https://planneo.ch/og-image.png"
-            })
-          }}
-        />
 
-        {/* Données structurées pour les recherches locales */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "Planneo - Logiciel Planning Boutique",
-              "description": "Application web de gestion de planning pour commerces et boutiques. Créez facilement les horaires de votre équipe.",
-              "url": "https://planneo.ch",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Any",
-              "softwareVersion": "1.0.0",
-              "fileSize": "2MB",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "EUR",
-                "availability": "https://schema.org/InStock"
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "ratingCount": "50"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Antoine Terrade"
-              }
-            })
-          }}
-        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

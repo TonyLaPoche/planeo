@@ -50,6 +50,7 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
             width: position === 'sidebar' ? (slot === '2754648392' ? '250px' : '300px') : '100%',
             maxWidth: position === 'footer' ? '728px' : 'none'
           }}
+          className="block"
         />
         <div className="mt-2 pt-2 border-t border-gray-300">
           <p className="text-xs text-gray-400 leading-relaxed">
@@ -72,11 +73,11 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
 // Composant pour sidebar gauche fixe
 export function LeftSidebar() {
   return (
-    <aside className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 w-64 z-30">
+    <aside className="hidden lg:block fixed left-4 top-1/2 transform -translate-y-1/2 w-64 z-30" style={{ width: '256px', minWidth: '256px' }}>
       <AdPlacement 
         position="sidebar" 
         slot="2754648392" 
-        className="shadow-lg"
+        className="shadow-lg w-full"
       />
     </aside>
   );
@@ -85,11 +86,11 @@ export function LeftSidebar() {
 // Composant pour sidebar droite fixe
 export function RightSidebar() {
   return (
-    <aside className="hidden lg:block fixed right-4 top-1/2 transform -translate-y-1/2 w-64 z-30">
+    <aside className="hidden lg:block fixed right-4 top-1/2 transform -translate-y-1/2 w-64 z-30" style={{ width: '256px', minWidth: '256px' }}>
       <AdPlacement 
         position="sidebar" 
         slot="9545124314" 
-        className="shadow-lg"
+        className="shadow-lg w-full"
       />
     </aside>
   );
