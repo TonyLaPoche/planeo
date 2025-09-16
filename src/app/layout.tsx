@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CookieBanner from "@/components/CookieBanner";
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import AdSenseWrapper from "@/components/AdSenseWrapper";

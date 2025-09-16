@@ -51,6 +51,19 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
             maxWidth: position === 'footer' ? '728px' : 'none'
           }}
         />
+        <div className="mt-2 pt-2 border-t border-gray-300">
+          <p className="text-xs text-gray-400 leading-relaxed">
+            Planneo reste gratuit grâce aux publicités.{' '}
+            <a 
+              href="https://buymeacoffee.com/terradeanty" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-amber-600 hover:text-amber-700 underline transition-colors"
+            >
+              Soutenez-nous ☕
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
