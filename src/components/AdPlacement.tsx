@@ -54,14 +54,15 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
         />
         <div className="mt-2 pt-2 border-t border-gray-300">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Planneo reste gratuit grâce aux publicités.{' '}
+            Planneo reste gratuit grâce aux publicités{' '} <br />
+            mais vous pouvez aussi<br />
             <a 
               href="https://buymeacoffee.com/terradeanty" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-amber-600 hover:text-amber-700 underline transition-colors"
             >
-              Soutenez-nous ☕
+              soutenir le développement en me payant un café ☕
             </a>
           </p>
         </div>
