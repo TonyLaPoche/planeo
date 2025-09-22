@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Save, Download, Upload, Trash2, Sun, Moon } from 'lucide-react';
+import { ArrowLeft, Save, Download, Upload, Trash2 } from 'lucide-react';
 import { settingsStorage, dataExport } from '@/utils/storage';
 import { AppSettings } from '@/types';
 import { Footer } from '@/components/Footer';
@@ -133,39 +133,6 @@ export default function SettingsPage() {
               <h3 className="text-lg font-semibold text-gray-900">Paramètres généraux</h3>
             </div>
             <div className="p-6 space-y-6">
-              {/* Theme */}
-              <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-3">
-                  Thème de l&apos;application
-                </label>
-                <div className="flex space-x-4">
-                  <label className="flex items-center text-gray-900 font-medium">
-                    <input
-                      type="radio"
-                      name="theme"
-                      value="light"
-                      checked={settings.theme === 'light'}
-                      onChange={(e) => updateSettings({ theme: e.target.value as 'light' | 'dark' })}
-                      className="mr-3"
-                    />
-                    <Sun className="h-4 w-4 mr-2 text-yellow-500" />
-                    <span className="text-sm font-medium">Clair</span>
-                  </label>
-                  <label className="flex items-center text-gray-900 font-medium">
-                    <input
-                      type="radio"
-                      name="theme"
-                      value="dark"
-                      checked={settings.theme === 'dark'}
-                      onChange={(e) => updateSettings({ theme: e.target.value as 'light' | 'dark' })}
-                      className="mr-3"
-                    />
-                    <Moon className="h-4 w-4 mr-2 text-blue-600" />
-                    <span className="text-sm font-medium">Sombre</span>
-                  </label>
-                </div>
-              </div>
-
               {/* Language */}
               <div>
                 <label htmlFor="language" className="block text-sm font-semibold text-gray-900 mb-2">
@@ -184,173 +151,9 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          {/* Working Days */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Jours de travail</h3>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-700 mb-4">
-                Sélectionnez les jours de la semaine travaillés par défaut
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { value: 1, label: 'Lundi' },
-                  { value: 2, label: 'Mardi' },
-                  { value: 3, label: 'Mercredi' },
-                  { value: 4, label: 'Jeudi' },
-                  { value: 5, label: 'Vendredi' },
-                  { value: 6, label: 'Samedi' },
-                  { value: 0, label: 'Dimanche' },
-                ].map((day) => (
-                  <label key={day.value} className="flex items-center text-gray-900 font-medium cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={settings.workingDays.includes(day.value)}
-                      onChange={(e) => {
-                        const newWorkingDays = e.target.checked
-                          ? [...settings.workingDays, day.value]
-                          : settings.workingDays.filter(d => d !== day.value);
-                        updateSettings({ workingDays: newWorkingDays });
-                      }}
-                      className="mr-3 w-4 h-4"
-                    />
-                    <span className="text-sm">{day.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          </div>
 
-          {/* Auto Generation Settings */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Génération automatique</h3>
-            </div>
-            <div className="p-6 space-y-6">
-              <div>
-                <label className="flex items-center text-gray-900 font-medium cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={settings.autoGenerateShifts}
-                    onChange={(e) => updateSettings({ autoGenerateShifts: e.target.checked })}
-                    className="mr-3 w-4 h-4"
-                  />
-                  <span className="text-sm font-semibold">
-                    Activer la génération automatique des créneaux
-                  </span>
-                </label>
-                <p className="text-xs text-gray-700 mt-1 ml-6 font-medium">
-                  Génère automatiquement les créneaux horaires selon les templates et congés
-                </p>
-              </div>
 
-              <div>
-                <label htmlFor="weeklyHours" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Heures hebdomadaires par défaut
-                </label>
-                <input
-                  type="number"
-                  id="weeklyHours"
-                  value={settings.defaultWeeklyHours}
-                  onChange={(e) => updateSettings({ defaultWeeklyHours: parseInt(e.target.value) || 35 })}
-                  className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  min="1"
-                  max="168"
-                  step="0.5"
-                />
-                <p className="text-xs text-gray-600 mt-1">
-                  Nombre d&apos;heures travaillées par semaine (ex: 35 pour un temps plein)
-                </p>
-              </div>
 
-              <div>
-                <label htmlFor="shiftDuration" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Durée par défaut d&apos;un créneau (heures)
-                </label>
-                <input
-                  type="number"
-                  id="shiftDuration"
-                  value={settings.defaultShiftDuration}
-                  onChange={(e) => updateSettings({ defaultShiftDuration: parseFloat(e.target.value) || 8 })}
-                  className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  min="0.5"
-                  max="24"
-                  step="0.5"
-                />
-                <p className="text-xs text-gray-600 mt-1">
-                  Durée par défaut d&apos;un créneau de travail en heures
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Business Hours */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Horaires d&apos;ouverture</h3>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-700 mb-4 font-medium">
-                Définissez les horaires d&apos;ouverture par défaut
-              </p>
-              <div className="grid grid-cols-2 gap-4 max-w-md">
-                <div>
-                                  <label htmlFor="startTime" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Heure d&apos;ouverture
-                </label>
-                  <input
-                    type="time"
-                    id="startTime"
-                    value={settings.businessHours.start}
-                    onChange={(e) => updateSettings({
-                      businessHours: { ...settings.businessHours, start: e.target.value }
-                    })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="endTime" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Heure de fermeture
-                  </label>
-                  <input
-                    type="time"
-                    id="endTime"
-                    value={settings.businessHours.end}
-                    onChange={(e) => updateSettings({
-                      businessHours: { ...settings.businessHours, end: e.target.value }
-                    })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Default Break Duration */}
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Paramètres par défaut</h3>
-            </div>
-            <div className="p-6">
-              <div className="max-w-xs">
-                <label htmlFor="breakDuration" className="form-label">
-                  Durée de pause par défaut (minutes)
-                </label>
-                <input
-                  type="number"
-                  id="breakDuration"
-                  value={settings.defaultBreakDuration}
-                  onChange={(e) => updateSettings({ defaultBreakDuration: parseInt(e.target.value) || 0 })}
-                  min="0"
-                  max="480"
-                  className="form-input"
-                  aria-describedby="break-default-help"
-                />
-                <p id="break-default-help" className="sr-only">Durée de pause par défaut en minutes pour les nouveaux créneaux</p>
-              </div>
-            </div>
-          </div>
 
           {/* Data Management */}
           <div className="bg-white rounded-lg shadow">
@@ -410,11 +213,17 @@ export default function SettingsPage() {
                   <p className="text-sm text-gray-700 mb-4">
                     Application de gestion de planning horaires pour boutiques et commerces.
                   </p>
-                  <p className="text-sm text-gray-700">
+                  <p className="text-sm text-gray-700 mb-4">
                     Version: 1.0.0<br />
                     PWA: Oui<br />
                     Stockage: Local Storage
                   </p>
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center px-4 py-2 bg-blue-600 !text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+                  >
+                    En savoir plus
+                  </Link>
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900 mb-2">Fonctionnalités</h4>
@@ -424,6 +233,8 @@ export default function SettingsPage() {
                     <li>• Calcul automatique des heures</li>
                     <li>• Export PDF</li>
                     <li>• Mode hors ligne</li>
+                    <li>• Génération intelligente IA</li>
+                    <li>• Gestion multi-magasins</li>
                   </ul>
                 </div>
               </div>
