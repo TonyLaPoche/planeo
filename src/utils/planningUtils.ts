@@ -15,12 +15,29 @@ export const calculateMonthlyQuota = (user: User, month: string): number => {
   const year = parseInt(yearStr);
   const monthNum = parseInt(monthStr) - 1; // JavaScript months are 0-indexed
 
-  // Nombre de semaines dans le mois (approximation)
+  // Calcul précis basé sur les jours travaillés réels dans le mois
+  const workingDays = user.workingDays || [1, 2, 3, 4, 5, 6]; // Par défaut lun-sam
+  const firstDay = new Date(year, monthNum, 1);
   const lastDay = new Date(year, monthNum + 1, 0);
-  const totalDays = lastDay.getDate();
-  const numberOfWeeks = Math.ceil(totalDays / 7);
-
-  return user.weeklyHoursQuota * numberOfWeeks;
+  
+  let workingDaysCount = 0;
+  const currentDate = new Date(firstDay);
+  
+  while (currentDate <= lastDay) {
+    const dayOfWeek = currentDate.getDay();
+    if (workingDays.includes(dayOfWeek)) {
+      workingDaysCount++;
+    }
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+  
+  // Heures par jour = quota hebdomadaire / nombre de jours travaillés par semaine
+  const dailyHours = user.weeklyHoursQuota / workingDays.length;
+  const monthlyQuota = dailyHours * workingDaysCount;
+  
+  console.log(`📊 ${user.name}: ${workingDaysCount} jours travaillés dans le mois, ${dailyHours.toFixed(1)}h/jour = ${monthlyQuota.toFixed(1)}h total`);
+  
+  return Math.round(monthlyQuota * 10) / 10; // Arrondi à 0.1h près
 };
 
 // Fonction pour vérifier si une date est un congé

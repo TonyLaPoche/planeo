@@ -21,7 +21,8 @@ export default function UsersPage() {
     phone: '',
     role: 'employee' as 'employee' | 'manager',
     weeklyHoursQuota: 35,
-    contractType: 'full-time' as UserType['contractType']
+    contractType: 'full-time' as UserType['contractType'],
+    workingDays: [1, 2, 3, 4, 5, 6] as number[] // Lundi à Samedi par défaut
   });
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export default function UsersPage() {
       color: editingUser?.color || generateUserColor(),
       weeklyHoursQuota: formData.weeklyHoursQuota,
       contractType: formData.contractType,
+      workingDays: formData.workingDays,
       isActive: editingUser?.isActive ?? true,
       createdAt: editingUser?.createdAt || new Date(),
       updatedAt: new Date(),
@@ -65,6 +67,7 @@ export default function UsersPage() {
       role: user.role,
       weeklyHoursQuota: user.weeklyHoursQuota || 35,
       contractType: user.contractType || 'full-time',
+      workingDays: user.workingDays || [1, 2, 3, 4, 5, 6],
     });
     setIsModalOpen(true);
   };
@@ -88,6 +91,7 @@ export default function UsersPage() {
       role: 'employee',
       weeklyHoursQuota: 35,
       contractType: 'full-time',
+      workingDays: [1, 2, 3, 4, 5, 6],
     });
     setIsModalOpen(true);
   };
@@ -337,6 +341,53 @@ export default function UsersPage() {
                   aria-describedby="hours-help"
                 />
                 <p id="hours-help" className="sr-only">Nombre d&apos;heures travaillées par semaine (ex: 35 pour un temps plein)</p>
+              </div>
+
+              <div>
+                <label className="form-label">
+                  Jours travaillés <span className="text-red-500">*</span>
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
+                  {[
+                    { value: 1, label: 'Lun' },
+                    { value: 2, label: 'Mar' },
+                    { value: 3, label: 'Mer' },
+                    { value: 4, label: 'Jeu' },
+                    { value: 5, label: 'Ven' },
+                    { value: 6, label: 'Sam' }
+                  ].map((day) => (
+                    <label key={day.value} className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={formData.workingDays.includes(day.value)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setFormData({
+                              ...formData,
+                              workingDays: [...formData.workingDays, day.value].sort()
+                            });
+                          } else {
+                            setFormData({
+                              ...formData,
+                              workingDays: formData.workingDays.filter(d => d !== day.value)
+                            });
+                          }
+                        }}
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <span className="text-sm text-gray-700">{day.label}</span>
+                    </label>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Sélectionnez les jours où l&apos;employé travaille habituellement
+                </p>
+                <p className="text-xs text-blue-600 mt-1">
+                  {formData.workingDays.length > 0 ? 
+                    `${(formData.weeklyHoursQuota / formData.workingDays.length).toFixed(1)}h/jour en moyenne` :
+                    'Sélectionnez au moins un jour'
+                  }
+                </p>
               </div>
 
               {/* Actions */}

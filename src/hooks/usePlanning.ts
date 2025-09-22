@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { User, Shift } from '@/types';
-import { userStorage, shiftStorage, settingsStorage, dataExport } from '@/utils/storage';
+import { User, Shift, StoreConfiguration, Shop, GenerationResult } from '@/types';
+import { userStorage, shiftStorage, settingsStorage, dataExport, storeConfigStorage, shopStorage, currentShopStorage, migrationUtils } from '@/utils/storage';
 import { generateMonthlyShifts } from '@/utils/planningUtils';
+import { AdvancedPlanningEngine } from '@/utils/advancedPlanningEngine';
+import { ShopPlanningEngine } from '@/utils/shopPlanningEngine';
 
 export function usePlanning() {
   const [users, setUsers] = useState<User[]>([]);
@@ -13,8 +15,18 @@ export function usePlanning() {
     isOpen: false,
     shift: null
   });
+  const [storeConfig, setStoreConfig] = useState<StoreConfiguration | null>(null);
+  const [shops, setShops] = useState<Shop[]>([]);
+  const [currentShopId, setCurrentShopId] = useState<string | null>(null);
 
   useEffect(() => {
+    // Vérifier et effectuer la migration si nécessaire
+    if (migrationUtils.needsMigration()) {
+      console.log('🔄 Migration des données nécessaire...');
+      migrationUtils.performMigration();
+      console.log('✅ Migration terminée !');
+    }
+
     loadData();
     const now = new Date();
     const monthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
@@ -24,6 +36,28 @@ export function usePlanning() {
   const loadData = () => {
     setUsers(userStorage.getAll());
     setShifts(shiftStorage.getAll());
+
+    // Charger les magasins
+    const allShops = shopStorage.getAll();
+    setShops(allShops);
+
+    // Charger le magasin actuel
+    let currentShop = currentShopStorage.get();
+    if (!currentShop && allShops.length > 0) {
+      // Sélectionner le premier magasin par défaut
+      currentShop = allShops[0].id;
+      currentShopStorage.set(currentShop);
+    }
+    setCurrentShopId(currentShop);
+    
+    // Charger la configuration magasin (legacy)
+    let config = storeConfigStorage.get();
+    if (!config) {
+      // Créer une configuration par défaut
+      const settings = settingsStorage.get();
+      config = storeConfigStorage.createDefault(settings);
+    }
+    setStoreConfig(config);
   };
 
   const getShiftsForDate = (date: string): Shift[] => {
@@ -62,6 +96,165 @@ export function usePlanning() {
     }
 
     setCurrentMonth(`${newYear}-${String(newMonth).padStart(2, '0')}`);
+  };
+
+  // Nouvelle fonction de génération avancée
+  const generateAdvancedShifts = async (month: string = currentMonth): Promise<GenerationResult | null> => {
+    try {
+      if (!storeConfig) {
+        alert('Configuration magasin manquante. Rechargez la page.');
+        return null;
+      }
+
+      const activeUsers = users.filter(user => user.isActive);
+      if (activeUsers.length === 0) {
+        alert('Aucun utilisateur actif trouvé. Activez au moins un utilisateur dans la gestion des utilisateurs.');
+        return null;
+      }
+
+      const vacations = dataExport.getVacations();
+      const settings = settingsStorage.get();
+
+      console.log('🚀 Génération avancée de planning...');
+
+      const result = AdvancedPlanningEngine.generateOptimizedPlanning({
+        month,
+        users,
+        vacations,
+        settings,
+        templates: dataExport.getShiftTemplates(),
+        storeConfig,
+        optimizationPriorities: {
+          legalCompliance: 0.3,
+          skillCoverage: 0.25,
+          employeeSatisfaction: 0.2,
+          costOptimization: 0.15,
+          workloadBalance: 0.1
+        },
+        allowPartialSolutions: true,
+        maxIterations: 50
+      });
+
+      // Filtrer les créneaux existants
+      const existingShifts = shifts.filter(shift =>
+        shift.date.startsWith(month) && !shift.notes?.includes('généré automatiquement')
+      );
+
+      const newShifts = result.shifts.filter(newShift => {
+        return !existingShifts.some(existing =>
+          existing.userId === newShift.userId &&
+          existing.date === newShift.date &&
+          existing.startTime === newShift.startTime
+        );
+      });
+
+      if (newShifts.length > 0) {
+        // Sauvegarder les nouveaux créneaux
+        newShifts.forEach(shift => {
+          shiftStorage.save(shift);
+        });
+
+        // Recharger les données
+        loadData();
+
+        alert(`✅ Génération avancée terminée !\n\n📊 Résultats :\n- ${newShifts.length} créneaux générés\n- Score global : ${result.score.total.toFixed(1)}/100\n- Conformité légale : ${result.score.legalCompliance.toFixed(1)}%\n- Couverture compétences : ${result.score.skillCoverage.toFixed(1)}%\n- Satisfaction employés : ${result.score.employeeSatisfaction.toFixed(1)}%\n\n${result.violations.length > 0 ? `⚠️ ${result.violations.length} alertes détectées` : '✅ Aucune violation détectée'}`);
+        
+        console.log('📊 Résultats détaillés :', result);
+      } else {
+        alert('ℹ️ Aucun nouveau créneau à générer. Tous les créneaux possibles existent déjà.');
+      }
+
+      return result;
+    } catch (error) {
+      console.error('Erreur lors de la génération avancée:', error);
+      alert('❌ Erreur lors de la génération automatique avancée.');
+      return null;
+    }
+  };
+
+  // Génération intelligente pour un magasin spécifique
+  const generateShopPlanning = async (month: string = currentMonth): Promise<GenerationResult | null> => {
+    try {
+      if (!currentShopId) {
+        alert('Aucun magasin sélectionné. Veuillez sélectionner un magasin.');
+        return null;
+      }
+
+      const currentShop = shopStorage.getById(currentShopId);
+      if (!currentShop) {
+        alert('Magasin introuvable. Veuillez vérifier votre sélection.');
+        return null;
+      }
+
+      const shopEmployees = shopStorage.getShopEmployees(currentShopId, users);
+      if (shopEmployees.length === 0) {
+        alert(`Aucun employé assigné au magasin "${currentShop.name}". Veuillez assigner des employés dans la gestion des magasins.`);
+        return null;
+      }
+
+      const vacations = dataExport.getVacations();
+      const settings = settingsStorage.get();
+
+      console.log(`🏪 Génération planning pour "${currentShop.name}"...`);
+
+      const result = ShopPlanningEngine.generateShopPlanning({
+        month,
+        shop: currentShop,
+        users,
+        vacations,
+        settings,
+        templates: dataExport.getShiftTemplates(),
+        optimizationPriorities: {
+          legalCompliance: 0.3,
+          skillCoverage: 0.25,
+          employeeSatisfaction: 0.2,
+          costOptimization: 0.15,
+          workloadBalance: 0.1
+        },
+        maxIterations: 50
+      });
+
+      // Filtrer les nouveaux créneaux pour éviter les doublons
+      const existingShifts = shifts.filter(shift => shift.date.startsWith(month));
+      const existingShiftKeys = new Set(
+        existingShifts.map(s => `${s.userId}-${s.date}-${s.startTime}`)
+      );
+
+      const newShifts = result.shifts.filter(shift => 
+        !existingShiftKeys.has(`${shift.userId}-${shift.date}-${shift.startTime}`)
+      );
+
+      // Sauvegarder les nouveaux créneaux
+      newShifts.forEach(shift => shiftStorage.save(shift));
+
+      // Recharger les données
+      loadData();
+
+      alert(`✅ Planning "${currentShop.name}" généré !
+
+📊 Résultats :
+- ${newShifts.length} créneaux générés
+- ${shopEmployees.length} employés utilisés
+- Score global : ${result.score.total.toFixed(1)}/100
+- Conformité légale : ${result.score.legalCompliance.toFixed(1)}%
+- Couverture compétences : ${result.score.skillCoverage.toFixed(1)}%
+- Satisfaction employés : ${result.score.employeeSatisfaction.toFixed(1)}%
+
+${result.violations.length > 0 ? `⚠️ ${result.violations.length} alertes détectées` : '✅ Aucune violation détectée'}`);
+
+      console.log('📊 Résultats détaillés :', result);
+      return result;
+    } catch (error) {
+      console.error('Erreur lors de la génération du planning magasin:', error);
+      alert(`Erreur lors de la génération: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
+      return null;
+    }
+  };
+
+  // Fonction pour changer de magasin
+  const selectShop = (shopId: string) => {
+    setCurrentShopId(shopId);
+    currentShopStorage.set(shopId);
   };
 
   const generateAutoShifts = async (month: string = currentMonth) => {
@@ -185,11 +378,17 @@ export function usePlanning() {
     currentMonth,
     calendarDays,
     shiftModal,
+    storeConfig,
+    shops,
+    currentShopId,
     loadData,
     getShiftsForDate,
     getUserById,
     navigateMonth,
     generateAutoShifts,
+    generateAdvancedShifts, // Ancienne fonction (sera supprimée)
+    generateShopPlanning, // Nouvelle fonction pour magasins
+    selectShop,
     openShiftModal,
     closeShiftModal,
   };

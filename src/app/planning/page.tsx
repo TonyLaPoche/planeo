@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Plus, ChevronLeft, ChevronRight, Bot, Trash2 } from 'lucide-react';
 import { shiftStorage } from '@/utils/storage';
 import { Shift } from '@/types';
 import { usePlanning } from '@/hooks/usePlanning';
@@ -12,6 +12,7 @@ import { PlanningInstructions } from '@/components/calendar/PlanningInstructions
 import { ShiftDetailsModal } from '@/components/ShiftDetailsModal';
 import { formatDuration, calculateShiftDuration } from '@/utils/time';
 import { Footer } from '@/components/Footer';
+import { CompactShopSelector } from '@/components/ShopSelector';
 
 export default function PlanningPage() {
   const {
@@ -20,11 +21,14 @@ export default function PlanningPage() {
     currentMonth,
     calendarDays,
     shiftModal,
+    shops,
+    currentShopId,
     loadData,
     getShiftsForDate,
     getUserById,
     navigateMonth,
-    generateAutoShifts,
+    generateShopPlanning,
+    selectShop,
     closeShiftModal,
   } = usePlanning();
 
@@ -38,6 +42,30 @@ export default function PlanningPage() {
     breakDuration: 60,
     notes: '',
   });
+
+  const handleClearCurrentMonth = () => {
+    if (confirm('Êtes-vous sûr de vouloir supprimer tous les créneaux du mois en cours ? Cette action est irréversible.')) {
+      // Supprimer tous les shifts du mois en cours
+      const monthKey = currentMonth; // currentMonth est déjà au format 'YYYY-MM'
+      const allShifts = shiftStorage.getAll();
+      const shiftsToDelete = allShifts.filter(shift => shift.date.startsWith(monthKey));
+      
+      shiftsToDelete.forEach(shift => {
+        shiftStorage.delete(shift.id);
+      });
+      
+      // Recharger les données
+      loadData();
+      
+      // Formater le nom du mois pour l'affichage
+      const [year, month] = currentMonth.split('-');
+      const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                         'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      const monthName = `${monthNames[parseInt(month) - 1]} ${year}`;
+      
+      alert(`${shiftsToDelete.length} créneau${shiftsToDelete.length > 1 ? 'x' : ''} supprimé${shiftsToDelete.length > 1 ? 's' : ''} pour ${monthName}.`);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,34 +133,59 @@ export default function PlanningPage() {
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Row */}
-          <div className="flex items-center justify-between py-3 sm:py-4">
+          <div className="flex items-center justify-between py-3 sm:py-4 gap-2">
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <Link
                 href="/"
-                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2"
+                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2 flex-shrink-0"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
+              <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
                 Planning {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
               </h1>
             </div>
-            <div className="flex space-x-2">
+            
+            {/* Actions compactes */}
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+              {/* Sélecteur de magasin - plus compact */}
+              <CompactShopSelector
+                shops={shops}
+                selectedShopId={currentShopId}
+                onShopSelect={selectShop}
+                className="max-w-[120px] sm:max-w-none"
+              />
+
+              {/* Boutons d'actions - plus compacts */}
               <button
-                onClick={() => generateAutoShifts()}
-                className="btn-secondary text-sm sm:text-base"
-                aria-label="Générer automatiquement les créneaux du mois"
+                onClick={() => generateShopPlanning()}
+                className="btn-primary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                disabled={!currentShopId}
+                aria-label="Génération intelligente"
+                title="Génération intelligente"
               >
-                <Plus className="h-4 w-4" />
-                <span className="hidden sm:inline">Auto-générer</span>
+                <Bot className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">IA</span>
               </button>
+
+              <button
+                onClick={handleClearCurrentMonth}
+                className="btn-danger text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                aria-label="Vider le planning"
+                title="Vider le planning du mois"
+              >
+                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">Clear</span>
+              </button>
+
               <button
                 onClick={() => openModal()}
-                className="btn-primary text-sm sm:text-base"
-                aria-label="Ajouter un nouveau créneau horaire"
+                className="btn-secondary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                aria-label="Ajouter un créneau"
+                title="Ajouter un nouveau créneau"
               >
-                <Plus className="h-4 w-4" />
-                <span className="hidden sm:inline">Ajouter</span>
+                <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">Add</span>
               </button>
             </div>
           </div>
@@ -166,6 +219,44 @@ export default function PlanningPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
         <PlanningInstructions />
+        
+        {/* Notification système multi-magasins */}
+        {!currentShopId && shops.length === 0 && (
+          <div className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-5 w-5 text-amber-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-amber-900">Configuration requise</h3>
+                <div className="mt-1 text-sm text-amber-800">
+                  <p>
+                    Créez votre premier magasin dans <Link href="/advanced" className="underline hover:text-amber-900">Gestion avancée → Magasins</Link> pour commencer à générer des plannings intelligents.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {currentShopId && (
+          <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-5 w-5 text-blue-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-blue-900">Planification Intelligente Active</h3>
+                <div className="mt-1 text-sm text-blue-800">
+                  <p>
+                    La génération prend en compte les compétences, disponibilités, contraintes légales et optimise automatiquement votre planning pour {shops.find(s => s.id === currentShopId)?.name}.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
         <TeamLegend users={users} shifts={shifts} />
         <ResponsiveCalendar
           calendarDays={calendarDays}
