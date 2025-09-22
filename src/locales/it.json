@@ -295,6 +295,22 @@
       "keywords": "impostazioni, configurazione, lingua, esportazione dati, importazione dati"
     }
   },
+  "footer": {
+    "about": "Chi siamo",
+    "aboutAriaLabel": "Chi siamo - Planneo",
+    "support": "Supporta",
+    "supportAriaLabel": "Supporta lo sviluppo su Buy Me a Coffee",
+    "copyright": "©2025",
+    "author": "Antoine Terrade",
+    "authorAriaLabel": "Visita il sito web di Antoine Terrade",
+    "rights": "Tutti i diritti riservati"
+  },
+  "ads": {
+    "advertisement": "Pubblicità",
+    "freeThanksToAds": "Planneo rimane gratuito grazie alla pubblicità",
+    "supportDevelopment": "ma puoi anche",
+    "buyMeCoffee": "supportare lo sviluppo offrendomi un caffè ☕"
+  },
   "languages": {
     "fr": "Français",
     "en": "English",

@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { Coffee } from 'lucide-react';
 import { PreFooterAd } from './AdPlacement';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function Footer() {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* Publicité avant footer */}
@@ -17,9 +20,9 @@ export function Footer() {
             <Link
               href="/about"
               className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors duration-200"
-              aria-label="À propos de Planneo"
+              aria-label={t('footer.aboutAriaLabel')}
             >
-              À propos
+              {t('footer.about')}
             </Link>
 
             {/* Buy Me a Coffee */}
@@ -28,24 +31,24 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-1 bg-amber-50 hover:bg-amber-100 px-3 py-1 rounded-full border border-amber-200 hover:border-amber-300 transition-all duration-200 group"
-              aria-label="Soutenir le développement sur Buy Me a Coffee"
+              aria-label={t('footer.supportAriaLabel')}
             >
               <Coffee className="h-4 w-4 text-amber-600 group-hover:text-amber-700" />
-              <span className="text-amber-700 hover:text-amber-800 font-medium">Soutenir</span>
+              <span className="text-amber-700 hover:text-amber-800 font-medium">{t('footer.support')}</span>
             </a>
 
             <p>
-              ©2025{' '}
+              {t('footer.copyright')}{' '}
               <a
                 href="https://antoineterrade.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors duration-200"
-                aria-label="Visiter le site web d'Antoine Terrade"
+                aria-label={t('footer.authorAriaLabel')}
               >
-                Antoine Terrade
+                {t('footer.author')}
               </a>
-              . Tous droits réservés.
+              . {t('footer.rights')}
             </p>
           </div>
         </div>

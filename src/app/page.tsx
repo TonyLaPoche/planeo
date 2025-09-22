@@ -8,6 +8,7 @@ import { User } from '@/types';
 import { Footer } from '@/components/Footer';
 import { useTranslation } from '@/hooks/useTranslation';
 import SEOHead from '@/components/SEOHead';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +49,8 @@ export default function Home() {
             </Link>
 
             {/* Desktop Navigation - Simplifiée */}
-            <nav className="hidden md:flex space-x-1 lg:space-x-4">
+            <nav className="hidden md:flex items-center space-x-1 lg:space-x-4">
+              <LanguageSelector />
               <Link
                 href="/settings"
                 className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
@@ -71,6 +73,9 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden border-t border-gray-200 py-2">
               <div className="px-2 space-y-1">
+                <div className="px-3 py-2">
+                  <LanguageSelector />
+                </div>
                 <Link
                   href="/settings"
                   className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"

@@ -1,6 +1,7 @@
 'use client';
 
 import { AdSenseAd } from './AdSenseWrapper';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface AdPlacementProps {
   position: 'sidebar' | 'footer' | 'header' | 'content';
@@ -9,6 +10,8 @@ interface AdPlacementProps {
 }
 
 export function AdPlacement({ position, slot, className = '' }: AdPlacementProps) {
+  const { t } = useTranslation();
+
   const getPositionStyles = () => {
     switch (position) {
       case 'sidebar':
@@ -41,7 +44,7 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
   return (
     <div className={`${getPositionStyles()} ${className}`}>
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-2 text-center">
-        <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">Publicité</p>
+        <p className="text-xs text-gray-500 mb-2 uppercase tracking-wide">{t('ads.advertisement')}</p>
         <AdSenseAd
           slot={slot}
           format={getAdFormat()}
@@ -54,15 +57,15 @@ export function AdPlacement({ position, slot, className = '' }: AdPlacementProps
         />
         <div className="mt-2 pt-2 border-t border-gray-300">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Planneo reste gratuit grâce aux publicités{' '} <br />
-            mais vous pouvez aussi<br />
+            {t('ads.freeThanksToAds')}{' '} <br />
+            {t('ads.supportDevelopment')}<br />
             <a 
               href="https://buymeacoffee.com/terradeanty" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-amber-600 hover:text-amber-700 underline transition-colors"
             >
-              soutenir le développement en me payant un café ☕
+              {t('ads.buyMeCoffee')}
             </a>
           </p>
         </div>

@@ -295,6 +295,22 @@
       "keywords": "Einstellungen, Konfiguration, Sprache, Datenexport, Datenimport"
     }
   },
+  "footer": {
+    "about": "Über",
+    "aboutAriaLabel": "Über Planneo",
+    "support": "Unterstützen",
+    "supportAriaLabel": "Entwicklung auf Buy Me a Coffee unterstützen",
+    "copyright": "©2025",
+    "author": "Antoine Terrade",
+    "authorAriaLabel": "Antoine Terrades Website besuchen",
+    "rights": "Alle Rechte vorbehalten"
+  },
+  "ads": {
+    "advertisement": "Werbung",
+    "freeThanksToAds": "Planneo bleibt dank Werbung kostenlos",
+    "supportDevelopment": "aber Sie können auch",
+    "buyMeCoffee": "die Entwicklung unterstützen, indem Sie mir einen Kaffee kaufen ☕"
+  },
   "languages": {
     "fr": "Français",
     "en": "English",
