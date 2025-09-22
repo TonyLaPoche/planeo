@@ -1,0 +1,67 @@
+{
+  "common": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "add": "Aggiungi",
+    "back": "Indietro",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "confirm": "Conferma",
+    "yes": "Sì",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "users": "Utenti",
+    "planning": "Pianificazione",
+    "reports": "Report",
+    "settings": "Impostazioni",
+    "advanced": "Gestione Avanzata",
+    "about": "Informazioni"
+  },
+  "home": {
+    "title": "Generatore di Turni per Negozi - Planneo",
+    "subtitle": "Software gratuito per la gestione dei turni per aziende e negozi.",
+    "description": "Crea facilmente i turni del tuo team, calcola automaticamente le ore lavorate, esporta i tuoi turni in PDF professionali.",
+    "activeEmployees": "Dipendenti attivi",
+    "shiftsThisMonth": "Turni questo mese",
+    "currentMonth": "Mese corrente",
+    "quickAccess": "Accesso Rapido alle Funzionalità",
+    "manageEmployees": "Gestisci dipendenti",
+    "createSchedules": "Crea turni",
+    "pdfExports": "Esportazioni PDF",
+    "holidaysAndStores": "Ferie & Negozi",
+    "configuration": "Configurazione"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "generalSettings": "Impostazioni Generali",
+    "language": "Lingua",
+    "dataManagement": "Gestione Dati",
+    "exportData": "Esporta dati",
+    "importData": "Importa dati",
+    "clearAllData": "Elimina tutto",
+    "about": "Informazioni",
+    "learnMore": "Scopri di più",
+    "version": "Versione",
+    "pwa": "PWA",
+    "storage": "Archiviazione",
+    "features": "Funzionalità",
+    "userManagement": "Gestione utenti",
+    "visualPlanning": "Pianificazione mensile visuale",
+    "automaticCalculation": "Calcolo automatico ore",
+    "pdfExport": "Esportazione PDF",
+    "offlineMode": "Modalità offline",
+    "aiGeneration": "Generazione Intelligente IA",
+    "multiStoreManagement": "Gestione multi-negozio"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "it": "Italiano"
+  }
+}

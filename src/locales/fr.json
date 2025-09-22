@@ -1,0 +1,67 @@
+{
+  "common": {
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "back": "Retour",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "users": "Utilisateurs",
+    "planning": "Planning",
+    "reports": "Rapports",
+    "settings": "Paramètres",
+    "advanced": "Gestion avancée",
+    "about": "À propos"
+  },
+  "home": {
+    "title": "Générateur de Planning pour Boutiques - Planneo",
+    "subtitle": "Logiciel gratuit de gestion de planning horaire pour commerces et boutiques.",
+    "description": "Créez facilement les horaires de votre équipe, calculez automatiquement les heures travaillées, exportez vos plannings en PDF professionnel.",
+    "activeEmployees": "Employés actifs",
+    "shiftsThisMonth": "Créneaux ce mois",
+    "currentMonth": "Mois en cours",
+    "quickAccess": "Accès Rapide aux Fonctionnalités",
+    "manageEmployees": "Gérer les employés",
+    "createSchedules": "Créer les horaires",
+    "pdfExports": "Exports PDF",
+    "holidaysAndStores": "Congés & Magasins",
+    "configuration": "Configuration"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "generalSettings": "Paramètres généraux",
+    "language": "Langue",
+    "dataManagement": "Gestion des données",
+    "exportData": "Exporter les données",
+    "importData": "Importer des données",
+    "clearAllData": "Supprimer tout",
+    "about": "À propos",
+    "learnMore": "En savoir plus",
+    "version": "Version",
+    "pwa": "PWA",
+    "storage": "Stockage",
+    "features": "Fonctionnalités",
+    "userManagement": "Gestion des utilisateurs",
+    "visualPlanning": "Planning visuel par mois",
+    "automaticCalculation": "Calcul automatique des heures",
+    "pdfExport": "Export PDF",
+    "offlineMode": "Mode hors ligne",
+    "aiGeneration": "Génération intelligente IA",
+    "multiStoreManagement": "Gestion multi-magasins"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "it": "Italiano"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "users": "Users",
+    "planning": "Planning",
+    "reports": "Reports",
+    "settings": "Settings",
+    "advanced": "Advanced Management",
+    "about": "About"
+  },
+  "home": {
+    "title": "Schedule Generator for Shops - Planneo",
+    "subtitle": "Free schedule management software for businesses and shops.",
+    "description": "Easily create your team schedules, automatically calculate hours worked, export your schedules as professional PDFs.",
+    "activeEmployees": "Active employees",
+    "shiftsThisMonth": "Shifts this month",
+    "currentMonth": "Current month",
+    "quickAccess": "Quick Access to Features",
+    "manageEmployees": "Manage employees",
+    "createSchedules": "Create schedules",
+    "pdfExports": "PDF Exports",
+    "holidaysAndStores": "Holidays & Stores",
+    "configuration": "Configuration"
+  },
+  "settings": {
+    "title": "Settings",
+    "generalSettings": "General Settings",
+    "language": "Language",
+    "dataManagement": "Data Management",
+    "exportData": "Export data",
+    "importData": "Import data",
+    "clearAllData": "Clear all",
+    "about": "About",
+    "learnMore": "Learn more",
+    "version": "Version",
+    "pwa": "PWA",
+    "storage": "Storage",
+    "features": "Features",
+    "userManagement": "User management",
+    "visualPlanning": "Visual monthly planning",
+    "automaticCalculation": "Automatic hours calculation",
+    "pdfExport": "PDF Export",
+    "offlineMode": "Offline mode",
+    "aiGeneration": "AI Smart Generation",
+    "multiStoreManagement": "Multi-store management"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "it": "Italiano"
+  }
+}

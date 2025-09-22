@@ -1,0 +1,67 @@
+{
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "add": "Hinzufügen",
+    "back": "Zurück",
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "confirm": "Bestätigen",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "users": "Benutzer",
+    "planning": "Planung",
+    "reports": "Berichte",
+    "settings": "Einstellungen",
+    "advanced": "Erweiterte Verwaltung",
+    "about": "Über"
+  },
+  "home": {
+    "title": "Schichtplan-Generator für Geschäfte - Planneo",
+    "subtitle": "Kostenlose Schichtplan-Software für Unternehmen und Geschäfte.",
+    "description": "Erstellen Sie einfach Ihre Teamschichtpläne, berechnen Sie automatisch die Arbeitsstunden und exportieren Sie Ihre Pläne als professionelle PDFs.",
+    "activeEmployees": "Aktive Mitarbeiter",
+    "shiftsThisMonth": "Schichten diesen Monat",
+    "currentMonth": "Aktueller Monat",
+    "quickAccess": "Schnellzugriff auf Funktionen",
+    "manageEmployees": "Mitarbeiter verwalten",
+    "createSchedules": "Schichtpläne erstellen",
+    "pdfExports": "PDF-Exporte",
+    "holidaysAndStores": "Urlaub & Filialen",
+    "configuration": "Konfiguration"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "generalSettings": "Allgemeine Einstellungen",
+    "language": "Sprache",
+    "dataManagement": "Datenverwaltung",
+    "exportData": "Daten exportieren",
+    "importData": "Daten importieren",
+    "clearAllData": "Alles löschen",
+    "about": "Über",
+    "learnMore": "Mehr erfahren",
+    "version": "Version",
+    "pwa": "PWA",
+    "storage": "Speicher",
+    "features": "Funktionen",
+    "userManagement": "Benutzerverwaltung",
+    "visualPlanning": "Visuelle Monatsplanung",
+    "automaticCalculation": "Automatische Stundenberechnung",
+    "pdfExport": "PDF-Export",
+    "offlineMode": "Offline-Modus",
+    "aiGeneration": "KI-Intelligente Generierung",
+    "multiStoreManagement": "Multi-Filial-Verwaltung"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "English",
+    "de": "Deutsch",
+    "it": "Italiano"
+  }
+}

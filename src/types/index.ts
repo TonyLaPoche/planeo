@@ -85,7 +85,7 @@ export interface Vacation {
 
 export interface AppSettings {
   theme: 'light' | 'dark';
-  language: 'fr' | 'en';
+  language: 'fr' | 'en' | 'de' | 'it';
   workingDays: number[]; // 0 = dimanche, 1 = lundi, etc.
   defaultBreakDuration: number; // minutes
   defaultWeeklyHours: number; // Heures par semaine par défaut (ex: 35)

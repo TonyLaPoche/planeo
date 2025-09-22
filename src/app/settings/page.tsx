@@ -6,10 +6,12 @@ import { ArrowLeft, Save, Download, Upload, Trash2 } from 'lucide-react';
 import { settingsStorage, dataExport } from '@/utils/storage';
 import { AppSettings } from '@/types';
 import { Footer } from '@/components/Footer';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState<AppSettings | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const { t, currentLanguage, changeLanguage, languages } = useTranslation();
 
   useEffect(() => {
     setSettings(settingsStorage.get());
@@ -84,6 +86,18 @@ export default function SettingsPage() {
     setSettings({ ...settings, ...updates });
   };
 
+  const handleLanguageChange = async (newLanguage: string) => {
+    if (!settings) return;
+    
+    // Mettre à jour les paramètres et sauvegarder immédiatement
+    const updatedSettings = { ...settings, language: newLanguage as 'fr' | 'en' | 'de' | 'it' };
+    setSettings(updatedSettings);
+    settingsStorage.save(updatedSettings);
+    
+    // Changer la langue dans le hook de traduction
+    await changeLanguage(newLanguage);
+  };
+
   if (!settings) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -107,9 +121,9 @@ export default function SettingsPage() {
                 className="flex items-center text-gray-900 hover:text-black font-medium"
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
-                Retour
+                {t('common.back')}
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Paramètres</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{t('settings.title')}</h1>
             </div>
             <button
               onClick={handleSave}
@@ -118,7 +132,7 @@ export default function SettingsPage() {
               aria-label="Enregistrer les paramètres"
             >
               <Save className="h-4 w-4" />
-              <span>{isSaving ? 'Sauvegarde...' : 'Sauvegarder'}</span>
+              <span>{isSaving ? t('common.loading') : t('common.save')}</span>
             </button>
           </div>
         </div>
@@ -130,22 +144,24 @@ export default function SettingsPage() {
           {/* General Settings */}
           <div className="bg-white rounded-lg shadow">
             <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Paramètres généraux</h3>
+              <h3 className="text-lg font-semibold text-gray-900">{t('settings.generalSettings')}</h3>
             </div>
             <div className="p-6 space-y-6">
               {/* Language */}
               <div>
                 <label htmlFor="language" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Langue
+                  {t('settings.language')}
                 </label>
                 <select
                   id="language"
-                  value={settings.language}
-                  onChange={(e) => updateSettings({ language: e.target.value as 'fr' | 'en' })}
+                  value={currentLanguage}
+                  onChange={(e) => handleLanguageChange(e.target.value)}
                   className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="fr">Français</option>
-                  <option value="en">English</option>
+                  <option value="fr">{languages.fr}</option>
+                  <option value="en">{languages.en}</option>
+                  <option value="de">{languages.de}</option>
+                  <option value="it">{languages.it}</option>
                 </select>
               </div>
             </div>
@@ -158,7 +174,7 @@ export default function SettingsPage() {
           {/* Data Management */}
           <div className="bg-white rounded-lg shadow">
             <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Gestion des données</h3>
+              <h3 className="text-lg font-semibold text-gray-900">{t('settings.dataManagement')}</h3>
             </div>
             <div className="p-6 space-y-4">
               <div className="flex flex-wrap gap-4">
@@ -168,12 +184,12 @@ export default function SettingsPage() {
                   aria-label="Télécharger toutes les données au format JSON"
                 >
                   <Download className="h-4 w-4" />
-                  <span>Exporter les données</span>
+                  <span>{t('settings.exportData')}</span>
                 </button>
 
                 <label className="btn-primary cursor-pointer">
                   <Upload className="h-4 w-4" />
-                  <span>Importer des données</span>
+                  <span>{t('settings.importData')}</span>
                   <input
                     type="file"
                     accept=".json"
@@ -189,7 +205,7 @@ export default function SettingsPage() {
                   aria-label="Supprimer définitivement toutes les données"
                 >
                   <Trash2 className="h-4 w-4" />
-                  <span>Supprimer tout</span>
+                  <span>{t('settings.clearAllData')}</span>
                 </button>
               </div>
 
@@ -204,7 +220,7 @@ export default function SettingsPage() {
           {/* App Info */}
           <div className="bg-white rounded-lg shadow">
             <div className="px-6 py-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">À propos</h3>
+              <h3 className="text-lg font-semibold text-gray-900">{t('settings.about')}</h3>
             </div>
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -214,27 +230,27 @@ export default function SettingsPage() {
                     Application de gestion de planning horaires pour boutiques et commerces.
                   </p>
                   <p className="text-sm text-gray-700 mb-4">
-                    Version: 1.0.0<br />
-                    PWA: Oui<br />
-                    Stockage: Local Storage
+                    {t('settings.version')}: 1.0.0<br />
+                    {t('settings.pwa')}: Oui<br />
+                    {t('settings.storage')}: Local Storage
                   </p>
                   <Link
                     href="/about"
                     className="inline-flex items-center px-4 py-2 bg-blue-600 !text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
                   >
-                    En savoir plus
+                    {t('settings.learnMore')}
                   </Link>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Fonctionnalités</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">{t('settings.features')}</h4>
                   <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Gestion des utilisateurs</li>
-                    <li>• Planning visuel par mois</li>
-                    <li>• Calcul automatique des heures</li>
-                    <li>• Export PDF</li>
-                    <li>• Mode hors ligne</li>
-                    <li>• Génération intelligente IA</li>
-                    <li>• Gestion multi-magasins</li>
+                    <li>• {t('settings.userManagement')}</li>
+                    <li>• {t('settings.visualPlanning')}</li>
+                    <li>• {t('settings.automaticCalculation')}</li>
+                    <li>• {t('settings.pdfExport')}</li>
+                    <li>• {t('settings.offlineMode')}</li>
+                    <li>• {t('settings.aiGeneration')}</li>
+                    <li>• {t('settings.multiStoreManagement')}</li>
                   </ul>
                 </div>
               </div>
