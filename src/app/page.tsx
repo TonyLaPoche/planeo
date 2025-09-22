@@ -42,42 +42,14 @@ export default function Home() {
               <h1 className="text-lg sm:text-2xl font-bold text-gray-900">Planneo</h1>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Simplifiée */}
             <nav className="hidden md:flex space-x-1 lg:space-x-4">
-              <Link
-                href="/users"
-                className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                <Users className="h-4 w-4" />
-                <span className="hidden lg:inline">Utilisateurs</span>
-              </Link>
-              <Link
-                href="/planning"
-                className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                <Calendar className="h-4 w-4" />
-                <span className="hidden lg:inline">Planning</span>
-              </Link>
-              <Link
-                href="/reports"
-                className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                <BarChart3 className="h-4 w-4" />
-                <span className="hidden lg:inline">Rapports</span>
-              </Link>
               <Link
                 href="/settings"
                 className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
               >
                 <Settings className="h-4 w-4" />
                 <span className="hidden lg:inline">Paramètres</span>
-              </Link>
-              <Link
-                href="/advanced"
-                className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span className="hidden lg:inline">Avancé</span>
               </Link>
             </nav>
 
@@ -90,34 +62,10 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Mobile Navigation Menu */}
+          {/* Mobile Navigation Menu - Simplifiée */}
           {isMenuOpen && (
             <div className="md:hidden border-t border-gray-200 py-2">
               <div className="px-2 space-y-1">
-                <Link
-                  href="/users"
-                  className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Users className="h-5 w-5" />
-                  <span>Utilisateurs</span>
-                </Link>
-                <Link
-                  href="/planning"
-                  className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Calendar className="h-5 w-5" />
-                  <span>Planning</span>
-                </Link>
-                <Link
-                  href="/reports"
-                  className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <BarChart3 className="h-5 w-5" />
-                  <span>Rapports</span>
-                </Link>
                 <Link
                   href="/settings"
                   className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
@@ -125,14 +73,6 @@ export default function Home() {
                 >
                   <Settings className="h-5 w-5" />
                   <span>Paramètres</span>
-                </Link>
-                <Link
-                  href="/advanced"
-                  className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Settings className="h-5 w-5" />
-                  <span>Gestion avancée</span>
                 </Link>
               </div>
             </div>
@@ -207,8 +147,12 @@ export default function Home() {
             </div>
           </div>
 
-        {/* Quick Actions - Mobile Optimized */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {/* Navigation Principale - Cartes d'Actions */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4 text-center">
+            Accès Rapide aux Fonctionnalités
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <Link
               href="/users"
             className="bg-white hover:bg-blue-50 active:bg-blue-100 text-blue-800 border-2 border-blue-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 shadow-lg"
@@ -246,8 +190,19 @@ export default function Home() {
           >
             <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-purple-600" />
             <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Gestion avancée</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Congés & Templates</p>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Congés & Magasins</p>
           </Link>
+
+          <Link
+            href="/settings"
+            className="bg-white hover:bg-gray-50 active:bg-gray-100 text-gray-800 border-2 border-gray-300 rounded-lg p-4 sm:p-6 text-center transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-500 focus:ring-opacity-50 shadow-lg"
+            aria-label="Accéder aux paramètres"
+          >
+            <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-gray-600" />
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Paramètres</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Configuration</p>
+          </Link>
+        </div>
         </div>
 
         {/* Section SEO - Fonctionnalités détaillées */}
