@@ -180,7 +180,7 @@ export default function SettingsPage() {
                 <button
                   onClick={handleExportData}
                   className="btn-primary"
-                  aria-label="Télécharger toutes les données au format JSON"
+                  aria-label={t('settings.exportDataDescription')}
                 >
                   <Download className="h-4 w-4" />
                   <span>{t('settings.exportData')}</span>
@@ -194,14 +194,14 @@ export default function SettingsPage() {
                     accept=".json"
                     onChange={handleImportData}
                     className="hidden"
-                    aria-label="Sélectionner un fichier JSON à importer"
+                    aria-label={t('settings.importDataDescription')}
                   />
                 </label>
 
                 <button
                   onClick={handleClearData}
                   className="btn-danger"
-                  aria-label="Supprimer définitivement toutes les données"
+                  aria-label={t('settings.clearAllDataDescription')}
                 >
                   <Trash2 className="h-4 w-4" />
                   <span>{t('settings.clearAllData')}</span>
@@ -209,9 +209,9 @@ export default function SettingsPage() {
               </div>
 
               <div className="text-sm text-gray-700">
-                <p>• <strong>Exporter</strong> : Télécharge un fichier JSON avec toutes vos données</p>
-                <p>• <strong>Importer</strong> : Charge des données depuis un fichier JSON exporté</p>
-                <p>• <strong>Supprimer tout</strong> : Efface toutes les données (utilisateurs, créneaux, etc.)</p>
+                <p>• <strong>{t('settings.export')}</strong> : {t('settings.exportExplanation')}</p>
+                <p>• <strong>{t('settings.import')}</strong> : {t('settings.importExplanation')}</p>
+                <p>• <strong>{t('settings.clear')}</strong> : {t('settings.clearExplanation')}</p>
               </div>
             </div>
           </div>
