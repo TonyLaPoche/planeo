@@ -34,7 +34,37 @@
     "createSchedules": "Créer les horaires",
     "pdfExports": "Exports PDF",
     "holidaysAndStores": "Congés & Magasins",
-    "configuration": "Configuration"
+    "configuration": "Configuration",
+    "seoTitle": "Planning Commercial Simplifié",
+    "seoDescription": "Planneo est l'outil idéal pour les boutiques et magasins qui veulent optimiser la gestion de leur personnel. Planning hebdomadaire, calcul automatique des heures, interface intuitive.",
+    "seoKeywords": {
+      "generator": "Générateur de planning",
+      "shopSoftware": "Logiciel boutique",
+      "teamManagement": "Gestion horaire équipe",
+      "commercialPlanning": "Planning commercial"
+    },
+    "featuresTitle": "Logiciel de Gestion de Planning pour Commerces",
+    "mainFeatures": "Fonctionnalités Principales",
+    "advantagesTitle": "Avantages pour les Boutiques",
+    "features": {
+      "autoGeneration": "Génération automatique de planning horaire",
+      "autoCalculation": "Calcul automatique des heures travaillées",
+      "teamManagement": "Gestion d'équipe pour boutiques et magasins",
+      "pdfExport": "Export PDF professionnel du planning",
+      "mobileFirst": "Interface mobile-first optimisée",
+      "offlineMode": "Mode hors ligne fonctionnel"
+    },
+    "advantages": {
+      "saveTime": "Économisez du temps sur la création de planning",
+      "avoidErrors": "Évitez les erreurs de calcul d'heures",
+      "optimizeManagement": "Optimisez la gestion de votre personnel",
+      "professionalPlanning": "Planning professionnel pour vos employés",
+      "freeApp": "Application gratuite et sans abonnement",
+      "accessibleEverywhere": "Accessible partout avec connexion internet"
+    },
+    "popularKeywords": "Mots-clés populaires pour trouver Planneo",
+    "keywordsDescription": "Ces termes sont fréquemment recherchés par les boutiques et commerces",
+    "clickKeyword": "Cliquez sur un mot-clé pour voir les résultats de recherche actuels"
   },
   "settings": {
     "title": "Paramètres",
@@ -57,6 +87,47 @@
     "offlineMode": "Mode hors ligne",
     "aiGeneration": "Génération intelligente IA",
     "multiStoreManagement": "Gestion multi-magasins"
+  },
+  "planning": {
+    "title": "Planning",
+    "monthPlanning": "Planning {month}",
+    "back": "Retour",
+    "intelligentGeneration": "Génération intelligente",
+    "clearMonth": "Vider le planning",
+    "addShift": "Ajouter un créneau",
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "noShopConfigured": "Aucun magasin configuré",
+    "noShopConfiguredDescription": "Pour utiliser la génération intelligente de planning, vous devez d'abord créer au moins un magasin.",
+    "stepsToFollow": "Étapes à suivre :",
+    "goToAdvanced": "Aller à la gestion des magasins",
+    "selectShop": "Sélectionnez un magasin",
+    "selectShopDescription": "Vous avez {count} magasin{plural} configuré{plural}. Sélectionnez-en un dans le menu déroulant ci-dessus pour commencer à générer des plannings.",
+    "intelligentPlanningActive": "Planification Intelligente Active",
+    "intelligentPlanningDescription": "La génération prend en compte les compétences, disponibilités, contraintes légales et optimise automatiquement votre planning pour {shopName}.",
+    "addShiftModal": {
+      "title": "Ajouter un créneau",
+      "editTitle": "Modifier le créneau",
+      "employee": "Employé",
+      "employeeRequired": "Employé *",
+      "selectEmployee": "Sélectionner un employé",
+      "date": "Date",
+      "dateRequired": "Date *",
+      "startTime": "Heure de début",
+      "startTimeRequired": "Heure de début *",
+      "endTime": "Heure de fin",
+      "endTimeRequired": "Heure de fin *",
+      "breakDuration": "Pause (minutes)",
+      "notes": "Notes",
+      "notesPlaceholder": "Notes optionnelles...",
+      "estimatedDuration": "Durée estimée:",
+      "cancel": "Annuler",
+      "add": "Ajouter",
+      "edit": "Modifier"
+    },
+    "clearMonthConfirm": "Êtes-vous sûr de vouloir supprimer tous les créneaux du mois en cours ? Cette action est irréversible.",
+    "clearMonthSuccess": "{count} créneau{plural} supprimé{plural} pour {month}.",
+    "deleteShiftConfirm": "Êtes-vous sûr de vouloir supprimer ce créneau ?"
   },
   "languages": {
     "fr": "Français",

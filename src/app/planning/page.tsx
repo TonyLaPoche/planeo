@@ -13,6 +13,7 @@ import { ShiftDetailsModal } from '@/components/ShiftDetailsModal';
 import { formatDuration, calculateShiftDuration } from '@/utils/time';
 import { Footer } from '@/components/Footer';
 import { CompactShopSelector } from '@/components/ShopSelector';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function PlanningPage() {
   const {
@@ -31,6 +32,8 @@ export default function PlanningPage() {
     selectShop,
     closeShiftModal,
   } = usePlanning();
+  
+  const { t } = useTranslation();
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +47,7 @@ export default function PlanningPage() {
   });
 
   const handleClearCurrentMonth = () => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer tous les créneaux du mois en cours ? Cette action est irréversible.')) {
+    if (confirm(t('planning.clearMonthConfirm'))) {
       // Supprimer tous les shifts du mois en cours
       const monthKey = currentMonth; // currentMonth est déjà au format 'YYYY-MM'
       const allShifts = shiftStorage.getAll();
@@ -63,7 +66,7 @@ export default function PlanningPage() {
                          'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
       const monthName = `${monthNames[parseInt(month) - 1]} ${year}`;
       
-      alert(`${shiftsToDelete.length} créneau${shiftsToDelete.length > 1 ? 'x' : ''} supprimé${shiftsToDelete.length > 1 ? 's' : ''} pour ${monthName}.`);
+      alert(t('planning.clearMonthSuccess', { count: shiftsToDelete.length, month: monthName }));
     }
   };
 
@@ -102,7 +105,7 @@ export default function PlanningPage() {
   };
 
   const handleDelete = (shiftId: string) => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?')) {
+    if (confirm(t('planning.deleteShiftConfirm'))) {
       shiftStorage.delete(shiftId);
       loadData();
     }
@@ -142,7 +145,7 @@ export default function PlanningPage() {
                 <ArrowLeft className="h-5 w-5" />
               </Link>
               <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
-                Planning {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+                {t('planning.monthPlanning', { month: new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) })}
               </h1>
             </div>
             
@@ -161,8 +164,8 @@ export default function PlanningPage() {
                 onClick={() => generateShopPlanning()}
                 className="btn-primary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
                 disabled={!currentShopId}
-                aria-label="Génération intelligente"
-                title="Génération intelligente"
+                aria-label={t('planning.intelligentGeneration')}
+                title={t('planning.intelligentGeneration')}
               >
                 <Bot className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden lg:inline ml-1">IA</span>
@@ -171,8 +174,8 @@ export default function PlanningPage() {
               <button
                 onClick={handleClearCurrentMonth}
                 className="btn-danger text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
-                aria-label="Vider le planning"
-                title="Vider le planning du mois"
+                aria-label={t('planning.clearMonth')}
+                title={t('planning.clearMonth')}
               >
                 <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden lg:inline ml-1">Clear</span>
@@ -181,8 +184,8 @@ export default function PlanningPage() {
               <button
                 onClick={() => openModal()}
                 className="btn-secondary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
-                aria-label="Ajouter un créneau"
-                title="Ajouter un nouveau créneau"
+                aria-label={t('planning.addShift')}
+                title={t('planning.addShift')}
               >
                 <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                 <span className="hidden lg:inline ml-1">Add</span>
@@ -195,7 +198,7 @@ export default function PlanningPage() {
             <button
               onClick={() => navigateMonth('prev')}
               className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Mois précédent"
+              aria-label={t('planning.previousMonth')}
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -208,7 +211,7 @@ export default function PlanningPage() {
             <button
               onClick={() => navigateMonth('next')}
               className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Mois suivant"
+              aria-label={t('planning.nextMonth')}
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -228,13 +231,13 @@ export default function PlanningPage() {
                 <Bot className="h-6 w-6 text-amber-600 mt-0.5" />
               </div>
               <div className="ml-3">
-                <h3 className="text-lg font-medium text-amber-900 mb-2">Aucun magasin configuré</h3>
+                <h3 className="text-lg font-medium text-amber-900 mb-2">{t('planning.noShopConfigured')}</h3>
                 <div className="text-sm text-amber-800 space-y-2">
                   <p>
-                    Pour utiliser la génération intelligente de planning, vous devez d&apos;abord créer au moins un magasin.
+                    {t('planning.noShopConfiguredDescription')}
                   </p>
                   <p>
-                    <strong>Étapes à suivre :</strong>
+                    <strong>{t('planning.stepsToFollow')}</strong>
                   </p>
                   <ol className="list-decimal list-inside space-y-1 ml-4">
                     <li>Allez dans <Link href="/advanced" className="underline hover:text-amber-900 font-medium">Gestion avancée</Link></li>
@@ -249,7 +252,7 @@ export default function PlanningPage() {
                       className="inline-flex items-center px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-md hover:bg-amber-700 transition-colors"
                     >
                       <Bot className="h-4 w-4 mr-2" />
-                      Aller à la gestion des magasins
+                      {t('planning.goToAdvanced')}
                     </Link>
                   </div>
                 </div>
@@ -266,11 +269,13 @@ export default function PlanningPage() {
                 <Bot className="h-5 w-5 text-blue-600 mt-0.5" />
               </div>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-blue-900">Sélectionnez un magasin</h3>
+                <h3 className="text-sm font-medium text-blue-900">{t('planning.selectShop')}</h3>
                 <div className="mt-1 text-sm text-blue-800">
                   <p>
-                    Vous avez {shops.length} magasin{shops.length > 1 ? 's' : ''} configuré{shops.length > 1 ? 's' : ''}. 
-                    Sélectionnez-en un dans le menu déroulant ci-dessus pour commencer à générer des plannings.
+                    {t('planning.selectShopDescription', { 
+                      count: shops.length, 
+                      plural: shops.length > 1 ? 's' : '' 
+                    })}
                   </p>
                 </div>
               </div>
@@ -318,14 +323,14 @@ export default function PlanningPage() {
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b">
               <h3 className="text-lg font-semibold text-gray-900">
-                {editingShift ? 'Modifier le créneau' : 'Ajouter un créneau'}
+                {editingShift ? t('planning.addShiftModal.editTitle') : t('planning.addShiftModal.title')}
               </h3>
             </div>
 
             <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
               <div>
                 <label htmlFor="userId" className="form-label">
-                  Employé <span className="text-red-500">*</span>
+                  {t('planning.addShiftModal.employee')} <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="userId"
@@ -335,7 +340,7 @@ export default function PlanningPage() {
                   required
                   aria-describedby="user-help"
                 >
-                  <option value="">Sélectionner un employé</option>
+                  <option value="">{t('planning.addShiftModal.selectEmployee')}</option>
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>
                       {user.name}
@@ -347,7 +352,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="date" className="form-label">
-                  Date <span className="text-red-500">*</span>
+                  {t('planning.addShiftModal.date')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -364,7 +369,7 @@ export default function PlanningPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="startTime" className="form-label">
-                    Heure de début <span className="text-red-500">*</span>
+                    {t('planning.addShiftModal.startTime')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
@@ -379,7 +384,7 @@ export default function PlanningPage() {
                 </div>
                 <div>
                   <label htmlFor="endTime" className="form-label">
-                    Heure de fin <span className="text-red-500">*</span>
+                    {t('planning.addShiftModal.endTime')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
@@ -396,7 +401,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="breakDuration" className="form-label">
-                  Pause (minutes)
+                  {t('planning.addShiftModal.breakDuration')}
                 </label>
                 <input
                   type="number"
@@ -413,7 +418,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="notes" className="form-label">
-                  Notes
+                  {t('planning.addShiftModal.notes')}
                 </label>
                 <textarea
                   id="notes"
@@ -421,7 +426,7 @@ export default function PlanningPage() {
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={3}
                   className="form-input"
-                  placeholder="Notes optionnelles..."
+                  placeholder={t('planning.addShiftModal.notesPlaceholder')}
                   aria-describedby="notes-help"
                 />
                 <p id="notes-help" className="sr-only">Informations supplémentaires sur ce créneau horaire</p>
@@ -432,7 +437,7 @@ export default function PlanningPage() {
                   <div className="flex items-center space-x-2 text-sm text-blue-800">
                     <span className="text-lg">⏱️</span>
                     <span className="font-medium">
-                      Durée estimée: {formatDuration(
+                      {t('planning.addShiftModal.estimatedDuration')} {formatDuration(
                         calculateShiftDuration({
                           id: '',
                           userId: '',
@@ -455,14 +460,14 @@ export default function PlanningPage() {
                   className="btn-secondary w-full sm:w-auto"
                   aria-label="Annuler et fermer le formulaire"
                 >
-                  Annuler
+                  {t('planning.addShiftModal.cancel')}
                 </button>
                 <button
                   type="submit"
                   className="btn-primary w-full sm:w-auto"
                   aria-label={editingShift ? 'Enregistrer les modifications du créneau' : 'Ajouter le nouveau créneau'}
                 >
-                  {editingShift ? 'Modifier' : 'Ajouter'}
+                  {editingShift ? t('planning.addShiftModal.edit') : t('planning.addShiftModal.add')}
                 </button>
               </div>
             </form>

@@ -34,7 +34,37 @@
     "createSchedules": "Schichtpläne erstellen",
     "pdfExports": "PDF-Exporte",
     "holidaysAndStores": "Urlaub & Filialen",
-    "configuration": "Konfiguration"
+    "configuration": "Konfiguration",
+    "seoTitle": "Vereinfachte Geschäftsplanung",
+    "seoDescription": "Planneo ist das ideale Tool für Geschäfte und Läden, die ihr Personalmanagement optimieren möchten. Wöchentliche Planung, automatische Stundenberechnung, intuitive Benutzeroberfläche.",
+    "seoKeywords": {
+      "generator": "Schichtplan-Generator",
+      "shopSoftware": "Geschäftssoftware",
+      "teamManagement": "Team-Stundenverwaltung",
+      "commercialPlanning": "Geschäftsplanung"
+    },
+    "featuresTitle": "Schichtplan-Management-Software für Unternehmen",
+    "mainFeatures": "Hauptfunktionen",
+    "advantagesTitle": "Vorteile für Geschäfte",
+    "features": {
+      "autoGeneration": "Automatische Schichtplan-Generierung",
+      "autoCalculation": "Automatische Stundenberechnung",
+      "teamManagement": "Team-Management für Geschäfte und Läden",
+      "pdfExport": "Professioneller PDF-Schichtplan-Export",
+      "mobileFirst": "Mobile-First optimierte Benutzeroberfläche",
+      "offlineMode": "Funktionaler Offline-Modus"
+    },
+    "advantages": {
+      "saveTime": "Sparen Sie Zeit bei der Schichtplan-Erstellung",
+      "avoidErrors": "Vermeiden Sie Stundenberechnungsfehler",
+      "optimizeManagement": "Optimieren Sie Ihr Personalmanagement",
+      "professionalPlanning": "Professionelle Planung für Ihre Mitarbeiter",
+      "freeApp": "Kostenlose Anwendung ohne Abonnement",
+      "accessibleEverywhere": "Überall mit Internetverbindung zugänglich"
+    },
+    "popularKeywords": "Beliebte Schlüsselwörter, um Planneo zu finden",
+    "keywordsDescription": "Diese Begriffe werden häufig von Geschäften und Unternehmen gesucht",
+    "clickKeyword": "Klicken Sie auf ein Schlüsselwort, um aktuelle Suchergebnisse zu sehen"
   },
   "settings": {
     "title": "Einstellungen",

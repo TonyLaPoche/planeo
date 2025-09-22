@@ -34,7 +34,37 @@
     "createSchedules": "Crea turni",
     "pdfExports": "Esportazioni PDF",
     "holidaysAndStores": "Ferie & Negozi",
-    "configuration": "Configurazione"
+    "configuration": "Configurazione",
+    "seoTitle": "Pianificazione Commerciale Semplificata",
+    "seoDescription": "Planneo è lo strumento ideale per negozi e aziende che vogliono ottimizzare la gestione del loro personale. Pianificazione settimanale, calcolo automatico delle ore, interfaccia intuitiva.",
+    "seoKeywords": {
+      "generator": "Generatore di turni",
+      "shopSoftware": "Software negozio",
+      "teamManagement": "Gestione ore team",
+      "commercialPlanning": "Pianificazione commerciale"
+    },
+    "featuresTitle": "Software di Gestione Turni per Aziende",
+    "mainFeatures": "Funzionalità Principali",
+    "advantagesTitle": "Vantaggi per i Negozi",
+    "features": {
+      "autoGeneration": "Generazione automatica turni",
+      "autoCalculation": "Calcolo automatico ore",
+      "teamManagement": "Gestione team per negozi e aziende",
+      "pdfExport": "Esportazione PDF professionale turni",
+      "mobileFirst": "Interfaccia ottimizzata mobile-first",
+      "offlineMode": "Modalità offline funzionale"
+    },
+    "advantages": {
+      "saveTime": "Risparmia tempo nella creazione dei turni",
+      "avoidErrors": "Evita errori di calcolo ore",
+      "optimizeManagement": "Ottimizza la gestione del tuo personale",
+      "professionalPlanning": "Pianificazione professionale per i tuoi dipendenti",
+      "freeApp": "Applicazione gratuita senza abbonamento",
+      "accessibleEverywhere": "Accessibile ovunque con connessione internet"
+    },
+    "popularKeywords": "Parole chiave popolari per trovare Planneo",
+    "keywordsDescription": "Questi termini sono frequentemente ricercati da negozi e aziende",
+    "clickKeyword": "Clicca su una parola chiave per vedere i risultati di ricerca attuali"
   },
   "settings": {
     "title": "Impostazioni",

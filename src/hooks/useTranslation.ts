@@ -135,8 +135,8 @@ export function useTranslation() {
     setIsLoading(false);
   };
 
-  // Fonction pour obtenir une traduction avec support des clés imbriquées
-  const t = (key: string): string => {
+  // Fonction pour obtenir une traduction avec support des clés imbriquées et des paramètres
+  const t = (key: string, params?: Record<string, any>): string => {
     if (!translations) return key;
     
     const keys = key.split('.');
@@ -150,7 +150,16 @@ export function useTranslation() {
       }
     }
     
-    return typeof value === 'string' ? value : key;
+    if (typeof value !== 'string') return key;
+    
+    // Remplacer les paramètres dans la chaîne de traduction
+    if (params) {
+      return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
+        return params[paramKey] !== undefined ? params[paramKey] : match;
+      });
+    }
+    
+    return value;
   };
 
   return {

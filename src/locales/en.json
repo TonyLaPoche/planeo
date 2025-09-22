@@ -34,7 +34,37 @@
     "createSchedules": "Create schedules",
     "pdfExports": "PDF Exports",
     "holidaysAndStores": "Holidays & Stores",
-    "configuration": "Configuration"
+    "configuration": "Configuration",
+    "seoTitle": "Simplified Commercial Planning",
+    "seoDescription": "Planneo is the ideal tool for shops and stores that want to optimize their staff management. Weekly planning, automatic hours calculation, intuitive interface.",
+    "seoKeywords": {
+      "generator": "Schedule generator",
+      "shopSoftware": "Shop software",
+      "teamManagement": "Team hours management",
+      "commercialPlanning": "Commercial planning"
+    },
+    "featuresTitle": "Schedule Management Software for Businesses",
+    "mainFeatures": "Main Features",
+    "advantagesTitle": "Advantages for Shops",
+    "features": {
+      "autoGeneration": "Automatic schedule generation",
+      "autoCalculation": "Automatic hours calculation",
+      "teamManagement": "Team management for shops and stores",
+      "pdfExport": "Professional PDF schedule export",
+      "mobileFirst": "Mobile-first optimized interface",
+      "offlineMode": "Functional offline mode"
+    },
+    "advantages": {
+      "saveTime": "Save time on schedule creation",
+      "avoidErrors": "Avoid hours calculation errors",
+      "optimizeManagement": "Optimize your staff management",
+      "professionalPlanning": "Professional planning for your employees",
+      "freeApp": "Free application with no subscription",
+      "accessibleEverywhere": "Accessible anywhere with internet connection"
+    },
+    "popularKeywords": "Popular keywords to find Planneo",
+    "keywordsDescription": "These terms are frequently searched by shops and businesses",
+    "clickKeyword": "Click on a keyword to see current search results"
   },
   "settings": {
     "title": "Settings",
@@ -57,6 +87,47 @@
     "offlineMode": "Offline mode",
     "aiGeneration": "AI Smart Generation",
     "multiStoreManagement": "Multi-store management"
+  },
+  "planning": {
+    "title": "Planning",
+    "monthPlanning": "Planning {month}",
+    "back": "Back",
+    "intelligentGeneration": "Intelligent Generation",
+    "clearMonth": "Clear planning",
+    "addShift": "Add shift",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "noShopConfigured": "No shop configured",
+    "noShopConfiguredDescription": "To use intelligent planning generation, you must first create at least one shop.",
+    "stepsToFollow": "Steps to follow:",
+    "goToAdvanced": "Go to shop management",
+    "selectShop": "Select a shop",
+    "selectShopDescription": "You have {count} shop{plural} configured. Select one from the dropdown above to start generating schedules.",
+    "intelligentPlanningActive": "Intelligent Planning Active",
+    "intelligentPlanningDescription": "Generation takes into account skills, availability, legal constraints and automatically optimizes your schedule for {shopName}.",
+    "addShiftModal": {
+      "title": "Add shift",
+      "editTitle": "Edit shift",
+      "employee": "Employee",
+      "employeeRequired": "Employee *",
+      "selectEmployee": "Select an employee",
+      "date": "Date",
+      "dateRequired": "Date *",
+      "startTime": "Start time",
+      "startTimeRequired": "Start time *",
+      "endTime": "End time",
+      "endTimeRequired": "End time *",
+      "breakDuration": "Break (minutes)",
+      "notes": "Notes",
+      "notesPlaceholder": "Optional notes...",
+      "estimatedDuration": "Estimated duration:",
+      "cancel": "Cancel",
+      "add": "Add",
+      "edit": "Edit"
+    },
+    "clearMonthConfirm": "Are you sure you want to delete all shifts for the current month? This action is irreversible.",
+    "clearMonthSuccess": "{count} shift{plural} deleted for {month}.",
+    "deleteShiftConfirm": "Are you sure you want to delete this shift?"
   },
   "languages": {
     "fr": "Français",

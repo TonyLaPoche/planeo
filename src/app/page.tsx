@@ -6,6 +6,7 @@ import { Calendar, Users, FileText, Settings, BarChart3, Menu, X } from 'lucide-
 import { userStorage, shiftStorage } from '@/utils/storage';
 import { User } from '@/types';
 import { Footer } from '@/components/Footer';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ export default function Home() {
   const [, setUsers] = useState<User[]>([]);
   const [totalShifts, setTotalShifts] = useState(0);
   const [activeUsers, setActiveUsers] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Charger les données côté client seulement
@@ -49,7 +51,7 @@ export default function Home() {
                 className="flex items-center space-x-1 px-2 lg:px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
               >
                 <Settings className="h-4 w-4" />
-                <span className="hidden lg:inline">Paramètres</span>
+                <span className="hidden lg:inline">{t('navigation.settings')}</span>
               </Link>
             </nav>
 
@@ -72,7 +74,7 @@ export default function Home() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Settings className="h-5 w-5" />
-                  <span>Paramètres</span>
+                  <span>{t('navigation.settings')}</span>
                 </Link>
               </div>
             </div>
@@ -85,26 +87,23 @@ export default function Home() {
         {/* Welcome Section - SEO Optimisée */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
-            Générateur de Planning pour Boutiques - Planneo
+            {t('home.title')}
           </h1>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-4">
-            Logiciel gratuit de gestion de planning horaire pour commerces et boutiques.
-            Créez facilement les horaires de votre équipe, calculez automatiquement les heures travaillées,
-            exportez vos plannings en PDF professionnel.
+            {t('home.subtitle')} {t('home.description')}
           </p>
 
           {/* Section SEO - Mots-clés principaux */}
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Planning Commercial Simplifié</h2>
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">{t('home.seoTitle')}</h2>
             <p className="text-sm text-gray-700 mb-3">
-              Planneo est l&apos;outil idéal pour les boutiques et magasins qui veulent optimiser la gestion
-              de leur personnel. Planning hebdomadaire, calcul automatique des heures, interface intuitive.
+              {t('home.seoDescription')}
             </p>
             <div className="flex flex-wrap gap-2 text-xs">
-              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">Générateur de planning</span>
-              <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Logiciel boutique</span>
-              <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">Gestion horaire équipe</span>
-              <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">Planning commercial</span>
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">{t('home.seoKeywords.generator')}</span>
+              <span className="bg-green-100 text-green-800 px-2 py-1 rounded">{t('home.seoKeywords.shopSoftware')}</span>
+              <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">{t('home.seoKeywords.teamManagement')}</span>
+              <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded">{t('home.seoKeywords.commercialPlanning')}</span>
             </div>
           </div>
         </div>
@@ -115,7 +114,7 @@ export default function Home() {
               <div className="flex items-center">
               <Users className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600 flex-shrink-0" />
               <div className="ml-3 sm:ml-4 min-w-0 flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">Employés actifs</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">{t('home.activeEmployees')}</p>
                 <p className="text-lg sm:text-2xl font-bold text-gray-900">{isLoaded ? activeUsers : '...'}</p>
                 </div>
               </div>
@@ -125,7 +124,7 @@ export default function Home() {
               <div className="flex items-center">
               <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 flex-shrink-0" />
               <div className="ml-3 sm:ml-4 min-w-0 flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">Créneaux ce mois</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">{t('home.shiftsThisMonth')}</p>
                 <p className="text-lg sm:text-2xl font-bold text-gray-900">{isLoaded ? totalShifts : '...'}</p>
                 </div>
               </div>
@@ -135,7 +134,7 @@ export default function Home() {
               <div className="flex items-center">
               <FileText className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600 flex-shrink-0" />
               <div className="ml-3 sm:ml-4 min-w-0 flex-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">Mois en cours</p>
+                <p className="text-xs sm:text-sm font-medium text-gray-600 truncate">{t('home.currentMonth')}</p>
                 <p className="text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
                     {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', {
                     month: 'short',
@@ -150,7 +149,7 @@ export default function Home() {
         {/* Navigation Principale - Cartes d'Actions */}
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4 text-center">
-            Accès Rapide aux Fonctionnalités
+            {t('home.quickAccess')}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <Link
@@ -159,8 +158,8 @@ export default function Home() {
             aria-label="Accéder à la gestion des utilisateurs"
           >
             <Users className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-blue-600" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Utilisateurs</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Gérer les employés</p>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">{t('navigation.users')}</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">{t('home.manageEmployees')}</p>
             </Link>
 
             <Link
@@ -169,8 +168,8 @@ export default function Home() {
             aria-label="Accéder à la gestion du planning"
           >
             <Calendar className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-emerald-600" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Planning</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Créer les horaires</p>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">{t('navigation.planning')}</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">{t('home.createSchedules')}</p>
             </Link>
 
             <Link
@@ -179,8 +178,8 @@ export default function Home() {
             aria-label="Accéder aux rapports et exports"
           >
             <BarChart3 className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-orange-600" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Rapports</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Exports PDF</p>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">{t('navigation.reports')}</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">{t('home.pdfExports')}</p>
             </Link>
 
             <Link
@@ -189,8 +188,8 @@ export default function Home() {
             aria-label="Accéder à la gestion avancée"
           >
             <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-purple-600" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Gestion avancée</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Congés & Magasins</p>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">{t('navigation.advanced')}</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">{t('home.holidaysAndStores')}</p>
           </Link>
 
           <Link
@@ -199,8 +198,8 @@ export default function Home() {
             aria-label="Accéder aux paramètres"
           >
             <Settings className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 mx-auto mb-2 sm:mb-3 lg:mb-4 text-gray-600" />
-            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">Paramètres</h3>
-            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Configuration</p>
+            <h3 className="text-sm sm:text-base lg:text-lg font-semibold mb-1">{t('navigation.settings')}</h3>
+            <p className="text-xs sm:text-sm opacity-90 hidden sm:block">{t('home.configuration')}</p>
           </Link>
         </div>
         </div>
@@ -208,66 +207,66 @@ export default function Home() {
         {/* Section SEO - Fonctionnalités détaillées */}
         <div className="mt-8 bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-            Logiciel de Gestion de Planning pour Commerces
+            {t('home.featuresTitle')}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Fonctionnalités Principales</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('home.mainFeatures')}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Génération automatique de planning horaire</span>
+                  <span>{t('home.features.autoGeneration')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Calcul automatique des heures travaillées</span>
+                  <span>{t('home.features.autoCalculation')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Gestion d&apos;équipe pour boutiques et magasins</span>
+                  <span>{t('home.features.teamManagement')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Export PDF professionnel du planning</span>
+                  <span>{t('home.features.pdfExport')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Interface mobile-first optimisée</span>
+                  <span>{t('home.features.mobileFirst')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Mode hors ligne fonctionnel</span>
+                  <span>{t('home.features.offlineMode')}</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Avantages pour les Boutiques</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">{t('home.advantagesTitle')}</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Économisez du temps sur la création de planning</span>
+                  <span>{t('home.advantages.saveTime')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Évitez les erreurs de calcul d&apos;heures</span>
+                  <span>{t('home.advantages.avoidErrors')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Optimisez la gestion de votre personnel</span>
+                  <span>{t('home.advantages.optimizeManagement')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Planning professionnel pour vos employés</span>
+                  <span>{t('home.advantages.professionalPlanning')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Application gratuite et sans abonnement</span>
+                  <span>{t('home.advantages.freeApp')}</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-2">🎯</span>
-                  <span>Accessible partout avec connexion internet</span>
+                  <span>{t('home.advantages.accessibleEverywhere')}</span>
                 </li>
               </ul>
             </div>
@@ -275,10 +274,10 @@ export default function Home() {
 
           <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-100">
             <h3 className="text-lg font-semibold text-gray-900 mb-3 text-center">
-              🔍 Mots-clés populaires pour trouver Planneo
+              🔍 {t('home.popularKeywords')}
             </h3>
             <p className="text-sm text-gray-600 mb-4 text-center">
-              Ces termes sont fréquemment recherchés par les boutiques et commerces
+              {t('home.keywordsDescription')}
             </p>
             <div
               className="flex flex-wrap justify-center gap-3 text-sm"
@@ -402,7 +401,7 @@ export default function Home() {
 
             <div className="mt-4 text-center">
               <p className="text-xs text-gray-500">
-                💡 Cliquez sur un mot-clé pour voir les résultats de recherche actuels
+                💡 {t('home.clickKeyword')}
               </p>
             </div>
           </div>
