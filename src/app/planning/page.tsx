@@ -222,16 +222,55 @@ export default function PlanningPage() {
         
         {/* Notification système multi-magasins */}
         {!currentShopId && shops.length === 0 && (
-          <div className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <div className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-6">
             <div className="flex items-start">
               <div className="flex-shrink-0">
-                <Bot className="h-5 w-5 text-amber-600 mt-0.5" />
+                <Bot className="h-6 w-6 text-amber-600 mt-0.5" />
               </div>
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-amber-900">Configuration requise</h3>
-                <div className="mt-1 text-sm text-amber-800">
+                <h3 className="text-lg font-medium text-amber-900 mb-2">Aucun magasin configuré</h3>
+                <div className="text-sm text-amber-800 space-y-2">
                   <p>
-                    Créez votre premier magasin dans <Link href="/advanced" className="underline hover:text-amber-900">Gestion avancée → Magasins</Link> pour commencer à générer des plannings intelligents.
+                    Pour utiliser la génération intelligente de planning, vous devez d&apos;abord créer au moins un magasin.
+                  </p>
+                  <p>
+                    <strong>Étapes à suivre :</strong>
+                  </p>
+                  <ol className="list-decimal list-inside space-y-1 ml-4">
+                    <li>Allez dans <Link href="/advanced" className="underline hover:text-amber-900 font-medium">Gestion avancée</Link></li>
+                    <li>Cliquez sur l&apos;onglet <strong>&quot;Magasins&quot;</strong></li>
+                    <li>Créez votre premier magasin avec ses horaires et contraintes</li>
+                    <li>Assignez des employés à ce magasin</li>
+                    <li>Revenez ici pour générer votre planning</li>
+                  </ol>
+                  <div className="mt-4">
+                    <Link 
+                      href="/advanced" 
+                      className="inline-flex items-center px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-md hover:bg-amber-700 transition-colors"
+                    >
+                      <Bot className="h-4 w-4 mr-2" />
+                      Aller à la gestion des magasins
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Message quand des magasins existent mais aucun n'est sélectionné */}
+        {!currentShopId && shops.length > 0 && (
+          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-5 w-5 text-blue-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-blue-900">Sélectionnez un magasin</h3>
+                <div className="mt-1 text-sm text-blue-800">
+                  <p>
+                    Vous avez {shops.length} magasin{shops.length > 1 ? 's' : ''} configuré{shops.length > 1 ? 's' : ''}. 
+                    Sélectionnez-en un dans le menu déroulant ci-dessus pour commencer à générer des plannings.
                   </p>
                 </div>
               </div>

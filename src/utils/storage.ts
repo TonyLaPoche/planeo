@@ -490,23 +490,9 @@ export const migrationUtils = {
   migrateToV3: (): void => {
     console.log('🔄 Migration vers le système multi-magasins v3.0.0...');
     
-    const settings = settingsStorage.get();
-    const users = userStorage.getAll();
-    
-    // Créer un magasin par défaut
-    const defaultShop = shopStorage.createDefault(settings);
-    
-    // Assigner tous les employés existants au magasin par défaut
-    users.forEach(user => {
-      if (user.isActive) {
-        shopStorage.assignEmployee(defaultShop.id, user.id);
-      }
-    });
-    
-    // Définir ce magasin comme actuel
-    currentShopStorage.set(defaultShop.id);
-    
-    console.log(`✅ Magasin "${defaultShop.name}" créé avec ${users.length} employés assignés`);
+    // Ne plus créer automatiquement de magasin par défaut
+    // L'utilisateur devra créer ses magasins manuellement dans Advanced > Magasins
+    console.log('✅ Migration terminée - Créez vos magasins dans Advanced > Magasins');
   },
 
   // Effectuer toutes les migrations nécessaires

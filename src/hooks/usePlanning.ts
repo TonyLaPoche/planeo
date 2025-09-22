@@ -42,12 +42,9 @@ export function usePlanning() {
     setShops(allShops);
 
     // Charger le magasin actuel
-    let currentShop = currentShopStorage.get();
-    if (!currentShop && allShops.length > 0) {
-      // Sélectionner le premier magasin par défaut
-      currentShop = allShops[0].id;
-      currentShopStorage.set(currentShop);
-    }
+    const currentShop = currentShopStorage.get();
+    // Ne plus sélectionner automatiquement un magasin
+    // L'utilisateur doit choisir manuellement
     setCurrentShopId(currentShop);
     
     // Charger la configuration magasin (legacy)
