@@ -14,6 +14,7 @@ import { formatDuration, calculateShiftDuration } from '@/utils/time';
 import { Footer } from '@/components/Footer';
 import { CompactShopSelector } from '@/components/ShopSelector';
 import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function PlanningPage() {
   const {
@@ -131,7 +132,9 @@ export default function PlanningPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="planning" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -486,5 +489,6 @@ export default function PlanningPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }

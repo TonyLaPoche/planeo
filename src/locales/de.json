@@ -88,6 +88,204 @@
     "aiGeneration": "KI-Intelligente Generierung",
     "multiStoreManagement": "Multi-Filial-Verwaltung"
   },
+  "planning": {
+    "title": "Planung",
+    "monthPlanning": "Planung {month}",
+    "back": "Zurück",
+    "intelligentGeneration": "Intelligente Generierung",
+    "clearMonth": "Planung löschen",
+    "addShift": "Schicht hinzufügen",
+    "previousMonth": "Vorheriger Monat",
+    "nextMonth": "Nächster Monat",
+    "noShopConfigured": "Kein Geschäft konfiguriert",
+    "noShopConfiguredDescription": "Um die intelligente Planungsgenerierung zu nutzen, müssen Sie zuerst mindestens ein Geschäft erstellen.",
+    "stepsToFollow": "Schritte zu befolgen:",
+    "goToAdvanced": "Zur Geschäftsverwaltung gehen",
+    "selectShop": "Geschäft auswählen",
+    "selectShopDescription": "Sie haben {count} Geschäft{plural} konfiguriert. Wählen Sie eines aus dem Dropdown-Menü oben aus, um mit der Generierung von Zeitplänen zu beginnen.",
+    "intelligentPlanningActive": "Intelligente Planung Aktiv",
+    "intelligentPlanningDescription": "Die Generierung berücksichtigt Fähigkeiten, Verfügbarkeit, rechtliche Einschränkungen und optimiert automatisch Ihren Zeitplan für {shopName}.",
+    "addShiftModal": {
+      "title": "Schicht hinzufügen",
+      "editTitle": "Schicht bearbeiten",
+      "employee": "Mitarbeiter",
+      "employeeRequired": "Mitarbeiter *",
+      "selectEmployee": "Mitarbeiter auswählen",
+      "date": "Datum",
+      "dateRequired": "Datum *",
+      "startTime": "Startzeit",
+      "startTimeRequired": "Startzeit *",
+      "endTime": "Endzeit",
+      "endTimeRequired": "Endzeit *",
+      "breakDuration": "Pause (Minuten)",
+      "notes": "Notizen",
+      "notesPlaceholder": "Optionale Notizen...",
+      "estimatedDuration": "Geschätzte Dauer:",
+      "cancel": "Abbrechen",
+      "add": "Hinzufügen",
+      "edit": "Bearbeiten"
+    },
+    "clearMonthConfirm": "Sind Sie sicher, dass Sie alle Schichten des aktuellen Monats löschen möchten? Diese Aktion ist nicht rückgängig zu machen.",
+    "clearMonthSuccess": "{count} Schicht{plural} für {month} gelöscht.",
+    "deleteShiftConfirm": "Sind Sie sicher, dass Sie diese Schicht löschen möchten?"
+  },
+  "reports": {
+    "title": "Berichte",
+    "back": "Zurück",
+    "monthlyReport": "Monatsbericht",
+    "currentMonth": "Aktueller Monat",
+    "previousMonth": "Vorheriger Monat",
+    "nextMonth": "Nächster Monat",
+    "exportPdf": "Als PDF exportieren",
+    "noData": "Keine Daten verfügbar",
+    "noDataDescription": "Für diesen Monat wurden keine Schichten aufgezeichnet.",
+    "totalShifts": "Schichten gesamt",
+    "totalHours": "Stunden gesamt",
+    "averageHoursPerShift": "Durchschnitt pro Schicht",
+    "shiftsByEmployee": "Schichten nach Mitarbeiter",
+    "hoursByEmployee": "Stunden nach Mitarbeiter",
+    "employee": "Mitarbeiter",
+    "shifts": "Schichten",
+    "hours": "Stunden",
+    "average": "Durchschnitt",
+    "quotaTracker": {
+      "title": "Quotenverfolgung",
+      "currentMonth": "Aktueller Monat",
+      "totalHours": "Stunden gesamt",
+      "quota": "Quote",
+      "remaining": "Verbleibend",
+      "percentage": "Prozentsatz",
+      "onTrack": "Auf Kurs",
+      "overQuota": "Über Quote",
+      "underQuota": "Unter Quote"
+    }
+  },
+  "advanced": {
+    "title": "Erweiterte Verwaltung",
+    "back": "Zurück",
+    "tabs": {
+      "users": "Benutzer",
+      "shops": "Geschäfte",
+      "holidays": "Urlaub"
+    },
+    "users": {
+      "title": "Benutzerverwaltung",
+      "addUser": "Benutzer hinzufügen",
+      "editUser": "Benutzer bearbeiten",
+      "deleteUser": "Benutzer löschen",
+      "name": "Name",
+      "email": "Email",
+      "color": "Farbe",
+      "role": "Rolle",
+      "skills": "Fähigkeiten",
+      "availability": "Verfügbarkeit",
+      "notes": "Notizen",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "deleteConfirm": "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+      "noUsers": "Keine Benutzer gefunden",
+      "noUsersDescription": "Beginnen Sie mit dem Hinzufügen von Benutzern zu Ihrem Team."
+    },
+    "shops": {
+      "title": "Geschäftsverwaltung",
+      "addShop": "Geschäft hinzufügen",
+      "editShop": "Geschäft bearbeiten",
+      "deleteShop": "Geschäft löschen",
+      "name": "Geschäftsname",
+      "address": "Adresse",
+      "openingHours": "Öffnungszeiten",
+      "workingDays": "Arbeitstage",
+      "constraints": "Einschränkungen",
+      "employees": "Mitarbeiter",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "deleteConfirm": "Sind Sie sicher, dass Sie dieses Geschäft löschen möchten?",
+      "noShops": "Keine Geschäfte gefunden",
+      "noShopsDescription": "Beginnen Sie mit dem Hinzufügen von Geschäften zu Ihrer Organisation."
+    },
+    "holidays": {
+      "title": "Urlaubsverwaltung",
+      "addHoliday": "Urlaub hinzufügen",
+      "editHoliday": "Urlaub bearbeiten",
+      "deleteHoliday": "Urlaub löschen",
+      "employee": "Mitarbeiter",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "type": "Typ",
+      "reason": "Grund",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "deleteConfirm": "Sind Sie sicher, dass Sie diesen Urlaub löschen möchten?",
+      "noHolidays": "Keine Urlaube gefunden",
+      "noHolidaysDescription": "Beginnen Sie mit dem Hinzufügen von Urlauben für Ihre Mitarbeiter."
+    }
+  },
+  "users": {
+    "title": "Benutzerverwaltung",
+    "back": "Zurück",
+    "addUser": "Benutzer hinzufügen",
+    "editUser": "Benutzer bearbeiten",
+    "deleteUser": "Benutzer löschen",
+    "name": "Name",
+    "nameRequired": "Name *",
+    "email": "Email",
+    "emailRequired": "Email *",
+    "color": "Farbe",
+    "role": "Rolle",
+    "skills": "Fähigkeiten",
+    "availability": "Verfügbarkeit",
+    "notes": "Notizen",
+    "notesPlaceholder": "Optionale Notizen...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?",
+    "noUsers": "Keine Benutzer gefunden",
+    "noUsersDescription": "Beginnen Sie mit dem Hinzufügen von Benutzern zu Ihrem Team.",
+    "userForm": {
+      "title": "Benutzerinformationen",
+      "personalInfo": "Persönliche Informationen",
+      "workInfo": "Arbeitsinformationen",
+      "additionalInfo": "Zusätzliche Informationen"
+    },
+    "userList": {
+      "title": "Benutzerliste",
+      "totalUsers": "Benutzer gesamt",
+      "activeUsers": "Aktive Benutzer",
+      "inactiveUsers": "Inaktive Benutzer"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Schichtplan-Generator für Geschäfte - Planneo",
+      "description": "Kostenlose Schichtplan-Software für Unternehmen und Geschäfte. Erstellen Sie einfach Ihre Teamschichtpläne, berechnen Sie automatisch die Arbeitsstunden und exportieren Sie Ihre Pläne als professionelle PDFs.",
+      "keywords": "Schichtplan-Generator, Geschäftssoftware, Team-Management, Geschäftsplanung, Mitarbeiterpläne, PDF-Planung"
+    },
+    "planning": {
+      "title": "Planung - Planneo",
+      "description": "Generieren und verwalten Sie Ihre Arbeitspläne mit unserem intelligenten Tool. Automatische Planung, Multi-Filial-Verwaltung, professioneller PDF-Export.",
+      "keywords": "Arbeitsplan, automatische Generierung, Planungsverwaltung, Multi-Filial, PDF-Export"
+    },
+    "reports": {
+      "title": "Berichte und Exporte - Planneo",
+      "description": "Sehen Sie sich Ihre detaillierten Berichte an und exportieren Sie Ihre Pläne als PDFs. Mitarbeiterstatistiken, Quotenverfolgung, monatliche Analysen.",
+      "keywords": "Schichtplan-Berichte, PDF-Export, Mitarbeiterstatistiken, Stundenquoten, monatliche Analysen"
+    },
+    "users": {
+      "title": "Benutzerverwaltung - Planneo",
+      "description": "Verwalten Sie Ihr Team mit unserer intuitiven Benutzeroberfläche. Fügen Sie hinzu, ändern und organisieren Sie Ihre Mitarbeiter, um Ihre Pläne zu optimieren.",
+      "keywords": "Benutzerverwaltung, Team, Mitarbeiter, Planungsorganisation, intuitive Benutzeroberfläche"
+    },
+    "advanced": {
+      "title": "Erweiterte Verwaltung - Planneo",
+      "description": "Erweiterte Tools zur Optimierung Ihrer Pläne. Urlaubsverwaltung, Quotenverfolgung, Geschäftskonfiguration.",
+      "keywords": "erweiterte Verwaltung, Urlaub, Quoten, Geschäfte, Planungsoptimierung"
+    },
+    "settings": {
+      "title": "Einstellungen - Planneo",
+      "description": "Konfigurieren Sie Ihre Planneo-Anwendung. Sprache, Datenexport/-import, Anwendungsinformationen.",
+      "keywords": "Einstellungen, Konfiguration, Sprache, Datenexport, Datenimport"
+    }
+  },
   "languages": {
     "fr": "Français",
     "en": "English",

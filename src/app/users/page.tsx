@@ -10,11 +10,14 @@ import { userStorage, shiftStorage } from '@/utils/storage';
 import { User as UserType } from '@/types';
 import { generateUserColor } from '@/utils/time';
 import { Footer } from '@/components/Footer';
+import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function UsersPage() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserType | null>(null);
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,7 +76,7 @@ export default function UsersPage() {
   };
 
   const handleDelete = (userId: string) => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action supprimera également tous ses créneaux horaires.')) {
+    if (confirm(t('users.deleteConfirm'))) {
       // Supprimer les shifts de l'utilisateur
       shiftStorage.deleteByUserId(userId);
       // Supprimer l'utilisateur
@@ -106,7 +109,9 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="users" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -118,15 +123,15 @@ export default function UsersPage() {
               >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">Utilisateurs</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">{t('users.title')}</h1>
             </div>
             <button
               onClick={openModal}
               className="btn-primary text-sm sm:text-base"
-              aria-label="Ajouter un nouvel employé"
+              aria-label={t('users.addUser')}
             >
               <Plus className="h-4 w-4 mr-2" />
-              <span>Ajouter un employé</span>
+              <span>{t('users.addUser')}</span>
             </button>
           </div>
         </div>
@@ -156,14 +161,14 @@ export default function UsersPage() {
                   <button
                     onClick={() => handleEdit(user)}
                     className="p-1.5 sm:p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                    aria-label="Modifier"
+                    aria-label={t('users.editUser')}
                   >
                     <Edit className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(user.id)}
                     className="p-1.5 sm:p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                    aria-label="Supprimer"
+                    aria-label={t('users.deleteUser')}
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -203,7 +208,7 @@ export default function UsersPage() {
                 <button
                   onClick={openModal}
                   className="btn-primary text-sm"
-                  aria-label="Commencer par ajouter votre premier employé"
+                  aria-label={t('users.addUser')}
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   <span className="hidden sm:inline">Ajouter un utilisateur</span>
@@ -226,7 +231,7 @@ export default function UsersPage() {
             {/* Header */}
             <div className="px-4 py-3 sm:px-6 sm:py-4 border-b flex items-center justify-between">
               <h3 className="text-base sm:text-lg font-semibold text-gray-900">
-                {editingUser ? 'Modifier' : 'Ajouter'} un employé
+                {editingUser ? t('users.editUser') : t('users.addUser')}
               </h3>
               <button
                 onClick={closeModal}
@@ -240,7 +245,7 @@ export default function UsersPage() {
             <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 overflow-y-auto max-h-[calc(90vh-120px)]">
               <div>
                 <label htmlFor="name" className="form-label">
-                  Nom <span className="text-red-500">*</span>
+                  {t('users.name')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -248,7 +253,7 @@ export default function UsersPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="form-input"
-                  placeholder="Nom de l'employé"
+                  placeholder={t('users.name')}
                   required
                   autoFocus
                   aria-describedby="name-help"
@@ -258,7 +263,7 @@ export default function UsersPage() {
 
               <div>
                 <label htmlFor="email" className="form-label">
-                  Email
+                  {t('users.email')}
                 </label>
                 <input
                   type="email"
@@ -290,7 +295,7 @@ export default function UsersPage() {
 
               <div>
                 <label htmlFor="role" className="form-label">
-                  Rôle
+                  {t('users.role')}
                 </label>
                 <select
                   id="role"
@@ -396,16 +401,16 @@ export default function UsersPage() {
                   type="button"
                   onClick={closeModal}
                   className="btn-secondary w-full sm:w-auto"
-                  aria-label="Annuler et fermer le formulaire"
+                  aria-label={t('users.cancel')}
                 >
-                  Annuler
+                  {t('users.cancel')}
                 </button>
                 <button
                   type="submit"
                   className="btn-primary w-full sm:w-auto"
                   aria-label={editingUser ? 'Enregistrer les modifications' : 'Ajouter le nouvel employé'}
                 >
-                  {editingUser ? 'Modifier' : 'Ajouter'}
+                  {editingUser ? t('users.editUser') : t('users.addUser')}
                 </button>
               </div>
             </form>
@@ -416,5 +421,6 @@ export default function UsersPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }

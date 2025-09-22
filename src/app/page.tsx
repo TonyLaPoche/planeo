@@ -7,6 +7,7 @@ import { userStorage, shiftStorage } from '@/utils/storage';
 import { User } from '@/types';
 import { Footer } from '@/components/Footer';
 import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +34,9 @@ export default function Home() {
   const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="home" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -409,7 +412,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }

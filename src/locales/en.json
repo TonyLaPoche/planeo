@@ -129,6 +129,69 @@
     "clearMonthSuccess": "{count} shift{plural} deleted for {month}.",
     "deleteShiftConfirm": "Are you sure you want to delete this shift?"
   },
+  "reports": {
+    "title": "Reports",
+    "back": "Back",
+    "monthlyReport": "Monthly report",
+    "currentMonth": "Current month",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "exportPdf": "Export to PDF",
+    "noData": "No data available",
+    "noDataDescription": "No shifts have been recorded for this month.",
+    "totalShifts": "Total shifts",
+    "totalHours": "Total hours",
+    "averageHoursPerShift": "Average per shift",
+    "shiftsByEmployee": "Shifts by employee",
+    "hoursByEmployee": "Hours by employee",
+    "employee": "Employee",
+    "shifts": "Shifts",
+    "hours": "Hours",
+    "average": "Average",
+    "quotaTracker": {
+      "title": "Quota Tracking",
+      "currentMonth": "Current month",
+      "totalHours": "Total hours",
+      "quota": "Quota",
+      "remaining": "Remaining",
+      "percentage": "Percentage",
+      "onTrack": "On track",
+      "overQuota": "Over quota",
+      "underQuota": "Under quota"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Schedule Generator for Shops - Planneo",
+      "description": "Free schedule management software for businesses and shops. Easily create your team schedules, automatically calculate hours worked, export your schedules as professional PDFs.",
+      "keywords": "schedule generator, shop software, team management, commercial planning, employee schedules, PDF planning"
+    },
+    "planning": {
+      "title": "Planning - Planneo",
+      "description": "Generate and manage your work schedules with our intelligent tool. Automatic planning, multi-store management, professional PDF export.",
+      "keywords": "work schedule, automatic generation, schedule management, multi-store, PDF export"
+    },
+    "reports": {
+      "title": "Reports and Exports - Planneo",
+      "description": "View your detailed reports and export your schedules as PDFs. Employee statistics, quota tracking, monthly analytics.",
+      "keywords": "schedule reports, PDF export, employee statistics, hour quotas, monthly analytics"
+    },
+    "users": {
+      "title": "User Management - Planneo",
+      "description": "Manage your team with our intuitive interface. Add, modify and organize your employees to optimize your schedules.",
+      "keywords": "user management, team, employees, schedule organization, intuitive interface"
+    },
+    "advanced": {
+      "title": "Advanced Management - Planneo",
+      "description": "Advanced tools to optimize your schedules. Holiday management, quota tracking, store configuration.",
+      "keywords": "advanced management, holidays, quotas, stores, schedule optimization"
+    },
+    "settings": {
+      "title": "Settings - Planneo",
+      "description": "Configure your Planneo application. Language, data export/import, application information.",
+      "keywords": "settings, configuration, language, data export, data import"
+    }
+  },
   "languages": {
     "fr": "Français",
     "en": "English",

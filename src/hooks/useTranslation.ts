@@ -136,15 +136,15 @@ export function useTranslation() {
   };
 
   // Fonction pour obtenir une traduction avec support des clés imbriquées et des paramètres
-  const t = (key: string, params?: Record<string, any>): string => {
+  const t = (key: string, params?: Record<string, string | number>): string => {
     if (!translations) return key;
     
     const keys = key.split('.');
-    let value: any = translations;
+    let value: unknown = translations;
     
     for (const k of keys) {
       if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+        value = (value as Record<string, unknown>)[k];
       } else {
         return key; // Retourner la clé si la traduction n'existe pas
       }
@@ -155,7 +155,7 @@ export function useTranslation() {
     // Remplacer les paramètres dans la chaîne de traduction
     if (params) {
       return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
-        return params[paramKey] !== undefined ? params[paramKey] : match;
+        return params[paramKey] !== undefined ? String(params[paramKey]) : match;
       });
     }
     

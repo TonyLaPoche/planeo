@@ -129,6 +129,163 @@
     "clearMonthSuccess": "{count} créneau{plural} supprimé{plural} pour {month}.",
     "deleteShiftConfirm": "Êtes-vous sûr de vouloir supprimer ce créneau ?"
   },
+  "reports": {
+    "title": "Rapports",
+    "back": "Retour",
+    "monthlyReport": "Rapport mensuel",
+    "currentMonth": "Mois en cours",
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "exportPdf": "Exporter en PDF",
+    "noData": "Aucune donnée disponible",
+    "noDataDescription": "Aucun créneau n'a été enregistré pour ce mois.",
+    "totalShifts": "Total des créneaux",
+    "totalHours": "Total des heures",
+    "averageHoursPerShift": "Moyenne par créneau",
+    "shiftsByEmployee": "Créneaux par employé",
+    "hoursByEmployee": "Heures par employé",
+    "employee": "Employé",
+    "shifts": "Créneaux",
+    "hours": "Heures",
+    "average": "Moyenne",
+    "quotaTracker": {
+      "title": "Suivi des Quotas",
+      "currentMonth": "Mois en cours",
+      "totalHours": "Total des heures",
+      "quota": "Quota",
+      "remaining": "Restant",
+      "percentage": "Pourcentage",
+      "onTrack": "En bonne voie",
+      "overQuota": "Dépassement",
+      "underQuota": "Sous-quota"
+    }
+  },
+  "advanced": {
+    "title": "Gestion avancée",
+    "back": "Retour",
+    "tabs": {
+      "users": "Utilisateurs",
+      "shops": "Magasins",
+      "holidays": "Congés"
+    },
+    "users": {
+      "title": "Gestion des utilisateurs",
+      "addUser": "Ajouter un utilisateur",
+      "editUser": "Modifier l'utilisateur",
+      "deleteUser": "Supprimer l'utilisateur",
+      "name": "Nom",
+      "email": "Email",
+      "color": "Couleur",
+      "role": "Rôle",
+      "skills": "Compétences",
+      "availability": "Disponibilités",
+      "notes": "Notes",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+      "noUsers": "Aucun utilisateur trouvé",
+      "noUsersDescription": "Commencez par ajouter des utilisateurs à votre équipe."
+    },
+    "shops": {
+      "title": "Gestion des magasins",
+      "addShop": "Ajouter un magasin",
+      "editShop": "Modifier le magasin",
+      "deleteShop": "Supprimer le magasin",
+      "name": "Nom du magasin",
+      "address": "Adresse",
+      "openingHours": "Horaires d'ouverture",
+      "workingDays": "Jours de travail",
+      "constraints": "Contraintes",
+      "employees": "Employés",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce magasin ?",
+      "noShops": "Aucun magasin trouvé",
+      "noShopsDescription": "Commencez par ajouter des magasins à votre organisation."
+    },
+    "holidays": {
+      "title": "Gestion des congés",
+      "addHoliday": "Ajouter un congé",
+      "editHoliday": "Modifier le congé",
+      "deleteHoliday": "Supprimer le congé",
+      "employee": "Employé",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "type": "Type",
+      "reason": "Motif",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer ce congé ?",
+      "noHolidays": "Aucun congé trouvé",
+      "noHolidaysDescription": "Commencez par ajouter des congés pour vos employés."
+    }
+  },
+  "users": {
+    "title": "Gestion des utilisateurs",
+    "back": "Retour",
+    "addUser": "Ajouter un utilisateur",
+    "editUser": "Modifier l'utilisateur",
+    "deleteUser": "Supprimer l'utilisateur",
+    "name": "Nom",
+    "nameRequired": "Nom *",
+    "email": "Email",
+    "emailRequired": "Email *",
+    "color": "Couleur",
+    "role": "Rôle",
+    "skills": "Compétences",
+    "availability": "Disponibilités",
+    "notes": "Notes",
+    "notesPlaceholder": "Notes optionnelles...",
+    "save": "Sauvegarder",
+    "cancel": "Annuler",
+    "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?",
+    "noUsers": "Aucun utilisateur trouvé",
+    "noUsersDescription": "Commencez par ajouter des utilisateurs à votre équipe.",
+    "userForm": {
+      "title": "Informations utilisateur",
+      "personalInfo": "Informations personnelles",
+      "workInfo": "Informations de travail",
+      "additionalInfo": "Informations supplémentaires"
+    },
+    "userList": {
+      "title": "Liste des utilisateurs",
+      "totalUsers": "Total des utilisateurs",
+      "activeUsers": "Utilisateurs actifs",
+      "inactiveUsers": "Utilisateurs inactifs"
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Générateur de Planning pour Boutiques - Planneo",
+      "description": "Logiciel gratuit de gestion de planning horaire pour commerces et boutiques. Créez facilement les horaires de votre équipe, calculez automatiquement les heures travaillées, exportez vos plannings en PDF professionnel.",
+      "keywords": "générateur planning, logiciel boutique, gestion équipe, planning commercial, horaires employés, PDF planning"
+    },
+    "planning": {
+      "title": "Planning - Planneo",
+      "description": "Générez et gérez vos plannings horaires avec notre outil intelligent. Planification automatique, gestion multi-magasins, export PDF professionnel.",
+      "keywords": "planning horaire, génération automatique, gestion planning, multi-magasins, export PDF"
+    },
+    "reports": {
+      "title": "Rapports et Exports - Planneo",
+      "description": "Consultez vos rapports détaillés et exportez vos plannings en PDF. Statistiques par employé, suivi des quotas, analyses mensuelles.",
+      "keywords": "rapports planning, export PDF, statistiques employés, quotas horaires, analyses mensuelles"
+    },
+    "users": {
+      "title": "Gestion des Utilisateurs - Planneo",
+      "description": "Gérez votre équipe avec notre interface intuitive. Ajoutez, modifiez et organisez vos employés pour optimiser vos plannings.",
+      "keywords": "gestion utilisateurs, équipe, employés, organisation planning, interface intuitive"
+    },
+    "advanced": {
+      "title": "Gestion Avancée - Planneo",
+      "description": "Outils avancés pour optimiser vos plannings. Gestion des congés, suivi des quotas, configuration des magasins.",
+      "keywords": "gestion avancée, congés, quotas, magasins, optimisation planning"
+    },
+    "settings": {
+      "title": "Paramètres - Planneo",
+      "description": "Configurez votre application Planneo. Langue, export/import de données, informations sur l'application.",
+      "keywords": "paramètres, configuration, langue, export données, import données"
+    }
+  },
   "languages": {
     "fr": "Français",
     "en": "English",

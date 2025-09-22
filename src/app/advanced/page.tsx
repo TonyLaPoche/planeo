@@ -3,18 +3,20 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Settings, Calendar, Users, TrendingUp } from 'lucide-react';
-import { userStorage, settingsStorage, shopStorage } from '@/utils/storage';
-import { User, AppSettings, Shop } from '@/types';
+import { userStorage, shopStorage } from '@/utils/storage';
+import { User, Shop } from '@/types';
 import { VacationManager } from '@/components/VacationManager';
 import { QuotaTracker } from '@/components/QuotaTracker';
 import { Footer } from '@/components/Footer';
 import { ShopManager } from '@/components/ShopManager';
+import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function AdvancedPage() {
   const [users, setUsers] = useState<User[]>([]);
-  const [settings, setSettings] = useState<AppSettings | null>(null);
   const [shops, setShops] = useState<Shop[]>([]);
   const [activeTab, setActiveTab] = useState<'vacations' | 'quotas' | 'shops'>('vacations');
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadData();
@@ -22,7 +24,6 @@ export default function AdvancedPage() {
 
   const loadData = () => {
     setUsers(userStorage.getAll());
-    setSettings(settingsStorage.get());
     setShops(shopStorage.getAll());
   };
 
@@ -31,7 +32,7 @@ export default function AdvancedPage() {
   const tabs = [
     {
       id: 'vacations' as const,
-      label: 'Congés',
+      label: t('advanced.tabs.holidays'),
       icon: Calendar,
       description: 'Gérer les congés et absences',
     },
@@ -43,14 +44,16 @@ export default function AdvancedPage() {
     },
     {
       id: 'shops' as const,
-      label: 'Magasins',
+      label: t('advanced.tabs.shops'),
       icon: Settings,
       description: 'Gestion des magasins',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="advanced" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +66,7 @@ export default function AdvancedPage() {
                 <ArrowLeft className="h-5 w-5" />
               </Link>
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Gestion avancée</h1>
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t('advanced.title')}</h1>
                 <p className="text-sm text-gray-600">Automatisation et suivi des plannings</p>
               </div>
             </div>
@@ -142,5 +145,6 @@ export default function AdvancedPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }

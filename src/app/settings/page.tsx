@@ -7,6 +7,7 @@ import { settingsStorage, dataExport } from '@/utils/storage';
 import { AppSettings } from '@/types';
 import { Footer } from '@/components/Footer';
 import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState<AppSettings | null>(null);
@@ -81,10 +82,6 @@ export default function SettingsPage() {
     }
   };
 
-  const updateSettings = (updates: Partial<AppSettings>) => {
-    if (!settings) return;
-    setSettings({ ...settings, ...updates });
-  };
 
   const handleLanguageChange = async (newLanguage: string) => {
     if (!settings) return;
@@ -110,7 +107,9 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="settings" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -262,5 +261,6 @@ export default function SettingsPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }
