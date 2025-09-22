@@ -9,6 +9,7 @@ import { generateMonthlyReport } from '@/utils/time';
 // formatDuration and formatDate are available but not used in this component
 import { generateOptimizedPlanningPDF, generatePlanningOnlyPDF } from '@/utils/pdfExport';
 import { Footer } from '@/components/Footer';
+import { QuotaTracker } from '@/components/QuotaTracker';
 
 export default function ReportsPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -201,6 +202,9 @@ export default function ReportsPage() {
               </div>
             </div>
           </div>
+
+          {/* Quota Tracker Section */}
+          <QuotaTracker users={users} currentMonth={selectedMonth} />
 
           {/* Detailed Reports */}
           {monthlyReports.length > 0 ? (

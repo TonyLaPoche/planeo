@@ -6,7 +6,6 @@ import { ArrowLeft, Settings, Calendar, Users, TrendingUp } from 'lucide-react';
 import { userStorage, settingsStorage, shopStorage } from '@/utils/storage';
 import { User, AppSettings, Shop } from '@/types';
 import { VacationManager } from '@/components/VacationManager';
-import { ShiftTemplateManager } from '@/components/ShiftTemplateManager';
 import { QuotaTracker } from '@/components/QuotaTracker';
 import { Footer } from '@/components/Footer';
 import { ShopManager } from '@/components/ShopManager';
@@ -15,7 +14,7 @@ export default function AdvancedPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [settings, setSettings] = useState<AppSettings | null>(null);
   const [shops, setShops] = useState<Shop[]>([]);
-  const [activeTab, setActiveTab] = useState<'vacations' | 'templates' | 'quotas' | 'shops'>('vacations');
+  const [activeTab, setActiveTab] = useState<'vacations' | 'quotas' | 'shops'>('vacations');
 
   useEffect(() => {
     loadData();
@@ -35,12 +34,6 @@ export default function AdvancedPage() {
       label: 'Congés',
       icon: Calendar,
       description: 'Gérer les congés et absences',
-    },
-    {
-      id: 'templates' as const,
-      label: 'Templates',
-      icon: Settings,
-      description: 'Créer des modèles de créneaux',
     },
     {
       id: 'quotas' as const,
@@ -113,9 +106,6 @@ export default function AdvancedPage() {
             <VacationManager users={users} />
           )}
 
-          {activeTab === 'templates' && settings && (
-            <ShiftTemplateManager users={users} settings={settings} />
-          )}
 
           {activeTab === 'quotas' && (
             <QuotaTracker users={users} currentMonth={currentMonth} />
@@ -139,7 +129,6 @@ export default function AdvancedPage() {
               <div className="mt-2 text-sm text-blue-800">
                 <ul className="list-disc list-inside space-y-1">
                   <li><strong>Congés :</strong> Déclarez les vacances, arrêts maladie et jours fériés</li>
-                  <li><strong>Templates :</strong> Créez des modèles de créneaux horaires pour automatiser la génération</li>
                   <li><strong>Quotas :</strong> Suivez la progression des objectifs horaires mensuels</li>
                          <li><strong>Magasins :</strong> Créez et gérez vos magasins avec leurs équipes et contraintes</li>
                   <li><strong>Génération intelligente :</strong> Algorithme avancé respectant toutes les contraintes légales</li>
