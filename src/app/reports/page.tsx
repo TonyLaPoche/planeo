@@ -9,12 +9,16 @@ import { generateMonthlyReport } from '@/utils/time';
 // formatDuration and formatDate are available but not used in this component
 import { generateOptimizedPlanningPDF, generatePlanningOnlyPDF } from '@/utils/pdfExport';
 import { Footer } from '@/components/Footer';
+import { QuotaTracker } from '@/components/QuotaTracker';
+import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function ReportsPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [shifts, setShifts] = useState<Shift[]>([]);
   const [selectedMonth, setSelectedMonth] = useState<string>('');
   const [isExporting, setIsExporting] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     loadData();
@@ -95,7 +99,9 @@ export default function ReportsPage() {
   const totalDays = monthlyReports.reduce((total, item) => total + item.report.totalDays, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="reports" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,9 +112,9 @@ export default function ReportsPage() {
                 className="flex items-center text-gray-600 hover:text-gray-900"
               >
                 <ArrowLeft className="h-5 w-5 mr-2" />
-                Retour
+                {t('reports.back')}
               </Link>
-              <h1 className="text-2xl font-bold text-gray-900">Rapports et Exports</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{t('reports.title')}</h1>
             </div>
           </div>
         </div>
@@ -122,7 +128,7 @@ export default function ReportsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <label htmlFor="month" className="block text-sm font-medium text-gray-700 mb-2">
-                  Sélectionner le mois
+                  {t('reports.currentMonth')}
                 </label>
                 <input
                   type="month"
@@ -142,7 +148,7 @@ export default function ReportsPage() {
                   aria-label="Générer et télécharger le planning uniquement"
                 >
                   <Download className="h-4 w-4 flex-shrink-0" />
-                  <span className="flex-1 text-center">Planning seul</span>
+                  <span className="flex-1 text-center">{t('reports.exportPdf')}</span>
                 </button>
                 <button
                   onClick={handleExportPlanningWithTotals}
@@ -151,7 +157,7 @@ export default function ReportsPage() {
                   aria-label="Générer et télécharger le planning avec les totaux employés"
                 >
                   <Download className="h-4 w-4 flex-shrink-0" />
-                  <span className="flex-1 text-center">Planning + Totaux</span>
+                  <span className="flex-1 text-center">{t('reports.exportPdf')} + Totaux</span>
                 </button>
               </div>
             </div>
@@ -163,7 +169,7 @@ export default function ReportsPage() {
               <div className="flex items-center">
                 <Users className="h-8 w-8 text-blue-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Employés actifs</p>
+                  <p className="text-sm font-medium text-gray-600">{t('reports.employee')}s actifs</p>
                   <p className="text-2xl font-bold text-gray-900">{monthlyReports.length}</p>
                 </div>
               </div>
@@ -183,7 +189,7 @@ export default function ReportsPage() {
               <div className="flex items-center">
                 <Clock className="h-8 w-8 text-purple-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Total heures</p>
+                  <p className="text-sm font-medium text-gray-600">{t('reports.totalHours')}</p>
                   <p className="text-2xl font-bold text-gray-900">{totalHours.toFixed(1)}h</p>
                 </div>
               </div>
@@ -193,7 +199,7 @@ export default function ReportsPage() {
               <div className="flex items-center">
                 <BarChart3 className="h-8 w-8 text-orange-600" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-600">Moyenne/employé</p>
+                  <p className="text-sm font-medium text-gray-600">{t('reports.average')}/employé</p>
                   <p className="text-2xl font-bold text-gray-900">
                     {monthlyReports.length > 0 ? (totalHours / monthlyReports.length).toFixed(1) : 0}h
                   </p>
@@ -202,12 +208,15 @@ export default function ReportsPage() {
             </div>
           </div>
 
+          {/* Quota Tracker Section */}
+          <QuotaTracker users={users} currentMonth={selectedMonth} />
+
           {/* Detailed Reports */}
           {monthlyReports.length > 0 ? (
             <div className="bg-white rounded-lg shadow overflow-hidden">
               <div className="px-6 py-4 border-b">
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Rapport détaillé du mois de {new Date(selectedMonth + '-01').toLocaleDateString('fr-FR', {
+                  {t('reports.monthlyReport')} {new Date(selectedMonth + '-01').toLocaleDateString('fr-FR', {
                     month: 'long',
                     year: 'numeric'
                   })}
@@ -219,19 +228,19 @@ export default function ReportsPage() {
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Employé
+                        {t('reports.employee')}
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Jours travaillés
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Total heures
+                        {t('reports.totalHours')}
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Moyenne/jour
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Créneaux
+                        {t('reports.shifts')}
                       </th>
                     </tr>
                   </thead>
@@ -294,9 +303,9 @@ export default function ReportsPage() {
           ) : (
             <div className="bg-white rounded-lg shadow p-12 text-center">
               <FileText className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">Aucun créneau trouvé</h3>
+              <h3 className="mt-2 text-sm font-medium text-gray-900">{t('reports.noData')}</h3>
               <p className="mt-1 text-sm text-gray-500">
-                Il n&apos;y a pas de créneaux planifiés pour ce mois.
+                {t('reports.noDataDescription')}
               </p>
               <div className="mt-6">
                 <Link
@@ -305,7 +314,7 @@ export default function ReportsPage() {
                   aria-label="Accéder à la page de gestion du planning"
                 >
                   <Calendar className="h-4 w-4 mr-2" />
-                  Aller au planning
+                  {t('navigation.planning')}
                 </Link>
               </div>
             </div>
@@ -341,5 +350,6 @@ export default function ReportsPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }

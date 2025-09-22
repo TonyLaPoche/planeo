@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Plus, ChevronLeft, ChevronRight, Bot, Trash2 } from 'lucide-react';
 import { shiftStorage } from '@/utils/storage';
 import { Shift } from '@/types';
 import { usePlanning } from '@/hooks/usePlanning';
@@ -12,6 +12,9 @@ import { PlanningInstructions } from '@/components/calendar/PlanningInstructions
 import { ShiftDetailsModal } from '@/components/ShiftDetailsModal';
 import { formatDuration, calculateShiftDuration } from '@/utils/time';
 import { Footer } from '@/components/Footer';
+import { CompactShopSelector } from '@/components/ShopSelector';
+import { useTranslation } from '@/hooks/useTranslation';
+import SEOHead from '@/components/SEOHead';
 
 export default function PlanningPage() {
   const {
@@ -20,13 +23,18 @@ export default function PlanningPage() {
     currentMonth,
     calendarDays,
     shiftModal,
+    shops,
+    currentShopId,
     loadData,
     getShiftsForDate,
     getUserById,
     navigateMonth,
-    generateAutoShifts,
+    generateShopPlanning,
+    selectShop,
     closeShiftModal,
   } = usePlanning();
+  
+  const { t } = useTranslation();
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,6 +46,30 @@ export default function PlanningPage() {
     breakDuration: 60,
     notes: '',
   });
+
+  const handleClearCurrentMonth = () => {
+    if (confirm(t('planning.clearMonthConfirm'))) {
+      // Supprimer tous les shifts du mois en cours
+      const monthKey = currentMonth; // currentMonth est déjà au format 'YYYY-MM'
+      const allShifts = shiftStorage.getAll();
+      const shiftsToDelete = allShifts.filter(shift => shift.date.startsWith(monthKey));
+      
+      shiftsToDelete.forEach(shift => {
+        shiftStorage.delete(shift.id);
+      });
+      
+      // Recharger les données
+      loadData();
+      
+      // Formater le nom du mois pour l'affichage
+      const [year, month] = currentMonth.split('-');
+      const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                         'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+      const monthName = `${monthNames[parseInt(month) - 1]} ${year}`;
+      
+      alert(t('planning.clearMonthSuccess', { count: shiftsToDelete.length, month: monthName }));
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +106,7 @@ export default function PlanningPage() {
   };
 
   const handleDelete = (shiftId: string) => {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce créneau ?')) {
+    if (confirm(t('planning.deleteShiftConfirm'))) {
       shiftStorage.delete(shiftId);
       loadData();
     }
@@ -100,39 +132,66 @@ export default function PlanningPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <>
+      <SEOHead page="planning" />
+      <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header Mobile-First */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Row */}
-          <div className="flex items-center justify-between py-3 sm:py-4">
+          <div className="flex items-center justify-between py-3 sm:py-4 gap-2">
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <Link
                 href="/"
-                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2"
+                className="flex items-center text-gray-600 hover:text-gray-900 p-2 -m-2 flex-shrink-0"
               >
                 <ArrowLeft className="h-5 w-5" />
               </Link>
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
-                Planning {new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+              <h1 className="text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
+                {t('planning.monthPlanning', { month: new Date(currentMonth + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) })}
               </h1>
             </div>
-            <div className="flex space-x-2">
+            
+            {/* Actions compactes */}
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+              {/* Sélecteur de magasin - plus compact */}
+              <CompactShopSelector
+                shops={shops}
+                selectedShopId={currentShopId}
+                onShopSelect={selectShop}
+                className="max-w-[120px] sm:max-w-none"
+              />
+
+              {/* Boutons d'actions - plus compacts */}
               <button
-                onClick={() => generateAutoShifts()}
-                className="btn-secondary text-sm sm:text-base"
-                aria-label="Générer automatiquement les créneaux du mois"
+                onClick={() => generateShopPlanning()}
+                className="btn-primary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                disabled={!currentShopId}
+                aria-label={t('planning.intelligentGeneration')}
+                title={t('planning.intelligentGeneration')}
               >
-                <Plus className="h-4 w-4" />
-                <span className="hidden sm:inline">Auto-générer</span>
+                <Bot className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">IA</span>
               </button>
+
+              <button
+                onClick={handleClearCurrentMonth}
+                className="btn-danger text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                aria-label={t('planning.clearMonth')}
+                title={t('planning.clearMonth')}
+              >
+                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">Clear</span>
+              </button>
+
               <button
                 onClick={() => openModal()}
-                className="btn-primary text-sm sm:text-base"
-                aria-label="Ajouter un nouveau créneau horaire"
+                className="btn-secondary text-xs sm:text-sm px-2 py-1.5 sm:px-3 sm:py-2"
+                aria-label={t('planning.addShift')}
+                title={t('planning.addShift')}
               >
-                <Plus className="h-4 w-4" />
-                <span className="hidden sm:inline">Ajouter</span>
+                <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
+                <span className="hidden lg:inline ml-1">Add</span>
               </button>
             </div>
           </div>
@@ -142,7 +201,7 @@ export default function PlanningPage() {
             <button
               onClick={() => navigateMonth('prev')}
               className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Mois précédent"
+              aria-label={t('planning.previousMonth')}
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -155,7 +214,7 @@ export default function PlanningPage() {
             <button
               onClick={() => navigateMonth('next')}
               className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-              aria-label="Mois suivant"
+              aria-label={t('planning.nextMonth')}
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -166,6 +225,85 @@ export default function PlanningPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8">
         <PlanningInstructions />
+        
+        {/* Notification système multi-magasins */}
+        {!currentShopId && shops.length === 0 && (
+          <div className="mb-6 bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-6 w-6 text-amber-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-lg font-medium text-amber-900 mb-2">{t('planning.noShopConfigured')}</h3>
+                <div className="text-sm text-amber-800 space-y-2">
+                  <p>
+                    {t('planning.noShopConfiguredDescription')}
+                  </p>
+                  <p>
+                    <strong>{t('planning.stepsToFollow')}</strong>
+                  </p>
+                  <ol className="list-decimal list-inside space-y-1 ml-4">
+                    <li>Allez dans <Link href="/advanced" className="underline hover:text-amber-900 font-medium">Gestion avancée</Link></li>
+                    <li>Cliquez sur l&apos;onglet <strong>&quot;Magasins&quot;</strong></li>
+                    <li>Créez votre premier magasin avec ses horaires et contraintes</li>
+                    <li>Assignez des employés à ce magasin</li>
+                    <li>Revenez ici pour générer votre planning</li>
+                  </ol>
+                  <div className="mt-4">
+                    <Link 
+                      href="/advanced" 
+                      className="inline-flex items-center px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-md hover:bg-amber-700 transition-colors"
+                    >
+                      <Bot className="h-4 w-4 mr-2" />
+                      {t('planning.goToAdvanced')}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Message quand des magasins existent mais aucun n'est sélectionné */}
+        {!currentShopId && shops.length > 0 && (
+          <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-5 w-5 text-blue-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-blue-900">{t('planning.selectShop')}</h3>
+                <div className="mt-1 text-sm text-blue-800">
+                  <p>
+                    {t('planning.selectShopDescription', { 
+                      count: shops.length, 
+                      plural: shops.length > 1 ? 's' : '' 
+                    })}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {currentShopId && (
+          <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <Bot className="h-5 w-5 text-blue-600 mt-0.5" />
+              </div>
+              <div className="ml-3">
+                <h3 className="text-sm font-medium text-blue-900">Planification Intelligente Active</h3>
+                <div className="mt-1 text-sm text-blue-800">
+                  <p>
+                    La génération prend en compte les compétences, disponibilités, contraintes légales et optimise automatiquement votre planning pour {shops.find(s => s.id === currentShopId)?.name}.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
         <TeamLegend users={users} shifts={shifts} />
         <ResponsiveCalendar
           calendarDays={calendarDays}
@@ -188,14 +326,14 @@ export default function PlanningPage() {
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             <div className="px-6 py-4 border-b">
               <h3 className="text-lg font-semibold text-gray-900">
-                {editingShift ? 'Modifier le créneau' : 'Ajouter un créneau'}
+                {editingShift ? t('planning.addShiftModal.editTitle') : t('planning.addShiftModal.title')}
               </h3>
             </div>
 
             <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
               <div>
                 <label htmlFor="userId" className="form-label">
-                  Employé <span className="text-red-500">*</span>
+                  {t('planning.addShiftModal.employee')} <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="userId"
@@ -205,7 +343,7 @@ export default function PlanningPage() {
                   required
                   aria-describedby="user-help"
                 >
-                  <option value="">Sélectionner un employé</option>
+                  <option value="">{t('planning.addShiftModal.selectEmployee')}</option>
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>
                       {user.name}
@@ -217,7 +355,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="date" className="form-label">
-                  Date <span className="text-red-500">*</span>
+                  {t('planning.addShiftModal.date')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
@@ -234,7 +372,7 @@ export default function PlanningPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="startTime" className="form-label">
-                    Heure de début <span className="text-red-500">*</span>
+                    {t('planning.addShiftModal.startTime')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
@@ -249,7 +387,7 @@ export default function PlanningPage() {
                 </div>
                 <div>
                   <label htmlFor="endTime" className="form-label">
-                    Heure de fin <span className="text-red-500">*</span>
+                    {t('planning.addShiftModal.endTime')} <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="time"
@@ -266,7 +404,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="breakDuration" className="form-label">
-                  Pause (minutes)
+                  {t('planning.addShiftModal.breakDuration')}
                 </label>
                 <input
                   type="number"
@@ -283,7 +421,7 @@ export default function PlanningPage() {
 
               <div>
                 <label htmlFor="notes" className="form-label">
-                  Notes
+                  {t('planning.addShiftModal.notes')}
                 </label>
                 <textarea
                   id="notes"
@@ -291,7 +429,7 @@ export default function PlanningPage() {
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={3}
                   className="form-input"
-                  placeholder="Notes optionnelles..."
+                  placeholder={t('planning.addShiftModal.notesPlaceholder')}
                   aria-describedby="notes-help"
                 />
                 <p id="notes-help" className="sr-only">Informations supplémentaires sur ce créneau horaire</p>
@@ -302,7 +440,7 @@ export default function PlanningPage() {
                   <div className="flex items-center space-x-2 text-sm text-blue-800">
                     <span className="text-lg">⏱️</span>
                     <span className="font-medium">
-                      Durée estimée: {formatDuration(
+                      {t('planning.addShiftModal.estimatedDuration')} {formatDuration(
                         calculateShiftDuration({
                           id: '',
                           userId: '',
@@ -325,14 +463,14 @@ export default function PlanningPage() {
                   className="btn-secondary w-full sm:w-auto"
                   aria-label="Annuler et fermer le formulaire"
                 >
-                  Annuler
+                  {t('planning.addShiftModal.cancel')}
                 </button>
                 <button
                   type="submit"
                   className="btn-primary w-full sm:w-auto"
                   aria-label={editingShift ? 'Enregistrer les modifications du créneau' : 'Ajouter le nouveau créneau'}
                 >
-                  {editingShift ? 'Modifier' : 'Ajouter'}
+                  {editingShift ? t('planning.addShiftModal.edit') : t('planning.addShiftModal.add')}
                 </button>
               </div>
             </form>
@@ -351,5 +489,6 @@ export default function PlanningPage() {
       {/* Footer */}
       <Footer />
     </div>
+    </>
   );
 }
