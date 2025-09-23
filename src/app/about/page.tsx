@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
-import { Calendar, Shield, Database, Lock, Users, FileText, Mail, Github, ExternalLink, Download, Coffee } from 'lucide-react';
+import { Calendar, User, Mail, ExternalLink, Shield, Code, Coffee, Heart, CheckCircle, Star } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function AboutPage() {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -16,7 +21,7 @@ export default function AboutPage() {
               href="/"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
-              ← Retour à l&apos;accueil
+              ← {t('about.footer.backHome')}
             </Link>
           </div>
         </div>
@@ -29,652 +34,261 @@ export default function AboutPage() {
           {/* Hero Section */}
           <div className="text-center bg-white rounded-lg shadow-sm p-8">
             <Calendar className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">À propos de Planneo</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{t('about.title')}</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Application de gestion de planning horaires pensée pour les boutiques et commerces.
-              Simple, efficace et respectueuse de votre vie privée.
+              {t('about.subtitle')}
             </p>
           </div>
 
-          {/* Comment ça fonctionne */}
+          {/* Hero Content */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Database className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Comment ça fonctionne ?</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.hero.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.hero.description')}</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {Array.isArray(t('about.sections.hero.features')) && 
+                (t('about.sections.hero.features') as unknown as string[]).map((feature: string, index: number) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
             </div>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">💾 Stockage local uniquement</h3>
-                <p className="text-gray-600 mb-4">
-                  Toutes vos données (utilisateurs, plannings, paramètres) sont stockées
-                  directement sur votre appareil. Aucun serveur externe n&apos;est utilisé.
-                </p>
-
-                <h3 className="text-lg font-medium text-gray-900 mb-2">🔒 Pas d&apos;authentification</h3>
-                <p className="text-gray-600">
-                  Pas besoin de créer un compte ou de se connecter. L&apos;application fonctionne
-                  immédiatement après l&apos;installation.
-                </p>
+          {/* Developer Section */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('about.sections.developer.title')}</h2>
+            
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-shrink-0">
+                <div className="w-32 h-32 bg-blue-100 rounded-full flex items-center justify-center">
+                  <User className="h-16 w-16 text-blue-600" />
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">📱 Application PWA</h3>
-                <p className="text-gray-600 mb-4">
-                  Progressive Web App installable sur mobile et desktop.
-                  Fonctionne hors ligne une fois installée.
-                </p>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{t('about.sections.developer.name')}</h3>
+                <p className="text-lg text-blue-600 mb-2">{t('about.sections.developer.role')}</p>
+                <p className="text-gray-600 mb-4">{t('about.sections.developer.experience')}</p>
+                <p className="text-gray-700 mb-4">{t('about.sections.developer.bio')}</p>
+                
+                <div className="space-y-2">
+                  <div>
+                    <strong className="text-gray-900">{t('about.sections.developer.specialization')}</strong>
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Mission :</strong> {t('about.sections.developer.mission')}
+                  </div>
+                  <div>
+                    <strong className="text-gray-900">Vision :</strong> {t('about.sections.developer.vision')}
+                  </div>
+                </div>
 
-                <h3 className="text-lg font-medium text-gray-900 mb-2">⚡ Performance optimale</h3>
-                <p className="text-gray-600">
-                  Interface rapide et fluide grâce aux technologies web modernes.
-                  Aucun temps de chargement lié à internet.
-                </p>
+                <div className="mt-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Valeurs :</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-1">
+                    {Array.isArray(t('about.sections.developer.values')) && 
+                      (t('about.sections.developer.values') as unknown as string[]).map((value: string, index: number) => (
+                        <li key={index}>{value}</li>
+                      ))}
+                  </ul>
+                </div>
+                
+                <div className="mt-4">
+                  <a
+                    href={`mailto:${t('about.sections.developer.contact')}`}
+                    className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    <Mail className="h-4 w-4" />
+                    <span>{t('about.sections.developer.contact')}</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Avantages de l'approche locale */}
+          {/* Story Section */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Shield className="h-6 w-6 text-green-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Pourquoi cette approche ?</h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <Lock className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <h3 className="font-medium text-gray-900 mb-2">Confidentialité totale</h3>
-                <p className="text-sm text-gray-600">
-                  Vos données restent sur votre appareil. Aucun risque de fuite ou d&apos;accès non autorisé.
-                </p>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('about.sections.story.title')}</h2>
+            
+            <div className="space-y-6">
+              <div className="bg-red-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium text-red-800 mb-2">{t('about.sections.story.problem.title')}</h3>
+                <p className="text-red-700">{t('about.sections.story.problem.description')}</p>
               </div>
 
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <Database className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <h3 className="font-medium text-gray-900 mb-2">Indépendance</h3>
-                <p className="text-sm text-gray-600">
-                  Fonctionne sans internet une fois installée. Pas de dépendance à un service tiers.
-                </p>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium text-green-800 mb-2">{t('about.sections.story.solution.title')}</h3>
+                <p className="text-green-700">{t('about.sections.story.solution.description')}</p>
               </div>
 
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <Users className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                <h3 className="font-medium text-gray-900 mb-2">Simplicité</h3>
-                <p className="text-sm text-gray-600">
-                  Pas de comptes à créer, pas de mots de passe à gérer. Juste installer et utiliser.
-                </p>
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium text-blue-800 mb-2">{t('about.sections.story.mission.title')}</h3>
+                <p className="text-blue-700">{t('about.sections.story.mission.description')}</p>
               </div>
             </div>
           </div>
 
-          {/* Installation PWA */}
+          {/* Economic Model */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Download className="h-6 w-6 text-green-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Installation de l&apos;application</h2>
-            </div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.economicModel.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.economicModel.description')}</p>
 
-            <div className="mb-4">
-              <p className="text-gray-600">
-                Planneo peut être installé sur votre appareil comme une application native.
-                L&apos;installation permet d&apos;accéder à l&apos;app hors ligne et offre une expérience utilisateur optimale.
-              </p>
-            </div>
-
-            {/* Instructions par plateforme */}
-            <div className="grid md:grid-cols-2 gap-6">
-
-              {/* Android/Chrome */}
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-green-600 font-bold text-sm">A</span>
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900">Android / Chrome</h3>
-                </div>
-
-                <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
-                  <li>Ouvrez Planneo dans Chrome</li>
-                  <li>Appuyez sur les trois points ⋮ en haut à droite</li>
-                  <li>Sélectionnez &quot;Ajouter à l&apos;écran d&apos;accueil&quot;</li>
-                  <li>Confirmez l&apos;installation</li>
-                </ol>
-
-                <div className="bg-green-50 p-3 rounded-lg">
-                  <p className="text-green-800 text-sm">
-                    💡 <strong>Conseil :</strong> L&apos;app apparaîtra sur votre écran d&apos;accueil comme une application native.
-                  </p>
-                </div>
+            <div className="space-y-4">
+              <div className="border border-gray-200 rounded-lg p-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('about.sections.economicModel.funding.adsense.title')}</h3>
+                <p className="text-gray-700 mb-2">{t('about.sections.economicModel.funding.adsense.description')}</p>
+                <span className="inline-block bg-yellow-100 text-yellow-800 text-sm px-2 py-1 rounded">
+                  {t('about.sections.economicModel.funding.adsense.status')}
+                </span>
               </div>
-
-              {/* iOS/Safari */}
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-blue-600 font-bold text-sm">i</span>
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-900">iOS / Safari</h3>
-                </div>
-
-                <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
-                  <li>Ouvrez Planneo dans Safari</li>
-                  <li>Appuyez sur l&apos;icône de partage ↗️</li>
-                  <li>Faites défiler et sélectionnez &quot;Sur l&apos;écran d&apos;accueil&quot;</li>
-                  <li>Appuyez sur &quot;Ajouter&quot;</li>
-                </ol>
-
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  <p className="text-blue-800 text-sm">
-                    💡 <strong>Remarque :</strong> Safari peut demander confirmation pour l&apos;installation PWA.
-                  </p>
-                </div>
+              
+              <div className="border border-gray-200 rounded-lg p-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('about.sections.economicModel.funding.donations.title')}</h3>
+                <p className="text-gray-700 mb-2">{t('about.sections.economicModel.funding.donations.description')}</p>
+                <a
+                  href="https://buymeacoffee.com/antoineterrade"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  <Coffee className="h-4 w-4" />
+                  <span>{t('about.sections.economicModel.funding.donations.link')}</span>
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+              
+              <div className="border border-gray-200 rounded-lg p-4">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('about.sections.economicModel.funding.enterprise.title')}</h3>
+                <p className="text-gray-700">{t('about.sections.economicModel.funding.enterprise.description')}</p>
               </div>
             </div>
-
-            {/* Desktop */}
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-purple-600 font-bold text-sm">💻</span>
-                </div>
-                <h3 className="text-lg font-medium text-gray-900">Ordinateur (Chrome/Edge)</h3>
-              </div>
-
-              <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm mb-4">
-                <li>Ouvrez Planneo dans votre navigateur</li>
-                <li>Cliquez sur l&apos;icône d&apos;installation dans la barre d&apos;adresse</li>
-                <li>Ou cliquez sur les trois points ⋮ → &quot;Installer Planneo&quot;</li>
-                <li>L&apos;app s&apos;ajoutera à votre bureau comme un raccourci</li>
-              </ol>
-
-              <div className="bg-purple-50 p-3 rounded-lg">
-                <p className="text-purple-800 text-sm">
-                  🎯 <strong>Avantages :</strong> Fonctionne hors ligne, s&apos;ouvre comme une vraie application,
-                  apparaît dans la barre des tâches.
-                </p>
-              </div>
-            </div>
-
-            {/* Fonctionnalités hors ligne */}
-            <div className="mt-6 bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-medium text-gray-900 mb-2">🚀 Après l&apos;installation :</h4>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• ✅ Accès rapide depuis l&apos;écran d&apos;accueil</li>
-                <li>• ✅ Fonctionnement hors ligne complet</li>
-                <li>• ✅ Synchronisation automatique des données</li>
-                <li>• ✅ Interface optimisée pour l&apos;appareil</li>
-                <li>• ✅ Notifications push (si activées)</li>
+            
+            <div className="mt-6 bg-green-50 p-4 rounded-lg">
+              <h3 className="text-lg font-medium text-green-800 mb-3">{t('about.sections.economicModel.commitment.title')}</h3>
+              <ul className="list-disc list-inside text-green-700 space-y-1">
+                {Array.isArray(t('about.sections.economicModel.commitment.promises')) && 
+                  (t('about.sections.economicModel.commitment.promises') as unknown as string[]).map((promise: string, index: number) => (
+                    <li key={index}>{promise}</li>
+                  ))}
               </ul>
             </div>
           </div>
 
-          {/* RGPD */}
+          {/* Features */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Shield className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Protection des données (RGPD)</h2>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h3 className="font-medium text-green-900 mb-2">✅ Conformité RGPD totale</h3>
-                <p className="text-green-800">
-                  Planneo est entièrement conforme au RGPD. Vos données de planning restent exclusivement 
-                  sur votre appareil. Nous utilisons des services tiers uniquement avec votre consentement 
-                  explicite via notre système de gestion des cookies.
-                </p>
-              </div>
-
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h3 className="font-medium text-blue-900 mb-2">📊 Services avec consentement</h3>
-                <p className="text-blue-800 text-sm mb-2">
-                  Les services suivants ne sont activés qu&apos;avec votre consentement explicite :
-                </p>
-                <ul className="text-sm text-blue-700 space-y-1">
-                  <li>• <strong>Vercel Analytics :</strong> Statistiques anonymes d&apos;utilisation</li>
-                  <li>• <strong>Google AdSense :</strong> Publicités contextuelles (financement du projet)</li>
-                  <li>• <strong>Vous contrôlez tout :</strong> Acceptation/refus granulaire via notre banner</li>
-                </ul>
-              </div>
-
-              <div className="bg-orange-50 p-4 rounded-lg">
-                <h3 className="font-medium text-orange-900 mb-2">🎯 Publicités et financement</h3>
-                <p className="text-orange-800 text-sm">
-                  Pour maintenir Planneo gratuit, nous affichons des publicités Google AdSense. 
-                  Ces publicités respectent vos choix de consentement et permettent de financer 
-                  le développement et la maintenance de l&apos;application.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Données stockées localement :</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Noms des employés</li>
-                    <li>• Horaires de travail</li>
-                    <li>• Paramètres de l&apos;application</li>
-                    <li>• Préférences de consentement</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Données Analytics (si acceptées) :</h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Pages consultées (anonymes)</li>
-                    <li>• Temps de session (anonyme)</li>
-                    <li>• Source de trafic</li>
-                    <li>• Type d&apos;appareil/navigateur</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">🔒 Vos droits RGPD</h4>
-                <p className="text-sm text-gray-700 mb-2">
-                  Vous disposez d&apos;un contrôle total sur vos données :
-                </p>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• <strong>Consentement révocable :</strong> Modifiez vos préférences à tout moment</li>
-                  <li>• <strong>Données locales :</strong> Supprimables via les paramètres du navigateur</li>
-                  <li>• <strong>Transparence totale :</strong> Aucune donnée cachée ou collecte secrète</li>
-                  <li>• <strong>Contact direct :</strong> contact@antoineterrade.com pour toute question</li>
-                </ul>
-              </div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.features.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.features.description')}</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {Array.isArray(t('about.sections.features.list')) && 
+                (t('about.sections.features.list') as unknown as string[]).map((feature: string, index: number) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <Star className="h-5 w-5 text-yellow-500" />
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
             </div>
           </div>
 
-          {/* Modèle économique et services */}
+          {/* Technology Stack */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <FileText className="h-6 w-6 text-purple-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Modèle économique et services</h2>
-            </div>
-
-            <div className="space-y-6">
-              {/* Version gratuite */}
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg border border-green-200">
-                <h3 className="font-medium text-gray-900 mb-3 flex items-center">
-                  <span className="text-green-600 mr-2">🆓</span>
-                  Version gratuite actuelle
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-medium text-green-900 mb-2">✅ Avantages :</h4>
-                    <ul className="text-sm text-green-800 space-y-1">
-                      <li>• Toutes les fonctionnalités disponibles</li>
-                      <li>• Stockage local sécurisé</li>
-                      <li>• Pas de limite d&apos;utilisation</li>
-                      <li>• Mises à jour gratuites</li>
-                      <li>• Support communautaire</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-orange-900 mb-2">⚠️ Contraintes :</h4>
-                    <ul className="text-sm text-orange-800 space-y-1">
-                      <li>• Publicités Google AdSense</li>
-                      <li>• Pas de synchronisation entre appareils</li>
-                      <li>• Pas de sauvegarde cloud</li>
-                      <li>• Support standard</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Version entreprise */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border border-blue-200">
-                <h3 className="font-medium text-gray-900 mb-3 flex items-center">
-                  <span className="text-blue-600 mr-2">🏢</span>
-                  Version entreprise sur devis
-                </h3>
-                
-                <div className="bg-white p-4 rounded-lg mb-4">
-                  <p className="text-gray-700 mb-3">
-                    Pour les entreprises ayant des besoins spécifiques, nous proposons une 
-                    <strong> application dédiée personnalisée</strong> sans publicité avec des fonctionnalités avancées.
-                  </p>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-medium text-blue-900 mb-2">🎯 Fonctionnalités premium :</h4>
-                    <ul className="text-sm text-blue-800 space-y-1">
-                      <li>• <strong>Zéro publicité</strong></li>
-                      <li>• Synchronisation multi-appareils</li>
-                      <li>• Sauvegarde cloud sécurisée</li>
-                      <li>• Gestion multi-magasins</li>
-                      <li>• Rapports avancés personnalisés</li>
-                      <li>• Intégrations tierces (paie, RH)</li>
-                      <li>• Support prioritaire dédié</li>
-                      <li>• Formation et accompagnement</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-purple-900 mb-2">💰 Tarification estimative :</h4>
-                    <div className="text-sm text-purple-800 space-y-2">
-                      <div className="bg-purple-100 p-3 rounded-lg">
-                        <p><strong>Développement initial :</strong></p>
-                        <p>2 500€ - 5 000€ HT</p>
-                        <p className="text-xs">(selon personnalisations)</p>
-                      </div>
-                      <div className="bg-purple-100 p-3 rounded-lg">
-                        <p><strong>Maintenance annuelle :</strong></p>
-                        <p>500€ - 1 000€ HT/an</p>
-                        <p className="text-xs">(mises à jour + support)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-lg">
-                  <h4 className="font-medium text-gray-900 mb-2">📞 Intéressé par une version entreprise ?</h4>
-                  <p className="text-sm text-gray-700 mb-3">
-                    Contactez-nous pour discuter de vos besoins spécifiques et obtenir un devis personnalisé.
-                  </p>
-                  <a
-                    href="mailto:contact@antoineterrade.com?subject=Devis Planneo Entreprise&body=Bonjour,%0A%0AJe suis intéressé(e) par une version entreprise de Planneo.%0A%0AMon entreprise :%0ANombre d'employés :%0ABesoins spécifiques :%0A%0AMerci pour votre retour."
-                    className="inline-flex items-center bg-blue-600 hover:bg-blue-700 !text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                    style={{ color: '#ffffff' }}
-                  >
-                    <Mail className="h-4 w-4 mr-2" />
-                    <span className="text-white">Demander un devis</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Identité du développeur */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Users className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Développeur</h2>
-            </div>
-
-            <div className="space-y-6">
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200">
-                <div className="flex items-start space-x-4">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold text-blue-600">AT</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Antoine Terrade</h3>
-                    <p className="text-gray-600 mb-3">
-                      Développeur Full-Stack passionné par la création d&apos;outils utiles et accessibles.
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-sm text-gray-600">
-                        <strong>Expérience :</strong> 5+ ans en développement web et applications de gestion
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        <strong>Spécialisation :</strong> Applications PWA, gestion d&apos;équipe, interfaces intuitives
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        <strong>Mission :</strong> Démocratiser les outils de gestion pour les petites entreprises
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-gray-900 mb-2">🎯 Pourquoi Planneo ?</h4>
-                  <p className="text-sm text-gray-600">
-                    J&apos;ai créé Planneo après avoir constaté que les solutions de planning existantes 
-                    étaient soit trop complexes, soit trop chères pour les petites boutiques. 
-                    Mon objectif : un outil simple, gratuit et respectueux de la vie privée.
-                  </p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-gray-900 mb-2">💡 Vision</h4>
-                  <p className="text-sm text-gray-600">
-                    Chaque commerçant mérite un outil de gestion professionnel, accessible 
-                    et sécurisé. Planneo incarne cette vision : gratuit, local, et pensé 
-                    pour les vrais besoins du terrain.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Modèle économique transparent */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <FileText className="h-6 w-6 text-purple-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Modèle Économique Transparent</h2>
-            </div>
-
-            <div className="space-y-6">
-              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <h3 className="text-lg font-medium text-green-900 mb-3">🆓 Planneo reste 100% gratuit</h3>
-                <p className="text-green-800 mb-3">
-                  <strong>Engagement :</strong> Planneo sera toujours gratuit pour tous les utilisateurs. 
-                  Aucun frais caché, aucune limitation de fonctionnalités.
-                </p>
-                <ul className="text-sm text-green-700 space-y-1 ml-4">
-                  <li>• Toutes les fonctionnalités disponibles gratuitement</li>
-                  <li>• Pas d&apos;abonnement requis</li>
-                  <li>• Pas de version premium payante</li>
-                  <li>• Mises à jour gratuites à vie</li>
-                </ul>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <h4 className="font-medium text-blue-900 mb-2">💰 Comment nous nous finançons</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <h5 className="font-medium text-blue-800">Publicités Google AdSense</h5>
-                      <p className="text-sm text-blue-700">
-                        Publicités non intrusives, respectueuses de vos choix de consentement.
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-blue-800">Dons volontaires</h5>
-                      <p className="text-sm text-blue-700">
-                        Via Buy Me a Coffee pour soutenir le développement.
-                      </p>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-blue-800">Version entreprise</h5>
-                      <p className="text-sm text-blue-700">
-                        Solutions personnalisées pour les grandes entreprises.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                  <h4 className="font-medium text-purple-900 mb-2">🎯 Notre engagement</h4>
-                  <ul className="text-sm text-purple-700 space-y-1">
-                    <li>• <strong>Transparence totale :</strong> Tous les revenus sont publics</li>
-                    <li>• <strong>Pas de vente de données :</strong> Vos données ne sont jamais vendues</li>
-                    <li>• <strong>Développement continu :</strong> Revenus réinvestis dans l&apos;amélioration</li>
-                    <li>• <strong>Indépendance :</strong> Pas de dépendance aux investisseurs</li>
-                    <li>• <strong>Éthique :</strong> Publicités respectueuses et non intrusives</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                <h4 className="font-medium text-amber-900 mb-2">📊 Chiffres transparents</h4>
-                <div className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-amber-600">0€</div>
-                    <div className="text-amber-800">Coût pour l&apos;utilisateur</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-amber-600">100%</div>
-                    <div className="text-amber-800">Fonctionnalités gratuites</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-amber-600">∞</div>
-                    <div className="text-amber-800">Durée d&apos;utilisation</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Soutien et Dons */}
-          <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg shadow-sm p-6 border border-amber-200">
-            <div className="flex items-center mb-4">
-              <Coffee className="h-6 w-6 text-amber-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Soutenir le développement</h2>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-white p-4 rounded-lg border border-amber-100">
-                <h3 className="text-lg font-medium text-gray-900 mb-2">☕ Planneo est 100% gratuit</h3>
-                <p className="text-gray-700 mb-3">
-                  Cette application est développée avec passion et proposée gratuitement à tous les commerçants
-                  et boutiques qui en ont besoin. Votre soutien permet de maintenir et améliorer continuellement l&apos;outil.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href="https://buymeacoffee.com/terradeanty"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center space-x-2 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                  >
-                    <Coffee className="h-5 w-5" />
-                    <span>M&apos;offrir un café</span>
-                  </a>
-
-                  <div className="text-sm text-gray-600">
-                    <p className="mb-1"><strong>Montant suggéré :</strong> 3-5€</p>
-                    <p>Chaque don, même petit, fait une différence ! 🙏</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-amber-100 p-4 rounded-lg">
-                  <h4 className="font-medium text-amber-900 mb-2">🎯 Votre soutien permet :</h4>
-                  <ul className="text-sm text-amber-800 space-y-1">
-                    <li>• Nouvelles fonctionnalités</li>
-                    <li>• Améliorations de l&apos;interface</li>
-                    <li>• Support technique continu</li>
-                    <li>• Maintenance et sécurité</li>
-                  </ul>
-                </div>
-
-                <div className="bg-green-100 p-4 rounded-lg">
-                  <h4 className="font-medium text-green-900 mb-2">💚 Avantages pour vous :</h4>
-                  <ul className="text-sm text-green-800 space-y-1">
-                    <li>• Accès à toutes les fonctionnalités</li>
-                    <li>• Mises à jour gratuites</li>
-                    <li>• Support prioritaire</li>
-                    <li>• Fonctionnalités avancées</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <p className="text-sm text-gray-600">
-                  Merci pour votre soutien ! Chaque contribution aide à améliorer Planneo pour tous les commerçants. 🌟
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-center mb-4">
-              <Mail className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Contact et Support</h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">Développeur</h3>
-                <p className="text-gray-600 mb-2">
-                  Antoine Terrade<br/>
-                  Créateur de Planneo
-                </p>
-
-                <div className="space-y-2">
-                  <a
-                    href="mailto:contact@antoineterrade.com"
-                    className="flex items-center text-blue-600 hover:text-blue-800"
-                  >
-                    <Mail className="h-4 w-4 mr-2" />
-                    contact@antoineterrade.com
-                  </a>
-
-                  <a
-                    href="https://github.com/TonyLaPoche/planeo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-gray-600 hover:text-gray-800"
-                  >
-                    <Github className="h-4 w-4 mr-2" />
-                    Code source sur GitHub
-                    <ExternalLink className="h-3 w-3 ml-1" />
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">Support</h3>
-                <p className="text-gray-600 mb-2">
-                  Pour toute question concernant l&apos;application, les fonctionnalités,
-                  ou pour signaler un problème :
-                </p>
-                <p className="text-sm text-gray-500">
-                  Réponse généralement sous 24-48h
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Liens légaux */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Informations légales</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.technology.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.technology.description')}</p>
+            
             <div className="grid md:grid-cols-3 gap-4">
-              <Link
-                href="/cgu"
-                className="p-4 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-colors duration-200"
-              >
-                <FileText className="h-6 w-6 text-blue-600 mb-2" />
-                <h3 className="font-medium text-blue-900 mb-1">Conditions d&apos;Utilisation</h3>
-                <p className="text-sm text-blue-700">
-                  Règles d&apos;utilisation de l&apos;application
-                </p>
-              </Link>
-              
-              <Link
-                href="/privacy"
-                className="p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-colors duration-200"
-              >
-                <Shield className="h-6 w-6 text-green-600 mb-2" />
-                <h3 className="font-medium text-green-900 mb-1">Politique de Confidentialité</h3>
-                <p className="text-sm text-green-700">
-                  Comment nous protégeons vos données
-                </p>
-              </Link>
-              
-              <Link
-                href="/security"
-                className="p-4 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-colors duration-200"
-              >
-                <Lock className="h-6 w-6 text-purple-600 mb-2" />
-                <h3 className="font-medium text-purple-900 mb-1">Sécurité & Confidentialité</h3>
-                <p className="text-sm text-purple-700">
-                  Nos mesures de sécurité détaillées
-                </p>
-              </Link>
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-3">{t('about.sections.technology.stack.frontend.title')}</h3>
+                <div className="space-y-1">
+                  {Array.isArray(t('about.sections.technology.stack.frontend.technologies')) && 
+                    (t('about.sections.technology.stack.frontend.technologies') as unknown as string[]).map((tech: string, index: number) => (
+                      <span key={index} className="inline-block bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                        {tech}
+                      </span>
+                    ))}
+                </div>
+              </div>
+
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="font-medium text-green-800 mb-3">{t('about.sections.technology.stack.backend.title')}</h3>
+                <div className="space-y-1">
+                  {Array.isArray(t('about.sections.technology.stack.backend.technologies')) && 
+                    (t('about.sections.technology.stack.backend.technologies') as unknown as string[]).map((tech: string, index: number) => (
+                      <span key={index} className="inline-block bg-green-100 text-green-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                        {tech}
+                      </span>
+                    ))}
+                </div>
+              </div>
+
+              <div className="bg-red-50 p-4 rounded-lg">
+                <h3 className="font-medium text-red-800 mb-3">{t('about.sections.technology.stack.security.title')}</h3>
+                <div className="space-y-1">
+                  {Array.isArray(t('about.sections.technology.stack.security.technologies')) && 
+                    (t('about.sections.technology.stack.security.technologies') as unknown as string[]).map((tech: string, index: number) => (
+                      <span key={index} className="inline-block bg-red-100 text-red-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                        {tech}
+                      </span>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Roadmap */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.roadmap.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.roadmap.description')}</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {Array.isArray(t('about.sections.roadmap.upcoming')) && 
+                (t('about.sections.roadmap.upcoming') as unknown as string[]).map((feature: string, index: number) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <Code className="h-5 w-5 text-blue-500" />
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
+            </div>
+            </div>
+
+          {/* Support */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.support.title')}</h2>
+            <p className="text-gray-700 mb-6">{t('about.sections.support.description')}</p>
+            
+            <div className="space-y-4">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">{t('about.sections.support.channels.email.title')}</h3>
+                <p className="text-blue-700 mb-2">{t('about.sections.support.channels.email.description')}</p>
+                <p className="text-sm text-blue-600">{t('about.sections.support.channels.email.responseTime')}</p>
+              </div>
+
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="font-medium text-green-800 mb-2">{t('about.sections.support.channels.feedback.title')}</h3>
+                <p className="text-green-700">{t('about.sections.support.channels.feedback.description')}</p>
+              </div>
             </div>
           </div>
 
           {/* Footer */}
           <div className="text-center text-gray-500 text-sm">
-            <p>© 2025 Antoine Terrade. Tous droits réservés.</p>
+            <p>{t('about.footer.copyright')}</p>
             <p className="mt-1">
-              <Link href="mailto:contact@antoineterrade.com" className="text-blue-600 hover:text-blue-800">
-                contact@antoineterrade.com
+              <Link href="/" className="text-blue-600 hover:text-blue-800">
+                {t('about.footer.backHome')}
+              </Link>
+              {' • '}
+              <Link href="/cgu" className="text-blue-600 hover:text-blue-800">
+                {t('about.footer.cgu')}
+              </Link>
+              {' • '}
+              <Link href="/privacy" className="text-blue-600 hover:text-blue-800">
+                {t('about.footer.privacy')}
+              </Link>
+              {' • '}
+              <Link href="/security" className="text-blue-600 hover:text-blue-800">
+                {t('about.footer.security')}
               </Link>
             </p>
           </div>

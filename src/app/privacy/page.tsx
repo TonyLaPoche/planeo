@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
-import { Calendar, Shield, Database, Lock, Mail, ExternalLink, Eye, EyeOff, Download } from 'lucide-react';
+import { Calendar, Shield, Mail, ExternalLink, Lock, Eye, Database, Users } from 'lucide-react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function PrivacyPage() {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -16,7 +21,7 @@ export default function PrivacyPage() {
               href="/"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
-              ← Retour à l&apos;accueil
+              ← {t('privacy.footer.backHome')}
             </Link>
           </div>
         </div>
@@ -29,320 +34,259 @@ export default function PrivacyPage() {
           {/* Hero Section */}
           <div className="text-center bg-white rounded-lg shadow-sm p-8">
             <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Politique de Confidentialité</h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Dernière mise à jour : 15 janvier 2025
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{t('privacy.title')}</h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
+              {t('privacy.subtitle')}
+            </p>
+            <p className="text-sm text-gray-500">
+              {t('privacy.lastUpdated')}
             </p>
           </div>
 
           {/* Introduction */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Notre engagement envers votre vie privée</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.introduction.title')}</h2>
             <div className="space-y-4">
               <p className="text-gray-700">
-                Chez Planneo, nous prenons votre vie privée très au sérieux. Cette politique de confidentialité 
-                explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez 
-                notre application de gestion de planning.
+                {t('privacy.sections.introduction.description1')}
               </p>
-              <p className="text-gray-700">
-                <strong>Point important :</strong> Planneo fonctionne entièrement en local sur votre appareil. 
-                Vos données de planning ne quittent jamais votre navigateur.
-              </p>
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <p className="text-gray-700">
+                  <strong>{t('privacy.sections.introduction.description2')}</strong><br/>
+                  {t('privacy.sections.introduction.description3')}
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Collecte de données */}
+          {/* Data Collection */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Quelles données collectons-nous ?</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.dataCollection.title')}</h2>
             <div className="space-y-6">
               
-              {/* Données de planning */}
-              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <h3 className="text-lg font-medium text-green-900 mb-3 flex items-center">
-                  <Database className="h-5 w-5 mr-2" />
-                  Données de planning (stockage local uniquement)
-                </h3>
-                <p className="text-green-800 mb-2">
-                  Ces données sont stockées exclusivement sur votre appareil et ne sont jamais transmises :
-                </p>
-                <ul className="text-sm text-green-700 space-y-1 ml-4">
-                  <li>• Noms des employés</li>
-                  <li>• Horaires de travail et créneaux</li>
-                  <li>• Paramètres de l&apos;application</li>
-                  <li>• Notes et commentaires</li>
-                  <li>• Configuration des magasins</li>
+              {/* Planning Data */}
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">{t('privacy.sections.dataCollection.planningData.title')}</h3>
+                <p className="text-gray-700 mb-3">{t('privacy.sections.dataCollection.planningData.description')}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.dataCollection.planningData.items')) && 
+                    (t('privacy.sections.dataCollection.planningData.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
 
-              {/* Données techniques */}
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-medium text-blue-900 mb-3 flex items-center">
-                  <Eye className="h-5 w-5 mr-2" />
-                  Données techniques (avec votre consentement)
-                </h3>
-                <p className="text-blue-800 mb-2">
-                  Ces données ne sont collectées qu&apos;avec votre consentement explicite :
-                </p>
-                <ul className="text-sm text-blue-700 space-y-1 ml-4">
-                  <li>• Pages consultées (anonymisées)</li>
-                  <li>• Temps de session (anonyme)</li>
-                  <li>• Type d&apos;appareil et navigateur</li>
-                  <li>• Source de trafic</li>
-                  <li>• Erreurs techniques (anonymisées)</li>
+              {/* Technical Data */}
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">{t('privacy.sections.dataCollection.technicalData.title')}</h3>
+                <p className="text-gray-700 mb-3">{t('privacy.sections.dataCollection.technicalData.description')}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.dataCollection.technicalData.items')) && 
+                    (t('privacy.sections.dataCollection.technicalData.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
 
-              {/* Aucune donnée personnelle */}
-              <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                <h3 className="text-lg font-medium text-purple-900 mb-3 flex items-center">
-                  <EyeOff className="h-5 w-5 mr-2" />
-                  Ce que nous ne collectons PAS
-                </h3>
-                <ul className="text-sm text-purple-700 space-y-1 ml-4">
-                  <li>• Adresses email personnelles</li>
-                  <li>• Numéros de téléphone</li>
-                  <li>• Adresses IP (sauf pour la sécurité)</li>
-                  <li>• Données de géolocalisation</li>
-                  <li>• Informations de paiement</li>
-                  <li>• Données biométriques</li>
+              {/* What we don't collect */}
+              <div className="bg-red-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium text-red-800 mb-3">{t('privacy.sections.dataCollection.noPersonalData.title')}</h3>
+                <ul className="list-disc list-inside text-red-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.dataCollection.noPersonalData.items')) && 
+                    (t('privacy.sections.dataCollection.noPersonalData.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* Utilisation des données */}
+          {/* Data Usage */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">2. Comment utilisons-nous vos données ?</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.dataUsage.title')}</h2>
             <div className="space-y-4">
               
-              <h3 className="text-lg font-medium text-gray-900">2.1 Données de planning</h3>
-              <p className="text-gray-700">
-                Vos données de planning sont utilisées uniquement pour faire fonctionner l&apos;application 
-                sur votre appareil. Elles ne sont jamais transmises à nos serveurs.
-              </p>
-
-              <h3 className="text-lg font-medium text-gray-900">2.2 Données techniques (si acceptées)</h3>
-              <p className="text-gray-700 mb-2">Nous utilisons ces données pour :</p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>Améliorer les performances de l&apos;application</li>
-                <li>Identifier et corriger les bugs</li>
-                <li>Comprendre l&apos;utilisation des fonctionnalités</li>
-                <li>Optimiser l&apos;expérience utilisateur</li>
-              </ul>
-
-              <h3 className="text-lg font-medium text-gray-900">2.3 Publicités</h3>
-              <p className="text-gray-700">
-                Google AdSense peut afficher des publicités contextuelles basées sur le contenu de la page, 
-                mais sans accès à vos données de planning personnelles.
-              </p>
-            </div>
-          </div>
-
-          {/* Partage des données */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Partage de vos données</h2>
-            <div className="space-y-4">
-              <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                <h3 className="text-lg font-medium text-red-900 mb-2">🚫 Nous ne vendons JAMAIS vos données</h3>
-                <p className="text-red-800">
-                  Vos données de planning ne sont jamais vendues, louées ou partagées avec des tiers 
-                  à des fins commerciales.
-                </p>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataUsage.planningData.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataUsage.planningData.description')}</p>
               </div>
 
-              <h3 className="text-lg font-medium text-gray-900">3.1 Services tiers utilisés</h3>
-              <div className="space-y-3">
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="font-medium text-gray-900">Google AdSense</h4>
-                  <p className="text-sm text-gray-600">
-                    Affiche des publicités contextuelles. Aucune donnée personnelle n&apos;est transmise.
-                  </p>
-                </div>
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="font-medium text-gray-900">Vercel Analytics</h4>
-                  <p className="text-sm text-gray-600">
-                    Mesure l&apos;utilisation de l&apos;application avec des données anonymisées.
-                  </p>
-                </div>
-              </div>
-
-              <h3 className="text-lg font-medium text-gray-900">3.2 Obligations légales</h3>
-              <p className="text-gray-700">
-                Nous ne partagerons vos données qu&apos;en cas d&apos;obligation légale ou de demande 
-                des autorités compétentes, dans le strict respect de la loi.
-              </p>
-            </div>
-          </div>
-
-          {/* Sécurité */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">4. Sécurité de vos données</h2>
-            <div className="space-y-4">
-              
-              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <h3 className="text-lg font-medium text-green-900 mb-3 flex items-center">
-                  <Lock className="h-5 w-5 mr-2" />
-                  Stockage local sécurisé
-                </h3>
-                <p className="text-green-800 mb-2">
-                  Vos données sont protégées par :
-                </p>
-                <ul className="text-sm text-green-700 space-y-1 ml-4">
-                  <li>• Chiffrement HTTPS pour toutes les communications</li>
-                  <li>• Stockage local uniquement (localStorage)</li>
-                  <li>• Aucune transmission vers nos serveurs</li>
-                  <li>• Mises à jour de sécurité régulières</li>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataUsage.technicalData.title')}</h3>
+                <p className="text-gray-700 mb-2">{t('privacy.sections.dataUsage.technicalData.description')}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.dataUsage.technicalData.items')) && 
+                    (t('privacy.sections.dataUsage.technicalData.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ul>
               </div>
 
-              <h3 className="text-lg font-medium text-gray-900">4.1 Mesures de sécurité techniques</h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>Certificats SSL/TLS pour le chiffrement</li>
-                <li>Hébergement sécurisé sur Vercel</li>
-                <li>Mises à jour régulières des dépendances</li>
-                <li>Audits de sécurité périodiques</li>
-              </ul>
-
-              <h3 className="text-lg font-medium text-gray-900">4.2 Responsabilité de l&apos;utilisateur</h3>
-              <p className="text-gray-700">
-                Vous êtes responsable de la sécurité de votre appareil et de la sauvegarde 
-                de vos données. Nous recommandons de :
-              </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-                <li>Exporter régulièrement vos données</li>
-                <li>Maintenir votre navigateur à jour</li>
-                <li>Utiliser un antivirus à jour</li>
-                <li>Ne pas partager votre appareil</li>
-              </ul>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataUsage.advertising.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataUsage.advertising.description')}</p>
+              </div>
             </div>
           </div>
 
-          {/* Droits RGPD */}
+          {/* Data Sharing */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">5. Vos droits (RGPD)</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.dataSharing.title')}</h2>
             <div className="space-y-4">
-              <p className="text-gray-700">
-                Conformément au Règlement Général sur la Protection des Données (RGPD), 
-                vous disposez des droits suivants :
-              </p>
+              
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h3 className="text-lg font-medium text-green-800 mb-2">{t('privacy.sections.dataSharing.neverSell.title')}</h3>
+                <p className="text-green-700">{t('privacy.sections.dataSharing.neverSell.description')}</p>
+              </div>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h3 className="font-medium text-blue-900 mb-2">📋 Droit d&apos;accès</h3>
-                  <p className="text-sm text-blue-800">
-                    Consultez toutes vos données via l&apos;export JSON intégré à l&apos;application.
-                  </p>
-                </div>
-
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <h3 className="font-medium text-green-900 mb-2">✏️ Droit de rectification</h3>
-                  <p className="text-sm text-green-800">
-                    Modifiez vos données directement dans l&apos;application à tout moment.
-                  </p>
-                </div>
-
-                <div className="bg-red-50 p-4 rounded-lg">
-                  <h3 className="font-medium text-red-900 mb-2">🗑️ Droit à l&apos;effacement</h3>
-                  <p className="text-sm text-red-800">
-                    Supprimez toutes vos données via les paramètres de l&apos;application.
-                  </p>
-                </div>
-
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <h3 className="font-medium text-purple-900 mb-2">📤 Droit à la portabilité</h3>
-                  <p className="text-sm text-purple-800">
-                    Exportez vos données au format JSON pour les utiliser ailleurs.
-                  </p>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-3">{t('privacy.sections.dataSharing.thirdPartyServices.title')}</h3>
+                <div className="space-y-3">
+                  <div>
+                    <h4 className="font-medium text-gray-800">{t('privacy.sections.dataSharing.thirdPartyServices.adsense.title')}</h4>
+                    <p className="text-gray-600 text-sm">{t('privacy.sections.dataSharing.thirdPartyServices.adsense.description')}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-800">{t('privacy.sections.dataSharing.thirdPartyServices.analytics.title')}</h4>
+                    <p className="text-gray-600 text-sm">{t('privacy.sections.dataSharing.thirdPartyServices.analytics.description')}</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <h3 className="font-medium text-yellow-900 mb-2">⚠️ Important</h3>
-                <p className="text-yellow-800 text-sm">
-                  Comme vos données sont stockées localement, la plupart de ces droits s&apos;exercent 
-                  directement via l&apos;application. Pour les données techniques (analytics), 
-                  contactez-nous à contact@antoineterrade.com.
-                </p>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataSharing.legalObligations.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataSharing.legalObligations.description')}</p>
               </div>
+            </div>
+          </div>
+
+          {/* Security */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.security.title')}</h2>
+            <div className="space-y-4">
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.security.localStorage.title')}</h3>
+                <p className="text-gray-700 mb-2">{t('privacy.sections.security.localStorage.description')}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.security.localStorage.items')) && 
+                    (t('privacy.sections.security.localStorage.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.security.technicalMeasures.title')}</h3>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.security.technicalMeasures.items')) && 
+                    (t('privacy.sections.security.technicalMeasures.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.security.userResponsibility.title')}</h3>
+                <p className="text-gray-700 mb-2">{t('privacy.sections.security.userResponsibility.description')}</p>
+                <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  {Array.isArray(t('privacy.sections.security.userResponsibility.items')) && 
+                    (t('privacy.sections.security.userResponsibility.items') as unknown as string[]).map((item: string, index: number) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* GDPR Rights */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.gdprRights.title')}</h2>
+            <p className="text-gray-700 mb-4">{t('privacy.sections.gdprRights.description')}</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">{t('privacy.sections.gdprRights.rights.access.title')}</h3>
+                <p className="text-blue-700 text-sm">{t('privacy.sections.gdprRights.rights.access.description')}</p>
+              </div>
+              
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">{t('privacy.sections.gdprRights.rights.rectification.title')}</h3>
+                <p className="text-blue-700 text-sm">{t('privacy.sections.gdprRights.rights.rectification.description')}</p>
+              </div>
+              
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">{t('privacy.sections.gdprRights.rights.erasure.title')}</h3>
+                <p className="text-blue-700 text-sm">{t('privacy.sections.gdprRights.rights.erasure.description')}</p>
+              </div>
+              
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-medium text-blue-800 mb-2">{t('privacy.sections.gdprRights.rights.portability.title')}</h3>
+                <p className="text-blue-700 text-sm">{t('privacy.sections.gdprRights.rights.portability.description')}</p>
+              </div>
+            </div>
+
+            <div className="mt-4 bg-yellow-50 p-4 rounded-lg">
+              <h3 className="font-medium text-yellow-800 mb-2">{t('privacy.sections.gdprRights.important.title')}</h3>
+              <p className="text-yellow-700 text-sm">{t('privacy.sections.gdprRights.important.description')}</p>
             </div>
           </div>
 
           {/* Cookies */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Cookies et technologies similaires</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.cookies.title')}</h2>
+            <p className="text-gray-700 mb-4">{t('privacy.sections.cookies.description')}</p>
+            
             <div className="space-y-4">
-              <p className="text-gray-700">
-                Planneo utilise des cookies uniquement pour améliorer votre expérience et 
-                respecter vos choix de consentement.
-              </p>
-
-              <h3 className="text-lg font-medium text-gray-900">6.1 Types de cookies utilisés</h3>
-              <div className="space-y-3">
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="font-medium text-gray-900">Cookies essentiels</h4>
-                  <p className="text-sm text-gray-600">
-                    Nécessaires au fonctionnement de l&apos;application (préférences de langue, 
-                    paramètres de consentement).
-                  </p>
-                </div>
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="font-medium text-gray-900">Cookies d&apos;analytics (optionnels)</h4>
-                  <p className="text-sm text-gray-600">
-                    Mesurent l&apos;utilisation de l&apos;application (Vercel Analytics).
-                  </p>
-                </div>
-                <div className="bg-gray-50 p-3 rounded-lg">
-                  <h4 className="font-medium text-gray-900">Cookies publicitaires (optionnels)</h4>
-                  <p className="text-sm text-gray-600">
-                    Affichent des publicités contextuelles (Google AdSense).
-                  </p>
-                </div>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.cookies.types.essential.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.cookies.types.essential.description')}</p>
               </div>
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.cookies.types.analytics.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.cookies.types.analytics.description')}</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.cookies.types.advertising.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.cookies.types.advertising.description')}</p>
+              </div>
+            </div>
 
-              <h3 className="text-lg font-medium text-gray-900">6.2 Gestion de vos préférences</h3>
-              <p className="text-gray-700">
-                Vous pouvez modifier vos préférences de cookies à tout moment via notre 
-                bannière de consentement ou en nous contactant.
-              </p>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.cookies.management.title')}</h3>
+              <p className="text-gray-700">{t('privacy.sections.cookies.management.description')}</p>
             </div>
           </div>
 
-          {/* Conservation */}
+          {/* Data Retention */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Durée de conservation</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.dataRetention.title')}</h2>
             <div className="space-y-4">
-              <h3 className="text-lg font-medium text-gray-900">7.1 Données de planning</h3>
-              <p className="text-gray-700">
-                Vos données de planning sont conservées indéfiniment sur votre appareil 
-                jusqu&apos;à ce que vous les supprimiez manuellement.
-              </p>
-
-              <h3 className="text-lg font-medium text-gray-900">7.2 Données techniques</h3>
-              <p className="text-gray-700">
-                Les données d&apos;analytics sont conservées pendant 24 mois maximum, 
-                puis supprimées automatiquement.
-              </p>
-
-              <h3 className="text-lg font-medium text-gray-900">7.3 Cookies</h3>
-              <p className="text-gray-700">
-                Les cookies expirent automatiquement selon leur type (session, 30 jours, 1 an).
-              </p>
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataRetention.planningData.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataRetention.planningData.description')}</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataRetention.technicalData.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataRetention.technicalData.description')}</p>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">{t('privacy.sections.dataRetention.cookies.title')}</h3>
+                <p className="text-gray-700">{t('privacy.sections.dataRetention.cookies.description')}</p>
+              </div>
             </div>
           </div>
 
-          {/* Modifications */}
+          {/* Policy Changes */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Modifications de cette politique</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('privacy.sections.policyChanges.title')}</h2>
             <div className="space-y-4">
-              <p className="text-gray-700">
-                Nous pouvons modifier cette politique de confidentialité pour refléter 
-                les changements dans nos pratiques ou pour d&apos;autres raisons opérationnelles, 
-                légales ou réglementaires.
-              </p>
-              <p className="text-gray-700">
-                Les modifications importantes seront notifiées via l&apos;application 
-                ou par email si vous nous avez fourni votre adresse.
-              </p>
+              <p className="text-gray-700">{t('privacy.sections.policyChanges.description1')}</p>
+              <p className="text-gray-700">{t('privacy.sections.policyChanges.description2')}</p>
             </div>
           </div>
 
@@ -350,18 +294,15 @@ export default function PrivacyPage() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center mb-4">
               <Mail className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Contact et questions</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">{t('privacy.sections.contact.title')}</h2>
             </div>
             <div className="space-y-4">
-              <p className="text-gray-700">
-                Pour toute question concernant cette politique de confidentialité ou 
-                l&apos;utilisation de vos données :
-              </p>
+              <p className="text-gray-700">{t('privacy.sections.contact.description')}</p>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="text-gray-700 mb-2">
-                  <strong>Antoine Terrade</strong><br/>
-                  Développeur de Planneo<br/>
-                  Responsable du traitement des données
+                  <strong>{t('privacy.sections.contact.developer')}</strong><br/>
+                  {t('privacy.sections.contact.role')}<br/>
+                  <span className="text-sm text-gray-600">{t('privacy.sections.contact.responsibility')}</span>
                 </p>
                 <a
                   href="mailto:contact@antoineterrade.com"
@@ -369,27 +310,25 @@ export default function PrivacyPage() {
                 >
                   contact@antoineterrade.com
                 </a>
+                <p className="text-sm text-gray-600 mt-2">{t('privacy.sections.contact.responseTime')}</p>
               </div>
-              <p className="text-sm text-gray-600">
-                Réponse généralement sous 24-48h
-              </p>
             </div>
           </div>
 
           {/* Footer */}
           <div className="text-center text-gray-500 text-sm">
-            <p>© 2025 Antoine Terrade. Tous droits réservés.</p>
+            <p>{t('privacy.footer.copyright')}</p>
             <p className="mt-1">
               <Link href="/" className="text-blue-600 hover:text-blue-800">
-                Retour à l&apos;accueil
+                {t('privacy.footer.backHome')}
               </Link>
               {' • '}
               <Link href="/about" className="text-blue-600 hover:text-blue-800">
-                À propos
+                {t('privacy.footer.about')}
               </Link>
               {' • '}
               <Link href="/cgu" className="text-blue-600 hover:text-blue-800">
-                CGU
+                {t('privacy.footer.cgu')}
               </Link>
             </p>
           </div>
