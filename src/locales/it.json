@@ -298,6 +298,12 @@
   "footer": {
     "about": "Chi siamo",
     "aboutAriaLabel": "Chi siamo - Planneo",
+    "cgu": "Termini",
+    "cguAriaLabel": "Termini di Servizio",
+    "privacy": "Privacy",
+    "privacyAriaLabel": "Politica sulla Privacy",
+    "security": "Sicurezza",
+    "securityAriaLabel": "Sicurezza e Privacy",
     "support": "Supporta",
     "supportAriaLabel": "Supporta lo sviluppo su Buy Me a Coffee",
     "copyright": "©2025",
@@ -316,5 +322,700 @@
     "en": "English",
     "de": "Deutsch",
     "it": "Italiano"
+  },
+  "cgu": {
+    "title": "Termini di Servizio",
+    "lastUpdated": "Ultimo aggiornamento: 15 gennaio 2025",
+    "sections": {
+      "object": {
+        "title": "1. Oggetto e campo di applicazione",
+        "description1": "Questi Termini di Servizio (ToS) regolano l'uso dell'applicazione",
+        "description2": "Planneo",
+        "description3": ", un software di gestione turni sviluppato da Antoine Terrade.",
+        "description4": "Planneo è un'applicazione web progressiva (PWA) destinata alla gestione dei turni di squadra per negozi, aziende e piccole e medie imprese.",
+        "description5": "L'uso dell'applicazione implica l'accettazione piena e completa di questi ToS."
+      },
+      "access": {
+        "title": "2. Accesso e utilizzo dell'applicazione",
+        "freeAccess": {
+          "title": "2.1 Accesso gratuito",
+          "description": "Planneo è accessibile gratuitamente senza registrazione preliminare. L'applicazione funziona direttamente nel browser web e può essere installata come applicazione nativa su mobile e desktop."
+        },
+        "allowedUse": {
+          "title": "2.2 Utilizzo autorizzato",
+          "description": "L'utente si impegna a utilizzare Planneo:",
+          "items": [
+            "In conformità con questi ToS",
+            "Nel rispetto delle leggi e regolamenti vigenti",
+            "In modo leale e di buona fede",
+            "Esclusivamente per la gestione professionale dei turni"
+          ]
+        },
+        "forbiddenUse": {
+          "title": "2.3 Utilizzo vietato",
+          "description": "È severamente vietato:",
+          "items": [
+            "Utilizzare l'applicazione per scopi illegali o non autorizzati",
+            "Tentare di aggirare le misure di sicurezza",
+            "Riprodurre, distribuire o modificare il codice sorgente senza autorizzazione",
+            "Utilizzare l'applicazione per danneggiare terzi",
+            "Raccogliere dati di altri utenti"
+          ]
+        }
+      },
+      "data": {
+        "title": "3. Dati e privacy",
+        "localStorage": {
+          "title": "3.1 Archiviazione locale dei dati",
+          "description": "Tutti i dati inseriti in Planneo (nomi dipendenti, turni, impostazioni) sono memorizzati esclusivamente sul dispositivo dell'utente tramite il localStorage del browser. Nessun dato viene trasmesso ai nostri server."
+        },
+        "userResponsibility": {
+          "title": "3.2 Responsabilità dell'utente",
+          "description": "L'utente è l'unico responsabile di:",
+          "items": [
+            "Il backup dei propri dati",
+            "La sicurezza del proprio dispositivo",
+            "Il rispetto della riservatezza dei dati dei propri dipendenti",
+            "La conformità al GDPR per i dati personali"
+          ]
+        },
+        "export": {
+          "title": "3.3 Export e portabilità",
+          "description": "L'utente può esportare i propri dati in qualsiasi momento tramite la funzione di export integrata nell'applicazione. I dati vengono esportati in formato JSON."
+        }
+      },
+      "thirdParty": {
+        "title": "4. Servizi di terze parti e pubblicità",
+        "adsense": {
+          "title": "4.1 Google AdSense",
+          "description": "Planneo è finanziato dalla pubblicità Google AdSense. Questi annunci vengono visualizzati in modo non invasivo e rispettano le vostre scelte di consenso tramite il nostro sistema di gestione dei cookie."
+        },
+        "analytics": {
+          "title": "4.2 Analytics",
+          "description": "Utilizziamo Vercel Analytics per misurare l'utilizzo dell'applicazione. Questi dati sono anonimizzati e non permettono di identificare gli utenti."
+        },
+        "consent": {
+          "title": "4.3 Consenso",
+          "description": "L'attivazione dei servizi di terze parti (pubblicità, analytics) richiede il vostro consenso esplicito tramite il nostro banner dei cookie. Potete modificare le vostre preferenze in qualsiasi momento."
+        }
+      },
+      "responsibilities": {
+        "title": "5. Responsabilità e limitazioni",
+        "developer": {
+          "title": "5.1 Responsabilità dello sviluppatore",
+          "description": "Antoine Terrade si sforza di mantenere Planneo funzionale e sicuro, ma non può garantire una disponibilità del 100%. L'applicazione è fornita \"così com'è\" senza garanzia di prestazioni."
+        },
+        "limitation": {
+          "title": "5.2 Limitazione di responsabilità",
+          "description": "In nessun caso Antoine Terrade potrà essere ritenuto responsabile di:",
+          "items": [
+            "Perdita di dati dovuta a malfunzionamenti del dispositivo utente",
+            "Danni indiretti o consequenziali dall'uso dell'applicazione",
+            "Interruzioni temporanee del servizio",
+            "Errori di turni dovuti a uso improprio"
+          ]
+        },
+        "user": {
+          "title": "5.3 Responsabilità dell'utente",
+          "description": "L'utente è l'unico responsabile del proprio utilizzo di Planneo e delle conseguenze che ne derivano. Si impegna a utilizzare l'applicazione in conformità al suo scopo previsto."
+        }
+      },
+      "intellectualProperty": {
+        "title": "6. Proprietà intellettuale",
+        "description1": "Planneo, il suo codice sorgente, design, funzionalità e tutti gli elementi che lo compongono sono proprietà esclusiva di Antoine Terrade.",
+        "description2": "L'utente non può riprodurre, distribuire, modificare o creare opere derivate basate su Planneo senza autorizzazione scritta preventiva.",
+        "description3": "I dati inseriti dall'utente rimangono di sua proprietà esclusiva."
+      },
+      "evolution": {
+        "title": "7. Evoluzione e manutenzione",
+        "updates": {
+          "title": "7.1 Aggiornamenti",
+          "description": "Planneo può essere aggiornato regolarmente per migliorare le funzionalità, correggere bug o migliorare la sicurezza. Gli aggiornamenti sono automatici e gratuiti."
+        },
+        "cguEvolution": {
+          "title": "7.2 Evoluzione dei ToS",
+          "description": "Questi ToS possono essere modificati in qualsiasi momento. Le modifiche importanti saranno notificate agli utenti tramite l'applicazione o per email."
+        },
+        "support": {
+          "title": "7.3 Supporto tecnico",
+          "description": "Il supporto tecnico è fornito con il massimo impegno tramite l'indirizzo email contact@antoineterrade.com. Non è garantito alcun tempo di risposta."
+        }
+      },
+      "law": {
+        "title": "8. Legge applicabile e giurisdizione",
+        "description1": "Questi ToS sono regolati dalla legge francese. In caso di controversia, i tribunali francesi avranno giurisdizione esclusiva.",
+        "description2": "In caso di disaccordo, le parti si sforzeranno di trovare una soluzione amichevole prima di qualsiasi ricorso legale."
+      },
+      "contact": {
+        "title": "Contatto",
+        "description": "Per qualsiasi domanda riguardo questi Termini di Servizio:",
+        "developer": "Antoine Terrade",
+        "role": "Sviluppatore di Planneo"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Tutti i diritti riservati.",
+      "backHome": "Torna alla home",
+      "about": "Chi siamo",
+      "privacy": "Politica sulla Privacy"
+    }
+  },
+  "privacy": {
+    "title": "Politica sulla Privacy",
+    "lastUpdated": "Ultimo aggiornamento: 15 gennaio 2025",
+    "subtitle": "La vostra sicurezza e privacy sono le nostre priorità assolute",
+    "sections": {
+      "introduction": {
+        "title": "Il nostro impegno per la vostra privacy",
+        "description1": "In Planneo, prendiamo molto seriamente la vostra privacy. Questa politica sulla privacy spiega come raccogliamo, utilizziamo e proteggiamo le vostre informazioni quando utilizzate la nostra applicazione di gestione turni.",
+        "description2": "Punto importante:",
+        "description3": "Planneo funziona interamente in locale sul vostro dispositivo. I vostri dati di turni non lasciano mai il vostro browser."
+      },
+      "dataCollection": {
+        "title": "Quali dati raccogliamo?",
+        "planningData": {
+          "title": "Dati di turni (solo archiviazione locale)",
+          "description": "Questi dati sono memorizzati esclusivamente sul vostro dispositivo e non vengono mai trasmessi:",
+          "items": [
+            "Nomi dei dipendenti",
+            "Orari di lavoro e fasce orarie",
+            "Impostazioni dell'applicazione",
+            "Note e commenti",
+            "Configurazione dei negozi"
+          ]
+        },
+        "technicalData": {
+          "title": "Dati tecnici (con il vostro consenso)",
+          "description": "Questi dati vengono raccolti solo con il vostro consenso esplicito:",
+          "items": [
+            "Pagine visualizzate (anonimizzate)",
+            "Tempo di sessione (anonimo)",
+            "Tipo di dispositivo e browser",
+            "Fonte del traffico",
+            "Errori tecnici (anonimizzati)"
+          ]
+        },
+        "noPersonalData": {
+          "title": "Cosa NON raccogliamo",
+          "items": [
+            "Indirizzi email personali",
+            "Numeri di telefono",
+            "Indirizzi IP (eccetto per sicurezza)",
+            "Dati di geolocalizzazione",
+            "Informazioni di pagamento",
+            "Dati biometrici"
+          ]
+        }
+      },
+      "dataUsage": {
+        "title": "Come utilizziamo i vostri dati?",
+        "planningData": {
+          "title": "Dati di turni",
+          "description": "I vostri dati di turni vengono utilizzati solo per far funzionare l'applicazione sul vostro dispositivo. Non vengono mai trasmessi ai nostri server."
+        },
+        "technicalData": {
+          "title": "Dati tecnici (se accettati)",
+          "description": "Utilizziamo questi dati per:",
+          "items": [
+            "Migliorare le prestazioni dell'applicazione",
+            "Identificare e correggere i bug",
+            "Comprendere l'utilizzo delle funzionalità",
+            "Ottimizzare l'esperienza utente"
+          ]
+        },
+        "advertising": {
+          "title": "Pubblicità",
+          "description": "Google AdSense può visualizzare annunci contestuali basati sul contenuto della pagina, ma senza accesso ai vostri dati personali di turni."
+        }
+      },
+      "dataSharing": {
+        "title": "Condivisione dei vostri dati",
+        "neverSell": {
+          "title": "NON vendiamo MAI i vostri dati",
+          "description": "I vostri dati di turni non vengono mai venduti, affittati o condivisi con terze parti per scopi commerciali."
+        },
+        "thirdPartyServices": {
+          "title": "Servizi di terze parti utilizzati",
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Visualizza annunci contestuali. Nessun dato personale viene trasmesso."
+          },
+          "analytics": {
+            "title": "Vercel Analytics",
+            "description": "Misura l'utilizzo dell'applicazione con dati anonimizzati."
+          }
+        },
+        "legalObligations": {
+          "title": "Obblighi legali",
+          "description": "Condivideremo i vostri dati solo in caso di obbligo legale o richiesta delle autorità competenti, nel rigoroso rispetto della legge."
+        }
+      },
+      "security": {
+        "title": "Sicurezza dei vostri dati",
+        "localStorage": {
+          "title": "Archiviazione locale sicura",
+          "description": "I vostri dati sono protetti da:",
+          "items": [
+            "Crittografia HTTPS per tutte le comunicazioni",
+            "Solo archiviazione locale (localStorage)",
+            "Nessuna trasmissione ai nostri server",
+            "Aggiornamenti di sicurezza regolari"
+          ]
+        },
+        "technicalMeasures": {
+          "title": "Misure di sicurezza tecniche",
+          "items": [
+            "Certificati SSL/TLS per la crittografia",
+            "Hosting sicuro su Vercel",
+            "Aggiornamenti regolari delle dipendenze",
+            "Audit di sicurezza periodici"
+          ]
+        },
+        "userResponsibility": {
+          "title": "Responsabilità dell'utente",
+          "description": "Siete responsabili della sicurezza del vostro dispositivo e del backup dei vostri dati. Raccomandiamo di:",
+          "items": [
+            "Esportare regolarmente i vostri dati",
+            "Mantenere il browser aggiornato",
+            "Utilizzare un antivirus aggiornato",
+            "Non condividere il dispositivo"
+          ]
+        }
+      },
+      "gdprRights": {
+        "title": "I vostri diritti (GDPR)",
+        "description": "In conformità al Regolamento Generale sulla Protezione dei Dati (GDPR), avete i seguenti diritti:",
+        "rights": {
+          "access": {
+            "title": "Diritto di accesso",
+            "description": "Visualizzate tutti i vostri dati tramite l'export JSON integrato nell'applicazione."
+          },
+          "rectification": {
+            "title": "Diritto di rettifica",
+            "description": "Modificate i vostri dati direttamente nell'applicazione in qualsiasi momento."
+          },
+          "erasure": {
+            "title": "Diritto alla cancellazione",
+            "description": "Eliminate tutti i vostri dati tramite le impostazioni dell'applicazione."
+          },
+          "portability": {
+            "title": "Diritto alla portabilità",
+            "description": "Esportate i vostri dati in formato JSON per utilizzarli altrove."
+          }
+        },
+        "important": {
+          "title": "Importante",
+          "description": "Poiché i vostri dati sono memorizzati localmente, la maggior parte di questi diritti si esercita direttamente tramite l'applicazione. Per i dati tecnici (analytics), contattateci a contact@antoineterrade.com."
+        }
+      },
+      "cookies": {
+        "title": "Cookie e tecnologie simili",
+        "description": "Planneo utilizza i cookie solo per migliorare la vostra esperienza e rispettare le vostre scelte di consenso.",
+        "types": {
+          "essential": {
+            "title": "Cookie essenziali",
+            "description": "Necessari per il funzionamento dell'applicazione (preferenze di lingua, impostazioni di consenso)."
+          },
+          "analytics": {
+            "title": "Cookie di analytics (opzionali)",
+            "description": "Misurano l'utilizzo dell'applicazione (Vercel Analytics)."
+          },
+          "advertising": {
+            "title": "Cookie pubblicitari (opzionali)",
+            "description": "Visualizzano annunci contestuali (Google AdSense)."
+          }
+        },
+        "management": {
+          "title": "Gestione delle vostre preferenze",
+          "description": "Potete modificare le vostre preferenze sui cookie in qualsiasi momento tramite il nostro banner di consenso o contattandoci."
+        }
+      },
+      "dataRetention": {
+        "title": "Durata di conservazione",
+        "planningData": {
+          "title": "Dati di turni",
+          "description": "I vostri dati di turni sono conservati indefinitamente sul vostro dispositivo fino a quando non li eliminate manualmente."
+        },
+        "technicalData": {
+          "title": "Dati tecnici",
+          "description": "I dati di analytics sono conservati per un massimo di 24 mesi, poi eliminati automaticamente."
+        },
+        "cookies": {
+          "title": "Cookie",
+          "description": "I cookie scadono automaticamente secondo il loro tipo (sessione, 30 giorni, 1 anno)."
+        }
+      },
+      "policyChanges": {
+        "title": "Modifiche a questa politica",
+        "description1": "Possiamo modificare questa politica sulla privacy per riflettere i cambiamenti nelle nostre pratiche o per altre ragioni operative, legali o regolamentari.",
+        "description2": "Le modifiche importanti saranno notificate tramite l'applicazione o per email se ci avete fornito il vostro indirizzo."
+      },
+      "contact": {
+        "title": "Contatto e domande",
+        "description": "Per qualsiasi domanda riguardo questa politica sulla privacy o l'utilizzo dei vostri dati:",
+        "developer": "Antoine Terrade",
+        "role": "Sviluppatore di Planneo",
+        "responsibility": "Responsabile del trattamento dei dati",
+        "responseTime": "Risposta generalmente entro 24-48h"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Tutti i diritti riservati.",
+      "backHome": "Torna alla home",
+      "about": "Chi siamo",
+      "cgu": "ToS"
+    }
+  },
+  "security": {
+    "title": "Sicurezza & Privacy",
+    "lastUpdated": "Ultimo aggiornamento: 15 gennaio 2025",
+    "subtitle": "I vostri dati sono protetti dalle migliori pratiche di sicurezza",
+    "sections": {
+      "introduction": {
+        "title": "Il nostro impegno per la sicurezza",
+        "description1": "La sicurezza dei vostri dati è la nostra priorità assoluta. Planneo è stato progettato fin dall'inizio con un approccio \"sicurezza by design\" per garantire la massima protezione delle vostre informazioni sensibili.",
+        "description2": "Architettura sicura:",
+        "description3": "Planneo funziona interamente in locale sul vostro dispositivo, il che significa che i vostri dati non lasciano mai il vostro browser e non vengono mai trasmessi ai nostri server."
+      },
+      "dataProtection": {
+        "title": "Protezione dei vostri dati",
+        "localStorage": {
+          "title": "Archiviazione locale sicura",
+          "description": "Tutti i vostri dati di turni sono memorizzati esclusivamente sul vostro dispositivo tramite il localStorage del vostro browser:",
+          "features": [
+            "Crittografia automatica dei dati sensibili",
+            "Nessuna trasmissione a server esterni",
+            "Backup locale automatico",
+            "Export sicuro in formato JSON"
+          ]
+        },
+        "encryption": {
+          "title": "Crittografia e sicurezza",
+          "description": "I vostri dati sono protetti da più livelli di sicurezza:",
+          "features": [
+            "HTTPS/TLS per tutte le comunicazioni",
+            "Crittografia locale dei dati sensibili",
+            "Certificati SSL validi e aggiornati",
+            "Protezione contro attacchi XSS e CSRF"
+          ]
+        },
+        "noTracking": {
+          "title": "Nessun tracking o sorveglianza",
+          "description": "Planneo rispetta la vostra privacy:",
+          "features": [
+            "Nessun tracking della vostra navigazione",
+            "Nessuna raccolta di dati personali",
+            "Nessun cookie di tracking",
+            "Solo analytics anonimizzate (con consenso)"
+          ]
+        }
+      },
+      "gdprCompliance": {
+        "title": "Conformità GDPR",
+        "description": "Planneo è completamente conforme al Regolamento Generale sulla Protezione dei Dati (GDPR):",
+        "principles": {
+          "lawfulness": {
+            "title": "Liceità del trattamento",
+            "description": "I vostri dati sono elaborati solo per il funzionamento dell'applicazione, con il vostro consenso esplicito."
+          },
+          "transparency": {
+            "title": "Trasparenza",
+            "description": "Tutte le nostre pratiche di elaborazione dei dati sono documentate e accessibili."
+          },
+          "minimization": {
+            "title": "Minimizzazione dei dati",
+            "description": "Raccogliamo solo i dati strettamente necessari per il funzionamento dell'applicazione."
+          },
+          "accuracy": {
+            "title": "Esattezza",
+            "description": "Potete modificare, correggere o eliminare i vostri dati in qualsiasi momento."
+          },
+          "storage": {
+            "title": "Limitazione della conservazione",
+            "description": "I vostri dati sono conservati solo per il tempo necessario all'utilizzo dell'applicazione."
+          },
+          "security": {
+            "title": "Integrità e riservatezza",
+            "description": "I vostri dati sono protetti da misure di sicurezza tecniche e organizzative appropriate."
+          }
+        }
+      },
+      "technicalSecurity": {
+        "title": "Sicurezza tecnica",
+        "infrastructure": {
+          "title": "Infrastruttura sicura",
+          "description": "Planneo è ospitato su un'infrastruttura di livello aziendale:",
+          "features": [
+            "Hosting Vercel con certificati SSL/TLS",
+            "CDN globale per prestazioni ottimali",
+            "Aggiornamenti di sicurezza automatici",
+            "Monitoraggio delle prestazioni 24/7"
+          ]
+        },
+        "codeSecurity": {
+          "title": "Sicurezza del codice",
+          "description": "Il codice di Planneo è sviluppato secondo le migliori pratiche:",
+          "features": [
+            "Audit di sicurezza regolari",
+            "Dipendenze aggiornate automaticamente",
+            "Test di sicurezza automatizzati",
+            "Revisione sistematica del codice"
+          ]
+        },
+        "browserSecurity": {
+          "title": "Sicurezza del browser",
+          "description": "Planneo utilizza le funzionalità di sicurezza moderne del browser:",
+          "features": [
+            "Content Security Policy (CSP) rigorosa",
+            "Protezione contro attacchi XSS",
+            "Header di sicurezza HTTP",
+            "Sandboxing dei componenti sensibili"
+          ]
+        }
+      },
+      "userResponsibility": {
+        "title": "Responsabilità dell'utente",
+        "description": "La sicurezza dei vostri dati dipende anche dalle vostre buone pratiche:",
+        "recommendations": {
+          "device": {
+            "title": "Sicurezza del dispositivo",
+            "items": [
+              "Mantenete il vostro browser aggiornato",
+              "Utilizzate un antivirus aggiornato",
+              "Non condividete il vostro dispositivo",
+              "Bloccate lo schermo quando vi allontanate"
+            ]
+          },
+          "data": {
+            "title": "Gestione dei dati",
+            "items": [
+              "Esportate regolarmente i vostri dati",
+              "Sicurate i vostri export in modo sicuro",
+              "Eliminate i dati non necessari",
+              "Non condividete i vostri export"
+            ]
+          },
+          "access": {
+            "title": "Controllo dell'accesso",
+            "items": [
+              "Utilizzate password forti",
+              "Attivate l'autenticazione a due fattori",
+              "Disconnettetevi dopo l'uso",
+              "Non lasciate l'applicazione aperta"
+            ]
+          }
+        }
+      },
+      "incidentResponse": {
+        "title": "Gestione degli incidenti di sicurezza",
+        "description": "In caso di incidente di sicurezza, abbiamo procedure in atto:",
+        "procedures": {
+          "detection": {
+            "title": "Rilevamento",
+            "description": "Monitoraggio continuo e alert automatici per rilevare qualsiasi anomalia."
+          },
+          "response": {
+            "title": "Risposta",
+            "description": "Procedure di emergenza per isolare e correggere qualsiasi problema di sicurezza."
+          },
+          "notification": {
+            "title": "Notifica",
+            "description": "Informazione trasparente agli utenti in caso di incidente maggiore."
+          },
+          "recovery": {
+            "title": "Recupero",
+            "description": "Piano di recupero per ripristinare il servizio rapidamente e in sicurezza."
+          }
+        }
+      },
+      "audit": {
+        "title": "Audit e certificazioni",
+        "description": "Planneo è sottoposto ad audit di sicurezza regolari:",
+        "audits": {
+          "code": {
+            "title": "Audit del codice",
+            "description": "Analisi statica e dinamica del codice sorgente per identificare le vulnerabilità."
+          },
+          "infrastructure": {
+            "title": "Audit dell'infrastruttura",
+            "description": "Verifica della sicurezza dell'infrastruttura di hosting."
+          },
+          "compliance": {
+            "title": "Audit di conformità",
+            "description": "Verifica della conformità alle normative (GDPR, ecc.)."
+          }
+        }
+      },
+      "commitment": {
+        "title": "Il nostro impegno",
+        "description": "Ci impegniamo a:",
+        "commitments": [
+          "Mantenere la sicurezza dei vostri dati come priorità assoluta",
+          "Rispettare la vostra privacy e le vostre scelte di riservatezza",
+          "Essere trasparenti sulle nostre pratiche di sicurezza",
+          "Migliorare continuamente le nostre misure di protezione",
+          "Reagire rapidamente a qualsiasi minaccia di sicurezza",
+          "Rispettare tutte le normative applicabili"
+        ]
+      },
+      "contact": {
+        "title": "Segnalare un problema di sicurezza",
+        "description": "Se scoprite una vulnerabilità di sicurezza, contattateci immediatamente:",
+        "developer": "Antoine Terrade",
+        "role": "Sviluppatore di Planneo",
+        "email": "contact@antoineterrade.com",
+        "responseTime": "Risposta entro 24h per problemi di sicurezza",
+        "disclosure": "Seguiamo le migliori pratiche per la divulgazione responsabile delle vulnerabilità."
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Tutti i diritti riservati.",
+      "backHome": "Torna alla home",
+      "about": "Chi siamo",
+      "privacy": "Politica sulla Privacy"
+    }
+  },
+  "about": {
+    "title": "Chi siamo - Planneo",
+    "subtitle": "La vostra soluzione per la gestione dei turni",
+    "sections": {
+      "hero": {
+        "title": "Benvenuti su Planneo",
+        "description": "Planneo è un'applicazione web progressiva (PWA) progettata per semplificare la gestione dei turni per negozi, aziende e piccole e medie imprese.",
+        "features": [
+          "Gestione intuitiva dei turni",
+          "Interfaccia moderna e responsive",
+          "Funzionalità offline",
+          "100% gratuito e senza pubblicità invadente"
+        ]
+      },
+      "developer": {
+        "title": "Identità dello sviluppatore",
+        "name": "Antoine Terrade",
+        "role": "Sviluppatore Full-Stack",
+        "experience": "5+ anni di esperienza nello sviluppo web",
+        "specialization": "Specializzato in applicazioni di gestione e PWA",
+        "mission": "Democratizzare l'accesso agli strumenti di gestione professionali",
+        "vision": "Creare soluzioni semplici, efficaci e accessibili a tutti",
+        "contact": "contact@antoineterrade.com",
+        "bio": "Appassionato di sviluppo web e innovazione, Antoine Terrade si sforza di creare applicazioni che semplificano la vita professionale. Con competenze in React, Next.js e tecnologie moderne, sviluppa soluzioni robuste e performanti.",
+        "values": [
+          "Semplicità prima di tutto",
+          "Codice pulito e manutenibile",
+          "Esperienza utente ottimale",
+          "Rispetto della privacy"
+        ]
+      },
+      "story": {
+        "title": "La storia di Planneo",
+        "problem": {
+          "title": "Il problema",
+          "description": "Le piccole aziende e i negozi spesso faticano a gestire efficacemente i loro turni. Le soluzioni esistenti sono troppo complesse, troppo costose o non soddisfano le esigenze specifiche del retail."
+        },
+        "solution": {
+          "title": "La nostra soluzione",
+          "description": "Planneo è stato creato per rispondere a questa esigenza. Un'applicazione semplice, gratuita ed efficace che permette di gestire i turni in pochi clic, senza formazione preliminare."
+        },
+        "mission": {
+          "title": "La nostra missione",
+          "description": "Democratizzare l'accesso agli strumenti di gestione professionali offrendo una soluzione gratuita, semplice ed efficace per la gestione dei turni."
+        }
+      },
+      "economicModel": {
+        "title": "Modello Economico Trasparente",
+        "description": "Planneo è e rimarrà sempre gratuito. Ecco come finanziamo lo sviluppo e la manutenzione:",
+        "funding": {
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Vengono visualizzati annunci non invadenti per finanziare lo sviluppo. Questi annunci rispettano la vostra privacy e non raccolgono dati personali.",
+            "status": "In preparazione"
+          },
+          "donations": {
+            "title": "Donazioni volontarie",
+            "description": "Potete sostenere lo sviluppo di Planneo tramite Buy Me a Coffee. È completamente opzionale e non influisce sull'utilizzo dell'applicazione.",
+            "link": "Sostenere lo sviluppo"
+          },
+          "enterprise": {
+            "title": "Versione enterprise (futuro)",
+            "description": "Una versione enterprise con funzionalità avanzate potrebbe essere offerta in futuro, ma la versione base rimarrà sempre gratuita."
+          }
+        },
+        "commitment": {
+          "title": "Il nostro impegno",
+          "promises": [
+            "Planneo rimarrà sempre gratuito",
+            "Nessuna funzionalità sarà a pagamento",
+            "Nessun dato sarà venduto",
+            "Trasparenza totale sul finanziamento"
+          ]
+        }
+      },
+      "features": {
+        "title": "Funzionalità principali",
+        "description": "Planneo offre tutte le funzionalità necessarie per gestire efficacemente i vostri turni:",
+        "list": [
+          "Creazione e gestione dei turni",
+          "Gestione dei dipendenti e delle loro disponibilità",
+          "Visualizzazione dei turni per settimana",
+          "Export dei dati in formato JSON",
+          "Interfaccia responsive (mobile, tablet, desktop)",
+          "Funzionalità offline (PWA)",
+          "Backup locale automatico",
+          "Multi-lingua (FR, EN, DE, IT)"
+        ]
+      },
+      "technology": {
+        "title": "Tecnologie utilizzate",
+        "description": "Planneo è sviluppato con le tecnologie più moderne per garantire prestazioni e sicurezza:",
+        "stack": {
+          "frontend": {
+            "title": "Frontend",
+            "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+          },
+          "backend": {
+            "title": "Backend",
+            "technologies": ["Vercel", "Serverless Functions", "Edge Computing"]
+          },
+          "security": {
+            "title": "Sicurezza",
+            "technologies": ["HTTPS/TLS", "CSP", "Local Storage", "GDPR Compliant"]
+          }
+        }
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "description": "Ecco le funzionalità previste per le prossime versioni:",
+        "upcoming": [
+          "Integrazione Google AdSense",
+          "Temi personalizzabili",
+          "Notifiche push",
+          "Sincronizzazione multi-dispositivo",
+          "Report e statistiche",
+          "API per integrazioni di terze parti"
+        ]
+      },
+      "support": {
+        "title": "Supporto e comunità",
+        "description": "Siamo qui per aiutarvi:",
+        "channels": {
+          "email": {
+            "title": "Email",
+            "description": "contact@antoineterrade.com",
+            "responseTime": "Risposta entro 24-48h"
+          },
+          "feedback": {
+            "title": "Feedback e suggerimenti",
+            "description": "I vostri feedback sono preziosi per migliorare Planneo"
+          }
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Tutti i diritti riservati.",
+      "backHome": "Torna alla home",
+      "cgu": "ToS",
+      "privacy": "Politica sulla Privacy",
+      "security": "Sicurezza"
+    }
   }
 }

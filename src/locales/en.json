@@ -204,6 +204,12 @@
   "footer": {
     "about": "About",
     "aboutAriaLabel": "About Planneo",
+    "cgu": "Terms",
+    "cguAriaLabel": "Terms of Service",
+    "privacy": "Privacy",
+    "privacyAriaLabel": "Privacy Policy",
+    "security": "Security",
+    "securityAriaLabel": "Security and Privacy",
     "support": "Support",
     "supportAriaLabel": "Support development on Buy Me a Coffee",
     "copyright": "©2025",
@@ -222,5 +228,700 @@
     "en": "English",
     "de": "Deutsch",
     "it": "Italiano"
+  },
+  "cgu": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: January 15, 2025",
+    "sections": {
+      "object": {
+        "title": "1. Object and scope of application",
+        "description1": "These Terms of Service (ToS) govern the use of the application",
+        "description2": "Planneo",
+        "description3": ", a work schedule management software developed by Antoine Terrade.",
+        "description4": "Planneo is a progressive web application (PWA) designed for team schedule management for shops, businesses and small to medium-sized enterprises.",
+        "description5": "Use of the application implies full and complete acceptance of these ToS."
+      },
+      "access": {
+        "title": "2. Access and use of the application",
+        "freeAccess": {
+          "title": "2.1 Free access",
+          "description": "Planneo is accessible free of charge without prior registration. The application works directly in the web browser and can be installed as a native application on mobile and desktop."
+        },
+        "allowedUse": {
+          "title": "2.2 Authorized use",
+          "description": "The user undertakes to use Planneo:",
+          "items": [
+            "In accordance with these ToS",
+            "In compliance with applicable laws and regulations",
+            "In a fair and good faith manner",
+            "Exclusively for professional schedule management"
+          ]
+        },
+        "forbiddenUse": {
+          "title": "2.3 Prohibited use",
+          "description": "It is strictly forbidden to:",
+          "items": [
+            "Use the application for illegal or unauthorized purposes",
+            "Attempt to circumvent security measures",
+            "Reproduce, distribute or modify the source code without authorization",
+            "Use the application to harm third parties",
+            "Collect data from other users"
+          ]
+        }
+      },
+      "data": {
+        "title": "3. Data and privacy",
+        "localStorage": {
+          "title": "3.1 Local data storage",
+          "description": "All data entered in Planneo (employee names, schedules, settings) is stored exclusively on the user's device via the browser's localStorage. No data is transmitted to our servers."
+        },
+        "userResponsibility": {
+          "title": "3.2 User responsibility",
+          "description": "The user is solely responsible for:",
+          "items": [
+            "Backing up their data",
+            "The security of their device",
+            "Respecting the confidentiality of their employees' data",
+            "GDPR compliance for personal data"
+          ]
+        },
+        "export": {
+          "title": "3.3 Export and portability",
+          "description": "The user can export their data at any time via the export function integrated into the application. Data is exported in JSON format."
+        }
+      },
+      "thirdParty": {
+        "title": "4. Third-party services and advertising",
+        "adsense": {
+          "title": "4.1 Google AdSense",
+          "description": "Planneo is funded by Google AdSense advertising. These ads are displayed in a non-intrusive manner and respect your consent choices via our cookie management system."
+        },
+        "analytics": {
+          "title": "4.2 Analytics",
+          "description": "We use Vercel Analytics to measure application usage. This data is anonymized and does not allow users to be identified."
+        },
+        "consent": {
+          "title": "4.3 Consent",
+          "description": "Activation of third-party services (advertising, analytics) requires your explicit consent via our cookie banner. You can modify your preferences at any time."
+        }
+      },
+      "responsibilities": {
+        "title": "5. Responsibilities and limitations",
+        "developer": {
+          "title": "5.1 Developer responsibility",
+          "description": "Antoine Terrade strives to keep Planneo functional and secure, but cannot guarantee 100% availability. The application is provided \"as is\" without performance guarantee."
+        },
+        "limitation": {
+          "title": "5.2 Limitation of liability",
+          "description": "In no case shall Antoine Terrade be held responsible for:",
+          "items": [
+            "Data loss due to user device malfunction",
+            "Indirect or consequential damages from using the application",
+            "Temporary service interruption",
+            "Schedule errors due to misuse"
+          ]
+        },
+        "user": {
+          "title": "5.3 User responsibility",
+          "description": "The user is solely responsible for their use of Planneo and the consequences thereof. They undertake to use the application in accordance with its intended purpose."
+        }
+      },
+      "intellectualProperty": {
+        "title": "6. Intellectual property",
+        "description1": "Planneo, its source code, design, features and all elements that compose it are the exclusive property of Antoine Terrade.",
+        "description2": "The user may not reproduce, distribute, modify or create derivative works based on Planneo without prior written authorization.",
+        "description3": "Data entered by the user remains their exclusive property."
+      },
+      "evolution": {
+        "title": "7. Evolution and maintenance",
+        "updates": {
+          "title": "7.1 Updates",
+          "description": "Planneo may be updated regularly to improve features, fix bugs or enhance security. Updates are automatic and free."
+        },
+        "cguEvolution": {
+          "title": "7.2 ToS evolution",
+          "description": "These ToS may be modified at any time. Important changes will be notified to users via the application or by email."
+        },
+        "support": {
+          "title": "7.3 Technical support",
+          "description": "Technical support is provided on a best-effort basis via the email address contact@antoineterrade.com. No response time is guaranteed."
+        }
+      },
+      "law": {
+        "title": "8. Applicable law and jurisdiction",
+        "description1": "These ToS are governed by French law. In case of dispute, French courts shall have sole jurisdiction.",
+        "description2": "In case of disagreement, the parties will endeavor to find an amicable solution before any legal recourse."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "For any questions regarding these Terms of Service:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo Developer"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. All rights reserved.",
+      "backHome": "Back to home",
+      "about": "About",
+      "privacy": "Privacy Policy"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: January 15, 2025",
+    "subtitle": "Your security and privacy are our absolute priorities",
+    "sections": {
+      "introduction": {
+        "title": "Our commitment to your privacy",
+        "description1": "At Planneo, we take your privacy very seriously. This privacy policy explains how we collect, use and protect your information when you use our schedule management application.",
+        "description2": "Important point:",
+        "description3": "Planneo works entirely locally on your device. Your schedule data never leaves your browser."
+      },
+      "dataCollection": {
+        "title": "What data do we collect?",
+        "planningData": {
+          "title": "Schedule data (local storage only)",
+          "description": "This data is stored exclusively on your device and is never transmitted:",
+          "items": [
+            "Employee names",
+            "Work schedules and time slots",
+            "Application settings",
+            "Notes and comments",
+            "Store configuration"
+          ]
+        },
+        "technicalData": {
+          "title": "Technical data (with your consent)",
+          "description": "This data is only collected with your explicit consent:",
+          "items": [
+            "Pages viewed (anonymized)",
+            "Session time (anonymous)",
+            "Device and browser type",
+            "Traffic source",
+            "Technical errors (anonymized)"
+          ]
+        },
+        "noPersonalData": {
+          "title": "What we do NOT collect",
+          "items": [
+            "Personal email addresses",
+            "Phone numbers",
+            "IP addresses (except for security)",
+            "Geolocation data",
+            "Payment information",
+            "Biometric data"
+          ]
+        }
+      },
+      "dataUsage": {
+        "title": "How do we use your data?",
+        "planningData": {
+          "title": "Schedule data",
+          "description": "Your schedule data is used only to run the application on your device. It is never transmitted to our servers."
+        },
+        "technicalData": {
+          "title": "Technical data (if accepted)",
+          "description": "We use this data to:",
+          "items": [
+            "Improve application performance",
+            "Identify and fix bugs",
+            "Understand feature usage",
+            "Optimize user experience"
+          ]
+        },
+        "advertising": {
+          "title": "Advertising",
+          "description": "Google AdSense may display contextual ads based on page content, but without access to your personal schedule data."
+        }
+      },
+      "dataSharing": {
+        "title": "Sharing your data",
+        "neverSell": {
+          "title": "We NEVER sell your data",
+          "description": "Your schedule data is never sold, rented or shared with third parties for commercial purposes."
+        },
+        "thirdPartyServices": {
+          "title": "Third-party services used",
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Displays contextual ads. No personal data is transmitted."
+          },
+          "analytics": {
+            "title": "Vercel Analytics",
+            "description": "Measures application usage with anonymized data."
+          }
+        },
+        "legalObligations": {
+          "title": "Legal obligations",
+          "description": "We will only share your data in case of legal obligation or request from competent authorities, in strict compliance with the law."
+        }
+      },
+      "security": {
+        "title": "Security of your data",
+        "localStorage": {
+          "title": "Secure local storage",
+          "description": "Your data is protected by:",
+          "items": [
+            "HTTPS encryption for all communications",
+            "Local storage only (localStorage)",
+            "No transmission to our servers",
+            "Regular security updates"
+          ]
+        },
+        "technicalMeasures": {
+          "title": "Technical security measures",
+          "items": [
+            "SSL/TLS certificates for encryption",
+            "Secure hosting on Vercel",
+            "Regular dependency updates",
+            "Periodic security audits"
+          ]
+        },
+        "userResponsibility": {
+          "title": "User responsibility",
+          "description": "You are responsible for the security of your device and backing up your data. We recommend:",
+          "items": [
+            "Regularly export your data",
+            "Keep your browser updated",
+            "Use up-to-date antivirus",
+            "Don't share your device"
+          ]
+        }
+      },
+      "gdprRights": {
+        "title": "Your rights (GDPR)",
+        "description": "In accordance with the General Data Protection Regulation (GDPR), you have the following rights:",
+        "rights": {
+          "access": {
+            "title": "Right of access",
+            "description": "View all your data via the JSON export integrated into the application."
+          },
+          "rectification": {
+            "title": "Right to rectification",
+            "description": "Modify your data directly in the application at any time."
+          },
+          "erasure": {
+            "title": "Right to erasure",
+            "description": "Delete all your data via the application settings."
+          },
+          "portability": {
+            "title": "Right to portability",
+            "description": "Export your data in JSON format to use elsewhere."
+          }
+        },
+        "important": {
+          "title": "Important",
+          "description": "Since your data is stored locally, most of these rights are exercised directly via the application. For technical data (analytics), contact us at contact@antoineterrade.com."
+        }
+      },
+      "cookies": {
+        "title": "Cookies and similar technologies",
+        "description": "Planneo uses cookies only to improve your experience and respect your consent choices.",
+        "types": {
+          "essential": {
+            "title": "Essential cookies",
+            "description": "Necessary for application operation (language preferences, consent settings)."
+          },
+          "analytics": {
+            "title": "Analytics cookies (optional)",
+            "description": "Measure application usage (Vercel Analytics)."
+          },
+          "advertising": {
+            "title": "Advertising cookies (optional)",
+            "description": "Display contextual ads (Google AdSense)."
+          }
+        },
+        "management": {
+          "title": "Managing your preferences",
+          "description": "You can modify your cookie preferences at any time via our consent banner or by contacting us."
+        }
+      },
+      "dataRetention": {
+        "title": "Data retention period",
+        "planningData": {
+          "title": "Schedule data",
+          "description": "Your schedule data is kept indefinitely on your device until you manually delete it."
+        },
+        "technicalData": {
+          "title": "Technical data",
+          "description": "Analytics data is kept for a maximum of 24 months, then automatically deleted."
+        },
+        "cookies": {
+          "title": "Cookies",
+          "description": "Cookies expire automatically according to their type (session, 30 days, 1 year)."
+        }
+      },
+      "policyChanges": {
+        "title": "Changes to this policy",
+        "description1": "We may modify this privacy policy to reflect changes in our practices or for other operational, legal or regulatory reasons.",
+        "description2": "Important changes will be notified via the application or by email if you have provided us with your address."
+      },
+      "contact": {
+        "title": "Contact and questions",
+        "description": "For any questions regarding this privacy policy or the use of your data:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo Developer",
+        "responsibility": "Data Controller",
+        "responseTime": "Response usually within 24-48h"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. All rights reserved.",
+      "backHome": "Back to home",
+      "about": "About",
+      "cgu": "ToS"
+    }
+  },
+  "security": {
+    "title": "Security & Privacy",
+    "lastUpdated": "Last updated: January 15, 2025",
+    "subtitle": "Your data is protected by the best security practices",
+    "sections": {
+      "introduction": {
+        "title": "Our commitment to security",
+        "description1": "The security of your data is our absolute priority. Planneo was designed from the ground up with a \"security by design\" approach to ensure maximum protection of your sensitive information.",
+        "description2": "Secure architecture:",
+        "description3": "Planneo works entirely locally on your device, which means your data never leaves your browser and is never transmitted to our servers."
+      },
+      "dataProtection": {
+        "title": "Protection of your data",
+        "localStorage": {
+          "title": "Secure local storage",
+          "description": "All your schedule data is stored exclusively on your device via your browser's localStorage:",
+          "features": [
+            "Automatic encryption of sensitive data",
+            "No transmission to external servers",
+            "Automatic local backup",
+            "Secure JSON export"
+          ]
+        },
+        "encryption": {
+          "title": "Encryption and security",
+          "description": "Your data is protected by multiple layers of security:",
+          "features": [
+            "HTTPS/TLS for all communications",
+            "Local encryption of sensitive data",
+            "Valid and up-to-date SSL certificates",
+            "Protection against XSS and CSRF attacks"
+          ]
+        },
+        "noTracking": {
+          "title": "No tracking or surveillance",
+          "description": "Planneo respects your privacy:",
+          "features": [
+            "No tracking of your browsing",
+            "No collection of personal data",
+            "No tracking cookies",
+            "Anonymized analytics only (with consent)"
+          ]
+        }
+      },
+      "gdprCompliance": {
+        "title": "GDPR Compliance",
+        "description": "Planneo is fully compliant with the General Data Protection Regulation (GDPR):",
+        "principles": {
+          "lawfulness": {
+            "title": "Lawfulness of processing",
+            "description": "Your data is processed only for the application's operation, with your explicit consent."
+          },
+          "transparency": {
+            "title": "Transparency",
+            "description": "All our data processing practices are documented and accessible."
+          },
+          "minimization": {
+            "title": "Data minimization",
+            "description": "We only collect data strictly necessary for the application's operation."
+          },
+          "accuracy": {
+            "title": "Accuracy",
+            "description": "You can modify, correct or delete your data at any time."
+          },
+          "storage": {
+            "title": "Storage limitation",
+            "description": "Your data is kept only as long as necessary for using the application."
+          },
+          "security": {
+            "title": "Integrity and confidentiality",
+            "description": "Your data is protected by appropriate technical and organizational security measures."
+          }
+        }
+      },
+      "technicalSecurity": {
+        "title": "Technical security",
+        "infrastructure": {
+          "title": "Secure infrastructure",
+          "description": "Planneo is hosted on enterprise-grade infrastructure:",
+          "features": [
+            "Vercel hosting with SSL/TLS certificates",
+            "Global CDN for optimal performance",
+            "Automatic security updates",
+            "24/7 performance monitoring"
+          ]
+        },
+        "codeSecurity": {
+          "title": "Code security",
+          "description": "Planneo's code is developed according to best practices:",
+          "features": [
+            "Regular security audits",
+            "Automatically updated dependencies",
+            "Automated security tests",
+            "Systematic code review"
+          ]
+        },
+        "browserSecurity": {
+          "title": "Browser security",
+          "description": "Planneo uses modern browser security features:",
+          "features": [
+            "Strict Content Security Policy (CSP)",
+            "Protection against XSS attacks",
+            "HTTP security headers",
+            "Sandboxing of sensitive components"
+          ]
+        }
+      },
+      "userResponsibility": {
+        "title": "User responsibility",
+        "description": "The security of your data also depends on your good practices:",
+        "recommendations": {
+          "device": {
+            "title": "Device security",
+            "items": [
+              "Keep your browser updated",
+              "Use up-to-date antivirus",
+              "Don't share your device",
+              "Lock your screen when away"
+            ]
+          },
+          "data": {
+            "title": "Data management",
+            "items": [
+              "Regularly export your data",
+              "Backup your exports safely",
+              "Delete unnecessary data",
+              "Don't share your exports"
+            ]
+          },
+          "access": {
+            "title": "Access control",
+            "items": [
+              "Use strong passwords",
+              "Enable two-factor authentication",
+              "Log out after use",
+              "Don't leave the application open"
+            ]
+          }
+        }
+      },
+      "incidentResponse": {
+        "title": "Security incident management",
+        "description": "In case of a security incident, we have procedures in place:",
+        "procedures": {
+          "detection": {
+            "title": "Detection",
+            "description": "Continuous monitoring and automatic alerts to detect any anomaly."
+          },
+          "response": {
+            "title": "Response",
+            "description": "Emergency procedures to isolate and correct any security issue."
+          },
+          "notification": {
+            "title": "Notification",
+            "description": "Transparent information to users in case of major incident."
+          },
+          "recovery": {
+            "title": "Recovery",
+            "description": "Recovery plan to restore service quickly and securely."
+          }
+        }
+      },
+      "audit": {
+        "title": "Audits and certifications",
+        "description": "Planneo undergoes regular security audits:",
+        "audits": {
+          "code": {
+            "title": "Code audit",
+            "description": "Static and dynamic analysis of source code to identify vulnerabilities."
+          },
+          "infrastructure": {
+            "title": "Infrastructure audit",
+            "description": "Verification of hosting infrastructure security."
+          },
+          "compliance": {
+            "title": "Compliance audit",
+            "description": "Verification of compliance with regulations (GDPR, etc.)."
+          }
+        }
+      },
+      "commitment": {
+        "title": "Our commitment",
+        "description": "We commit to:",
+        "commitments": [
+          "Maintaining the security of your data as absolute priority",
+          "Respecting your privacy and confidentiality choices",
+          "Being transparent about our security practices",
+          "Continuously improving our protection measures",
+          "Reacting quickly to any security threat",
+          "Respecting all applicable regulations"
+        ]
+      },
+      "contact": {
+        "title": "Report a security issue",
+        "description": "If you discover a security vulnerability, contact us immediately:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo Developer",
+        "email": "contact@antoineterrade.com",
+        "responseTime": "Response within 24h for security issues",
+        "disclosure": "We follow responsible vulnerability disclosure best practices."
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. All rights reserved.",
+      "backHome": "Back to home",
+      "about": "About",
+      "privacy": "Privacy Policy"
+    }
+  },
+  "about": {
+    "title": "About Planneo",
+    "subtitle": "Your team schedule management solution",
+    "sections": {
+      "hero": {
+        "title": "Welcome to Planneo",
+        "description": "Planneo is a progressive web application (PWA) designed to simplify team schedule management for shops, businesses and small to medium-sized enterprises.",
+        "features": [
+          "Intuitive schedule management",
+          "Modern and responsive interface",
+          "Offline functionality",
+          "100% free and non-intrusive advertising"
+        ]
+      },
+      "developer": {
+        "title": "Developer Identity",
+        "name": "Antoine Terrade",
+        "role": "Full-Stack Developer",
+        "experience": "5+ years of web development experience",
+        "specialization": "Specialized in management applications and PWAs",
+        "mission": "Democratize access to professional management tools",
+        "vision": "Create simple, effective and accessible solutions for everyone",
+        "contact": "contact@antoineterrade.com",
+        "bio": "Passionate about web development and innovation, Antoine Terrade strives to create applications that simplify professional life. With expertise in React, Next.js and modern technologies, he develops robust and performant solutions.",
+        "values": [
+          "Simplicity first",
+          "Clean and maintainable code",
+          "Optimal user experience",
+          "Privacy respect"
+        ]
+      },
+      "story": {
+        "title": "The Planneo Story",
+        "problem": {
+          "title": "The Problem",
+          "description": "Small businesses and shops often struggle to efficiently manage their team schedules. Existing solutions are either too complex, too expensive, or don't meet the specific needs of retail."
+        },
+        "solution": {
+          "title": "Our Solution",
+          "description": "Planneo was created to address this need. A simple, free and effective application that allows you to manage team schedules in a few clicks, without prior training."
+        },
+        "mission": {
+          "title": "Our Mission",
+          "description": "Democratize access to professional management tools by offering a free, simple and effective solution for team schedule management."
+        }
+      },
+      "economicModel": {
+        "title": "Transparent Economic Model",
+        "description": "Planneo is and will always remain free. Here's how we finance development and maintenance:",
+        "funding": {
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Non-intrusive ads are displayed to finance development. These ads respect your privacy and collect no personal data.",
+            "status": "In preparation"
+          },
+          "donations": {
+            "title": "Voluntary donations",
+            "description": "You can support Planneo development via Buy Me a Coffee. It's entirely optional and doesn't affect application usage.",
+            "link": "Support development"
+          },
+          "enterprise": {
+            "title": "Enterprise version (future)",
+            "description": "An enterprise version with advanced features may be offered in the future, but the basic version will always remain free."
+          }
+        },
+        "commitment": {
+          "title": "Our Commitment",
+          "promises": [
+            "Planneo will always remain free",
+            "No feature will be paid",
+            "No data will be sold",
+            "Total transparency on funding"
+          ]
+        }
+      },
+      "features": {
+        "title": "Main Features",
+        "description": "Planneo offers all the features needed to efficiently manage your schedules:",
+        "list": [
+          "Schedule creation and management",
+          "Employee and availability management",
+          "Weekly schedule display",
+          "Data export in JSON format",
+          "Responsive interface (mobile, tablet, desktop)",
+          "Offline functionality (PWA)",
+          "Automatic local backup",
+          "Multi-language (FR, EN, DE, IT)"
+        ]
+      },
+      "technology": {
+        "title": "Technologies Used",
+        "description": "Planneo is developed with the most modern technologies to guarantee performance and security:",
+        "stack": {
+          "frontend": {
+            "title": "Frontend",
+            "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+          },
+          "backend": {
+            "title": "Backend",
+            "technologies": ["Vercel", "Serverless Functions", "Edge Computing"]
+          },
+          "security": {
+            "title": "Security",
+            "technologies": ["HTTPS/TLS", "CSP", "Local Storage", "GDPR Compliant"]
+          }
+        }
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "description": "Here are the features planned for upcoming versions:",
+        "upcoming": [
+          "Google AdSense integration",
+          "Customizable themes",
+          "Push notifications",
+          "Multi-device synchronization",
+          "Reports and statistics",
+          "API for third-party integrations"
+        ]
+      },
+      "support": {
+        "title": "Support and Community",
+        "description": "We're here to help you:",
+        "channels": {
+          "email": {
+            "title": "Email",
+            "description": "contact@antoineterrade.com",
+            "responseTime": "Response within 24-48h"
+          },
+          "feedback": {
+            "title": "Feedback and suggestions",
+            "description": "Your feedback is valuable to improve Planneo"
+          }
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. All rights reserved.",
+      "backHome": "Back to home",
+      "cgu": "ToS",
+      "privacy": "Privacy Policy",
+      "security": "Security"
+    }
   }
 }

@@ -298,6 +298,12 @@
   "footer": {
     "about": "Über",
     "aboutAriaLabel": "Über Planneo",
+    "cgu": "AGB",
+    "cguAriaLabel": "Allgemeine Geschäftsbedingungen",
+    "privacy": "Datenschutz",
+    "privacyAriaLabel": "Datenschutzrichtlinie",
+    "security": "Sicherheit",
+    "securityAriaLabel": "Sicherheit und Datenschutz",
     "support": "Unterstützen",
     "supportAriaLabel": "Entwicklung auf Buy Me a Coffee unterstützen",
     "copyright": "©2025",
@@ -316,5 +322,700 @@
     "en": "English",
     "de": "Deutsch",
     "it": "Italiano"
+  },
+  "cgu": {
+    "title": "Allgemeine Geschäftsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: 15. Januar 2025",
+    "sections": {
+      "object": {
+        "title": "1. Gegenstand und Anwendungsbereich",
+        "description1": "Diese Allgemeinen Geschäftsbedingungen (AGB) regeln die Nutzung der Anwendung",
+        "description2": "Planneo",
+        "description3": ", einer Schichtplan-Management-Software, entwickelt von Antoine Terrade.",
+        "description4": "Planneo ist eine Progressive Web App (PWA), die für die Schichtplanung von Teams in Geschäften, Unternehmen und kleinen bis mittelgroßen Betrieben entwickelt wurde.",
+        "description5": "Die Nutzung der Anwendung impliziert die vollständige und uneingeschränkte Annahme dieser AGB."
+      },
+      "access": {
+        "title": "2. Zugang und Nutzung der Anwendung",
+        "freeAccess": {
+          "title": "2.1 Kostenloser Zugang",
+          "description": "Planneo ist kostenlos ohne vorherige Registrierung zugänglich. Die Anwendung funktioniert direkt im Webbrowser und kann als native Anwendung auf Mobilgeräten und Desktop installiert werden."
+        },
+        "allowedUse": {
+          "title": "2.2 Erlaubte Nutzung",
+          "description": "Der Benutzer verpflichtet sich, Planneo zu nutzen:",
+          "items": [
+            "In Übereinstimmung mit diesen AGB",
+            "Im Einklang mit geltenden Gesetzen und Vorschriften",
+            "Auf ehrliche und gutgläubige Weise",
+            "Ausschließlich für professionelle Schichtplanung"
+          ]
+        },
+        "forbiddenUse": {
+          "title": "2.3 Verbotene Nutzung",
+          "description": "Es ist strengstens verboten:",
+          "items": [
+            "Die Anwendung für illegale oder nicht autorisierte Zwecke zu nutzen",
+            "Sicherheitsmaßnahmen zu umgehen",
+            "Den Quellcode ohne Autorisierung zu reproduzieren, zu verteilen oder zu modifizieren",
+            "Die Anwendung zur Schädigung Dritter zu nutzen",
+            "Daten anderer Benutzer zu sammeln"
+          ]
+        }
+      },
+      "data": {
+        "title": "3. Daten und Datenschutz",
+        "localStorage": {
+          "title": "3.1 Lokale Datenspeicherung",
+          "description": "Alle in Planneo eingegebenen Daten (Mitarbeiternamen, Schichtpläne, Einstellungen) werden ausschließlich auf dem Gerät des Benutzers über den localStorage des Browsers gespeichert. Keine Daten werden an unsere Server übertragen."
+        },
+        "userResponsibility": {
+          "title": "3.2 Benutzerverantwortung",
+          "description": "Der Benutzer ist allein verantwortlich für:",
+          "items": [
+            "Das Backup seiner Daten",
+            "Die Sicherheit seines Geräts",
+            "Die Wahrung der Vertraulichkeit der Daten seiner Mitarbeiter",
+            "Die DSGVO-Konformität für personenbezogene Daten"
+          ]
+        },
+        "export": {
+          "title": "3.3 Export und Portabilität",
+          "description": "Der Benutzer kann seine Daten jederzeit über die in die Anwendung integrierte Export-Funktion exportieren. Die Daten werden im JSON-Format exportiert."
+        }
+      },
+      "thirdParty": {
+        "title": "4. Drittanbieterdienste und Werbung",
+        "adsense": {
+          "title": "4.1 Google AdSense",
+          "description": "Planneo wird durch Google AdSense-Werbung finanziert. Diese Werbung wird nicht aufdringlich angezeigt und respektiert Ihre Einverständniswahl über unser Cookie-Management-System."
+        },
+        "analytics": {
+          "title": "4.2 Analytics",
+          "description": "Wir verwenden Vercel Analytics, um die Nutzung der Anwendung zu messen. Diese Daten sind anonymisiert und ermöglichen keine Identifizierung der Benutzer."
+        },
+        "consent": {
+          "title": "4.3 Einverständnis",
+          "description": "Die Aktivierung von Drittanbieterdiensten (Werbung, Analytics) erfordert Ihre ausdrückliche Zustimmung über unser Cookie-Banner. Sie können Ihre Präferenzen jederzeit ändern."
+        }
+      },
+      "responsibilities": {
+        "title": "5. Verantwortlichkeiten und Haftungsbeschränkungen",
+        "developer": {
+          "title": "5.1 Entwicklerverantwortung",
+          "description": "Antoine Terrade bemüht sich, Planneo funktional und sicher zu halten, kann aber keine 100%ige Verfügbarkeit garantieren. Die Anwendung wird \"wie besehen\" ohne Leistungsgarantie bereitgestellt."
+        },
+        "limitation": {
+          "title": "5.2 Haftungsbeschränkung",
+          "description": "Antoine Terrade kann in keinem Fall haftbar gemacht werden für:",
+          "items": [
+            "Datenverlust aufgrund von Gerätefehlern des Benutzers",
+            "Indirekte oder Folgeschäden durch die Nutzung der Anwendung",
+            "Vorübergehende Dienstunterbrechungen",
+            "Schichtplanfehler aufgrund von Fehlernutzung"
+          ]
+        },
+        "user": {
+          "title": "5.3 Benutzerverantwortung",
+          "description": "Der Benutzer ist allein verantwortlich für seine Nutzung von Planneo und die daraus resultierenden Konsequenzen. Er verpflichtet sich, die Anwendung entsprechend ihrem bestimmungsgemäßen Zweck zu nutzen."
+        }
+      },
+      "intellectualProperty": {
+        "title": "6. Geistiges Eigentum",
+        "description1": "Planneo, sein Quellcode, Design, Funktionen und alle Elemente, die es ausmachen, sind ausschließliches Eigentum von Antoine Terrade.",
+        "description2": "Der Benutzer darf Planneo nicht ohne vorherige schriftliche Genehmigung reproduzieren, verteilen, modifizieren oder darauf basierende abgeleitete Werke erstellen.",
+        "description3": "Vom Benutzer eingegebene Daten bleiben dessen ausschließliches Eigentum."
+      },
+      "evolution": {
+        "title": "7. Entwicklung und Wartung",
+        "updates": {
+          "title": "7.1 Updates",
+          "description": "Planneo kann regelmäßig aktualisiert werden, um Funktionen zu verbessern, Fehler zu beheben oder die Sicherheit zu erhöhen. Updates sind automatisch und kostenlos."
+        },
+        "cguEvolution": {
+          "title": "7.2 AGB-Entwicklung",
+          "description": "Diese AGB können jederzeit geändert werden. Wichtige Änderungen werden den Benutzern über die Anwendung oder per E-Mail mitgeteilt."
+        },
+        "support": {
+          "title": "7.3 Technischer Support",
+          "description": "Technischer Support wird nach bestem Bemühen über die E-Mail-Adresse contact@antoineterrade.com bereitgestellt. Es wird keine Antwortzeit garantiert."
+        }
+      },
+      "law": {
+        "title": "8. Anwendbares Recht und Gerichtsstand",
+        "description1": "Diese AGB unterliegen französischem Recht. Bei Streitigkeiten sind französische Gerichte ausschließlich zuständig.",
+        "description2": "Bei Meinungsverschiedenheiten werden sich die Parteien bemühen, eine einvernehmliche Lösung zu finden, bevor rechtliche Schritte eingeleitet werden."
+      },
+      "contact": {
+        "title": "Kontakt",
+        "description": "Bei Fragen zu diesen Allgemeinen Geschäftsbedingungen:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo-Entwickler"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Alle Rechte vorbehalten.",
+      "backHome": "Zurück zur Startseite",
+      "about": "Über",
+      "privacy": "Datenschutzrichtlinie"
+    }
+  },
+  "privacy": {
+    "title": "Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 15. Januar 2025",
+    "subtitle": "Ihre Sicherheit und Privatsphäre sind unsere absoluten Prioritäten",
+    "sections": {
+      "introduction": {
+        "title": "Unser Engagement für Ihre Privatsphäre",
+        "description1": "Bei Planneo nehmen wir Ihre Privatsphäre sehr ernst. Diese Datenschutzrichtlinie erklärt, wie wir Ihre Informationen sammeln, verwenden und schützen, wenn Sie unsere Schichtplanungsanwendung nutzen.",
+        "description2": "Wichtiger Punkt:",
+        "description3": "Planneo funktioniert vollständig lokal auf Ihrem Gerät. Ihre Schichtplandaten verlassen niemals Ihren Browser."
+      },
+      "dataCollection": {
+        "title": "Welche Daten sammeln wir?",
+        "planningData": {
+          "title": "Schichtplandaten (nur lokale Speicherung)",
+          "description": "Diese Daten werden ausschließlich auf Ihrem Gerät gespeichert und niemals übertragen:",
+          "items": [
+            "Mitarbeiternamen",
+            "Arbeitszeiten und Zeitfenster",
+            "Anwendungseinstellungen",
+            "Notizen und Kommentare",
+            "Geschäftskonfiguration"
+          ]
+        },
+        "technicalData": {
+          "title": "Technische Daten (mit Ihrer Zustimmung)",
+          "description": "Diese Daten werden nur mit Ihrer ausdrücklichen Zustimmung gesammelt:",
+          "items": [
+            "Besuchte Seiten (anonymisiert)",
+            "Sitzungszeit (anonym)",
+            "Geräte- und Browsertyp",
+            "Traffic-Quelle",
+            "Technische Fehler (anonymisiert)"
+          ]
+        },
+        "noPersonalData": {
+          "title": "Was wir NICHT sammeln",
+          "items": [
+            "Persönliche E-Mail-Adressen",
+            "Telefonnummern",
+            "IP-Adressen (außer für Sicherheit)",
+            "Geolokalisierungsdaten",
+            "Zahlungsinformationen",
+            "Biometrische Daten"
+          ]
+        }
+      },
+      "dataUsage": {
+        "title": "Wie verwenden wir Ihre Daten?",
+        "planningData": {
+          "title": "Schichtplandaten",
+          "description": "Ihre Schichtplandaten werden nur verwendet, um die Anwendung auf Ihrem Gerät zu betreiben. Sie werden niemals an unsere Server übertragen."
+        },
+        "technicalData": {
+          "title": "Technische Daten (wenn akzeptiert)",
+          "description": "Wir verwenden diese Daten, um:",
+          "items": [
+            "Die Anwendungsleistung zu verbessern",
+            "Bugs zu identifizieren und zu beheben",
+            "Die Nutzung der Funktionen zu verstehen",
+            "Die Benutzererfahrung zu optimieren"
+          ]
+        },
+        "advertising": {
+          "title": "Werbung",
+          "description": "Google AdSense kann kontextbezogene Anzeigen basierend auf dem Seiteninhalt anzeigen, aber ohne Zugriff auf Ihre persönlichen Schichtplandaten."
+        }
+      },
+      "dataSharing": {
+        "title": "Teilen Ihrer Daten",
+        "neverSell": {
+          "title": "Wir verkaufen NIEMALS Ihre Daten",
+          "description": "Ihre Schichtplandaten werden niemals verkauft, vermietet oder zu kommerziellen Zwecken an Dritte weitergegeben."
+        },
+        "thirdPartyServices": {
+          "title": "Verwendete Drittanbieterdienste",
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Zeigt kontextbezogene Anzeigen an. Keine persönlichen Daten werden übertragen."
+          },
+          "analytics": {
+            "title": "Vercel Analytics",
+            "description": "Misst die Anwendungsnutzung mit anonymisierten Daten."
+          }
+        },
+        "legalObligations": {
+          "title": "Rechtliche Verpflichtungen",
+          "description": "Wir werden Ihre Daten nur bei rechtlicher Verpflichtung oder Anfrage der zuständigen Behörden teilen, in strikter Einhaltung des Gesetzes."
+        }
+      },
+      "security": {
+        "title": "Sicherheit Ihrer Daten",
+        "localStorage": {
+          "title": "Sichere lokale Speicherung",
+          "description": "Ihre Daten sind geschützt durch:",
+          "items": [
+            "HTTPS-Verschlüsselung für alle Kommunikationen",
+            "Nur lokale Speicherung (localStorage)",
+            "Keine Übertragung an unsere Server",
+            "Regelmäßige Sicherheitsupdates"
+          ]
+        },
+        "technicalMeasures": {
+          "title": "Technische Sicherheitsmaßnahmen",
+          "items": [
+            "SSL/TLS-Zertifikate für Verschlüsselung",
+            "Sichere Hosting auf Vercel",
+            "Regelmäßige Abhängigkeitsupdates",
+            "Periodische Sicherheitsaudits"
+          ]
+        },
+        "userResponsibility": {
+          "title": "Benutzerverantwortung",
+          "description": "Sie sind verantwortlich für die Sicherheit Ihres Geräts und die Sicherung Ihrer Daten. Wir empfehlen:",
+          "items": [
+            "Regelmäßig Ihre Daten exportieren",
+            "Ihren Browser aktuell halten",
+            "Aktuelle Antivirus-Software verwenden",
+            "Ihr Gerät nicht teilen"
+          ]
+        }
+      },
+      "gdprRights": {
+        "title": "Ihre Rechte (DSGVO)",
+        "description": "In Übereinstimmung mit der Datenschutz-Grundverordnung (DSGVO) haben Sie folgende Rechte:",
+        "rights": {
+          "access": {
+            "title": "Recht auf Auskunft",
+            "description": "Sehen Sie alle Ihre Daten über den in die Anwendung integrierten JSON-Export ein."
+          },
+          "rectification": {
+            "title": "Recht auf Berichtigung",
+            "description": "Ändern Sie Ihre Daten jederzeit direkt in der Anwendung."
+          },
+          "erasure": {
+            "title": "Recht auf Löschung",
+            "description": "Löschen Sie alle Ihre Daten über die Anwendungseinstellungen."
+          },
+          "portability": {
+            "title": "Recht auf Datenübertragbarkeit",
+            "description": "Exportieren Sie Ihre Daten im JSON-Format, um sie anderswo zu verwenden."
+          }
+        },
+        "important": {
+          "title": "Wichtig",
+          "description": "Da Ihre Daten lokal gespeichert werden, werden die meisten dieser Rechte direkt über die Anwendung ausgeübt. Für technische Daten (Analytics) kontaktieren Sie uns unter contact@antoineterrade.com."
+        }
+      },
+      "cookies": {
+        "title": "Cookies und ähnliche Technologien",
+        "description": "Planneo verwendet Cookies nur, um Ihre Erfahrung zu verbessern und Ihre Zustimmungsentscheidungen zu respektieren.",
+        "types": {
+          "essential": {
+            "title": "Notwendige Cookies",
+            "description": "Notwendig für den Betrieb der Anwendung (Spracheinstellungen, Zustimmungseinstellungen)."
+          },
+          "analytics": {
+            "title": "Analytics-Cookies (optional)",
+            "description": "Messen die Anwendungsnutzung (Vercel Analytics)."
+          },
+          "advertising": {
+            "title": "Werbungs-Cookies (optional)",
+            "description": "Zeigen kontextbezogene Anzeigen an (Google AdSense)."
+          }
+        },
+        "management": {
+          "title": "Verwaltung Ihrer Präferenzen",
+          "description": "Sie können Ihre Cookie-Präferenzen jederzeit über unser Zustimmungsbanner oder durch Kontaktaufnahme mit uns ändern."
+        }
+      },
+      "dataRetention": {
+        "title": "Aufbewahrungsdauer",
+        "planningData": {
+          "title": "Schichtplandaten",
+          "description": "Ihre Schichtplandaten werden unbegrenzt auf Ihrem Gerät gespeichert, bis Sie sie manuell löschen."
+        },
+        "technicalData": {
+          "title": "Technische Daten",
+          "description": "Analytics-Daten werden maximal 24 Monate aufbewahrt und dann automatisch gelöscht."
+        },
+        "cookies": {
+          "title": "Cookies",
+          "description": "Cookies laufen automatisch entsprechend ihrem Typ ab (Session, 30 Tage, 1 Jahr)."
+        }
+      },
+      "policyChanges": {
+        "title": "Änderungen dieser Richtlinie",
+        "description1": "Wir können diese Datenschutzrichtlinie ändern, um Änderungen in unseren Praktiken oder aus anderen operativen, rechtlichen oder regulatorischen Gründen widerzuspiegeln.",
+        "description2": "Wichtige Änderungen werden über die Anwendung oder per E-Mail benachrichtigt, wenn Sie uns Ihre Adresse mitgeteilt haben."
+      },
+      "contact": {
+        "title": "Kontakt und Fragen",
+        "description": "Bei Fragen zu dieser Datenschutzrichtlinie oder der Nutzung Ihrer Daten:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo-Entwickler",
+        "responsibility": "Verantwortlicher für die Datenverarbeitung",
+        "responseTime": "Antwort normalerweise innerhalb von 24-48h"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Alle Rechte vorbehalten.",
+      "backHome": "Zurück zur Startseite",
+      "about": "Über",
+      "cgu": "AGB"
+    }
+  },
+  "security": {
+    "title": "Sicherheit & Datenschutz",
+    "lastUpdated": "Zuletzt aktualisiert: 15. Januar 2025",
+    "subtitle": "Ihre Daten sind durch die besten Sicherheitspraktiken geschützt",
+    "sections": {
+      "introduction": {
+        "title": "Unser Engagement für Sicherheit",
+        "description1": "Die Sicherheit Ihrer Daten ist unsere absolute Priorität. Planneo wurde von Grund auf mit einem \"Security by Design\"-Ansatz entwickelt, um maximalen Schutz Ihrer sensiblen Informationen zu gewährleisten.",
+        "description2": "Sichere Architektur:",
+        "description3": "Planneo funktioniert vollständig lokal auf Ihrem Gerät, was bedeutet, dass Ihre Daten niemals Ihren Browser verlassen und niemals an unsere Server übertragen werden."
+      },
+      "dataProtection": {
+        "title": "Schutz Ihrer Daten",
+        "localStorage": {
+          "title": "Sichere lokale Speicherung",
+          "description": "Alle Ihre Schichtplandaten werden ausschließlich auf Ihrem Gerät über den localStorage Ihres Browsers gespeichert:",
+          "features": [
+            "Automatische Verschlüsselung sensibler Daten",
+            "Keine Übertragung an externe Server",
+            "Automatisches lokales Backup",
+            "Sicherer JSON-Export"
+          ]
+        },
+        "encryption": {
+          "title": "Verschlüsselung und Sicherheit",
+          "description": "Ihre Daten sind durch mehrere Sicherheitsebenen geschützt:",
+          "features": [
+            "HTTPS/TLS für alle Kommunikationen",
+            "Lokale Verschlüsselung sensibler Daten",
+            "Gültige und aktuelle SSL-Zertifikate",
+            "Schutz vor XSS- und CSRF-Angriffen"
+          ]
+        },
+        "noTracking": {
+          "title": "Kein Tracking oder Überwachung",
+          "description": "Planneo respektiert Ihre Privatsphäre:",
+          "features": [
+            "Kein Tracking Ihrer Navigation",
+            "Keine Sammlung persönlicher Daten",
+            "Keine Tracking-Cookies",
+            "Nur anonymisierte Analytics (mit Zustimmung)"
+          ]
+        }
+      },
+      "gdprCompliance": {
+        "title": "DSGVO-Konformität",
+        "description": "Planneo ist vollständig konform mit der Datenschutz-Grundverordnung (DSGVO):",
+        "principles": {
+          "lawfulness": {
+            "title": "Rechtmäßigkeit der Verarbeitung",
+            "description": "Ihre Daten werden nur für den Betrieb der Anwendung mit Ihrer ausdrücklichen Zustimmung verarbeitet."
+          },
+          "transparency": {
+            "title": "Transparenz",
+            "description": "Alle unsere Datenverarbeitungspraktiken sind dokumentiert und zugänglich."
+          },
+          "minimization": {
+            "title": "Datenminimierung",
+            "description": "Wir sammeln nur Daten, die für den Betrieb der Anwendung unbedingt erforderlich sind."
+          },
+          "accuracy": {
+            "title": "Richtigkeit",
+            "description": "Sie können Ihre Daten jederzeit ändern, korrigieren oder löschen."
+          },
+          "storage": {
+            "title": "Speicherbegrenzung",
+            "description": "Ihre Daten werden nur so lange aufbewahrt, wie es für die Nutzung der Anwendung notwendig ist."
+          },
+          "security": {
+            "title": "Integrität und Vertraulichkeit",
+            "description": "Ihre Daten sind durch angemessene technische und organisatorische Sicherheitsmaßnahmen geschützt."
+          }
+        }
+      },
+      "technicalSecurity": {
+        "title": "Technische Sicherheit",
+        "infrastructure": {
+          "title": "Sichere Infrastruktur",
+          "description": "Planneo wird auf Unternehmens-Infrastruktur gehostet:",
+          "features": [
+            "Vercel-Hosting mit SSL/TLS-Zertifikaten",
+            "Globales CDN für optimale Leistung",
+            "Automatische Sicherheitsupdates",
+            "24/7-Leistungsüberwachung"
+          ]
+        },
+        "codeSecurity": {
+          "title": "Code-Sicherheit",
+          "description": "Planneos Code wird nach Best Practices entwickelt:",
+          "features": [
+            "Regelmäßige Sicherheitsaudits",
+            "Automatisch aktualisierte Abhängigkeiten",
+            "Automatisierte Sicherheitstests",
+            "Systematische Code-Überprüfung"
+          ]
+        },
+        "browserSecurity": {
+          "title": "Browser-Sicherheit",
+          "description": "Planneo nutzt moderne Browser-Sicherheitsfunktionen:",
+          "features": [
+            "Strikte Content Security Policy (CSP)",
+            "Schutz vor XSS-Angriffen",
+            "HTTP-Sicherheitsheader",
+            "Sandboxing sensibler Komponenten"
+          ]
+        }
+      },
+      "userResponsibility": {
+        "title": "Benutzerverantwortung",
+        "description": "Die Sicherheit Ihrer Daten hängt auch von Ihren guten Praktiken ab:",
+        "recommendations": {
+          "device": {
+            "title": "Gerätesicherheit",
+            "items": [
+              "Halten Sie Ihren Browser aktuell",
+              "Verwenden Sie aktuelle Antivirus-Software",
+              "Teilen Sie Ihr Gerät nicht",
+              "Sperren Sie Ihren Bildschirm, wenn Sie weggehen"
+            ]
+          },
+          "data": {
+            "title": "Datenverwaltung",
+            "items": [
+              "Exportieren Sie regelmäßig Ihre Daten",
+              "Sichern Sie Ihre Exports sicher",
+              "Löschen Sie unnötige Daten",
+              "Teilen Sie Ihre Exports nicht"
+            ]
+          },
+          "access": {
+            "title": "Zugangskontrolle",
+            "items": [
+              "Verwenden Sie starke Passwörter",
+              "Aktivieren Sie Zwei-Faktor-Authentifizierung",
+              "Melden Sie sich nach der Nutzung ab",
+              "Lassen Sie die Anwendung nicht offen"
+            ]
+          }
+        }
+      },
+      "incidentResponse": {
+        "title": "Sicherheitsvorfall-Management",
+        "description": "Im Falle eines Sicherheitsvorfalls haben wir Verfahren eingerichtet:",
+        "procedures": {
+          "detection": {
+            "title": "Erkennung",
+            "description": "Kontinuierliche Überwachung und automatische Warnungen zur Erkennung von Anomalien."
+          },
+          "response": {
+            "title": "Reaktion",
+            "description": "Notfallverfahren zur Isolierung und Korrektur von Sicherheitsproblemen."
+          },
+          "notification": {
+            "title": "Benachrichtigung",
+            "description": "Transparente Information der Benutzer bei größeren Vorfällen."
+          },
+          "recovery": {
+            "title": "Wiederherstellung",
+            "description": "Wiederherstellungsplan zur schnellen und sicheren Wiederherstellung des Dienstes."
+          }
+        }
+      },
+      "audit": {
+        "title": "Audits und Zertifizierungen",
+        "description": "Planneo unterliegt regelmäßigen Sicherheitsaudits:",
+        "audits": {
+          "code": {
+            "title": "Code-Audit",
+            "description": "Statische und dynamische Analyse des Quellcodes zur Identifizierung von Schwachstellen."
+          },
+          "infrastructure": {
+            "title": "Infrastruktur-Audit",
+            "description": "Überprüfung der Sicherheit der Hosting-Infrastruktur."
+          },
+          "compliance": {
+            "title": "Compliance-Audit",
+            "description": "Überprüfung der Einhaltung von Vorschriften (DSGVO, etc.)."
+          }
+        }
+      },
+      "commitment": {
+        "title": "Unser Engagement",
+        "description": "Wir verpflichten uns zu:",
+        "commitments": [
+          "Die Sicherheit Ihrer Daten als absolute Priorität zu erhalten",
+          "Ihre Privatsphäre und Vertraulichkeitsentscheidungen zu respektieren",
+          "Transparent über unsere Sicherheitspraktiken zu sein",
+          "Unsere Schutzmaßnahmen kontinuierlich zu verbessern",
+          "Schnell auf jede Sicherheitsbedrohung zu reagieren",
+          "Alle geltenden Vorschriften zu respektieren"
+        ]
+      },
+      "contact": {
+        "title": "Sicherheitsproblem melden",
+        "description": "Wenn Sie eine Sicherheitslücke entdecken, kontaktieren Sie uns sofort:",
+        "developer": "Antoine Terrade",
+        "role": "Planneo-Entwickler",
+        "email": "contact@antoineterrade.com",
+        "responseTime": "Antwort innerhalb von 24h bei Sicherheitsproblemen",
+        "disclosure": "Wir folgen den Best Practices für verantwortungsvolle Offenlegung von Schwachstellen."
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Alle Rechte vorbehalten.",
+      "backHome": "Zurück zur Startseite",
+      "about": "Über",
+      "privacy": "Datenschutzrichtlinie"
+    }
+  },
+  "about": {
+    "title": "Über Planneo",
+    "subtitle": "Ihre Lösung für Schichtplan-Management",
+    "sections": {
+      "hero": {
+        "title": "Willkommen bei Planneo",
+        "description": "Planneo ist eine Progressive Web App (PWA), die entwickelt wurde, um die Schichtplanung für Geschäfte, Unternehmen und kleine bis mittelgroße Betriebe zu vereinfachen.",
+        "features": [
+          "Intuitive Schichtplan-Verwaltung",
+          "Moderne und responsive Benutzeroberfläche",
+          "Offline-Funktionalität",
+          "100% kostenlos und ohne aufdringliche Werbung"
+        ]
+      },
+      "developer": {
+        "title": "Entwickler-Identität",
+        "name": "Antoine Terrade",
+        "role": "Full-Stack-Entwickler",
+        "experience": "5+ Jahre Webentwicklungserfahrung",
+        "specialization": "Spezialisiert auf Management-Anwendungen und PWAs",
+        "mission": "Demokratisierung des Zugangs zu professionellen Management-Tools",
+        "vision": "Einfache, effektive und für alle zugängliche Lösungen schaffen",
+        "contact": "contact@antoineterrade.com",
+        "bio": "Leidenschaftlich für Webentwicklung und Innovation, strebt Antoine Terrade danach, Anwendungen zu erstellen, die das Berufsleben vereinfachen. Mit Expertise in React, Next.js und modernen Technologien entwickelt er robuste und leistungsstarke Lösungen.",
+        "values": [
+          "Einfachheit an erster Stelle",
+          "Sauberer und wartbarer Code",
+          "Optimale Benutzererfahrung",
+          "Respekt vor der Privatsphäre"
+        ]
+      },
+      "story": {
+        "title": "Die Planneo-Geschichte",
+        "problem": {
+          "title": "Das Problem",
+          "description": "Kleine Unternehmen und Geschäfte haben oft Schwierigkeiten, ihre Schichtpläne effizient zu verwalten. Bestehende Lösungen sind entweder zu komplex, zu teuer oder erfüllen nicht die spezifischen Bedürfnisse des Einzelhandels."
+        },
+        "solution": {
+          "title": "Unsere Lösung",
+          "description": "Planneo wurde geschaffen, um diesem Bedarf gerecht zu werden. Eine einfache, kostenlose und effektive Anwendung, die es ermöglicht, Schichtpläne in wenigen Klicks zu verwalten, ohne vorherige Schulung."
+        },
+        "mission": {
+          "title": "Unsere Mission",
+          "description": "Demokratisierung des Zugangs zu professionellen Management-Tools durch eine kostenlose, einfache und effektive Lösung für die Schichtplanung."
+        }
+      },
+      "economicModel": {
+        "title": "Transparentes Wirtschaftsmodell",
+        "description": "Planneo ist und wird immer kostenlos bleiben. So finanzieren wir Entwicklung und Wartung:",
+        "funding": {
+          "adsense": {
+            "title": "Google AdSense",
+            "description": "Nicht aufdringliche Werbung wird angezeigt, um die Entwicklung zu finanzieren. Diese Werbung respektiert Ihre Privatsphäre und sammelt keine persönlichen Daten.",
+            "status": "In Vorbereitung"
+          },
+          "donations": {
+            "title": "Freiwillige Spenden",
+            "description": "Sie können die Planneo-Entwicklung über Buy Me a Coffee unterstützen. Es ist völlig optional und beeinträchtigt nicht die Nutzung der Anwendung.",
+            "link": "Entwicklung unterstützen"
+          },
+          "enterprise": {
+            "title": "Unternehmensversion (Zukunft)",
+            "description": "Eine Unternehmensversion mit erweiterten Funktionen könnte in Zukunft angeboten werden, aber die Basisversion wird immer kostenlos bleiben."
+          }
+        },
+        "commitment": {
+          "title": "Unser Engagement",
+          "promises": [
+            "Planneo wird immer kostenlos bleiben",
+            "Keine Funktion wird kostenpflichtig",
+            "Keine Daten werden verkauft",
+            "Vollständige Transparenz bei der Finanzierung"
+          ]
+        }
+      },
+      "features": {
+        "title": "Hauptfunktionen",
+        "description": "Planneo bietet alle Funktionen, die Sie benötigen, um Ihre Schichtpläne effizient zu verwalten:",
+        "list": [
+          "Schichtplan-Erstellung und -Verwaltung",
+          "Mitarbeiter- und Verfügbarkeitsverwaltung",
+          "Wöchentliche Schichtplan-Anzeige",
+          "Datenexport im JSON-Format",
+          "Responsive Benutzeroberfläche (Mobil, Tablet, Desktop)",
+          "Offline-Funktionalität (PWA)",
+          "Automatisches lokales Backup",
+          "Mehrsprachig (FR, EN, DE, IT)"
+        ]
+      },
+      "technology": {
+        "title": "Verwendete Technologien",
+        "description": "Planneo wird mit den modernsten Technologien entwickelt, um Leistung und Sicherheit zu gewährleisten:",
+        "stack": {
+          "frontend": {
+            "title": "Frontend",
+            "technologies": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
+          },
+          "backend": {
+            "title": "Backend",
+            "technologies": ["Vercel", "Serverless Functions", "Edge Computing"]
+          },
+          "security": {
+            "title": "Sicherheit",
+            "technologies": ["HTTPS/TLS", "CSP", "Local Storage", "DSGVO-konform"]
+          }
+        }
+      },
+      "roadmap": {
+        "title": "Roadmap",
+        "description": "Hier sind die für kommende Versionen geplanten Funktionen:",
+        "upcoming": [
+          "Google AdSense-Integration",
+          "Anpassbare Themes",
+          "Push-Benachrichtigungen",
+          "Multi-Geräte-Synchronisation",
+          "Berichte und Statistiken",
+          "API für Drittanbieter-Integrationen"
+        ]
+      },
+      "support": {
+        "title": "Support und Community",
+        "description": "Wir sind da, um Ihnen zu helfen:",
+        "channels": {
+          "email": {
+            "title": "E-Mail",
+            "description": "contact@antoineterrade.com",
+            "responseTime": "Antwort innerhalb von 24-48h"
+          },
+          "feedback": {
+            "title": "Feedback und Vorschläge",
+            "description": "Ihr Feedback ist wertvoll, um Planneo zu verbessern"
+          }
+        }
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Antoine Terrade. Alle Rechte vorbehalten.",
+      "backHome": "Zurück zur Startseite",
+      "cgu": "AGB",
+      "privacy": "Datenschutzrichtlinie",
+      "security": "Sicherheit"
+    }
   }
 }
