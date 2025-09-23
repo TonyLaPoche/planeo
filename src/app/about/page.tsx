@@ -384,44 +384,135 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* CGU */}
+          {/* Identité du développeur */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center mb-4">
-              <FileText className="h-6 w-6 text-blue-600 mr-2" />
-              <h2 className="text-2xl font-semibold text-gray-900">Conditions Générales d&apos;Utilisation</h2>
+              <Users className="h-6 w-6 text-blue-600 mr-2" />
+              <h2 className="text-2xl font-semibold text-gray-900">Développeur</h2>
             </div>
 
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">1. Objet</h3>
-                <p className="text-gray-600">
-                  Planneo est une application de gestion de planning horaires destinée à un usage personnel
-                  et professionnel individuel.
-                </p>
+            <div className="space-y-6">
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-bold text-blue-600">AT</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Antoine Terrade</h3>
+                    <p className="text-gray-600 mb-3">
+                      Développeur Full-Stack passionné par la création d&apos;outils utiles et accessibles.
+                    </p>
+                    <div className="space-y-2">
+                      <p className="text-sm text-gray-600">
+                        <strong>Expérience :</strong> 5+ ans en développement web et applications de gestion
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        <strong>Spécialisation :</strong> Applications PWA, gestion d&apos;équipe, interfaces intuitives
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        <strong>Mission :</strong> Démocratiser les outils de gestion pour les petites entreprises
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">2. Licence d&apos;utilisation</h3>
-                <p className="text-gray-600">
-                  Cette application est sous licence propriétaire. L&apos;utilisation personnelle est autorisée,
-                  mais toute utilisation commerciale est strictement interdite sans accord préalable.
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">🎯 Pourquoi Planneo ?</h4>
+                  <p className="text-sm text-gray-600">
+                    J&apos;ai créé Planneo après avoir constaté que les solutions de planning existantes 
+                    étaient soit trop complexes, soit trop chères pour les petites boutiques. 
+                    Mon objectif : un outil simple, gratuit et respectueux de la vie privée.
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">💡 Vision</h4>
+                  <p className="text-sm text-gray-600">
+                    Chaque commerçant mérite un outil de gestion professionnel, accessible 
+                    et sécurisé. Planneo incarne cette vision : gratuit, local, et pensé 
+                    pour les vrais besoins du terrain.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Modèle économique transparent */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="flex items-center mb-4">
+              <FileText className="h-6 w-6 text-purple-600 mr-2" />
+              <h2 className="text-2xl font-semibold text-gray-900">Modèle Économique Transparent</h2>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 className="text-lg font-medium text-green-900 mb-3">🆓 Planneo reste 100% gratuit</h3>
+                <p className="text-green-800 mb-3">
+                  <strong>Engagement :</strong> Planneo sera toujours gratuit pour tous les utilisateurs. 
+                  Aucun frais caché, aucune limitation de fonctionnalités.
                 </p>
+                <ul className="text-sm text-green-700 space-y-1 ml-4">
+                  <li>• Toutes les fonctionnalités disponibles gratuitement</li>
+                  <li>• Pas d&apos;abonnement requis</li>
+                  <li>• Pas de version premium payante</li>
+                  <li>• Mises à jour gratuites à vie</li>
+                </ul>
               </div>
 
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">3. Responsabilités</h3>
-                <p className="text-gray-600">
-                  L&apos;utilisateur est seul responsable des données qu&apos;il saisit dans l&apos;application.
-                  Nous recommandons de sauvegarder régulièrement vos données importantes.
-                </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <h4 className="font-medium text-blue-900 mb-2">💰 Comment nous nous finançons</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <h5 className="font-medium text-blue-800">Publicités Google AdSense</h5>
+                      <p className="text-sm text-blue-700">
+                        Publicités non intrusives, respectueuses de vos choix de consentement.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-blue-800">Dons volontaires</h5>
+                      <p className="text-sm text-blue-700">
+                        Via Buy Me a Coffee pour soutenir le développement.
+                      </p>
+                    </div>
+                    <div>
+                      <h5 className="font-medium text-blue-800">Version entreprise</h5>
+                      <p className="text-sm text-blue-700">
+                        Solutions personnalisées pour les grandes entreprises.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                  <h4 className="font-medium text-purple-900 mb-2">🎯 Notre engagement</h4>
+                  <ul className="text-sm text-purple-700 space-y-1">
+                    <li>• <strong>Transparence totale :</strong> Tous les revenus sont publics</li>
+                    <li>• <strong>Pas de vente de données :</strong> Vos données ne sont jamais vendues</li>
+                    <li>• <strong>Développement continu :</strong> Revenus réinvestis dans l&apos;amélioration</li>
+                    <li>• <strong>Indépendance :</strong> Pas de dépendance aux investisseurs</li>
+                    <li>• <strong>Éthique :</strong> Publicités respectueuses et non intrusives</li>
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h3 className="font-medium text-gray-900 mb-2">4. Support technique</h3>
-                <p className="text-gray-600">
-                  Le support est fourni sur base du meilleur effort. Pour toute question technique,
-                  contactez le développeur via les coordonnées ci-dessous.
-                </p>
+              <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                <h4 className="font-medium text-amber-900 mb-2">📊 Chiffres transparents</h4>
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-amber-600">0€</div>
+                    <div className="text-amber-800">Coût pour l&apos;utilisateur</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-amber-600">100%</div>
+                    <div className="text-amber-800">Fonctionnalités gratuites</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-amber-600">∞</div>
+                    <div className="text-amber-800">Durée d&apos;utilisation</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -536,6 +627,45 @@ export default function AboutPage() {
                   Réponse généralement sous 24-48h
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Liens légaux */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Informations légales</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Link
+                href="/cgu"
+                className="p-4 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-colors duration-200"
+              >
+                <FileText className="h-6 w-6 text-blue-600 mb-2" />
+                <h3 className="font-medium text-blue-900 mb-1">Conditions d&apos;Utilisation</h3>
+                <p className="text-sm text-blue-700">
+                  Règles d&apos;utilisation de l&apos;application
+                </p>
+              </Link>
+              
+              <Link
+                href="/privacy"
+                className="p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-colors duration-200"
+              >
+                <Shield className="h-6 w-6 text-green-600 mb-2" />
+                <h3 className="font-medium text-green-900 mb-1">Politique de Confidentialité</h3>
+                <p className="text-sm text-green-700">
+                  Comment nous protégeons vos données
+                </p>
+              </Link>
+              
+              <Link
+                href="/security"
+                className="p-4 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-colors duration-200"
+              >
+                <Lock className="h-6 w-6 text-purple-600 mb-2" />
+                <h3 className="font-medium text-purple-900 mb-1">Sécurité & Confidentialité</h3>
+                <p className="text-sm text-purple-700">
+                  Nos mesures de sécurité détaillées
+                </p>
+              </Link>
             </div>
           </div>
 

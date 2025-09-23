@@ -298,6 +298,12 @@
   "footer": {
     "about": "Chi siamo",
     "aboutAriaLabel": "Chi siamo - Planneo",
+    "cgu": "Termini",
+    "cguAriaLabel": "Termini di Servizio",
+    "privacy": "Privacy",
+    "privacyAriaLabel": "Politica sulla Privacy",
+    "security": "Sicurezza",
+    "securityAriaLabel": "Sicurezza e Privacy",
     "support": "Supporta",
     "supportAriaLabel": "Supporta lo sviluppo su Buy Me a Coffee",
     "copyright": "©2025",

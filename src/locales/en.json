@@ -204,6 +204,12 @@
   "footer": {
     "about": "About",
     "aboutAriaLabel": "About Planneo",
+    "cgu": "Terms",
+    "cguAriaLabel": "Terms of Service",
+    "privacy": "Privacy",
+    "privacyAriaLabel": "Privacy Policy",
+    "security": "Security",
+    "securityAriaLabel": "Security and Privacy",
     "support": "Support",
     "supportAriaLabel": "Support development on Buy Me a Coffee",
     "copyright": "©2025",
