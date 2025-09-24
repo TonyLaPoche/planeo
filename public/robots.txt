@@ -3,3 +3,6 @@ Allow: /
 
 # Sitemap
 Sitemap: https://planneo.ch/sitemap.xml
+
+# Cache busting
+# Last updated: 2025-09-24

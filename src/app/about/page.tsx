@@ -338,7 +338,7 @@ export default function AboutPage() {
           {/* Commitment */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.economicModel.commitment.title')}</h2>
-            <p className="text-gray-700 mb-6">Voici mes engagements envers vous :</p>
+            <p className="text-gray-700 mb-6">{t('about.sections.economicModel.commitment.description')}</p>
             
             <div className="grid md:grid-cols-2 gap-4">
               {(() => {
