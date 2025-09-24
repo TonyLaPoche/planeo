@@ -3,6 +3,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://planneo.ch/sitemap.xml
-
-# Crawl delay pour être poli avec le serveur
-Crawl-delay: 1
