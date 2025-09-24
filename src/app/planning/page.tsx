@@ -34,7 +34,13 @@ export default function PlanningPage() {
     closeShiftModal,
   } = usePlanning();
   
-  const { t } = useTranslation();
+  const { t: tRaw } = useTranslation();
+  
+  // Helper function to ensure we get a string from translation
+  const t = (key: string, params?: Record<string, string | number>): string => {
+    const result = tRaw(key, params);
+    return typeof result === 'string' ? result : key;
+  };
 
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +54,8 @@ export default function PlanningPage() {
   });
 
   const handleClearCurrentMonth = () => {
-    if (confirm(t('planning.clearMonthConfirm'))) {
+    const confirmMessage = t('planning.clearMonthConfirm');
+    if (confirm(typeof confirmMessage === 'string' ? confirmMessage : 'Êtes-vous sûr de vouloir effacer tous les plannings du mois en cours ?')) {
       // Supprimer tous les shifts du mois en cours
       const monthKey = currentMonth; // currentMonth est déjà au format 'YYYY-MM'
       const allShifts = shiftStorage.getAll();
@@ -106,7 +113,8 @@ export default function PlanningPage() {
   };
 
   const handleDelete = (shiftId: string) => {
-    if (confirm(t('planning.deleteShiftConfirm'))) {
+    const confirmMessage = t('planning.deleteShiftConfirm');
+    if (confirm(typeof confirmMessage === 'string' ? confirmMessage : 'Êtes-vous sûr de vouloir supprimer ce créneau ?')) {
       shiftStorage.delete(shiftId);
       loadData();
     }

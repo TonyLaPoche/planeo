@@ -892,43 +892,44 @@
       "developer": {
         "title": "Entwickler-Identität",
         "name": "Antoine Terrade",
-        "role": "Full-Stack-Entwickler",
-        "experience": "5+ Jahre Webentwicklungserfahrung",
-        "specialization": "Spezialisiert auf Management-Anwendungen und PWAs",
+        "role": "Web- und Mobile-Entwickler",
+        "experience": "3+ Jahre Webentwicklungserfahrung",
+        "specialization": "Ersteller von Tools und Lösungen zur Lösung konkreter Probleme",
         "mission": "Demokratisierung des Zugangs zu professionellen Management-Tools",
         "vision": "Einfache, effektive und für alle zugängliche Lösungen schaffen",
         "contact": "contact@antoineterrade.com",
         "bio": "Leidenschaftlich für Webentwicklung und Innovation, strebt Antoine Terrade danach, Anwendungen zu erstellen, die das Berufsleben vereinfachen. Mit Expertise in React, Next.js und modernen Technologien entwickelt er robuste und leistungsstarke Lösungen.",
         "values": [
-          "Einfachheit an erster Stelle",
-          "Sauberer und wartbarer Code",
-          "Optimale Benutzererfahrung",
-          "Respekt vor der Privatsphäre"
+          "Einfachheit an erster Stelle - Benutzerfreundliche Tools",
+          "Konkrete Lösungen - Echte Probleme lösen",
+          "Zugänglichkeit - Tools für alle, kostenlos",
+          "Respekt vor der Privatsphäre - Ihre Daten bleiben bei Ihnen",
+          "Kontinuierliche Innovation - Die Erfahrung ständig verbessern"
         ]
       },
       "story": {
         "title": "Die Planneo-Geschichte",
         "problem": {
           "title": "Das Problem",
-          "description": "Kleine Unternehmen und Geschäfte haben oft Schwierigkeiten, ihre Schichtpläne effizient zu verwalten. Bestehende Lösungen sind entweder zu komplex, zu teuer oder erfüllen nicht die spezifischen Bedürfnisse des Einzelhandels."
+          "description": "Ich habe beobachtet, dass die Erstellung und Generierung von Plänen im Jahr 2025 für viele Unternehmen und KMU, die noch einfache Excel-Dateien verwenden, mühsam bleibt. Sie kämpfen darum, die richtigen monatlichen Stundenquoten zu erreichen und die Verträge ihrer Mitarbeiter zu respektieren."
         },
         "solution": {
-          "title": "Unsere Lösung",
-          "description": "Planneo wurde geschaffen, um diesem Bedarf gerecht zu werden. Eine einfache, kostenlose und effektive Anwendung, die es ermöglicht, Schichtpläne in wenigen Klicks zu verwalten, ohne vorherige Schulung."
+          "title": "Meine Lösung",
+          "description": "Ich hatte daher die Idee und ergriff die Gelegenheit, ein einfaches, schnelles und kostenloses Tool im Rahmen meiner Möglichkeiten vorzuschlagen. Planneo ermöglicht es, Schichtpläne in wenigen Klicks zu verwalten, ohne vorherige Schulung, während die Genauigkeit der Stunden in Bezug auf die Mitarbeiterverträge gewahrt bleibt."
         },
         "mission": {
-          "title": "Unsere Mission",
+          "title": "Meine Mission",
           "description": "Demokratisierung des Zugangs zu professionellen Management-Tools durch eine kostenlose, einfache und effektive Lösung für die Schichtplanung."
         }
       },
       "economicModel": {
         "title": "Transparentes Wirtschaftsmodell",
-        "description": "Planneo ist und wird immer kostenlos bleiben. So finanzieren wir Entwicklung und Wartung:",
+        "description": "Planneo ist und wird immer kostenlos und funktional bleiben. So finanziere ich Entwicklung und Wartung:",
         "funding": {
           "adsense": {
             "title": "Google AdSense",
-            "description": "Nicht aufdringliche Werbung wird angezeigt, um die Entwicklung zu finanzieren. Diese Werbung respektiert Ihre Privatsphäre und sammelt keine persönlichen Daten.",
-            "status": "In Vorbereitung"
+            "description": "Nicht aufdringliche Werbung wird nur auf PC (Seitenleisten) und Mobile (unten auf der Seite) angezeigt, um die Benutzererfahrung nicht zu stören. Diese Werbung respektiert Ihre Privatsphäre und sammelt keine persönlichen Daten.",
+            "status": "In Vorbereitung - Kommt bald"
           },
           "donations": {
             "title": "Freiwillige Spenden",
@@ -941,12 +942,16 @@
           }
         },
         "commitment": {
-          "title": "Unser Engagement",
+          "title": "Mein Engagement",
+          "description": "Hier sind meine Verpflichtungen Ihnen gegenüber:",
           "promises": [
-            "Planneo wird immer kostenlos bleiben",
-            "Keine Funktion wird kostenpflichtig",
-            "Keine Daten werden verkauft",
-            "Vollständige Transparenz bei der Finanzierung"
+            "Planneo wird immer kostenlos und funktional bleiben",
+            "Keine Grundfunktionen werden kostenpflichtig",
+            "Keine Daten werden verkauft oder geteilt",
+            "Vollständige Transparenz über Finanzierung und Entwicklung",
+            "Aktives Zuhören bei Nutzerfeedback zur Verbesserung des Tools",
+            "Respekt vor Ihrer Privatsphäre und Ihren Daten",
+            "Kontinuierliche Entwicklung im Rahmen meiner Möglichkeiten"
           ]
         }
       },

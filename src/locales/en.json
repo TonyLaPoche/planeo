@@ -798,43 +798,44 @@
       "developer": {
         "title": "Developer Identity",
         "name": "Antoine Terrade",
-        "role": "Full-Stack Developer",
-        "experience": "5+ years of web development experience",
-        "specialization": "Specialized in management applications and PWAs",
+        "role": "Web and Mobile Developer",
+        "experience": "3+ years of web development experience",
+        "specialization": "Creator of tools and solutions to solve concrete problems",
         "mission": "Democratize access to professional management tools",
         "vision": "Create simple, effective and accessible solutions for everyone",
         "contact": "contact@antoineterrade.com",
         "bio": "Passionate about web development and innovation, Antoine Terrade strives to create applications that simplify professional life. With expertise in React, Next.js and modern technologies, he develops robust and performant solutions.",
         "values": [
-          "Simplicity first",
-          "Clean and maintainable code",
-          "Optimal user experience",
-          "Privacy respect"
+          "Simplicity first - Easy-to-use tools",
+          "Concrete solutions - Solve real problems",
+          "Accessibility - Tools for everyone, for free",
+          "Privacy respect - Your data stays with you",
+          "Continuous innovation - Constantly improve the experience"
         ]
       },
       "story": {
         "title": "The Planneo Story",
         "problem": {
           "title": "The Problem",
-          "description": "Small businesses and shops often struggle to efficiently manage their team schedules. Existing solutions are either too complex, too expensive, or don't meet the specific needs of retail."
+          "description": "I observed that creating and generating schedules in 2025 remains tedious for many companies and SMEs that still use simple Excel files. They struggle to achieve the right monthly hour quotas and respect their employees' contracts."
         },
         "solution": {
-          "title": "Our Solution",
-          "description": "Planneo was created to address this need. A simple, free and effective application that allows you to manage team schedules in a few clicks, without prior training."
+          "title": "My Solution",
+          "description": "I therefore had the idea and took the opportunity to propose a simple, fast and free tool within my capabilities. Planneo allows you to manage team schedules in a few clicks, without prior training, while maintaining accuracy of hours relative to employee contracts."
         },
         "mission": {
-          "title": "Our Mission",
+          "title": "My Mission",
           "description": "Democratize access to professional management tools by offering a free, simple and effective solution for team schedule management."
         }
       },
       "economicModel": {
         "title": "Transparent Economic Model",
-        "description": "Planneo is and will always remain free. Here's how we finance development and maintenance:",
+        "description": "Planneo is and will always remain free and functional. Here's how I finance development and maintenance:",
         "funding": {
           "adsense": {
             "title": "Google AdSense",
-            "description": "Non-intrusive ads are displayed to finance development. These ads respect your privacy and collect no personal data.",
-            "status": "In preparation"
+            "description": "Non-intrusive ads will be displayed only on PC (side panels) and mobile (bottom of page) to not disturb the user experience. These ads respect your privacy and collect no personal data.",
+            "status": "In preparation - Coming soon"
           },
           "donations": {
             "title": "Voluntary donations",
@@ -843,16 +844,20 @@
           },
           "enterprise": {
             "title": "Enterprise version (future)",
-            "description": "An enterprise version with advanced features may be offered in the future, but the basic version will always remain free."
+            "description": "For a more advanced future version, I'm open to your suggestions. If you need a private model for companies (small to medium, 5 to 30 employees), I'm willing to create alternative versions specific to companies in exchange for my service fees (by quote)."
           }
         },
         "commitment": {
-          "title": "Our Commitment",
+          "title": "My Commitment",
+          "description": "Here are my commitments to you:",
           "promises": [
-            "Planneo will always remain free",
-            "No feature will be paid",
-            "No data will be sold",
-            "Total transparency on funding"
+            "Planneo will always remain free and functional",
+            "No basic features will be paid",
+            "No data will be sold or shared",
+            "Total transparency on financing and evolution",
+            "Active listening to user feedback to improve the tool",
+            "Respect for your privacy and data",
+            "Continuous development within my capabilities"
           ]
         }
       },

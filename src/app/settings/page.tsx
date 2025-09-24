@@ -12,7 +12,13 @@ import SEOHead from '@/components/SEOHead';
 export default function SettingsPage() {
   const [settings, setSettings] = useState<AppSettings | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const { t, currentLanguage, changeLanguage, languages } = useTranslation();
+  const { t: tRaw, currentLanguage, changeLanguage, languages } = useTranslation();
+  
+  // Helper function to ensure we get a string from translation
+  const t = (key: string, params?: Record<string, string | number>): string => {
+    const result = tRaw(key, params);
+    return typeof result === 'string' ? result : key;
+  };
 
   useEffect(() => {
     setSettings(settingsStorage.get());

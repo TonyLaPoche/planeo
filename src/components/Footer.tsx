@@ -6,7 +6,13 @@ import { PreFooterAd } from './AdPlacement';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t: tRaw } = useTranslation();
+  
+  // Helper function to ensure we get a string from translation
+  const t = (key: string, params?: Record<string, string | number>): string => {
+    const result = tRaw(key, params);
+    return typeof result === 'string' ? result : key;
+  };
 
   return (
     <>

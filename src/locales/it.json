@@ -892,43 +892,44 @@
       "developer": {
         "title": "Identità dello sviluppatore",
         "name": "Antoine Terrade",
-        "role": "Sviluppatore Full-Stack",
-        "experience": "5+ anni di esperienza nello sviluppo web",
-        "specialization": "Specializzato in applicazioni di gestione e PWA",
+        "role": "Sviluppatore Web e Mobile",
+        "experience": "3+ anni di esperienza nello sviluppo web",
+        "specialization": "Creatore di strumenti e soluzioni per risolvere problemi concreti",
         "mission": "Democratizzare l'accesso agli strumenti di gestione professionali",
         "vision": "Creare soluzioni semplici, efficaci e accessibili a tutti",
         "contact": "contact@antoineterrade.com",
         "bio": "Appassionato di sviluppo web e innovazione, Antoine Terrade si sforza di creare applicazioni che semplificano la vita professionale. Con competenze in React, Next.js e tecnologie moderne, sviluppa soluzioni robuste e performanti.",
         "values": [
-          "Semplicità prima di tutto",
-          "Codice pulito e manutenibile",
-          "Esperienza utente ottimale",
-          "Rispetto della privacy"
+          "Semplicità prima di tutto - Strumenti facili da usare",
+          "Soluzioni concrete - Risolvere problemi reali",
+          "Accessibilità - Strumenti per tutti, gratuitamente",
+          "Rispetto della privacy - I tuoi dati rimangono con te",
+          "Innovazione continua - Migliorare costantemente l'esperienza"
         ]
       },
       "story": {
         "title": "La storia di Planneo",
         "problem": {
           "title": "Il problema",
-          "description": "Le piccole aziende e i negozi spesso faticano a gestire efficacemente i loro turni. Le soluzioni esistenti sono troppo complesse, troppo costose o non soddisfano le esigenze specifiche del retail."
+          "description": "Ho osservato che la creazione e generazione di turni nel 2025 rimane noiosa per molte aziende e PMI che utilizzano ancora semplici file Excel. Faticano per raggiungere le giuste quote orarie mensili e rispettare i contratti dei loro dipendenti."
         },
         "solution": {
-          "title": "La nostra soluzione",
-          "description": "Planneo è stato creato per rispondere a questa esigenza. Un'applicazione semplice, gratuita ed efficace che permette di gestire i turni in pochi clic, senza formazione preliminare."
+          "title": "La mia soluzione",
+          "description": "Ho quindi avuto l'idea e colto l'opportunità di proporre uno strumento semplice, veloce e gratuito nei limiti delle mie capacità. Planneo permette di gestire i turni in pochi clic, senza formazione preliminare, mantenendo l'accuratezza delle ore rispetto ai contratti dei dipendenti."
         },
         "mission": {
-          "title": "La nostra missione",
+          "title": "La mia missione",
           "description": "Democratizzare l'accesso agli strumenti di gestione professionali offrendo una soluzione gratuita, semplice ed efficace per la gestione dei turni."
         }
       },
       "economicModel": {
         "title": "Modello Economico Trasparente",
-        "description": "Planneo è e rimarrà sempre gratuito. Ecco come finanziamo lo sviluppo e la manutenzione:",
+        "description": "Planneo è e rimarrà sempre gratuito e funzionale. Ecco come finanzio lo sviluppo e la manutenzione:",
         "funding": {
           "adsense": {
             "title": "Google AdSense",
-            "description": "Vengono visualizzati annunci non invadenti per finanziare lo sviluppo. Questi annunci rispettano la vostra privacy e non raccolgono dati personali.",
-            "status": "In preparazione"
+            "description": "Gli annunci non invadenti verranno visualizzati solo su PC (pannelli laterali) e mobile (in fondo alla pagina) per non disturbare l'esperienza utente. Questi annunci rispettano la vostra privacy e non raccolgono dati personali.",
+            "status": "In preparazione - In arrivo presto"
           },
           "donations": {
             "title": "Donazioni volontarie",
@@ -941,12 +942,16 @@
           }
         },
         "commitment": {
-          "title": "Il nostro impegno",
+          "title": "Il mio impegno",
+          "description": "Ecco i miei impegni nei vostri confronti:",
           "promises": [
-            "Planneo rimarrà sempre gratuito",
-            "Nessuna funzionalità sarà a pagamento",
-            "Nessun dato sarà venduto",
-            "Trasparenza totale sul finanziamento"
+            "Planneo rimarrà sempre gratuito e funzionale",
+            "Nessuna funzionalità di base sarà a pagamento",
+            "Nessun dato sarà venduto o condiviso",
+            "Trasparenza totale su finanziamento ed evoluzione",
+            "Ascolto attivo del feedback degli utenti per migliorare lo strumento",
+            "Rispetto della vostra privacy e dei vostri dati",
+            "Sviluppo continuo nei limiti delle mie capacità"
           ]
         }
       },
