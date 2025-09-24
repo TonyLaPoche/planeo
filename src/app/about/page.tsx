@@ -5,7 +5,13 @@ import { Calendar, User, Mail, ExternalLink, Shield, Code, Coffee, Heart, CheckC
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function AboutPage() {
-  const { t } = useTranslation();
+  const { t: tRaw } = useTranslation();
+  
+  // Helper function to ensure we get a string from translation
+  const t = (key: string, params?: Record<string, string | number>): string => {
+    const result = tRaw(key, params);
+    return typeof result === 'string' ? result : key;
+  };
   
   return (
     <div className="min-h-screen bg-gray-50">
@@ -78,10 +84,10 @@ export default function AboutPage() {
                     <strong className="text-gray-900">{t('about.sections.developer.specialization')}</strong>
                   </div>
                   <div>
-                    <strong className="text-gray-900">Mission :</strong> {t('about.sections.developer.mission')}
+                    <strong className="text-gray-900">Mission :</strong> <span className="text-gray-700">{t('about.sections.developer.mission')}</span>
                   </div>
                   <div>
-                    <strong className="text-gray-900">Vision :</strong> {t('about.sections.developer.vision')}
+                    <strong className="text-gray-900">Vision :</strong> <span className="text-gray-700">{t('about.sections.developer.vision')}</span>
                   </div>
                 </div>
 
@@ -110,7 +116,9 @@ export default function AboutPage() {
 
           {/* Story Section */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t('about.sections.story.title')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+              {t('about.sections.story.title')}
+            </h2>
             
             <div className="space-y-6">
               <div className="bg-red-50 p-4 rounded-lg">
@@ -167,11 +175,29 @@ export default function AboutPage() {
             
             <div className="mt-6 bg-green-50 p-4 rounded-lg">
               <h3 className="text-lg font-medium text-green-800 mb-3">{t('about.sections.economicModel.commitment.title')}</h3>
+              <p className="text-green-700 mb-3">{t('about.sections.economicModel.commitment.description')}</p>
               <ul className="list-disc list-inside text-green-700 space-y-1">
-                {Array.isArray(t('about.sections.economicModel.commitment.promises')) && 
-                  (t('about.sections.economicModel.commitment.promises') as unknown as string[]).map((promise: string, index: number) => (
-                    <li key={index}>{promise}</li>
-                  ))}
+                {(() => {
+                  const promises = tRaw('about.sections.economicModel.commitment.promises');
+                  if (Array.isArray(promises)) {
+                    return promises.map((promise: string, index: number) => (
+                      <li key={index}>{promise}</li>
+                    ));
+                  } else {
+                    // Fallback si la traduction ne fonctionne pas
+                    return [
+                      "Planneo restera toujours gratuit et fonctionnel",
+                      "Aucune fonctionnalité de base ne sera payante", 
+                      "Aucune donnée ne sera vendue ou partagée",
+                      "Transparence totale sur le financement et l'évolution",
+                      "Écoute active des retours utilisateurs pour améliorer l'outil",
+                      "Respect de votre vie privée et de vos données",
+                      "Développement continu dans la mesure de mes capacités"
+                    ].map((promise: string, index: number) => (
+                      <li key={index}>{promise}</li>
+                    ));
+                  }
+                })()}
               </ul>
             </div>
           </div>
@@ -182,15 +208,20 @@ export default function AboutPage() {
             <p className="text-gray-700 mb-6">{t('about.sections.features.description')}</p>
             
             <div className="grid md:grid-cols-2 gap-4">
-              {Array.isArray(t('about.sections.features.list')) && 
-                (t('about.sections.features.list') as unknown as string[]).map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <Star className="h-5 w-5 text-yellow-500" />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+              {(() => {
+                const features = tRaw('about.sections.features.list');
+                if (Array.isArray(features)) {
+                  return features.map((feature: string, index: number) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <Star className="h-5 w-5 text-yellow-500" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ));
+                }
+                return null;
+              })()}
             </div>
-          </div>
+                  </div>
 
           {/* Technology Stack */}
           <div className="bg-white rounded-lg shadow-sm p-6">
@@ -201,36 +232,69 @@ export default function AboutPage() {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h3 className="font-medium text-blue-800 mb-3">{t('about.sections.technology.stack.frontend.title')}</h3>
                 <div className="space-y-1">
-                  {Array.isArray(t('about.sections.technology.stack.frontend.technologies')) && 
-                    (t('about.sections.technology.stack.frontend.technologies') as unknown as string[]).map((tech: string, index: number) => (
-                      <span key={index} className="inline-block bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded mr-1 mb-1">
-                        {tech}
-                      </span>
-                    ))}
+                  {(() => {
+                    const technologies = tRaw('about.sections.technology.stack.frontend.technologies');
+                    if (Array.isArray(technologies)) {
+                      return technologies.map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    } else {
+                      // Fallback si la traduction ne fonctionne pas
+                      return ["React", "Next.js", "TypeScript", "Tailwind CSS"].map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    }
+                  })()}
                 </div>
               </div>
 
               <div className="bg-green-50 p-4 rounded-lg">
                 <h3 className="font-medium text-green-800 mb-3">{t('about.sections.technology.stack.backend.title')}</h3>
                 <div className="space-y-1">
-                  {Array.isArray(t('about.sections.technology.stack.backend.technologies')) && 
-                    (t('about.sections.technology.stack.backend.technologies') as unknown as string[]).map((tech: string, index: number) => (
-                      <span key={index} className="inline-block bg-green-100 text-green-800 text-sm px-2 py-1 rounded mr-1 mb-1">
-                        {tech}
-                      </span>
-                    ))}
+                  {(() => {
+                    const technologies = tRaw('about.sections.technology.stack.backend.technologies');
+                    if (Array.isArray(technologies)) {
+                      return technologies.map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-green-100 text-green-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    } else {
+                      // Fallback si la traduction ne fonctionne pas
+                      return ["Vercel", "Serverless Functions", "Edge Computing"].map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-green-100 text-green-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    }
+                  })()}
                 </div>
               </div>
 
               <div className="bg-red-50 p-4 rounded-lg">
                 <h3 className="font-medium text-red-800 mb-3">{t('about.sections.technology.stack.security.title')}</h3>
                 <div className="space-y-1">
-                  {Array.isArray(t('about.sections.technology.stack.security.technologies')) && 
-                    (t('about.sections.technology.stack.security.technologies') as unknown as string[]).map((tech: string, index: number) => (
-                      <span key={index} className="inline-block bg-red-100 text-red-800 text-sm px-2 py-1 rounded mr-1 mb-1">
-                        {tech}
-                      </span>
-                    ))}
+                  {(() => {
+                    const technologies = tRaw('about.sections.technology.stack.security.technologies');
+                    if (Array.isArray(technologies)) {
+                      return technologies.map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-red-100 text-red-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    } else {
+                      // Fallback si la traduction ne fonctionne pas
+                      return ["HTTPS/TLS", "CSP", "Local Storage", "GDPR Compliant"].map((tech: string, index: number) => (
+                        <span key={index} className="inline-block bg-red-100 text-red-800 text-sm px-2 py-1 rounded mr-1 mb-1">
+                          {tech}
+                        </span>
+                      ));
+                    }
+                  })()}
                 </div>
               </div>
             </div>
@@ -242,15 +306,70 @@ export default function AboutPage() {
             <p className="text-gray-700 mb-6">{t('about.sections.roadmap.description')}</p>
             
             <div className="grid md:grid-cols-2 gap-4">
-              {Array.isArray(t('about.sections.roadmap.upcoming')) && 
-                (t('about.sections.roadmap.upcoming') as unknown as string[]).map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <Code className="h-5 w-5 text-blue-500" />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+              {(() => {
+                const upcoming = tRaw('about.sections.roadmap.upcoming');
+                if (Array.isArray(upcoming)) {
+                  return upcoming.map((feature: string, index: number) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <Code className="h-5 w-5 text-blue-500" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ));
+                } else {
+                  // Fallback si la traduction ne fonctionne pas
+                  return [
+                    "Intégration Google AdSense",
+                    "Thèmes personnalisables", 
+                    "Notifications push",
+                    "Synchronisation multi-appareils",
+                    "Rapports et statistiques",
+                    "API pour intégrations tierces"
+                  ].map((feature: string, index: number) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <Code className="h-5 w-5 text-blue-500" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ));
+                }
+              })()}
             </div>
             </div>
+
+          {/* Commitment */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">{t('about.sections.economicModel.commitment.title')}</h2>
+            <p className="text-gray-700 mb-6">Voici mes engagements envers vous :</p>
+            
+            <div className="grid md:grid-cols-2 gap-4">
+              {(() => {
+                const promises = tRaw('about.sections.economicModel.commitment.promises');
+                if (Array.isArray(promises)) {
+                  return promises.map((promise: string, index: number) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{promise}</span>
+                    </div>
+                  ));
+                } else {
+                  // Fallback si la traduction ne fonctionne pas
+                  return [
+                    "Planneo restera toujours gratuit et fonctionnel",
+                    "Aucune fonctionnalité de base ne sera payante", 
+                    "Aucune donnée ne sera vendue ou partagée",
+                    "Transparence totale sur le financement et l'évolution",
+                    "Écoute active des retours utilisateurs pour améliorer l'outil",
+                    "Respect de votre vie privée et de vos données",
+                    "Développement continu dans la mesure de mes capacités"
+                  ].map((promise: string, index: number) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">{promise}</span>
+                    </div>
+                  ));
+                }
+              })()}
+            </div>
+          </div>
 
           {/* Support */}
           <div className="bg-white rounded-lg shadow-sm p-6">

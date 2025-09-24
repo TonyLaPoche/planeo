@@ -41,20 +41,40 @@ interface AdSenseAdProps {
 
 export function AdSenseAd({ slot, style, className, format = "auto" }: AdSenseAdProps) {
   const [mounted, setMounted] = useState(false);
+  const [adLoaded, setAdLoaded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (mounted && typeof window !== 'undefined' && window.adsbygoogle) {
-      try {
-        (window.adsbygoogle as unknown[]).push({});
-      } catch (error) {
-        console.error('Erreur lors du chargement de la publicité:', error);
-      }
+    if (mounted && typeof window !== 'undefined' && window.adsbygoogle && !adLoaded) {
+      // Attendre un peu pour que le DOM soit complètement rendu
+      const timer = setTimeout(() => {
+        try {
+          // Vérifier que le conteneur a une largeur avant de charger la pub
+          const adElement = document.querySelector(`[data-ad-slot="${slot}"]`);
+          if (adElement && adElement.getBoundingClientRect().width > 0) {
+            (window.adsbygoogle as unknown[]).push({});
+            setAdLoaded(true);
+          } else {
+            console.log('AdSense: Conteneur pas encore dimensionné, retry dans 100ms');
+            // Retry après 100ms
+            setTimeout(() => {
+              if (adElement && adElement.getBoundingClientRect().width > 0) {
+                (window.adsbygoogle as unknown[]).push({});
+                setAdLoaded(true);
+              }
+            }, 100);
+          }
+        } catch (error) {
+          console.error('Erreur lors du chargement de la publicité:', error);
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
     }
-  }, [mounted, slot]);
+  }, [mounted, slot, adLoaded]);
 
   // Ne pas rendre pendant l'hydratation
   if (!mounted) {
@@ -70,13 +90,20 @@ export function AdSenseAd({ slot, style, className, format = "auto" }: AdSenseAd
   }
 
   return (
-    <div className={className} style={{ minWidth: '300px', minHeight: '250px', ...style }}>
+    <div 
+      className={className} 
+      style={{ 
+        minWidth: '300px', 
+        minHeight: '250px', 
+        width: '100%',
+        ...style 
+      }}
+    >
       <ins
         className="adsbygoogle"
         style={{ 
           display: 'block', 
           width: '100%',
-          height: '100%',
           minWidth: '300px',
           minHeight: '250px',
           ...style 

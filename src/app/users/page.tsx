@@ -17,7 +17,13 @@ export default function UsersPage() {
   const [users, setUsers] = useState<UserType[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<UserType | null>(null);
-  const { t } = useTranslation();
+  const { t: tRaw } = useTranslation();
+  
+  // Helper function to ensure we get a string from translation
+  const t = (key: string, params?: Record<string, string | number>): string => {
+    const result = tRaw(key, params);
+    return typeof result === 'string' ? result : key;
+  };
   const [formData, setFormData] = useState({
     name: '',
     email: '',

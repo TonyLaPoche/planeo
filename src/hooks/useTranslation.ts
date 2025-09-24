@@ -3,74 +3,8 @@
 import { useState, useEffect } from 'react';
 import { settingsStorage } from '@/utils/storage';
 
-// Types pour les traductions
-type TranslationKeys = {
-  common: {
-    save: string;
-    cancel: string;
-    delete: string;
-    edit: string;
-    add: string;
-    back: string;
-    loading: string;
-    error: string;
-    success: string;
-    confirm: string;
-    yes: string;
-    no: string;
-  };
-  navigation: {
-    home: string;
-    users: string;
-    planning: string;
-    reports: string;
-    settings: string;
-    advanced: string;
-    about: string;
-  };
-  home: {
-    title: string;
-    subtitle: string;
-    description: string;
-    activeEmployees: string;
-    shiftsThisMonth: string;
-    currentMonth: string;
-    quickAccess: string;
-    manageEmployees: string;
-    createSchedules: string;
-    pdfExports: string;
-    holidaysAndStores: string;
-    configuration: string;
-  };
-  settings: {
-    title: string;
-    generalSettings: string;
-    language: string;
-    dataManagement: string;
-    exportData: string;
-    importData: string;
-    clearAllData: string;
-    about: string;
-    learnMore: string;
-    version: string;
-    pwa: string;
-    storage: string;
-    features: string;
-    userManagement: string;
-    visualPlanning: string;
-    automaticCalculation: string;
-    pdfExport: string;
-    offlineMode: string;
-    aiGeneration: string;
-    multiStoreManagement: string;
-  };
-  languages: {
-    fr: string;
-    en: string;
-    de: string;
-    it: string;
-  };
-};
+// Type flexible pour les traductions - permet n'importe quelle structure
+type TranslationKeys = Record<string, unknown>;
 
 // Fonction pour charger les traductions
 const loadTranslations = async (language: string): Promise<TranslationKeys> => {
@@ -136,8 +70,10 @@ export function useTranslation() {
   };
 
   // Fonction pour obtenir une traduction avec support des clés imbriquées et des paramètres
-  const t = (key: string, params?: Record<string, string | number>): string => {
-    if (!translations) return key;
+  const t = (key: string, params?: Record<string, string | number>): string | string[] => {
+    if (!translations) {
+      return key;
+    }
     
     const keys = key.split('.');
     let value: unknown = translations;
@@ -150,16 +86,23 @@ export function useTranslation() {
       }
     }
     
-    if (typeof value !== 'string') return key;
-    
-    // Remplacer les paramètres dans la chaîne de traduction
-    if (params) {
-      return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
-        return params[paramKey] !== undefined ? String(params[paramKey]) : match;
-      });
+    // Retourner la valeur telle quelle (string ou array)
+    if (typeof value === 'string') {
+      // Remplacer les paramètres dans la chaîne de traduction
+      if (params) {
+        return value.replace(/\{(\w+)\}/g, (match, paramKey) => {
+          return params[paramKey] !== undefined ? String(params[paramKey]) : match;
+        });
+      }
+      return value;
     }
     
-    return value;
+    // Retourner les tableaux tels quels
+    if (Array.isArray(value)) {
+      return value as string[];
+    }
+    
+    return key;
   };
 
   return {
@@ -167,7 +110,7 @@ export function useTranslation() {
     currentLanguage,
     changeLanguage,
     isLoading,
-    languages: translations?.languages || {
+    languages: (translations?.languages as Record<string, string>) || {
       fr: 'Français',
       en: 'English',
       de: 'Deutsch',

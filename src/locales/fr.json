@@ -892,43 +892,44 @@
       "developer": {
         "title": "Identité du développeur",
         "name": "Antoine Terrade",
-        "role": "Développeur Full-Stack",
-        "experience": "5+ ans d'expérience en développement web",
-        "specialization": "Spécialisé en applications de gestion et PWA",
+        "role": "Développeur Web et Mobile",
+        "experience": "3+ ans d'expérience en développement web",
+        "specialization": "Créateur d'outils et solutions pour répondre aux problèmes concrets",
         "mission": "Démocratiser l'accès aux outils de gestion professionnels",
         "vision": "Créer des solutions simples, efficaces et accessibles à tous",
         "contact": "contact@antoineterrade.com",
         "bio": "Passionné par le développement web et l'innovation, Antoine Terrade s'efforce de créer des applications qui simplifient la vie professionnelle. Avec une expertise en React, Next.js et les technologies modernes, il développe des solutions robustes et performantes.",
         "values": [
-          "Simplicité avant tout",
-          "Code propre et maintenable",
-          "Expérience utilisateur optimale",
-          "Respect de la vie privée"
+          "Simplicité avant tout - Des outils faciles à utiliser",
+          "Solutions concrètes - Résoudre les vrais problèmes",
+          "Accessibilité - Des outils pour tous, gratuitement",
+          "Respect de la vie privée - Vos données restent chez vous",
+          "Innovation continue - Améliorer constamment l'expérience"
         ]
       },
       "story": {
         "title": "L'histoire de Planneo",
         "problem": {
           "title": "Le problème",
-          "description": "Les petites entreprises et boutiques ont souvent du mal à gérer efficacement leurs plannings d'équipe. Les solutions existantes sont soit trop complexes, soit trop coûteuses, soit ne répondent pas aux besoins spécifiques du commerce de détail."
+          "description": "J'ai constaté que la création et la génération de plannings en 2025 reste fastidieuse pour de nombreuses entreprises et PME qui utilisent encore de simples fichiers Excel. Elles s'arrachent les cheveux pour arriver aux bons quotas d'heures mensuels et respecter les contrats de leurs employés."
         },
         "solution": {
-          "title": "Notre solution",
-          "description": "Planneo a été créé pour répondre à ce besoin. Une application simple, gratuite et efficace qui permet de gérer les plannings d'équipe en quelques clics, sans formation préalable."
+          "title": "Ma solution",
+          "description": "J'ai donc eu l'idée et pris l'opportunité de proposer un outil simple, rapide et gratuit dans la mesure de mes capacités. Planneo permet de gérer les plannings d'équipe en quelques clics, sans formation préalable, tout en gardant une justesse des heures par rapport aux contrats des employés."
         },
         "mission": {
-          "title": "Notre mission",
+          "title": "Ma mission",
           "description": "Démocratiser l'accès aux outils de gestion professionnels en proposant une solution gratuite, simple et efficace pour la gestion des plannings d'équipe."
         }
       },
       "economicModel": {
         "title": "Modèle Économique Transparent",
-        "description": "Planneo est et restera toujours gratuit. Voici comment nous finançons le développement et la maintenance :",
+        "description": "Planneo est et restera toujours gratuit et fonctionnel. Voici comment je finance le développement et la maintenance :",
         "funding": {
           "adsense": {
             "title": "Google AdSense",
-            "description": "Des publicités non intrusives sont affichées pour financer le développement. Ces publicités respectent votre vie privée et ne collectent aucune donnée personnelle.",
-            "status": "En cours de préparation"
+            "description": "Des publicités non intrusives seront affichées uniquement sur PC (encarts de côté) et mobile (en bas de page) pour ne pas déranger l'expérience utilisateur. Ces publicités respectent votre vie privée et ne collectent aucune donnée personnelle.",
+            "status": "En cours de préparation - Arrivée prochainement"
           },
           "donations": {
             "title": "Dons volontaires",
@@ -937,16 +938,20 @@
           },
           "enterprise": {
             "title": "Version entreprise (futur)",
-            "description": "Une version entreprise avec des fonctionnalités avancées pourrait être proposée à l'avenir, mais la version de base restera toujours gratuite."
+            "description": "Pour une version future plus aboutie, je suis à l'écoute de vos suggestions. Si besoin d'un modèle privé pour des entreprises (petites comme moyennes, 5 à 30 employés), je suis disposé à créer des versions alternatives propres aux entreprises moyennant achat de mes prestations de service (sous devis)."
           }
         },
         "commitment": {
-          "title": "Notre engagement",
+          "title": "Mon engagement",
+          "description": "Voici mes engagements envers vous :",
           "promises": [
-            "Planneo restera toujours gratuit",
-            "Aucune fonctionnalité ne sera payante",
-            "Aucune donnée ne sera vendue",
-            "Transparence totale sur le financement"
+            "Planneo restera toujours gratuit et fonctionnel",
+            "Aucune fonctionnalité de base ne sera payante",
+            "Aucune donnée ne sera vendue ou partagée",
+            "Transparence totale sur le financement et l'évolution",
+            "Écoute active des retours utilisateurs pour améliorer l'outil",
+            "Respect de votre vie privée et de vos données",
+            "Développement continu dans la mesure de mes capacités"
           ]
         }
       },
