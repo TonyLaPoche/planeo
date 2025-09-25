@@ -17,17 +17,17 @@ const translations = {
 // Fonction pour récupérer une traduction
 function getTranslation(lang: keyof typeof translations, key: string): string | string[] {
   const keys = key.split('.');
-  let value: any = translations[lang];
+  let value: unknown = translations[lang];
 
   for (const k of keys) {
     if (value && typeof value === 'object' && k in value) {
-      value = value[k];
+      value = (value as Record<string, unknown>)[k];
     } else {
       return key;
     }
   }
 
-  return value;
+  return value as string | string[];
 }
 
 // Fonction pour générer le HTML statique d'une page
