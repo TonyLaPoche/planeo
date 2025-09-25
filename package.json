@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-static": "node scripts/generate-static-pages.js",
+    "build:full": "npm run generate-static && npm run build"
   },
   "dependencies": {
     "@types/jspdf": "^1.3.3",
